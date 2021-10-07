@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vone.medisafe.antrian.bpjs.TbDoctorSchedule" table="tb_doctor_schedules" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">tb_doctor_schedules_id_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="staff" class="com.vone.medisafe.mapping.MsStaff" fetch="select">
+            <column name="doctor_id" />
+        </many-to-one>
+        <property name="schedule" type="date">
+            <column name="schedule"/>
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="8" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" length="50"/>
+        </property>
+         <property name="month" type="string">
+            <column name="schedule_month" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

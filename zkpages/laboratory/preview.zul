@@ -1,0 +1,18 @@
+<window id="preview" xmlns:h="http://www.w3.org/1999/xhtml" width="50%">
+
+<style src="../../include/medisafe.css"/>
+
+	
+<separator spacing="1px"/>
+
+<h:table align="center" width="100%">
+	<h:tr><h:td align="center" >
+	<iframe id="myIframe" style="height:500px;width:900px" width="100%"/>
+	</h:td></h:tr>
+	<h:tr><h:td align="right" >
+	<button label="CLOSE PREVIEW" image="/image/hapus.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt" onClick="preview.detach();"/>
+	</h:td>
+	</h:tr>
+</h:table>
+
+</window>

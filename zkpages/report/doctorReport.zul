@@ -1,0 +1,168 @@
+<window id="doctorEarning" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.report.DoctorEarningController;
+	import com.vone.medisafe.ui.master.DoctorController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	import org.zkoss.zul.Filedownload; 
+	import org.apache.poi.hssf.usermodel.*;
+	import java.io.*;
+	
+	dokter = new DoctorController();
+	
+	ctr = new DoctorEarningController();
+	void init(){
+		ctr.init(doctorEarning);
+	}
+	
+	public static void download()
+	 {
+	 	try
+		{
+			String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+			String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+			FileInputStream in = new FileInputStream(path);
+			Filedownload.save(in, "application/vnd.ms-excel", "laporan.xls");
+			
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	 }
+</zscript>
+<style src="/include/medisafe.css"/>
+	
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>LAPORAN PENDAPATAN DOKTER</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="3px"/>
+	<h:table align="center" width="100%" border="0">
+		<h:tr><h:td width="2%"/>
+			  <h:td><h:table align="center" width="100%" border="0">
+					    <h:tr><h:td width="0%"/>
+					    	  <h:td><separator spacing="10px"/>
+							     	    <h:table align="center" width="90%" border="0">
+							     	    	<h:tr>
+						               			  
+						               			  <h:td width="15%" align="right"><h:b><h:font size="1">LAPORAN</h:font></h:b></h:td>
+									  			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						               			  <h:td width="20%">
+						               			  
+						               			  	<listbox mold="select" id="pendapatanList" width="190px" style="font-size:9pt" onSelect="ctr.selectview()">
+			               			  					<listitem value="PD" label="PENDAPATAN TINDAKAN" selected="true"/>
+			               			  					<listitem value="OBAT" label="SUMBANGSIH PENJUALAN OBAT"/>
+			               			  					<listitem value="ALL" label="ALL"/>
+			               			  				</listbox>
+						               			  
+						               			  </h:td>
+						               			  
+						               			  <h:td width="11%" align="right"><h:b><h:font size="1">FROM</h:font></h:b></h:td>
+									  			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						               			  <h:td width="11%"><datebox id="dateFrom" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="4%" align="right"><h:b><h:font size="1">TO</h:font></h:b></h:td>
+									  			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						               			  <h:td width="11%"><datebox id="dateTo" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="15%" align="right"><h:b><h:font size="1">TIPE PASIEN</h:font></h:b></h:td>
+									  			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						               			  <h:td width="11%">
+						               			  		<listbox mold="select" id="patientTypeList" width="100px" style="font-size:9pt">
+			               			  						<listitem value="BPJS" label="BPJS" selected="true"/>
+			               			  						<listitem value="NONBPJS" label="NON BPJS"/>
+			               			  						<listitem value="ALL" label="ALL"/>
+			               			  				</listbox>
+						               			  </h:td> 
+						               			  
+						               			  <h:td width="12%" align="center">
+				    					  					<button id="btnOpen" label="VIEW" image="/image/detail.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.openClick();"/>
+				    					  				
+				    					  		  </h:td>
+						              		</h:tr>
+							      		</h:table>
+						         	    <separator spacing="2px"/>
+						      </h:td>
+					  	      <h:td width="5%"/>
+					    </h:tr>
+				   </h:table>
+	            </h:td>
+	            <h:td width="2%"/>
+	      </h:tr>
+		  <h:tr><h:td width="2%"/>
+		      <h:td><h:table align="center" width="100%" border="0">
+					    <h:tr><h:td width="3%"/>
+							  <h:td align="center"><separator spacing="2px"/>
+							        <groupbox width="95%">
+							     		<caption id="captionId" label="LAPORAN PENDAPATAN DOKTER"/>
+							   			<h:table width="100%" align="center" border="0">
+								
+									  		  <h:tr>
+											  		<h:td>
+											  			  <listbox id="pendapatanDokterList" multiple="true" width="98%" height="350px" mold="paging" pageSize="20">
+																<listhead id="headPendapatan">
+																	<listheader label="NO NOTA" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KODE" width="8%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA TINDAKAN" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="VALIDATE BY" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA PASIEN" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TIPE PASIEN" width="9%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KLS TARIF" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TANGGAL" width="8%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA DOKTER" width="9%" style="font-weight:bold;font-size:8pt"/> 
+																</listhead>
+														  </listbox>
+														   
+														  <listbox id="penjualanList" multiple="true" width="860px" height="350px" mold="paging" pageSize="20" visible="false">
+																<listhead id="headPenjualan">
+																	<listheader label="NO NOTA" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA PASIEN" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TANGGAL TRANSAKSI" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NILAI TRANSAKSI" width="15%" style="font-weight:bold;font-size:8pt"/> 
+																</listhead>
+														  </listbox>
+														  
+														  <listbox id="reportAll" multiple="true" width="860px" height="350px" mold="paging" pageSize="20" visible="false">
+																<listhead id="headReportAll">
+																	<listheader label="NAMA DOKTER" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="PENDAPATAN JASA" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="SUMBANGSIH OBAT" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														  </listbox>  
+													</h:td>
+													
+											  </h:tr>
+									  	</h:table>
+											
+										<separator spacing="2px"/>
+									  		
+									  	<h:table align="center" width="100%" border="0">
+											<h:tr>
+												  <h:td width="3%"/>
+												  <h:td><button label="Simpan ke XLS" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.saveToXLS(pendapatanList);download();"/>
+												  </h:td>
+												  <h:td width="30%"/>
+												  <h:td align="center">
+														<h:b><h:font size="1"><label value="TOTAL" id="lblTotal"/></h:font></h:b>
+												  </h:td>
+												  <h:td><decimalbox id="totalPendapatan" format="#,###.##" width="160px"/></h:td>
+												  <h:td width="3%">
+														
+									    	      </h:td>
+										    	  <h:td width="3%"/>
+											</h:tr>
+										</h:table>
+							   			<separator spacing="2px"/>
+							   	   </groupbox>
+							  </h:td>
+					  	      <h:td width="3%"/>
+					     </h:tr>
+				   </h:table>
+			  </h:td>
+			  <h:td width="2%"/>
+		</h:tr>
+	</h:table>	
+<separator spacing="15px"/>
+</window>

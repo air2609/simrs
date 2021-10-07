@@ -1,0 +1,158 @@
+<window id="room" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	 import com.vone.medisafe.ui.master.RoomController;
+	 ctr = new RoomController();
+	 void init(){
+	 	ctr.init(room);
+	 }
+	 void getRoomName(){
+	 	ctr.getRoomName(room);
+	 }
+	 void doSave(){
+	 	ctr.doSave(room);
+	 }
+	 void doCancel(){
+	 	ctr.doCancel(room);
+	 }
+	 void doModify(){
+	 	ctr.doModify(room);
+	 }
+	 void doDelete(){
+	 	ctr.doDelete(room);
+	 }
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM KAMAR</h:td></h:tr>
+	</h:table>
+
+<separator spacing="6px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>	
+				<h:table width="100%" align="center">
+				      <h:tr><h:td width="9%"/>
+				    	    <h:td>
+							      <h:table width="100%" align="center">
+									  <h:tr><h:td width="14%" align="right" style="font-weight:bold;font-size:8pt">NAMA RUANGAN</h:td>
+										    <h:td width="3%" align="center">:</h:td>
+					              			<h:td width="27%">
+					              	  			<bandbox id="namaRuangan" width="73%" onChange="getRoomName();" onOpen="crNamaRuangan.focus();" style="font-size:8pt" height="15px">
+											  		<bandpopup>
+												  		<vbox>		
+													  		<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA RUANGAN</h:td></h:tr>
+															</h:table>
+															<separator spacing="5px"/>
+															<h:table width="100%" align="center">
+																<h:tr><h:td width="3%"/>
+																      <h:td width="25%" align="right" style="font-weight:bold;font-size:8pt">NAMA RUANGAN</h:td>
+																	  <h:td width="4%" align="center">:</h:td>
+																	  <h:td width="35%" align="left"><textbox id="crNamaRuangan" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																	  <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.HallController.searchHall(ruanganSearchList,crNamaRuangan)"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+															</h:table>
+															<separator spacing="5px"/>
+															<listbox id="ruanganSearchList" width="450px" onSelect="namaRuangan.value=self.selectedItem.label; namaRuangan.closeDropdown();" mold="paging" pageSize="15">
+														  		<listhead>
+															  		<listheader label="RUANGAN"  width="60%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														      		<listheader label="KELAS TARIF" sort="auto" style="font-weight:bold;font-size:8pt"/>
+												          		</listhead>
+													  		</listbox>
+										 	      		</vbox>
+											  		</bandpopup>
+									 			</bandbox>
+										    </h:td>
+					        		 </h:tr>
+					        
+									 <h:tr><h:td width="14%" align="right" style="font-weight:bold;font-size:8pt">NOMOR KAMAR</h:td>
+								  		   <h:td width="3%" align="center">:</h:td>
+					              		   <h:td width="27%"><textbox id="id" width="80%" height="15px" onChange="getRoomName();" style="font-size:8pt"/></h:td>
+					        		 </h:tr>
+					        
+					        		<h:tr><h:td width="14%" align="right" style="font-weight:bold;font-size:8pt">NAMA KAMAR</h:td>
+								  		  <h:td width="3%" align="center">:</h:td>
+					              		  <h:td width="27%"><textbox id="name" width="80%" height="14px" style="font-size:8pt"/></h:td>
+					        		</h:tr>
+				    			</h:table>
+				  		    </h:td>
+				  		    <h:td width="12%"/>
+				      </h:tr>
+			      </h:table>
+		  	</h:td>
+		  	<h:td width="20%"/>
+	   </h:tr>		
+	   <h:tr><h:td width="20%"/> 
+			 <h:td><separator spacing="3px"/> 
+				   <h:table width="100%" align="center">
+				    	<h:tr><h:td width="34%"/>
+				    		  <h:td>
+				  					<h:table width="100%" align="center">
+					    				<h:tr><h:td width="10%"/>
+					    					  <h:td align="right">
+					    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+					    					  		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify()"/>
+					    		  		 	   		
+					    		  		 	  </h:td>
+					    		  			  <h:td width="5%" align="left">
+					    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="10%"/>
+					    				</h:tr>
+				    				</h:table>
+				    		</h:td>
+				  			<h:td width="34%"/>
+				  	   </h:tr>
+				  	</h:table>
+		    </h:td>
+		  	<h:td width="20%"/>
+	   </h:tr>		
+	   <h:tr><h:td width="20%"/> 
+			 <h:td><separator spacing="3px"/>   
+				   <h:table width="100%" align="center">
+				    	  <h:tr><h:td width="30%"/>
+						    	<h:td>	 	
+						    		  <groupbox width="600px">
+									  	<caption label="DATA KAMAR"/>
+										  	    <h:table width="100%" align="center">
+											  		  <h:tr><h:td  height="10px"/></h:tr>
+											  		  <h:tr><h:td width="13%"/>
+													  		<h:td>
+														  		  <listbox id="roomList" multiple="true" width="560px" height="280px" mold="paging" pageSize="19">
+																	 <listhead>
+																		 <listheader label="RUANGAN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		 <listheader label="KELAS TARIF" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		 <listheader label="NO. KAMAR" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		 <listheader label="NAMA KAMAR" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	 </listhead>
+																  </listbox>	
+															</h:td>
+															<h:td width="13%"/>
+													  </h:tr>
+										  		</h:table>
+												
+												<separator spacing="5px"/>
+									      </groupbox>
+							 	  </h:td>
+								  <h:td width="30%"/>
+						    </h:tr>
+				   </h:table>
+		     </h:td>	
+		     <h:td width="20%"/>
+	   </h:tr>
+</h:table> 
+<separator spacing="18px"/>
+</window>

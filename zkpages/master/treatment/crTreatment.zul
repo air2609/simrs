@@ -1,0 +1,152 @@
+<window id="search" xmlns:h="http://www.w3.org/1999/xhtml" width="960px" onShow="self.detach()" closable="true" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+
+	import com.vone.medisafe.ui.master.treatment.PencarianTreatmentContoller;
+	
+	ctr = new PencarianTreatmentContoller();
+	
+	void init(){
+		ctr.init(search);
+	}
+	
+	
+
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PENCARIAN TREATMENT</h:td></h:tr>
+</h:table>
+	
+<separator spacing="10px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td>	
+		  <h:table width="100%" align="center">
+	    	<h:tr><h:td width="8%"/>
+	    		  <h:td>
+						<h:table width="100%" align="center">
+							<h:tr><h:td width="2%"/>
+								  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>KODE</h:b></h:p></h:td>
+							      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		              			  <h:td width="20%"><textbox id="treatmentCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+		              			  <h:td width="3%"/>
+		       				</h:tr>
+		       				<h:tr><h:td width="2%"/>
+		        				  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+					  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		             			  <h:td width="20%"><textbox id="treatmentName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+		             			  <h:td width="5%"/>
+		             		</h:tr>
+		             		<h:tr><h:td width="2%"/>
+		        				  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>KELAS TARIF</h:b></h:p></h:td>
+							      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		              			  <h:td width="20%"><listbox id="tclassList" width="60%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+		              		  	  <h:td width="5%"><h:p align="left"><button label="CARI" image="/image/add.gif" style="width:70px;height:26px" onClick="ctr.search();"/></h:p></h:td>
+		              		  	  <h:td width="5%"/>
+		        			</h:tr>
+		    			</h:table>
+	  			  </h:td>
+	  			  <h:td width="12%"/>
+	  	   </h:tr>
+	  	 </h:table>
+	  	
+	    <separator spacing="5px"/>
+	    
+	     <h:table width="100%" align="center">
+	    	  <h:tr><h:td width="30%"/>
+			    	<h:td>	 	
+					      <vbox>
+								  <groupbox width="900px" height="195px">
+								  	<caption label="DATA TREATMENT"/>
+								  	 <separator spacing="3px"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="8px"></h:td></h:tr>
+									  		  <h:tr><h:td width="13%"/>
+											  		<h:td>
+												  		<vbox>
+															<listbox id="treatmentList" multiple="true" width="860px" height="230px" mold="paging" pageSize="17">
+																<listhead>
+																	<listheader label="KODE" sort="auto" width="9%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA TINDAKAN" width="39%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KELAS TARIF" sort="auto" width="11%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA RS" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA DOKTER" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA MEDIK" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TOTAL BIAYA" width="18%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+																<!-- 
+																<listitem onClick="panadol();">
+																	<listcell label="AB00001"/>
+																	<listcell label="10"/>
+																	<listcell label="PANADOL"/>
+																	<listcell label="10000"/>
+																	<listcell label="mg"/>
+																	<listcell><intbox id="panadol" width="90%"/></listcell>
+																</listitem>
+																
+																<listitem onClick="aspirin();">
+																	<listcell label="BB00001"/>
+																	<listcell label="10"/>
+																	<listcell label="ASPIRIN"/>
+																	<listcell label="20000"/>
+																	<listcell label="mg"/>
+																	<listcell><intbox id="aspirin" width="90%"/></listcell>
+																</listitem>
+																
+																<listitem>
+																	<listcell label="CB00001"/>
+																	<listcell label="12"/>
+																	<listcell label="PIL KB"/>
+																	<listcell label="15000"/>
+																	<listcell label="mg"/>
+																	<listcell><intbox width="90%"/></listcell>
+																</listitem>
+																
+																<listitem>
+																	<listcell label="DB00001"/>
+																	<listcell label="8"/>
+																	<listcell label="MESTAMOX"/>
+																	<listcell label="20000"/>
+																	<listcell label="mg"/>
+																	<listcell><intbox width="90%"/></listcell>
+																</listitem>
+																-->
+															</listbox>
+														</vbox>
+													</h:td>
+													<h:td width="13%"/>
+											  </h:tr>
+								  		</h:table>
+										
+										<separator spacing="3px"/>
+								  		
+								  		<h:table width="100%" align="center">
+								  		   	 <h:tr><h:td width="2%"/>
+							  		  		   	   <h:td><h:p align="left">
+					    						   		 	<button label="PILIH" image="/image/check.gif" style="width:70px;height:26px" onClick="ctr.getDetil();"/>
+					    						   		 </h:p>
+					    						   </h:td>
+								  		   	 	   <h:td><h:p align="right">
+					    						   		 	<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="search.detach()"/>
+					    						   		 </h:p>
+					    						   </h:td>
+					    						   <h:td width="2%"/>
+					    		  			 </h:tr>
+								  		</h:table>
+								  		<separator spacing="1px"/>
+							   </groupbox>
+						</vbox>
+						<separator spacing="5px"/>
+				  </h:td>
+				  <h:td width="30%"/>
+		    </h:tr>
+	    </h:table>
+	 
+		</h:td>
+	</h:tr>
+</h:table> 
+
+</window>

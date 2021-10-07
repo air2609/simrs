@@ -1,0 +1,26 @@
+<?page id="renalRoot"?>
+<window id="renal" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox id="tbroot" width="100%">
+	<tabs>
+		<tab id="transaksi" label="TRANSAKSI"/>
+		<tab id="history" label="HISTORY TRANSAKSI"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/renalUnit/transaksiRenalUnit.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/common/history.zul"/>
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+
+</window>

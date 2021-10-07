@@ -1,0 +1,20 @@
+<window use="com.vone.medisafe.common.exception.ExceptionWindow" id="exception" title="Error ${requestScope['javax.servlet.error.status_code']}" width="400px" border="normal">
+<vbox width="100%">
+MEDiSafe menemukan error :
+<label id="lbl"/>
+<hbox style="margin-left:auto; margin-right:auto">
+
+<button label="Continue" onClick="exception.detach()"/>
+</hbox>
+
+<groupbox id="view" mold="3d" open="false" width="100%">
+		<caption label="Detail"/>
+		<textbox id="detail" rows="5" width="98%" style="font-size:8pt">
+				<attribute name="value">
+				${requestScope['javax.servlet.error.message']}
+				</attribute>
+		</textbox>
+	</groupbox>			
+</vbox>
+
+</window>

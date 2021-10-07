@@ -1,0 +1,25 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%">
+	<tabs>
+		<tab label="PENERIMAAN BARANG"/>
+		<tab label="INPUT BATCH NO."/>
+	</tabs>
+	
+	<tabpanels>
+	
+		<tabpanel>
+			<include id="deliveryOrder" src="/zkpages/purchasing/deliveryOrder.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include id="batchNo" src="/zkpages/purchasing/batchItem.zul"/>
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+
+</window>

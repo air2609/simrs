@@ -1,0 +1,89 @@
+<window id="rekapTransaksi" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.report.LaporanRekapBulanan;
+	
+	ctr = new LaporanRekapBulanan();
+	
+	void init()
+	{
+		ctr.init(rekapTransaksi);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>REKAP TRANSAKSI BULANAN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="85px"/>
+<h:table align="center" width="100%">
+	<h:tr><h:td width="28%"/>
+		  <h:td><vbox>
+					<groupbox width="400px">
+					<separator spacing="10px"/>
+					<h:table align="center" width="100%">
+						<h:tr><h:td width="5%"/>
+							  <h:td><h:table width="100%" align="center">
+										<h:tr><h:td width="7%"><h:p align="right" style="font-size:8pt"><h:b>LOKASI</h:b></h:p></h:td>
+											  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="25%" style="font-size:8pt;font-weight:bold">
+												 <listbox id="locationList" width="93%" mold="select" height="14px" style="font-size:9pt"/>
+											  </h:td>
+										</h:tr>
+									
+										<h:tr><h:td width="7%"><h:p align="right" style="font-size:8pt"><h:b>BULAN</h:b></h:p></h:td>
+											  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="25%">
+												 <listbox id="monthList" width="62%" mold="select" height="14px" style="font-size:9pt">
+												 	<listitem value="01" label="JANUARI" selected="true"/>
+												 	<listitem value="02" label="FEBRUARI"/>
+												 	<listitem value="03" label="MARET"/>
+												 	<listitem value="04" label="APRIL"/>
+												 	<listitem value="05" label="MEI"/>
+												 	<listitem value="06" label="JUNI"/>
+												 	<listitem value="07" label="JULI"/>
+												 	<listitem value="08" label="AGUSTUS"/>
+												 	<listitem value="09" label="SEPTEMBER"/>
+												 	<listitem value="10" label="OKTOBER"/>
+												 	<listitem value="11" label="NOVEMBER"/>
+												 	<listitem value="12" label="DESEMBER"/>
+												 </listbox>
+											  </h:td>
+										</h:tr>
+										<h:tr><h:td width="7%"><h:p align="right" style="font-size:8pt"><h:b>TAHUN</h:b></h:p></h:td>
+											  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="25%"><h:p align="left">
+											  			<intbox id="year" width="30%" height="14px" style="font-size:8pt" maxlength="4"/>
+											  		</h:p>
+											  </h:td>
+										</h:tr>
+									</h:table>
+							  </h:td>
+						      <h:td width="5%"/>
+					    </h:tr>
+						<h:tr><h:td width="5%"/>
+					    	  <h:td><separator spacing="2px"/>
+					    	  		<h:table width="100%" align="center">
+										<h:tr><h:td width="25%"/>
+											  <h:td>
+												  	<h:p align="right">
+									    				<button id="btnPrint" label="LIHAT LAPORAN" image="/image/print.gif" style="width:120px;height:26px" onClick="ctr.createReport();"/>
+									    	  		</h:p>
+									    	  </h:td>
+										   	  <h:td width="4%"/>
+									    </h:tr>
+									</h:table>
+					    	  
+							  </h:td>
+							  <h:td width="5%"/>
+						</h:tr>
+					</h:table>
+					<separator spacing="8px"/>
+					</groupbox>
+				</vbox>
+		  </h:td>
+		  <h:td width="28%"/>
+	</h:tr>
+</h:table>
+<separator spacing="94px"/>
+</window>

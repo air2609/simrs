@@ -1,0 +1,314 @@
+FORMAT HASIL LAB :
+
+
+A. ONLOAD 
+   - SEMUA FIELD DIKOSONGKAN.
+   - SEMUA FIELD ENABLED, KECUALI NO. NOTA DAN NO. REGISTRASI, NO. HASIL LAB
+   - BUTTON YANG ENABLED : SELESAI
+   - BUTTON2 YANG LAIN DI-DISABLED
+
+B. STATUS PASIEN
+	   1. JIKA RUJUKAN
+	   	  	1.A. INITIAL
+	   	  	 	 1.A.1. KLIK CHECK BOX RUJUKAN
+				 1.A.2. FIELD MR DAN NO.REGISTRASI, BED DAN RUANGAN TIDAK AKTIF
+				 1.A.3. USER MENCARI NO. NOTA PASIEN
+				 		1.A.4.a PENCARIAN VIA BANDBOX
+				  			  	 1.A.4.a.1 USER INPUT NO.NOTA ATAU NAMA
+				  			  	 1.A.4.a.2 JIKA :
+				  			  	 			- DATA TIDAK DITEMUKAN : 	
+				  			  	 			     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    		- DATA DITEMUKAN :
+				  			  	    		     --> TAMPILKAN KEDALAM LIST NOTA
+				  			  	    		     --> USER MEMILIH NOTA
+				  			  	    			 --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+				  			  	    		         
+				  		1.A.4.b INPUT NO. NOTA MANUALLY
+				  			     1.A.4.b.1   JIKA :
+				  			  				 - DATA TIDAK DITEMUKAN : 	
+				  			  	    			--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    		 - DATA DITEMUKAN :
+												--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+				  			  	    			
+				 1.A.4. DI LIST DATA TRANSAKSI PASIEN, AKAN MUNCUL PEMERIKSAAN2 YANG DILAKUKAN OLEH SI PASIEN.
+				  		NORMAL RANGE DAN SATUAN, LINK TO DATABASE SESUAI DENGAN KODE PEMERIKSAAN
+				  		(NORMAL RANGE DAN SATUAN EDITABLE)
+				  		-> TABLE YANG DIGUNAKAN : MS LAB TEST DETAIL
+				  		
+				 1.A.5. TOMBOL SIMPAN DI-ENABLED
+				 1.A.6. USER MENGISI HASIL PEMERIKSAAN
+				        
+	   	  	1.B. USER MENEKAN TOMBOL SIMPAN 
+	   	  		 2.1 REFER TO C
+	  	  	
+	   2. JIKA RAJAL/RANAP
+	  		2.A. INITIAL
+	  			  2.A.1 JIKA :
+	  			  		  2.A.1.1 USER INPUT NO. MR
+	  			  		          2.A.1.1.1 PENCARIAN DATA PASIEN
+						  			  	    2.A.1.1.1.a PENCARIAN VIA BANDBOX
+						  			  	    			2.A.1.1.1.a.1 USER INPUT NO.MR ATAU NAMA ATAU ALAMAT PASIEN
+						  			  	    			2.A.1.1.2.a.2 JIKA :
+								  			  	    				   - DATA TIDAK DITEMUKAN : 	
+								  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+								  			  	    				   - DATA DITEMUKAN
+								  			  	    				     --> TAMPILKAN KEDALAM LIST DATA PASIEN
+								  			  	    				     --> USER MEMILIH DATA PASIEN
+						  			  	    				     
+						  			  	    2.A.1.1.1.b INPUT NO. MR MANUALLY
+						  			  	    		    2.A.1.1.1.B   JIKA :
+								  			  	    				   - DATA TIDAK DITEMUKAN : 	
+								  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+								  			  	    				   - DATA DITEMUKAN
+			  			  	       2.A.1.1.2 DISPLAY DATA PASIEN
+			  			  	       			 2.A.1.1.2.a DI BANDBOX NO. NOTA, AKAN MUNCUL NOMOR2 NOTA PEMERIKSAAN LAB (MSH AKTIF) SI PASIEN (SESUAI DG NO. MR)
+		  			  						 2.A.1.1.2.b USER MEMILIH NO. NOTA YANG DIINGINKAN
+		  			  						 2.A.1.1.2.c NEXT TO 2.A.2
+		  			  						 
+	  			   	       2.A.1.2 USER INPUT NO. NOTA		
+	  			   	       		   2.A.1.2.1 USER MENCARI NO. NOTA PASIEN
+										 	 2.A.1.2.1.a PENCARIAN VIA BANDBOX
+										  			  	 2.A.1.2.1.a.1 USER INPUT NO.NOTA ATAU NAMA
+										  			  	 2.A.1.2.1.a.2 JIKA :
+											  			  	 			- DATA TIDAK DITEMUKAN : 	
+											  			  	 			     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											  			  	    		- DATA DITEMUKAN :
+											  			  	    		     --> TAMPILKAN KEDALAM LIST NOTA
+											  			  	    		     --> USER MEMILIH NOTA
+											  			  	    			 --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+										  			  	    		         
+										  	 2.A.1.2.1.b INPUT NO. NOTA MANUALLY
+										  			     2.A.1.2.1.b.1   JIKA :
+											  			  				 - DATA TIDAK DITEMUKAN : 	
+											  			  	    			--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											  			  	    		 - DATA DITEMUKAN :
+																			--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+	  			   	       		    2.A.1.2.2 DISPLAY DATA PASIEN
+	  			   	       		    2.A.1.1.3 NEXT TO 2.A.2
+	  			   	       		    
+	  			  2.A.2	TOMBOL SIMPAN DI-ENABLED.
+	  			  		- JIKA RAJAL : FIELD BED DAN RUANGAN TIDAK AKTIF
+	  			        - JIKA RANAP : FIELD BED DAN RUANGAN DIISI SESUAI DENGAN TEMPAT SIPASIEN MONDOK	
+	  			        
+		  			  		TABLE YANG DIGUNAKAN : 
+		  			  	    - TB_REGISTRATION 
+		  			  	       NO. MR           : n_mr_id --> LINK KE TB_MEDICAL RECORD --> LINK KE MS_PATIENT
+		  			  	       NO. REGISTRASI   : v_reg_secondary_id
+		  			  	       NAMA				: v_patient_name
+			              	   UMUR				: v_patient_age 
+			                   NAMA DOKTER      : n_staff_id --> LINK KE MS_DOCTOR
+		  			  	    
+		  			  	    -  TB ROOM RESERVATION (JIKA RANAP)
+		  			  	       RUANGAN			: n_hall_id
+		  			  	  	   BED				: n_bed_id
+		  			  	    	   
+	  			  2.A.3 DISPLAY PEMERIKSAAN2 YANG DILAKUKAN OLEH PASIEN SESUAI DG NO. NOTA.
+				  		NORMAL RANGE DAN SATUAN, LINK TO DATABASE SESUAI DENGAN KODE PEMERIKSAAN
+				  		(NORMAL RANGE DAN SATUAN EDITABLE)
+				  		-> TABLE YANG DIGUNAKAN : MS LAB TEST DETAIL
+				
+				  2.A.4 USER MENGISI HASIL PEMERIKSAAN
+				  
+	  		2.B. USER MENEKAN TOMBOL SIMPAN
+	  		     2.1 REFER TO C
+
+C. SIMPAN
+   C.1 PENYIMPANAN DENGAN NORMAL RANGE YANG SESUAI DENGAN YANG ADA DI MS LAB TEST DETAIL
+       C.1.1 INITIAL
+       		 C.1.1.1 USER TELAH MENGISI HASIL TEST PEMERIKSAAN
+       		 C.1.1.2 USER MENEKAN TOMBOL SIMPAN
+       		 C.1.1.3 USER MENGISI USERNAME DAN PASSWORD
+       		         C.1.1.3.1 JIKA YES
+			       		       C.1.1.3.1.a DATA DI SIMPAN KE DATABASE
+						       		         TABLE YANG BERHUBUNGAN ADALAH :
+						       		         - TB LABORATORY RESULT
+						       		           NO HASIL LAB		   :  v_lab_rslt_code
+						       		           
+						       		         - TB LABORATORY TEST DETAIL
+						       		           RANGE NORMAL WANITA : v_nrml_range_woman (SESUAI DENGAN YANG ADA DI MS LAB TEST DETAIL)
+						       		           RANGE NORMAL PRIA   : v_nrml_range_man (SESUAI DENGAN YANG ADA DI MS LAB TEST DETAIL)
+						       		           HASIL TEST 		   : v_lab_rslt_desc
+						       		           SATUAN			   : v_lab_rslt_quantify
+
+						       		         - TB LABORATORY RESULT $ TB LABORATORY TEST DETAIL
+						       		           USERNAME $ PASSWORD : v_who_create
+						       		           
+       		         C.1.1.3.2 JIKA NO
+       		         		   C.1.1.3.2.a KEMBALI KE FORM UTAMA
+       		           
+       C.1.2 POST CONDITION
+       		 C.1.2.1 DATA BERHASIL DI SIMPAN
+       		 
+   C.2 PENYIMPANAN DENGAN NORMAL RANGE YANG TDK SESUAI DENGAN YANG ADA DI MS LAB TEST DETAIL
+       (KARENA PIHAK RUMAH SAKIT MERUJUK PEMERIKSAAN KE LAB LAIN, DIMANA NORMAL RANGE
+       SETIAP LAB ADA KEMUNGKINAN TIDAK SAMA)  
+       C.2.1 INITIAL
+       		 C.1.2.1 USER TELAH MENGISI HASIL TEST PEMERIKSAAN
+       		 C.1.2.2 DATA DI SIMPAN KE DATABASE
+       		         TABLE YANG BERHUBUNGAN ADALAH :
+       		         - TB LABORATORY RESULT
+       		           NO HASIL LAB		   :  v_lab_rslt_code
+       		         - TB LABORATORY TEST DETAIL
+       		           RANGE NORMAL WANITA : v_nrml_range_woman 
+       		           RANGE NORMAL PRIA   : v_nrml_range_man 
+       		           HASIL TEST 		   : v_lab_rslt_desc
+       		           SATUAN			   : v_lab_rslt_quantify
+       		           
+       C.2.2 POST CONDITION
+	         C.1.2.1 DATA BERHASIL DI SIMPAN
+
+	C.3 TOMBOL YANG ENABLED
+		- UBAH
+		- BARU
+		- CETAK HASIL
+		
+D. UBAH
+   D.1 PERUBAHAN DATA DILAKUKAN LANGSUNG SETELAH USER MENEKAN TOMBOL SIMPAN
+	   1. INITIAL
+	   	  1.1 DATA SUDAH DI SIMPAN
+	   	  1.2 USER MENEKAN TOMBOL UBAH, TOMBOL SIMPAN DI-ENABLED
+	   	  1.3 LIST HASIL PEMERIKSAAN LABORATORIUM DI-ENABLED
+	   	  1.4 JIKA
+	   	  	  1.4.1 PERUBAHAN DILAKUKAN
+	   	  	  		  1.4.1.a USER MENGISI PERUBAHAN DATA
+				   	  1.4.1.b USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA) 
+				   	  1.4.1.c KONFIRMASI UPDATE BERHASIL
+					  1.4.1.c SEMUA FIELD DI-DISABLED
+		  				
+		 	  1.4.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+				   	  1.4.2.a USER MENEKAN TOMBOL BATAL (REFER TO E)
+				   	  1.4.2.b SEMUA FIELD KEMBALI DI-DISABLED   
+		  
+	   2. POST CONDITION
+	      2.1 DATA BERHASIL DI UBAH
+	      
+	      TABLE YANG DIGUNAKAN :
+	       - TB LABORATORY RESULT
+       	         NO HASIL LAB		   :  v_lab_rslt_code
+       	   - TB LABORATORY TEST DETAIL
+       	         RANGE NORMAL WANITA   : v_nrml_range_woman 
+       	         RANGE NORMAL PRIA     : v_nrml_range_man 
+       	         HASIL TEST 		   : v_lab_rslt_quantify
+       	         
+	       - TB LABORATORY RESULT & TB LABORATORY TEST DETAIL
+			 USERNAME $ PASSWORD 	   : v_who_change
+			 
+   D.2 PERUBAHAN DATA TERHADAP HASIL PEMERIKSAAN PASIEN YANG SUDAH MEMPUNYAI NO. HASIL LAB 
+   	   1. INITIAL
+   	   	  1. DATA SUDAH TERSIMPAN DAN SUDAH ADA NO. HASIL LAB
+   	   	  2. USER MENCARI NO. NOTA
+   	   	     2.1.1 USER INPUT NO. NOTA 		
+	  			   2.1.1.a USER MENCARI NO. NOTA PASIEN
+						   2.1.1.a.1 PENCARIAN VIA BANDBOX
+									 2.1.1.a.1.a USER INPUT NO.NOTA ATAU NAMA
+									 2.1.1.a.1.b JIKA :
+											  	 - DATA TIDAK DITEMUKAN : 	
+											  	   --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											  	 - DATA DITEMUKAN :
+											  	   --> TAMPILKAN KEDALAM LIST NOTA
+											  	   --> USER MEMILIH NOTA
+											  	   --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+										  			  	    		         
+						   2.1.1.a.2 INPUT NO. NOTA MANUALLY
+									 2.1.1.a.2.a JIKA :
+											  	 - DATA TIDAK DITEMUKAN : 	
+											  		--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											  	 - DATA DITEMUKAN :
+													--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+ 
+	  	  3. DISPLAY DATA PASIEN, BESERTA DATA-DATA PEMERIKSAAN YANG ADA DI NO. NOTA TSB (DI-DISABLED)
+		  4. DATA YANG BISA DI-UBAH HANYA YANG SUDAH MEMPUNYAI NO. NOTA DAN NO. HASIL LAB
+		  5. JIKA :
+		  	 5.1 SUDAH PUNYA NO. NOTA DAN NO. HASIL LAB
+		  	     5.1.1 TOMBOL UBAH DI-ENABLED.
+				 5.1.2 USER MENEKAN TOMBOL UBAH, TOMBOL SIMPAN DAN BATAL DI-ENABLED
+				 5.1.3 JIKA :
+				  	   5.1.3.1 PERUBAHAN DILAKUKAN
+					   	  	  	 5.1.1 USER MENGISI PERUBAHAN DATA
+								 5.1.2 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA) 
+								 5.1.3 KONFIRMASI UPDATE BERHASIL
+								 5.1.4 SEMUA FIELD DI-DISABLED
+					  				
+					   5.1.3.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+								 5.2.1 USER MENEKAN TOMBOL BATAL (REFER TO E)
+								 5.2.2 SEMUA FIELD KEMBALI DI-DISABLED   
+
+	  	  	  5.2 PUNYA NO. NOTA TETAPI BELUM PUNYA NO. HASIL LAB (DATA TIDAK BISA DI UBAH)
+	  	  	      5.2.1 TOMBOL BARU DI-ENABLED
+	  	  	      
+   	   2. POST CONDITION
+   	   	  2.1 DATA BERHASIL DI UBAH
+	      
+	      TABLE YANG DIGUNAKAN :
+	      - TB EXAMINATION (UNTUK MENCARI NO. NOTA)
+	             NO. NOTA			   : 
+	      - TB LABORATORY RESULT
+       	         NO HASIL LAB		   : v_lab_rslt_code
+       	  - TB LABORATORY TEST DETAIL
+       	         RANGE NORMAL WANITA   : v_nrml_range_woman 
+       	         RANGE NORMAL PRIA     : v_nrml_range_man 
+       	         HASIL TEST 		   : v_lab_rslt_desc
+       	         SATUAN			       : v_lab_rslt_quantify
+          - TB EXAMINATION, TB LABORATORY RESULT & TB LABORATORY TEST DETAIL
+			 USERNAME $ PASSWORD 	   : v_who_change
+   
+E. BATAL
+   1. INITIAL
+	  1.1 USER MENEKAN TOMBOL UBAH (REFER TO D)
+   2. USER MENEKAN TOMBOL BATAL
+   3. FORM DIKEMBALIKAN KE KEADAAN SEBELUM USER MENEKAN TOMBOL UBAH
+	  (FORM DI-DISABLED)
+	  
+F. BARU
+   F.1. INITIAL
+		1. 1.1 SEMUA FIELD DI-DISABLED DAN TELAH DI SIMPAN
+		   1.2 TOMBOL BARU = ENABLED
+		2. USER MENEKAN TOMBOL BARU
+		3. FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO A)
+					    
+   F.2. POST CONDITION
+		1. FORM BERHASIL DIKOSONGKAN		
+		
+G. CETAK HASIL
+   1. INITIAL
+      1.1 DATA TELAH DISIMPAN DAN SEMUA FIELD DI-DISABLED
+   2. USER MENEKAN TOMBOL CETAK
+   3. MUNCUL KONFIRMASI
+	  3.1 JIKA :
+	       3.2.1 YES, KEMBALI KE FORM UTAMA, DAN HASIL LAB DI CETAK
+	       		 HASIL PENCETAKAN DIKELOMPOKKAN BERDASARKAN KATEGORI PEMERIKSAAN
+	       		 MISAL :
+	       		 DI LIST HASIL PEMERIKSAAN LAB
+	       		 -----------------------------
+	       		 KODE 		NAMA PEMERIKSAAN 				HASIL TEST		NORMAL RANGE 		SATUAN
+	       		 AX0012		DARAH LENGKAP (HEMATOLOGI)		   123			WANITA : 123		   MG
+	       		 															PRIA   : 456
+	       		 AX0011		HB (HEMATOLOGI)		   			   121			WANITA : 123		   MG
+	       		 															PRIA   : 456
+	       		 CX0023		HBSAG SLIDE (SEROLOGI)			   50			WANITA : 70		   	   MG
+	       		 															PRIA   : 90	
+	       		 
+	       		 MAKA PENULISAN DI HASIL PENCETAKAN :
+	       		 	
+	       		 	KATEGORI 		NAMA PEMERIKSAAN 		HASIL TEST	  NORMAL RANGE					SATUAN
+	       		 	----------------------------------------------------------------------------------------------
+	       		 	HEMATOLOGI  	DARAH LENGKAP				123		  WANITA : 123; PRIA : 456		   MG
+	       		 				    HB							121		  WANITA : 123; PRIA : 456		   MG
+	       		    SEROLOGI	    HBSAG SLIDE					50		  WANITA : 70; PRIA : 90		   MG
+	       	
+	       		 
+	       3.2.2 NO, KEMBALI KE FORM UTAMA
+
+	 TABLE YANG DIGUNAKAN :      
+	 - TB EXAMINATION
+	 - TB TREATMENT TRX
+	 - TB LABORATORY RESULT
+	 - TB LABORATORY RESULT DETAIL
+	 
+H. SELESAI
+	1. INITIAL
+	   1.1 SEMUA FIELD HARUS DIBERSIHKAN (REFER TO F)
+	2. USER MENEKAN TOMBOL SELESAI
+	3. FORM DITUTUP  
+
+	  	  	

@@ -1,0 +1,60 @@
+<window id="returCancelation" xmlns:h="http://www.w3.org/1999/xhtml" border="normal" width="530px" onShow="self.detach()" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.apotik.BatalNotaReturController;
+	ctr = new BatalNotaReturController();
+	
+	void init(){
+		ctr.init(returCancelation);
+	}
+	
+	void cancelNote(){
+		ctr.cancelNote();
+	}
+
+</zscript>
+
+<style src="../../include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>PEMBATALAN NOTA</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="2%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>USERNAME</h:b></h:p></h:td>
+					      <h:td width="4%"><h:p align="center">:</h:p></h:td>
+	    				  <h:td width="28%"><h:p align="left"><textbox id="username" width="78%" height="14px" style="font-size:8pt"/></h:p></h:td>
+	    			</h:tr>
+	       				
+	       			<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>PASSWORD</h:b></h:p></h:td>
+						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+	       			   	  <h:td width="28%"><textbox id="password" type="password" width="78%" height="14px" style="font-size:8pt"/></h:td>
+	       		 	</h:tr>
+	       	
+	       	 	 	<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>ALASAN PEMBATALAN NOTA</h:b></h:p></h:td>
+						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+	        	 	   	  <h:td width="28%"><textbox id="cancelationReason" width="98%" style="font-size:8pt" rows="5"/></h:td>
+	       		 	</h:tr>
+	    		</h:table>
+	    		
+	    		<separator spacing="5px"/>
+	    		
+	    		<h:table width="100%" align="center">
+		    		<h:tr><h:td><h:p align="right">
+		    						<button label="OK" image="/image/save1.gif" onClick="cancelNote();returCancelation.detach()" style="width:70px;height:26px"/>
+		    					</h:p>
+		    			  </h:td>
+				  		  <h:td><button label="BATAL" image="/image/cancel.gif" onClick="returCancelation.detach()" style="width:70px;height:26px"/></h:td>
+					</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+</window>

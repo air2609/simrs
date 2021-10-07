@@ -1,0 +1,255 @@
+<window id="masterSupplier" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="/include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.master.item.VendorController;
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	ctr = new VendorController();
+	coaCtr = new CoaController();
+	
+	void init(){
+		ctr.init(masterSupplier);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterSupplier);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterSupplier);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterSupplier);
+	}
+	
+	void doModify(){
+		ctr.doModify(masterSupplier);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM MASTER SUPPLIER</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="10%"/>
+		  <h:td>
+				<!--<h:table width="100%" align="center">
+				<h:tr><h:td width="3%"/>
+					 <h:td> --><h:table width="100%" align="center">
+								<h:tr><h:td width="20%" align="right"><h:b>  <h:font size="1">KODE</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td width="28%"><textbox id="vendorCode" width="80%" height="14px" style="font-size:8pt"/></h:td>
+									 
+									  <h:td width="15%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td><textbox id="vendorName" width="80%" height="14px" style="font-size:8pt"/></h:td>
+						  		
+						  		</h:tr>
+								<h:tr><h:td width="20%" align="right" style="font-size:8pt"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td width="28%"><textbox id="vendorAddress" width="80%" height="14px" style="font-size:8pt"/></h:td>
+									  
+									  <h:td width="15%" align="right"><h:b><h:font size="1">NO. TELP</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td><textbox id="telpNo" width="80%" height="14px" style="font-size:8pt"/></h:td>
+						  	
+						  		</h:tr>
+								<h:tr><h:td width="20%" align="right"><h:b><h:font size="1">NO. TELP ALTERNATIF</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td width="28%"><textbox id="alvTelpNo" width="80%" height="14px" style="font-size:8pt"/></h:td>
+						  		     
+						  		      <h:td width="15%" align="right"><h:b><h:font size="1">NO. FAX</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td><textbox id="faxNo" width="80%" height="14px" style="font-size:8pt"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="20%" align="right"><h:b><h:font size="1">CONTACT PERSON</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td width="30%"><textbox id="contactPerson" width="80%" height="14px" style="font-size:8pt"/></h:td>
+
+									  <h:td width="15%" align="right"><h:b><h:font size="1">NO. COA</h:font></h:b></h:td>
+									  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									  <h:td><bandbox id="coa" width="73%" style="font-size:8pt" onOpen="coaCode.focus();">
+								           		<bandpopup>
+													<vbox>	
+														  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA COA</h:td></h:tr>
+														  </h:table>
+														  <separator spacing="3px"/>
+														  <h:table width="100%" align="center">
+																<h:tr><h:td width="2%"/>
+																      <h:td width="25%" align="right"><h:b><h:font size="1">CODE</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"><textbox id="coaCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+																<h:tr><h:td width="2%"/>
+																      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"><textbox id="coaName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																	  <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="coaCtr.searchCoa(coaCode, coaName, coaList);"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+															</h:table>
+															<separator spacing="3px"/>
+															<listbox id="coaList" width="600px" onSelect="coaCtr.getCoa(coaList, coa);coa.closeDropdown()" mold="paging" pageSize="15">
+																<listhead>
+																	<listheader label="NO. COA" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+															</listbox>
+													</vbox>
+												</bandpopup>
+					            		    </bandbox>
+					            	  </h:td>
+						  		</h:tr>
+						  	</h:table><!--
+					  </h:td>
+					  <h:td width="5%"/>
+				</h:tr>
+				</h:table>
+		  --></h:td>
+		  <h:td width="10%"/>
+	</h:tr>
+	<h:tr><h:td width="10%"/>
+		  <h:td><separator spacing="3px"/>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="35%"/>
+						  <h:td width="5%" align="right">
+						  	  
+			    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+			    		  	 
+			    		  </h:td>
+			    		  
+			    		  <h:td width="5%" align="right">
+			       			  
+			    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+			    		  	  
+			    		  </h:td>
+			    		 		
+			    		  <h:td width="5%" align="right">
+						  	   
+			    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+			    		  	
+			    		  </h:td>
+			    		  				   
+			    		  <h:td width="5%" align="left">
+			       		 	   	
+								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+							  
+						  </h:td>
+			    		  <h:td width="35%"/>
+			    	</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="10%"/>
+	</h:tr>
+	<h:tr><h:td width="10%"/>
+		  <h:td><separator spacing="3px"/>	
+		  		<h:table width="100%" align="center">
+	    			<h:tr><h:td width="25%"/>
+	    				  <h:td>	 	
+			    				<vbox>
+						  			<groupbox width="900px">
+						  				<caption label="DATA SUPPLIER"/>
+						  					<h:table width="100%" align="center">
+						  						<h:tr></h:tr>
+						  						<h:tr><h:td width="2%"/>
+						  							  <h:td>
+												  	  		<h:table align="center" width="100%">
+													      			<h:tr><h:td align="right">
+														      			    
+																		  	 	<textbox id="cariTextbox" width="40%" height="15px" style="font-size:8pt;background-color:#82FFA8;font-weight:bold"/>
+																		  	
+																	  </h:td>
+																	  <h:td width="5%" align="right">
+																		    
+								    							   				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.redrawListVendorByCriteria(ctr);"/>
+																   			
+															   		  </h:td>
+															   	</h:tr>
+														    </h:table>
+
+							  			  				  	<vbox>
+											  					<listbox id="supplierList" multiple="true" width="860px" height="237px" mold="paging" pageSize="17">
+												  					<listhead>
+												  						<listheader label="KODE" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+												  						<listheader label="NAMA" width="25%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+												  						<listheader label="ALAMAT" width="30%" style="font-weight:bold;font-size:8pt"/>
+												  						<listheader label="CONTACT PERSON" width="20%" style="font-weight:bold;font-size:8pt"/>
+												  						<listheader label="NO. TELP" width="20%" style="font-weight:bold;font-size:8pt"/>
+												  					</listhead>
+											
+												  					<listitem>
+												  						<listcell label="001"/>
+												  						<listcell label="KALBE FARMA"/>
+												  						<listcell label="JL. ADISUCIPTO NO. 101"/>
+												  						<listcell label="KALBE FARMA"/>
+												  						<listcell label="0274-525234"/>
+												  					</listitem>
+												  					
+												  					<listitem>
+												  						<listcell label="002"/>
+												  						<listcell label="METISKA"/>
+												  						<listcell label="JL. SLAMET RIYADI NO. 101"/>
+												  						<listcell label="KALBE FARMA"/>
+												  						<listcell label="0274-524781"/>
+												  					</listitem>
+												 					
+												 					<!--<listitem>
+												  						<listcell label="JS00001"/>
+												  						<listcell label="JARUM SUNTIK"/>
+												  						<listcell label="STRIP"/>
+												  						<listcell label="1"/>
+												 					</listitem>
+												 					
+												 					<listitem>
+												  						<listcell label="AS0001"/>
+												  						<listcell label="ANTIBIOTIK"/>
+												  						<listcell label="STRIP"/>
+												  						<listcell label="1"/>
+												 					</listitem>
+												 					
+												 					<listitem>
+												  						<listcell label="RS0001"/>
+												  						<listcell label="RIVANOL"/>
+												  						<listcell label="BOTOL"/>
+												  						<listcell label="1"/>
+												 					</listitem>
+										
+											  					--></listbox>
+										  					</vbox>
+													 </h:td>
+													 <h:td width="2%"/>
+												</h:tr>
+											 </h:table><!--
+											 
+											 <separator spacing="3px"/>
+										
+											<h:table align="center" width="100%">
+			      								 <h:tr><h:td/>
+			      								 	   <h:td width="5%" align="right">
+			    		     								 
+			    				 								<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+			    			 								
+			    		  							   </h:td>
+					     							   <h:td width="3%"/>
+			        							 </h:tr>
+			    							</h:table>
+											
+						  					--><separator spacing="5px"/>
+						   			</groupbox>
+						   	  </vbox>
+		 				</h:td>
+		  				<h:td width="20%"/>
+				 </h:tr>
+				 </h:table>
+		  </h:td>
+		  <h:td width="10%"/>
+	</h:tr>
+</h:table>
+<separator spacing="9px"/>
+</window>

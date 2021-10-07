@@ -1,0 +1,369 @@
+/*Element Class for HTML Element*/
+/*Element Class for HTML Element*/
+/*==============================*/
+BODY
+{
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 8pt;
+    PADDING-BOTTOM: 2px;
+    MARGIN: 0px;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: lightgrey
+}
+SELECT
+{
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana, Arial;
+	BORDER-TOP : 1px solid gray;
+	BORDER-BOTTOM : 1px solid  gray;
+	BORDER-LEFT : 1px solid gray;
+	BORDER-RIGHT : 1px solid gray;
+}
+INPUT
+{
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana, Arial;
+	BORDER-TOP : 1px solid gray;
+	BORDER-BOTTOM : 1px solid  gray;
+	BORDER-LEFT : 1px solid gray;
+	BORDER-RIGHT : 1px solid gray;
+}
+TABLE
+{
+    BACKGROUND-COLOR: lightgrey
+}
+TD
+{
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Arial
+}
+/*================================================*/
+
+/*Class for Title Area all screen used this class*/
+/*================================================*/
+.title
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 15pt;
+    WIDTH: 100%;
+    FONT-FAMILY: Arial;
+    TEXT-ALIGN: center;
+    HEIGHT: 30px
+}
+/*================================*/
+
+/*Class for Table and Header Label                  */
+/*==================================================*/
+/*Header Label used in Invoice , order screen etc*/
+.header1
+{
+    BACKGROUND-IMAGE: none;
+    FONT: bold 8pt Arial, Verdana, Geneva, Helvetica, sans-serif;
+    COLOR: white;
+    BACKGROUND-REPEAT: repeat;
+    BACKGROUND-COLOR: slateblue;
+    TEXT-ALIGN: right
+}
+/*====Header Table====*/
+.header2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    BACKGROUND-IMAGE: none;
+    COLOR: white;
+    LINE-HEIGHT: normal;
+    BACKGROUND-REPEAT: repeat;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: slateblue;
+    TEXT-ALIGN: center
+}
+.header3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    BACKGROUND-IMAGE: none;
+    COLOR: white;
+    LINE-HEIGHT: normal;
+    BACKGROUND-REPEAT: repeat;
+    FONT-FAMILY: Arial;
+    BACKGROUND-COLOR: slateblue;
+    TEXT-ALIGN: left
+}
+.detail2
+{
+    BACKGROUND-COLOR: mistyrose
+}
+.border_head
+{
+    BORDER-RIGHT: silver double;
+    BORDER-TOP: silver double;
+    BORDER-LEFT: silver double;
+    BORDER-BOTTOM: silver;
+}
+.border_head TH
+{
+
+}
+.border_detail
+{
+    BORDER-RIGHT: silver double;
+    BORDER-TOP: silver;
+    BORDER-LEFT: silver double;
+    BORDER-BOTTOM: silver double;
+}
+
+.border_detail2
+{
+    BORDER-RIGHT: silver double;
+    BORDER-TOP: silver;
+    BORDER-LEFT: silver double;
+    BORDER-BOTTOM: silver double;
+}
+.border_detail TD
+{
+    HEIGHT: 25px
+}
+.border_full
+{
+    BORDER-RIGHT: silver double;
+    BORDER-TOP: silver double;
+    BORDER-LEFT: silver double;
+    BORDER-BOTTOM: silver double;
+}
+
+.blue_bg
+{
+    BACKGROUND-IMAGE: none;
+    FONT: bold 8pt Arial, Verdana, Geneva, Helvetica, sans-serif;
+    COLOR: white;
+    BACKGROUND-REPEAT: repeat;
+    BACKGROUND-COLOR: slateblue;
+    TEXT-ALIGN: left;
+}
+/*================================================*/
+
+/*Class for button        */
+/*========================*/
+.button
+{
+    FONT-SIZE: 8pt;
+    BACKGROUND-IMAGE: none;
+    COLOR: black;
+    BACKGROUND-REPEAT: repeat;
+    WIDTH: 55px
+}
+
+.submit
+{
+    FONT-SIZE: 8pt;
+    BACKGROUND-IMAGE: none;
+    COLOR: black;
+    BACKGROUND-REPEAT: repeat;
+    WIDTH: 55px
+}
+
+/*==========================*/
+
+/*Class for Element Manipulation*/
+/*==========================*/
+.mandatory
+{
+    BACKGROUND-IMAGE: none;
+    BACKGROUND-REPEAT: repeat;
+    BACKGROUND-COLOR: #99ffff;
+}
+.input
+{
+    BACKGROUND-IMAGE: none;
+    BACKGROUND-REPEAT: repeat;
+    BACKGROUND-COLOR: #F7969C;
+}
+.blank
+{
+    BACKGROUND-COLOR: lightgrey
+}
+
+.row1
+{
+    BACKGROUND-COLOR: #FFFF49;
+}
+
+.row2
+{
+    BACKGROUND-COLOR: #AFFF49;
+}
+
+.row_warn
+{
+    BACKGROUND-COLOR: #FF4433;
+}
+
+.recommended
+{
+	BACKGROUND-COLOR: #F0E68C;
+}
+.highlight
+{
+	BACKGROUND-COLOR: #8FBC8F;
+}
+.selected
+{
+	BACKGROUND-COLOR: Green;
+}
+
+.outer_selected
+{
+    BORDER-RIGHT: silver double;
+    BORDER-TOP: silver double;
+    BORDER-LEFT: silver double;
+    BORDER-BOTTOM: silver;
+	BACKGROUND-COLOR: Green;
+}
+
+.error
+{
+	BACKGROUND-COLOR: Red;
+}
+.display_only
+{
+    BACKGROUND-COLOR: snow
+}
+.readonly
+{
+}
+
+/*===========================*/
+/*Class for datatype -- added by hoki --*/
+.mandatory_number
+{
+    BACKGROUND-IMAGE: none;
+    BACKGROUND-REPEAT: repeat;
+    BACKGROUND-COLOR: #99ffff;
+    TEXT-ALIGN: right
+}
+
+.number
+{
+    TEXT-ALIGN: right
+}
+
+}
+=======
+.optional
+{
+	FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana, Arial;
+	BORDER-TOP : 1px solid gray;
+	BORDER-BOTTOM : 1px solid  gray;
+	BORDER-LEFT : 1px solid gray;
+	BORDER-RIGHT : 1px solid gray;
+	TEXT-TRANSFORM : uppercase;
+}
+
+/*==========================*/
+
+/*Class for Checkbox */
+/*======================*/
+.checkbox
+{
+	BORDER-TOP: 0px;
+	BORDER-BOTTOM: 0px;
+	BORDER-LEFT: 0px;
+	BORDER-RIGHT: 0px;
+}
+.checkbox_m
+{
+	HEIGHT:17px;
+	BORDER-TOP: 1px solid gray;
+	BORDER-BOTTOM: 1px solid gray;
+	BORDER-LEFT: 1px solid gray;
+	BORDER-RIGHT: 1px solid gray;
+    BACKGROUND-COLOR: #99ffff;
+}
+.checkbox_r
+{
+	HEIGHT:17px;
+	BORDER-TOP: 1px solid gray;
+	BORDER-BOTTOM: 1px solid gray;
+	BORDER-LEFT: 1px solid gray;
+	BORDER-RIGHT: 1px solid gray;
+    BACKGROUND-COLOR: #F0E68C;
+}
+/*======================*/
+
+/*Class for Tab Button  */
+/*======================*/
+.tab
+{
+    BORDER-RIGHT: black;
+    BORDER-TOP: black;
+    BORDER-LEFT: black;
+    BORDER-BOTTOM: black 1px solid
+}
+.tab TD
+{
+    ALIGN-TEXT: left;
+    VERTICAL-ALIGN: bottom
+}
+.tabselected
+{
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bold;
+	COLOR: White;
+	BORDER-RIGHT: snow outset;
+	BORDER-TOP: snow outset;
+	BORDER-LEFT: snow outset;
+	BORDER-BOTTOM: none;
+	BACKGROUND-IMAGE: none;
+	BACKGROUND-COLOR: slateblue;
+	WIDTH: 100px;
+	HEIGHT: 22px
+}
+.tabnormal
+{
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: normal;
+	COLOR: black;
+	BORDER-RIGHT: snow outset;
+	BORDER-TOP: snow outset;
+	BORDER-LEFT: snow outset;
+	BORDER-BOTTOM: none;
+	BACKGROUND-IMAGE: none;
+	BACKGROUND-IMAGE: none;
+	BACKGROUND-COLOR: lightgrey;
+	WIDTH: 100px;
+	HEIGHT: 20px
+}
+/*======================*/
+
+.separate
+{
+   OVERFLOW: hidden;
+   HEIGHT: 5px
+}
+.separatebutton
+{
+   OVERFLOW: hidden;
+   HEIGHT: 13px
+}
+
+/*============================*/
+/*  Class for hyperlink text  */
+/*============================*/
+.hyper
+{
+   TEXT-DECORATION : underline;
+   COLOR : blue;
+}
+
+/*==================================*/
+/*  Class for blue text in finance  */
+/*==================================*/
+.bold_blue_text
+{
+    FONT: bold 9pt Arial, Verdana, Geneva, Helvetica, sans-serif;
+    COLOR: darkblue;
+}
+

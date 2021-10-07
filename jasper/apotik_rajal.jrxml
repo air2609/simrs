@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Unnamed" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+	<property name="com.jasperassistant.designer.DataSource" value="driverClassName"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.Margins" value="true"/>
+	<property name="com.jasperassistant.designer.Rulers" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGuides" value="true"/>
+	<parameter name="stardDate" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<parameter name="unitName" class="java.lang.String"/>
+	<parameter name="shiftName" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from report.fungsi_laporan_penjualan_rajal()]]>
+	</queryString>
+	<field name="diskon" class="java.lang.Float"/>
+	<field name="nama_pasien" class="java.lang.String"/>
+	<field name="no_nota" class="java.lang.String"/>
+	<field name="no_resep" class="java.lang.String"/>
+	<field name="nomor" class="java.lang.Short"/>
+	<field name="ppn" class="java.lang.Float"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="total_akhir" class="java.lang.Double"/>
+	<title>
+		<band height="70">
+			<textField>
+				<reportElement x="1" y="1" width="552" height="67"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" LAPORAN PENJUALAN RAWAT JALAN-REKAP\n"+  
+" Periode : "+ $P{stardDate}+" s.d " + $P{endDate} +"\n"+
+$P{unitName}+"\n"+
+" Sudah Validasi "+"\n"+
+$P{shiftName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="309" y="10" width="62" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="193" y="10" width="111" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="136" y="10" width="51" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Resep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="31" y="10" width="103" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="440" y="10" width="40" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PPN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="376" y="10" width="62" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diskon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="5" y="10" width="25" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="487" y="10" width="61" height="14" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Akhir]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Transparent" x="1" y="0" width="556" height="1"/>
+				<graphicElement/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16">
+			<textField pattern="#,##0.00#">
+				<reportElement x="376" y="0" width="62" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{diskon}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="5" y="0" width="25" height="14"/>
+				<textElement textAlignment="Left">
+					<font fontName="sansserif" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Short"><![CDATA[$F{nomor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="0" width="103" height="14"/>
+				<textElement>
+					<font fontName="sansserif" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_nota}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="136" y="0" width="51" height="14"/>
+				<textElement>
+					<font fontName="sansserif" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_resep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="193" y="0" width="111" height="14"/>
+				<textElement textAlignment="Left">
+					<font fontName="sansserif" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#">
+				<reportElement x="309" y="0" width="65" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#">
+				<reportElement x="440" y="0" width="40" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="sansserif" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{ppn}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#">
+				<reportElement x="487" y="0" width="61" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="sansserif" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total_akhir}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement mode="Transparent" x="0" y="-2" width="557" height="1"/>
+				<graphicElement/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="50"/>
+	</summary>
+</jasperReport>

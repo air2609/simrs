@@ -1,0 +1,12 @@
+<window title="LABORATORIUM" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="TRANSAKSI LABORATORIUM" href="zkpages/laboratory/laboratorium.zul"/>
+				<menuitem label="HASIL LABORATORIUM" href="zkpages/laboratory/HasilLaboratorium.zul"/>
+				<menuitem label="PEMESANAN ITEM" href="zkpages/common/mintaItem.zul"/>
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

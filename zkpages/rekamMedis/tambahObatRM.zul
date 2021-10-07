@@ -1,0 +1,128 @@
+<window id="mrAddItem" xmlns:h="http://www.w3.org/1999/xhtml" width="760px" onShow="self.detach()" closable="true" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.mr.MraddItemController;
+	ctr = new MraddItemController();
+	void init(){
+		ctr.init(mrAddItem);
+	}
+	
+	void getItems(){
+		ctr.getItems();
+	}
+	
+	void searchItems(){
+		ctr.searchItems();
+	}
+	
+	void aspirin(){
+		aspirin.focus();
+	}
+	
+	void getOut(){
+		ctr.getOut();
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM INPUT OBAT-BAHAN MEDIS</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="10px"/>
+	
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td>	
+		  <h:table width="100%" align="center">
+	    	<h:tr><h:td width="12%"/>
+	    		  <h:td>
+						<h:table width="100%" align="center">
+							<h:tr><h:td width="2%"/>
+								  <h:td width="15%" align="right"><h:b><h:font size="1">KODE</h:font></h:b></h:td>
+							      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		              			  <h:td width="20%"><textbox id="itemCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+		              			  <h:td width="3%"/>
+		       				</h:tr>
+		       				
+		        			<h:tr><h:td width="2%"/>
+		        				  <h:td width="15%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+					  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		             			  <h:td width="20%"><textbox id="itemName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+		             			  <h:td width="3%"/>
+		             		</h:tr>
+		        			
+		        			<h:tr><h:td width="2%"/>
+		        				  <h:td width="15%" align="right"><h:b><h:font size="1">JUMLAH</h:font></h:b></h:td>
+							      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		              			  <h:td width="20%"><intbox id="quantity" width="40%" height="14px" style="font-size:8pt"/></h:td>
+		              		  	  <h:td width="5%" align="center"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="searchItems();"/></h:td>
+		              		  	  <h:td width="3%"/>
+		        			</h:tr>
+		    			</h:table>
+	  			  </h:td>
+	  			  <h:td width="15%"/>
+	  	   </h:tr>
+	  	 </h:table>
+	  	
+	   <separator spacing="5px"/>
+	    
+	     <h:table width="100%" align="center">
+	    	  <h:tr><h:td width="30%"/>
+			    	<h:td>	 	
+					      <vbox>
+								  <groupbox width="700px" height="320px">
+								  	<caption label="DATA OBAT-BAHAN MEDIS"/>
+								  	 <separator spacing="3px"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="10"></h:td></h:tr>
+									  		  <h:tr><h:td width="13%"/>
+											  		<h:td>
+												  		<vbox>
+															<listbox id="itemList" multiple="true" width="660px" height="230px" checkmark="true">
+																<listhead>
+																	<listheader label="KODE" sort="auto" width="11%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JLH STOK" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA" sort="auto" width="35%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="HARGA" width="11%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="SATUAN" width="11%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JUMLAH" width="10%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+																
+															</listbox>
+														</vbox>
+													</h:td>
+													<h:td width="13%"/>
+											  </h:tr>
+								  		</h:table>
+										
+										<separator spacing="15px"/>
+								  		
+								  		<h:table width="100%" align="center">
+								  		   	 <h:tr><h:td width="2%"/>
+							  		  		   	   <h:td align="left">
+					    						   		 	<button label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getItems();"/>
+					    						   		 
+					    						   </h:td>
+								  		   	 	   <h:td align="right">
+					    						   		 	<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getOut();mrAddItem.detach();"/>
+					    						   		 
+					    						   </h:td>
+					    						   <h:td width="2%"/>
+					    		  			 </h:tr>
+								  		</h:table>
+								  		<separator spacing="1px"/>
+							   </groupbox>
+						</vbox>
+						<separator spacing="5px"/>
+				  </h:td>
+				  <h:td width="30%"/>
+		    </h:tr>
+	    </h:table>
+	 
+		</h:td>
+	</h:tr>
+</h:table> 
+
+</window>

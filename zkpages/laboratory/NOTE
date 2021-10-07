@@ -1,0 +1,620 @@
+USER YANG MENGGUNAKAN SCREEN INI : 
+- STAFF
+- SUPERVISOR/KABAG LAB
+
+UNTUK SUPERVISOR/KABAG LAB :
+----------------------------
+1. ONLOAD 
+   - SEMUA FIELD DIKOSONGKAN.
+   - SEMUA FIELD ENABLED, KECUALI NO. NOTA DAN NO. REGISTRASI
+   - BUTTON YANG ENABLED : SELESAI
+   - BUTTON2 YANG LAIN DI-DISABLED
+
+2. PEMBATALAN NOTA
+   2.A. INITIAL
+        2.A.1 NOTA SUDAH DIVALIDASI
+   2.B. USER MENCARI NO. NOTA YANG AKAN DIBATALKAN
+   		2.B.1 USER INPUT NO. NOTA
+	   		  2.B.1.a PENCARIAN VIA BANDBOX
+  			  	       2.B.1.a.1. USER INPUT NO.NOTA ATAU NAMA
+  			  	       2.B.1.a.2. JIKA :
+  			  	    				- DATA TIDAK DITEMUKAN : 	
+  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+  			  	    				- DATA DITEMUKAN :
+  			  	    				     --> TAMPILKAN KEDALAM LIST NOTA
+  			  	    				     --> USER MEMILIH NOTA
+  			  	    				     
+  			  2.B.1.b INPUT NO. NOTA MANUALLY
+  			      	   2.B.1.b.1   JIKA :
+  			  	    				- DATA TIDAK DITEMUKAN : 	
+  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+  			  	    				- DATA DITEMUKAN --> REFER TO 2.C
+  			  	    				
+			 TABLE YANG DIGUNAKAN :
+      	     - TB EXAMINATION							 
+      	     
+	2.C DISPLAY DATA PASIEN BESERTA ISI TRANSAKSI YANG ADA DI NOTA YANG DI PILIH
+	    DI FORM UTAMA.
+	    TOMBOL YANG DI-ENABLED :
+	    - PEMBATALAN NOTA
+	    - BARU
+	    
+    2.D USER MENEKAN TOMBOL PEMBATALAN NOTA
+			   2.2.a USER MENEKAN TOMBOL PEMBATALAN NOTA
+			   2.2.b USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+				     2.2.b.1 JIKA :
+				             2.2.b.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+				          	 2.2.b.1.b NO, KEMBALI KE FORM UTAMA
+				   
+			         NOTE :	 DATA AKAN DIBERI FLAG YANG MENANDAKAN STATUS NOTA = BATAL
+						   		TABEL YANG DIGUNAKAN : 
+							      - TB_EXAMINATION 
+							   	    FIELD :
+							   	    -  STATUS NOTA			  : v_cancelation_status 
+									-  ALASAN PEMBATALAN NOTA : v_cancelation_note
+							        -  USERNAME & PASSWORD    : v_who_change varchar 
+
+    2.E	 SEMUA FIELD DI-DISABLED DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"			            
+      
+	2.F. POST CONDITION :  
+		  - NOTA BERHASIL DIBATALKAN.
+			   
+3. BARU
+   3.1. INITIAL
+		1. SEMUA FIELD DI-DISABLED.
+		2. USER MENEKAN TOMBOL BARU
+		3. FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO 1)
+			    
+    3.2. POST CONDITION
+    
+
+
+UNTUK STAFF :
+-------------
+
+I. ONLOAD
+   1. INITIAL
+      - SEMUA FIELD ENABLED, KECUALI NO. NOTA DAN NO. REGISTRASI
+      - BUTTON YANG ENABLED : SELESAI
+      - BUTTON2 YANG LAIN DI-DISABLED
+	  
+II. STATUS PASIEN
+	   1. JIKA RUJUKAN
+	   	  	1.A. INITIAL
+	   	  	 	 1.A.1. KLIK CHECK BOX RUJUKAN
+				 1.A.2. TOMBOL SIMPAN, PANEL LAB, DAN TAMBAH PEMERIKSAAN ENABLED
+				 1.A.3. FIELD MR DAN NO.REGISTRASI, BED DAN RUANGAN TIDAK AKTIF
+				 1.A.4. USER MASUKKAN DATA PASIEN
+				 1.A.5. USER TAMBAH PEMERIKSAAN LAB (PANEL LAB) REFER A
+				 1.A.6. USER TAMBAH PEMERIKSAAN LAB (TAMBAH PEMERIKSAAN) REFER KE B
+				        --TAMBAH PEMERIKSAAN LAB --> ISINYA YANG TIDAK ADA DI PANEL LAB.
+				        
+	   	  	2.A. USER MENEKAN TOMBOL SIMPAN 
+	   	  		 2.1 REFER TO C
+	  	  	
+	   2. JIKA RAJAL/RANAP
+	  		2.A. INITIAL
+	  			  2.A.1 INPUT NO. MR
+	  			  	    2.A.1.1 PENCARIAN VIA BANDBOX
+	  			  	    		2.A.1.1.1. USER INPUT NO.MR ATAU NAMA ATAU ALAMAT PASIEN
+	  			  	    		2.A.1.1.2. JIKA :
+	  			  	    				   - DATA TIDAK DITEMUKAN : 	
+	  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+	  			  	    				   - DATA DITEMUKAN
+	  			  	    				     --> TAMPILKAN KEDALAM LIST DATA PASIEN
+	  			  	    				     --> USER MEMILIH DATA PASIEN
+	  			  	    				     
+	  			  	    2.A.1.2 INPUT NO. MR MANUALLY
+	  			  	    		2.A.1.2.1   JIKA :
+	  			  	    				   - DATA TIDAK DITEMUKAN : 	
+	  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+	  			  	    				   - DATA DITEMUKAN
+	  			  	    
+	  			  	    
+	  			  	    				   
+	  			  2.A.2	DISPLAY DATA PASIEN DAN TOMBOL SIMPAN, PANEL LAB, DAN TAMBAH PEMERIKSAAN DI-ENABLED.
+	  			  		- JIKA RAJAL : FIELD BED DAN RUANGAN TIDAK AKTIF
+	  			        - JIKA RANAP : FIELD BED DAN RUANGAN DIISI SESUAI DENGAN TEMPAT SIPASIEN MONDOK	
+	  			        
+		  			  		TABLE YANG DIGUNAKAN : 
+		  			  	    - TB_REGISTRATION 
+		  			  	       NO. MR           : n_mr_id --> LINK KE TB_MEDICAL RECORD --> LINK KE MS_PATIENT
+		  			  	       NO. REGISTRASI   : v_reg_secondary_id
+		  			  	       NAMA				: v_patient_name
+			              	   JENIS KELAMIN	: v_patient_gender
+			              	   TANGGAL LAHIR	: d_patient_dob
+			                   UMUR				: v_patient_age 
+			                   ALAMAT 			: v_patient_main_addr
+			                   TIPE PASIEN		: n_patient_type_id
+			                   NAMA DOKTER      : n_staff_id --> LINK KE MS_DOCTOR
+		  			  	  	   TIPE PEMBAWA     : n_escort_primary_id --> LINK KE MS_PATIENT_ESCORT
+		  			  	    
+		  			  	    -  TB ROOM RESERVATION (JIKA RANAP)
+		  			  	       RUANGAN			: n_hall_id
+		  			  	  	   BED				: n_bed_id
+		  			  	  	   
+	  			  2.A.3 USER TAMBAH PANEL LAB REFER A
+				  2.A.4 USER TAMBAH PEMERIKSAAN REFER KE B
+				  
+	  		2.B. USER MENEKAN TOMBOL SIMPAN
+	  		     2.B.1 REFER TO D
+	  		     
+	
+	  	A. PANEL LAB
+	  		1. INITIAL
+	  		   - DATA YANG DIFORM SUDAH FIX.
+	  		     MAKSUDNYA JIKA ADA PENAMBAHAN DATA PEMERIKSAAN LAB, TIDAK AKAN DITAMPILKAN DI FORM INI, TETAPI
+	  		     DITAMPILKAN DI FORM TAMBAH PEMERIKSAAN.
+	  		   - DATA DITAMPILKAN SESUAI DENGAN KELOMPOK PEMERIKSAAN
+	  		     DAN DATA DIFILTER BERDASARKAN KELAS TARIF.
+	  		   
+	  		2. USER MEMILIH DATA PANEL LAB YANG DIGUNAKAN 
+	  		3. USER CLICK TAMBAH, DATA PANEL LAB YANG DIPILIH, DI-DISPLAY DI FORM UTAMA.
+	  		   --> HARGA DI-DISPLAY SESUAI DENGAN KELAS TARIF PASIEN.
+	  		   
+	  		4. USER CLICK SELESAI, KEMBALI KE FORM UTAMA.
+	  		
+	  		   
+	  		   TAMPILAN DI LIST DATA TINDAKAN LABORATORIUM, MENGGUNAKAN TABLE :
+	  		   - JUMLAH 		: BY DEFAULT = 1
+	  		   - MS TREATMENT - LINK KE TREATMENT GROUP 
+	  		     FIELD-FIELD :
+	  		     - KODE 		: v_treatment_code	
+	  		     - KETERANGAN	: v_treatment_name
+	  		 
+	  		     
+	  		   - MS LAB TEST DETAIL - LINK KE MS TREATMENT
+	  		     - SATUAN		:  v_lab_test_quantify
+	  		     
+	  		   - MS TREATMENT FEE - LINK KE MS TREATMENT CLASS, MS TREATMENT GROUP, MS TREATMENT 
+	  		      - HARGA		: f_trtfee_fee
+	  			
+	  	B. TAMBAH PEMERIKSAAN
+	  	   1. REFER TO B.1
+	  	   2. USER MENEKAN TOMBOL TAMBAH. DATA PEMERIKSAAN YANG TELAH DIPILIH, DI-DISPLAY DI FORM UTAMA.
+	  	   3. USER CLICK SELESAI, KEMBALI KE FORM UTAMA.
+		     
+	  	   
+	  	      B.1
+		          B.1.1 KOSONGKAN LIST.
+		          		JIKA USER HANYA MENEKAN TOMBOL CARI, TAMPILKAN 
+		          		SEMUA DATA PEMERIKSAAN BERDASARKAN KELAS TARIF DAN UNIT LABORATORIUM.
+		          B.1.2 USER MEMILIH DATA PEMERIKSAAN YANG DIGUNAKAN 
+		        		B.1.2.1 USER MENGGUNAKAN FASILITAS SEARCHING 
+		          			    B.1.2.1.a  USER MENGINPUT KODE DAN ATAU NAMA PEMERIKSAAN
+		          			    B.1.2.1.c  USER MENEKAN TOMBOL CARI
+		          			    B.1.2.1.d  JIKA :
+		          			     		   B.1.2.1.d.1 DATA YANG DITEMUKAN HANYA SATU
+		          			     		   			   B.1.2.1.d.1.a   SISTEM MEN-CHECK ROW SESUAI DENGAN KODE ATAU NAMA YANG DIINPUTKAN.
+		          			           	   				   
+		          			        	   B.1.2.1.d.2 DATA YANG DITEMUKAN LEBIH DARI SATU
+		          			        	    		   B.1.2.1.d.2.a   SISTEM MENG-HIGHLIGHT ROW PALING ATAS YANG SESUAI DENGAN 
+		          			               							   KODE ATAU NAMA YANG DIINPUTKAN.
+		          			        	    		   B.1.2.1.d.2.c   USER MEN-CHECK DATA PEMERIKSAAN YANG DIINGINKAN
+		          			     		  			   				   
+		          			    B.1.3.1.e  JIKA USER KEMBALI MENGGUNAKAN FASILITAS SEARCHING,
+		          			               MAKA DATA PEMERIKSAAN YANG SUDAH DI CHECKLIST, AKAN DITEMPATKAN DI ROW PALING ATAS
+		          		
+		          		        
+			  TABLE YANG DIGUNAKAN :
+			  - MS TREATMENT - LINK KE TREATMENT GROUP 
+	  		     FIELD-FIELD :
+	  		     - KODE 		: v_treatment_code	
+	  		     - NAMA     	: v_treatment_name
+	  		  - MS TREATMENT GROUP
+	  		     - KATEGORI     : v_tgroup_name  
+	  		  - MS TREATMENT FEE - LINK KE MS TREATMENT CLASS, MS TREATMENT GROUP, MS TREATMENT 
+			  
+			  
+	  	C. SAAT SIMPAN (UNTUK PASIEN RUJUKAN)
+	  	   C.1  JIKA TERDAPAT KESALAHAN PENGISIAN DATA, MUNCULKAN KONFIRMASI.
+				GAGALKAN PROSES PENYIMPANAN DATA.
+		   C.2  JIKA TIDAK ADA KESALAHAN PENGISIAN DATA
+			 	C.2.1  CREATE NO. NOTA
+				       C.2.1.a  SIMPAN DATA PATIENT KE TABEL MS PATIENT
+							     FIELD-FIELD :
+							     NAMA				: v_patient_name
+							     JENIS KELAMIN		: v_patient_gender
+							     TANGGAL LAHIR		: d_patient_dob
+							     UMUR				: v_patient_age 
+							     ALAMAT 			: v_patient_main_addr
+							     TIPE PASIEN		: n_patient_type_id
+				          
+					   C.2.1.b SIMPAN DATA NOTA KE TB_EXAMINATION
+						         NO. NOTA          : v_note_no
+						         TIPE PEMBAWA      : n_escort_id (khusus untuk RUJUKAN)
+						         TOTAL       	   : n_total_amount     		
+						         
+					   C.2.1.c SIMPAN DATA TINDAKAN YANG DIPAKAI KE TABLE TB_TREATMENT_TRX
+								 FIELD-FIELD :
+								 NO. NOTA		   : n_note_id
+								 DOKTER PEMERIKSA  : n_doctor_id 
+							     JUMLAH            : n_qty
+								 HARGA             : n_amount_trx 
+								 DISKON		       : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+								 SUBTOTAL          : n_amount_after_disc
+									       	  
+								 NOTE : HARGA = HARGA SATUAN TREATMENT * JUMLAH
+								     	TABEL YANG BERKAITAN DENGAN HARGA SATUAN TREATMENT : 
+								     	HARGA = f_trtfee_fee  --> LINK ms_treatment_group
+
+				C.2.2. KONFIRMASI DATA SUDAH BERHASIL DI SIMPAN
+				C.2.3. SEMUA FIELD DI-DISABLED
+				C.2.4. REFER TO E	
+					    
+				POST CONDITION :
+				1. DATA BERHASIL DISIMPAN
+				2. SEMUA FIELD DI-DISABLED
+				3. NO. NOTA SUDAH DIGENERATE
+				4. TOMBOL YANG ENABLED : 
+					   - UBAH
+					   - PEMBATALAN NOTA
+					   - VALIDASI
+					   - CETAK
+					   - BARU
+					   
+				   TOMBOL YANG DISABLED :
+					   - BATAL
+				       - HAPUS
+					   - TAMBAH PEMERIKSAAN
+					   - PANEL LAB
+					   - SIMPAN
+					   - SELESAI
+			
+		D. SAAT SIMPAN (UNTUK PASIEN RANAP/RAJAL)
+	  	   D.1  JIKA TERDAPAT KESALAHAN PENGISIAN DATA, MUNCULKAN KONFIRMASI.
+				GAGALKAN PROSES PENYIMPANAN DATA.
+		   D.2  JIKA TIDAK ADA KESALAHAN PENGISIAN DATA
+			 	D.2.1  CREATE NO. NOTA
+				       D.2.1.a SIMPAN DATA NOTA KE TB_EXAMINATION
+						         NO. NOTA          : v_note_no
+						         TIPE PEMBAWA      : n_escort_id (khusus untuk RUJUKAN)
+						         TOTAL       	   : n_total_amount
+						         
+					   D.2.1.b SIMPAN DATA TINDAKAN YANG DIPAKAI KE TABLE TB_TREATMENT_TRX
+								 FIELD-FIELD :
+								 NO. NOTA			: n_note_id
+								 DOKTER PEMERIKSA   : n_doctor_id 
+							     JUMLAH             : n_qty
+								 HARGA              : n_amount_trx 
+								 DISKON		        : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+								 SUBTOTAL           : n_amount_after_disc
+									   
+								     	  
+								 NOTE : HARGA  = HARGA SATUAN * JUMLAH
+								     	  	     TABEL YANG BERKAITAN DENGAN HARGA SATUAN TREATMENT : 
+								     	  	     HARGA SATUAN = f_trtfee_fee  --> LINK ms_treatment_group
+				
+				D.2.2. KONFIRMASI DATA SUDAH BERHASIL DI SIMPAN
+				D.2.3. SEMUA FIELD DI-DISABLED
+				D.2.4. REFER TO E	
+					    
+				POST CONDITION :
+				1. DATA BERHASIL DISIMPAN
+				2. SEMUA FIELD DI-DISABLED
+				3. NO. NOTA SUDAH DIGENERATE
+				4. TOMBOL YANG ENABLED : 
+					   - UBAH
+					   - PEMBATALAN NOTA
+					   - VALIDASI
+					   - BARU
+					   
+				   TOMBOL YANG DISABLED :
+					   - CETAK
+					   - BATAL
+				       - HAPUS
+					   - TAMBAH TINDAKAN
+					   - TAMBAH ITEM
+					   - SIMPAN
+					   - SELESAI  
+		
+		E. VALIDASI NOTA 
+		   E.1 VALIDASI DILAKUKAN LANGSUNG SETELAH USER MENEKAN TOMBOL SIMPAN
+			   E.1.1 INITIAL
+					    1. SEMUA FIELD DI-DISABLED
+					    2. USER MENEKAN TOMBOL VALIDASI
+					    3. USER MENGISI :
+						       - TANGGAL 
+						       - SHIFT
+						       - USERNAME
+						       - PASSWORD
+						       
+					    	3.1 JIKA OK
+					    		3.1.a DI FORM MUNCUL LABEL "NOTA SUDAH DIVALIDASI"
+					     	3.2 JIKA BATAL
+					     	    3.2.a KEMBALI KE FORM UTAMA
+			
+					    TABLE YANG DIGUNAKAN :
+					     -	TB_EXAMINATION 
+					    	    FIELD :
+					    	    - v_validate_status
+				       			- USERNAME & PASSWORD : v_who_create 
+		  						- TANGGAL		      : d_whn_create 
+		  				
+		  				TOMBOL2 YANG ENABLED :
+		  				- CETAK
+		  				- BARU
+
+  			   E.1.2 POST CONDITION
+  			         - NOTA BERHASIL DI VALIDASI
+  			         
+		   E.2 VALIDASI TIDAK LANGSUNG DILAKUKAN SETELAH USER MENEKAN TOMBOL SIMPAN  
+		       (VALIDASI YANG TERTUNDA)
+			   E.2.1 INITIAL  
+			         - FORM DALAM KEADAAN AWAL (REFER TO I)
+			         
+			   E.2.2 USER MENCARI NO. NOTA
+					 E.2.2.1 USER INPUT NO. NOTA
+					   		 E.2.2.1.a PENCARIAN VIA BANDBOX
+				  			  	        E.2.2.1.a.1. USER INPUT NO.NOTA ATAU NAMA
+				  			  	        E.2.2.1.a.2. JIKA :
+				  			  	    				- DATA TIDAK DITEMUKAN : 	
+				  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    				- DATA DITEMUKAN :
+				  			  	    				     --> TAMPILKAN KEDALAM LIST NOTA
+				  			  	    				     --> USER MEMILIH NOTA
+				  			  	    				     
+				  			  E.2.2.1.b INPUT NO. NOTA MANUALLY
+				  			      	    E.2.2.1.b.1   JIKA :
+				  			  	    				- DATA TIDAK DITEMUKAN : 	
+				  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    				- DATA DITEMUKAN --> REFER TO 2.C
+												 
+					E.2.2.2 DISPLAY DATA PASIEN BESERTA ISI TRANSAKSI YANG ADA DI NOTA YANG TELAH DI PILIH
+					    	DI FORM UTAMA. (SEMUA DATA DI-DISABLED)
+
+					E.2.2.3 JIKA STATUS NOTA YANG DICARI = "SUDAH DIVALIDASI"
+					        --> SEMUA TOMBOL DI DISABLED, KECUALI BARU
+					        
+					        JIKA STATUS NOTA = "BELUM VALIDASI"
+					        --> ENABLED TOMBOL VALIDASI
+					        
+			  E.2.3 USER MENEKAN TOMBOL VALIDASI 
+			  E.2.4 USER MENGISI :
+					   - TANGGAL 
+					   - SHIFT
+					   - USERNAME
+					   - PASSWORD
+						       
+					 E.2.4.1 JIKA OK
+					    		E.2.4.1.a DI FORM MUNCUL LABEL "NOTA SUDAH DIVALIDASI"
+					 E.2.4.2 JIKA BATAL
+					     	    E.2.4.2.a KEMBALI KE FORM UTAMA
+			  
+				    TABLE YANG DIGUNAKAN :
+				     -	TB_EXAMINATION 
+				    	    FIELD :
+				    	    - v_validate_status
+			       			- USERNAME & PASSWORD : v_who_create 
+	  						- TANGGAL		      : d_whn_create 
+	  				
+	  				TOMBOL2 YANG ENABLED :
+	  				- CETAK
+	  				- BARU
+
+			 E.1.5 POST CONDITION
+  			         - NOTA BERHASIL DI VALIDASI
+  			         
+		F. BARU  				
+		   F.1. INITIAL
+			    1. 1.1 SEMUA FIELD DI-DISABLED DAN TELAH DI VALIDASI
+				   1.2 TOMBOL BARU = ENABLED
+				2. USER MENEKAN TOMBOL BARU
+				3. FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO I)
+					    
+		   F.2. POST CONDITION
+				1. FORM BERHASIL DIKOSONGKAN				
+		
+		
+		G. CETAK NOTA
+		   1. INITIAL
+			  1.1 DATA TELAH DISIMPAN DAN SEMUA FIELD DI-DISABLED
+		   2. USER MENEKAN TOMBOL CETAK
+		   3. MUNCUL KONFIRMASI
+			  3.1 JIKA :
+			         3.2.1 YES, KEMBALI KE FORM UTAMA, DAN NOTA DI CETAK
+			         3.2.2 NO, KEMBALI KE FORM UTAMA
+		 
+		 H. UBAH (HANYA BISA DILAKUKAN JIKA NOTA BELUM DI VALIDASI)
+		 	H.1 PERUBAHAN YANG DILAKUKAN LANGSUNG SETELAH USER MENEKAN TOMBOL SIMPAN
+			 	H.1.1 INITIAL CONDITION : 
+				      1. INITIAL
+				         1.1 DATA SUDAH DI SIMPAN, DAN DATA BELUM DIVALIDASI
+				         1.2 SEMUA FIELD DISABLED
+				      2. USER MENEKAN TOMBOL UBAH
+				         2.1 TOMBOL YANG ENABLED :
+				             - SIMPAN
+				             - BATAL
+				         	 - PANEL LAB
+				         	 - TAMBAH PEMERIKSAAN
+				         	 		            
+						     TOMBOL YANG DISABLED :
+						     - BARU
+						     - CETAK HASIL
+						     - SELESAI
+						   
+				         2.2 FIELD YANG ENABLED HANYA LIST DATA TINDAKAN LABORATORIUM (PEMERIKSAAN YANG DILAKUKAN PASIEN)
+				             DISPLAY STATUS NOTA.
+				         2.3 USER MEMILIH ROW YANG INGIN DIUBAH
+				             2.3.1 JIKA PERUBAHAN JADI DILAKUKAN :
+					               2.3.1.a EDIT ROW  
+							            	  2.3.1.a.1 USER MELAKUKAN PERUBAHAN (PANEL LAB ATAU TAMBAH PEMERIKSAAN)
+								              2.3.1.a.2 USER MENEKAN TOMBOL HITUNG
+								              2.3.1.a.3 DISPLAY TOTAL BIAYA
+								              2.3.1.a.4 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+								              			TABLE YANG DIGUNAKAN ADALAH : 
+													         TB TREATMENT TRX --> FIELD YANG DITAMBAHKAN, DISIMPAN KE TABLE INI
+													         TB EXAMINATION --> TOTAL    : n_total_amount
+							                  2.3.1.a.5 KONFIRMASI UPDATE BERHASIL
+							                  2.3.1.a.6 SEMUA FIELD DI-DISABLED
+							                  
+				                   2.3.1.b HAPUS ROW  
+				                  			  2.3.1.b.1 REFER TO I
+				                  			  
+				    		  2.3.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+				    			    2.3.2.1 USER MENEKAN TOMBOL BATAL (REFER TO J)
+				    			    2.3.2.2 SEMUA FIELD KEMBALI DI-DISABLED
+
+				    2. POST CONDITION		
+					   2.1 DATA BERHASIL DI UPDATE
+		    	       2.2 TOMBOL YANG AKTIF :
+					         - SEMUA FIELD DI-DISABLED
+					  		 - TOMBOL YANG ENABLED : 
+					   		 	- UBAH
+					   		 	- PEMBATALAN NOTA
+					   		 	- CETAK
+					  		    - VALIDASI
+					  		    - BARU
+							    
+					     	  - TOMBOL YANG DISABLED :
+					     	    - BATAL
+							    - HAPUS
+							    - TAMBAH PEMERIKSAAN
+							    - PANEL LAB
+							    - SIMPAN
+							    - SELESAI  	    
+				    
+		H.2 PERUBAHAN DATA YANG TERTUNDA (DATA SUDAH TERSIMPAN DI DATABASE)
+			H.2.1 INITIAL
+		   	   	  1. DATA SUDAH TERSIMPAN DAN TETAPI BELUM DI VALIDASI
+		   	   	  2. USER MENCARI NO. NOTA
+		   	   	     2.1.1 USER INPUT NO. NOTA 		
+			  			   2.1.1.a USER MENCARI NO. NOTA PASIEN
+								   2.1.1.a.1 PENCARIAN VIA BANDBOX
+											 2.1.1.a.1.a USER INPUT NO.NOTA ATAU NAMA
+											 2.1.1.a.1.b JIKA :
+													  	 - DATA TIDAK DITEMUKAN : 	
+													  	   --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+													  	 - DATA DITEMUKAN :
+													  	   --> TAMPILKAN KEDALAM LIST NOTA
+													  	   --> USER MEMILIH NOTA
+													  	   --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+													  			  	    		         
+								   2.1.1.a.2 INPUT NO. NOTA MANUALLY
+											 2.1.1.a.2.a JIKA :
+													  	 - DATA TIDAK DITEMUKAN : 	
+													  		--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+													  	 - DATA DITEMUKAN :
+															--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+		 
+			  	  3. DISPLAY DATA PASIEN, BESERTA DATA-DATA PEMERIKSAAN YANG ADA DI NO. NOTA TSB (DI-DISABLED)
+			  	  	 DISPLAY STATUS NOTA.
+				  4. DATA YANG BISA DI-UBAH HANYA YANG BELUM DI VALIDASI
+				  5. JIKA :
+				  	 5.1 NO. NOTA BELUM DI VALIDASI
+				  	     5.1.1 TOMBOL UBAH DI-ENABLED.
+						 5.1.2 USER MENEKAN TOMBOL UBAH, TOMBOL UBAH DI-DISABLED
+						 5.1.3 TOMBOL SIMPAN, PANEL LAB, TAMBAH PEMERIKSAAN, HAPUS DAN BATAL DI-ENABLED
+						 5.1.4 FIELD YANG ENABLED HANYA LIST DATA TINDAKAN LABORATORIUM (PEMERIKSAAN YANG DILAKUKAN PASIEN)
+						 5.1.5 USER MEMILIH ROW YANG MAU DIUBAH
+						 	   JIKA :
+						       5.1.5.1 EDIT ROW
+								  	   5.1.5.1.a PERUBAHAN DILAKUKAN
+									   	  	  	 5.1.5.1.a.1 USER MELAKUKAN PERUBAHAN DATA
+									   	  	  	 5.1.5.1.a.2 USER MENEKAN TOMBOL HITUNG
+									   	  	  	 5.1.5.1.a.3 DISPLAY TOTAL BIAYA
+												 5.1.5.1.a.4 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA) 
+												 5.1.5.1.a.5 KONFIRMASI UPDATE BERHASIL
+												 5.1.5.1.a.6 SEMUA FIELD DI-DISABLED
+									  		  		   
+									  		  		   		 TABLE YANG DIGUNAKAN ADALAH : 
+														       TB TREATMENT TRX --> FIELD YANG DITAMBAHKAN, DISIMPAN KE TABLE INI
+														       TB EXAMINATION --> TOTAL    : n_total_amount
+							               	
+									   5.1.5.1.b JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+												 5.1.5.1.b.1 USER MENEKAN TOMBOL BATAL (REFER TO E)
+												 5.1.5.1.b.2 SEMUA FIELD KEMBALI DI-DISABLED   
+							   
+							   5.1.5.2 HAPUS ROW
+							    	   5.1.5.2.a REFER TO I
+								    	   
+			  	  	5.2 NOTA SUDAH DIVALIDASI
+			  	  	    5.2.1 SEMUA FIELD DI DISABLED
+			  	  	    5.2.2 TOMBOL BARU DI-ENABLED, TOMBOL YANG LAINNYA DI-DISABLED
+			  	  	      
+		   	   2. POST CONDITION
+		   	   	  2.1 DATA BERHASIL DI UPDATE
+	    	      2.2 TOMBOL YANG AKTIF :
+				         - SEMUA FIELD DI-DISABLED
+				  		 - TOMBOL YANG ENABLED : 
+				   		 	- UBAH
+				   		 	- PEMBATALAN NOTA
+				   		 	- CETAK
+				  		    - VALIDASI
+				  		    - BARU
+						    
+				     	  - TOMBOL YANG DISABLED :
+				     	    - BATAL
+						    - HAPUS
+						    - TAMBAH PEMERIKSAAN
+						    - PANEL LAB
+						    - SIMPAN
+						    - SELESAI  
+				     
+		 I. HAPUS
+ 			I.1 INITIAL
+		     	 1. USER MEMILIH ROW YANG MAU DIHAPUS DARI DALAM LIST.
+				 2. USER MENEKAN TOMBOL HAPUS. TOMBOL SIMPAN DI-ENABLED.
+				 3. MUNCUL KONFIRMASI MENGHAPUS
+				    3.1. JIKA YA, DATA DIHILANGKAN DARI DALAM LIST
+				         3.1.1 USER MENEKAN TOMBOL HITUNG
+				         3.1.2 DISPLAY TOTAL HARGA
+				    3.2. JIKA TIDAK, KEMBALI KE FORM UTAMA
+			     4. USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+			        TABLE YANG DIGUNAKAN ADALAH : 
+				         TB TREATMENT TRX --> FIELD YANG DIHAPUS, DIHILANGKAN DARI TABLE INI
+				         TB EXAMINATION --> TOTAL    : n_total_amount
+				 5. KONFIRMASI UPDATE BERHASIL
+				 6. SEMUA FIELD DI-DISABLED
+				
+			    
+		 J. BATAL         
+		 	1. INITIAL
+		 	   1.1 USER MENEKAN TOMBOL UBAH (REFER TO H)
+		 	2. USER MENEKAN TOMBOL BATAL
+		 	3. FORM DIKEMBALIKAN KE KEADAAN SEBELUM USER MENEKAN TOMBOL UBAH
+		 	   (FORM DI-DISABLED)
+
+		 L. PEMBATALAN NOTA
+		 	 1. INITIAL
+			       1.1 SEMUA FIELD DI-DISABLED
+			 2. STATUS NOTA :
+			       2.1 JIKA NOTA BELUM DIVALIDASI
+			       	   2.1.a USER MENEKAN TOMBOL PEMBATALAN NOTA
+			       	   2.1.b KONFIRMASI BAHWA NOTA SUDAH DIBATALKAN
+			       	   2.1.c FORM DIKOSONGKAN DAN SEMUA DATA YANG DISIMPAN SESUAI DG NO. NOTA TSB
+			       	         DIHAPUS DARI DATABASE.
+			       	   
+			       2.2 JIKA NOTA SUDAH DIVALIDASI (HANYA BISA DILAKUKAN OLEH KABAG)
+			           2.2.a USER MENEKAN TOMBOL PEMBATALAN NOTA
+			           2.2.b USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+			                 2.2.b.1 JIKA :
+						             2.2.b.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+			          				 2.2.b.1.b NO, KEMBALI KE FORM UTAMA
+			   
+			   		NOTE :
+					   1. PEMBATALAN NOTA YANG BELUM DIVALIDASI
+					   	  1.a. DATA AKAN DIHAPUS DARI DATABASE
+					   	  	   SEMUA DATA PASIEN YANG MEMPUNYAI PATIENT ID = n_patient_id, DENGAN NO NOTA = v_note_no AKAN DIHAPUS.
+								 TABLE YANG BERKAITAN :
+					   	         - MS PATIENT (UNTUK PASIEN RUJUKAN)
+								 - TB TREATMENT TRX
+								 - TB EXAMINATION
+					   	  
+					   2. PEMBATALAN NOTA YANG TELAH DIVALIDASI
+					      2.a DATA AKAN DIBERI FLAG YANG MENANDAKAN STATUS NOTA = BATAL
+					   			TABEL YANG DIGUNAKAN : 
+							      - TB_EXAMINATION 
+							    	    FIELD :
+							    	    -  STATUS NOTA			  : n_exam_status  
+							  			-  ALASAN PEMBATALAN NOTA : v_cancelation_note
+							            -  USERNAME & PASSWORD    : v_who_change varchar 
+							            
+			   POST CONDITION :  
+			   - NOTA BERHASIL DIBATALKAN.
+			   
+		 M. SELESAI
+		 	1. INITIAL
+		         1.1 SEMUA FIELD HARUS DIBERSIHKAN (REFER TO F)
+		    2. USER MENEKAN TOMBOL SELESAI
+		    3. FORM DITUTUP  

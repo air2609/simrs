@@ -1,0 +1,99 @@
+<window id="elektrolitItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(elektrolitItem, "elektrolitLists", "009");
+		ctr.init(elektrolitItem, "jantungList", "010");	
+		ctr.init(elektrolitItem, "feacesLists", "011");
+		ctr.init(elektrolitItem, "lainLainList", "016");
+	}
+</zscript>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td>
+			   <vbox>
+				   <listbox id="elektrolitLists" multiple="true" width="135px" rows="5" checkmark="true">
+				      <listhead>
+						<listheader id="elektrolit" label="ELEKTROLIT" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+					  </listhead>
+					  <listitem>
+						<listcell id="LAB63" label="KALIUM"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB64" label="NATRIUM"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB65" label="CALCIUM"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB66" label="CHLORIDA"/>
+					  </listitem>
+				  </listbox>
+				  
+				  <separator spacing="1px"/>
+			
+				  <listbox id="jantungList" multiple="true" width="135px" rows="5" checkmark="true">
+				      <listhead>
+					 	 <listheader id="phanelJantung" label="PHANEL JANTUNG" style="font-weight:bold;font-size:8pt"  sort="auto" width="98%"/>
+					  </listhead>
+					  <listitem>
+						  <listcell id="LAB67" label="CKMB"/>
+					  </listitem>
+					  <listitem>
+					 	 <listcell id="LAB68" label="HBDH"/>
+					  </listitem>
+					  <listitem>
+					 	 <listcell id="LAB69" label="LDH"/>
+					  </listitem>
+					  <listitem>
+					 	 <listcell id="LAB70" label="CKNAC"/>
+					  </listitem>
+					  <listitem>
+					 	 <listcell id="LAB71" label="TROPONIN I"/>
+					  </listitem>
+				 </listbox>
+						
+				 <separator spacing="1px"/>
+			
+			     <listbox id="feacesLists" multiple="true" width="135px" height="115px" checkmark="true">
+				      <listhead>
+					 	 <listheader id="feaces" label="FEACES" sort="auto" style="font-weight:bold;font-size:8pt"  width="98%"/>
+					  </listhead>
+					  <listitem>
+					 	 <listcell id="LAB72" label="RUTIN"/>
+					  </listitem>
+					  <listitem>
+					  	<listcell id="LAB73" label="DARAH SAMAR"/>
+					  </listitem>
+				  </listbox>
+					 
+				  <separator spacing="1px"/>
+			
+			      <listbox id="lainLainList" multiple="true" width="135px" rows="6" checkmark="true">
+				  
+					  <listhead>
+					 	 <listheader id="lainLain" label="LAIN-LAIN" style="font-weight:bold;font-size:8pt" sort="auto" width="98%"/>
+					  </listhead>
+					  <listitem>
+						<listcell id="LAB74" label="BGA"/>
+					  </listitem>
+					   <listitem>
+						<listcell id="LAB75" label="PA"/>
+					  </listitem>
+					  <listitem>
+					 	 <listcell id="LAB76" label="HELICOBACTER"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB77" label="PAP SMEAR"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB78" label="FNAB"/>
+					  </listitem>
+				  </listbox>
+			   </vbox>
+		  </h:td>
+	</h:tr>
+</h:table>
+
+</window>

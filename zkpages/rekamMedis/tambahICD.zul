@@ -1,0 +1,111 @@
+<window id="addICD" xmlns:h="http://www.w3.org/1999/xhtml" width="670px" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+
+	import com.vone.medisafe.ui.mr.IcdDiagnoseController;
+	
+	ctr = new IcdDiagnoseController();
+	
+	void init(){
+		ctr.init(addICD);
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TAMBAH ICD</h:td></h:tr></h:table>
+	
+	<separator spacing="7px"/>	
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td>	
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="10%"/>
+			    		  <h:td>
+							<h:table width="100%" align="center">
+								<h:tr><h:td width="2%"/>
+									  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>KODE</h:b></h:p></h:td>
+								      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			              			  <h:td width="30%"><h:p align="left"><textbox id="ICDCode" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+			              			  <h:td width="3%"/>
+			       				</h:tr>
+			       				
+			        			<h:tr><h:td width="2%"/>
+			        				  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+						  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			             			  <h:td width="25%"><textbox id="diseaseName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+			             			  <h:td width="5%"><h:p align="left"><button label="CARI" onClick="ctr.searchIcd();" image="/image/cari.gif" style="width:70px;height:26px"/></h:p></h:td>
+			             			  <h:td width="3%"/>
+			        			</h:tr>
+			    			</h:table>
+			  			</h:td>
+			  			<h:td width="13%"/>
+			  	   </h:tr>
+		  	   </h:table>
+	  	
+	   <separator spacing="5px"/>
+			   <h:table width="100%" align="center">
+			    	  <h:tr><h:td width="24%"/>
+					    	<h:td>	 	
+							      <vbox>
+										<groupbox width="610px" height="185px">
+										  	<caption label="DATA DIAGNOSA ICD"/>
+										  	<separator spacing="5px"/>
+										  		<h:table width="100%" align="center">
+											  		  <h:tr><h:td width="13%"/>
+													  		<h:td>
+														  		<vbox>
+																	<listbox id="icdList" multiple="true" width="570px" height="260px" checkmark="true">
+																		<listhead>
+																			<listheader label="KODE" sort="auto" width="20%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA" sort="auto" width="50%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																
+																		<listitem>
+																			<listcell label="A30"/>
+																			<listcell label="LEPRA"/>
+																		</listitem>
+																		
+																		<listitem>
+																			<listcell label="A33"/>
+																			<listcell label="TETANUS"/>
+																		</listitem>
+																		
+																		<listitem>
+																			<listcell label="A50"/>
+																			<listcell label="SIFILIS"/>
+																		</listitem>
+																	</listbox>
+																</vbox>
+															</h:td>
+															<h:td width="13%"/>
+													  </h:tr>
+										  		</h:table>
+												<separator spacing="2px"/>
+										  		<h:table width="100%" align="center">
+										  		   	 <h:tr><h:td width="2%"/>
+									  		  		   	   <h:td><h:p align="left">
+							    						   		 <button id="btnSave" label="SIMPAN" onClick="ctr.getIcd()" image="/image/save1.gif" style="width:70px;height:26px"/>
+							    						   		 </h:p>
+							    						   </h:td>
+										  		   	 	   <h:td><h:p align="right">
+							    						   		 <button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="addICD.detach()"/>
+							    						   		 </h:p>
+							    						   </h:td>
+							    						   <h:td width="2%"/>
+							    		  			 </h:tr>
+										  		</h:table>
+										  		<separator spacing="1px"/>
+								    	</groupbox>
+								 </vbox>
+					  	   </h:td>
+				  	 	  <h:td width="24%"/>
+					</h:tr>
+		   </h:table>
+	 	   <separator spacing="4px"/>
+		   </h:td>
+	</h:tr>
+</h:table> 
+
+</window>

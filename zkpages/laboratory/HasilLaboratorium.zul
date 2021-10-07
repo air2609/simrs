@@ -1,0 +1,695 @@
+<window id="LaboratoryResultTransaction" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.laborat.HasilLaboratController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	import com.vone.medisafe.service.iface.NoteManager;
+	import com.vone.medisafe.service.Service;
+	
+	NoteManager nota = Service.getNotaManager();
+	
+	ctr = new HasilLaboratController();
+	
+	void init(){
+		ctr.init(LaboratoryResultTransaction);
+		//now.setValue(getCurrentDateTime());
+	}
+	void searchRegisteredPatient(){
+		ctr.searchRegisteredPatient(crNoMR,crNama,crNoAlamat,MRNumberList);
+	}
+	
+	void setMRVisible(){
+		ctr.setMRVisible(referencePatient,MRNumber,registrationNumber);
+	}
+	
+	void checkRegistration(){
+		ctr.checkRegistration(LaboratoryTransaction);
+	}
+	
+	void getRegistration(int type){
+		ctr.getRegistration(type);
+	}
+	
+	void calcultateTotal(){
+		ctr.calculateTotalAmount();
+	}
+	
+	void deleteList(){
+		ctr.delete();
+	}
+	
+	void doSave(){
+		ctr.save();
+	}
+	
+	void getNewTransaction(){
+		ctr.getNewTransaction();
+	}
+	//ambil nota
+	void getNote(){
+		ctr.getNote();
+	}
+	
+	void searchNote(){
+		ctr.searchNote();
+	}
+	
+	void cancelNote(){
+		ctr.cancelNote();
+	}
+	 
+	void setFocus(){
+		searchNota.focus();
+	} 
+	void getLabDetail(){
+		ctr.getLabDetail();
+	}
+	void searchHasilLab(){
+		ctr.searchHasilLab();
+	}
+	void getLabResult(){
+		ctr.getLabResult();
+	}
+	void cetak(){
+		ctr.cetak();
+	}
+	String getCurrentDateTime(){
+		ctr.getCurrentDateTime();
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM HASIL LABORATORIUM</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="3px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="10%"/>
+		  <h:td>
+				  <vbox>
+				  	<groupbox width="890px">
+						<caption label="DATA PASIEN"/>
+						<separator spacing="1px"/>
+								<h:table width="100%" align="center">
+							    	<h:tr><h:td>
+											  <h:table align="center" width="100%">
+										 		  <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">LOKASI TRANSAKSI</h:font></h:b></h:td>
+												        <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		<h:td width="28%">
+									               		 	<listbox mold="select" id="locationList" width="83%" height="20px" style="font-size:9pt">
+									               		 			<listitem value="LABORATORIUM" label="1. LABORATORIUM"/>
+									               			</listbox>
+									               		</h:td>	
+									              
+														<h:td width="18%"/>
+														<h:td width="3%"/>
+														<h:td align="center">
+																	<checkbox id="referencePatient" label="RUJUKAN / BEBAS" height="14px" disabled="true" onCheck="setMRVisible();" style="font-weight:bold;font-size:8pt"/>
+																
+														</h:td>
+												 </h:tr> 
+										 		  <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">JAM PENGAMBILAN</h:font></h:b></h:td>
+														<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											            <h:td width="28%" align="left">
+											              		 
+											              			<textbox id="takeTime" width="81%" height="14px" style="font-size:8pt;font-weight:bold"/>
+											              		
+														</h:td>
+														
+									                  	<h:td width="18%" align="right"><h:b><h:font size="1">NO. HASIL LAB</h:font></h:b></h:td>
+												   		<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		<h:td>
+									               			  <bandbox id="labResultNumber" disabled="true" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="73%" height="14px" onOpen="searchResult.focus();">
+										               			  <bandpopup>
+																		<vbox>		
+																			<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																				<h:tr><h:td>CARI HASIL LABORATORIUM		
+																							<h:font color="white" weight="bold" size="4pt">*</h:font>
+														 							  </h:td>
+														 						</h:tr>
+																			</h:table>
+																			<separator spacing="5px"/>			
+																			<h:table width="100%" align="center">
+																				<h:tr><h:td width="4%"/>
+																				      <h:td width="25%" align="right"><h:b><h:font size="1">NO. HASIL LAB</h:font></h:b></h:td>
+																				      <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																					  <h:td width="35%" align="left"><textbox id="searchResult" style="font-size:8pt" width="94%" height="14px"/></h:td>
+																					  <h:td width="2%"/>
+																				</h:tr>
+																				<h:tr><h:td width="4%"/>
+																			   		  <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																			 		  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																			  		  <h:td width="35%" align="left"> <textbox id="nameSearch" style="font-size:8pt" width="94%" height="14px"/></h:td>
+																			  		  <h:td width="2%"/>
+																			    </h:tr>
+																			    <h:tr><h:td width="4%"/>
+																			    	  <h:td width="25%" align="right"><h:b><h:font size="1">TANGGAL</h:font></h:b></h:td>
+																					  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																					  <h:td width="45%" style="font-size:8pt;font-weight:bold">
+																					 		 <datebox id="startDate2" width="35%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
+																					  			&amp;nbsp;S.D.
+																					  		 <datebox id="endDate2" width="35%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
+																					  </h:td>
+																					  <h:td width="20%" align="left">
+																					  		 
+																					  			<button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="searchHasilLab();"/>
+																					  		
+																					 </h:td>
+																					 <h:td width="2%"/>
+																				</h:tr>
+																			</h:table>
+																			
+																			<separator spacing="5px"/>
+													
+																			<label value="*) KHUSUS PASIEN YANG SUDAH MEMPUNYAI HASIL LAB" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+																			<listbox id="labResultList" width="600px" onSelect="getLabResult();labResultNumber.closeDropdown();" mold="paging" pageSize="15">
+																				<listhead>
+																					<listheader label="NO. NOTA" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																					<listheader label="NAMA" width="50%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																				</listhead>
+																		
+																				<listitem>
+																					<listcell label="H-LAB-0608-00001"/>
+																					<listcell label="Anastasia"/>
+																				</listitem>
+																		
+																				<listitem>
+																					<listcell label="H-LAB-0608-00002"/>
+																					<listcell label="Andrea"/>
+																				</listitem>
+																						
+																				<listitem>
+																					<listcell label="H-LAB-0608-00003"/>
+																					<listcell label="Christoforus"/>
+																				</listitem>
+																			</listbox>
+																		</vbox>
+																    </bandpopup>
+									               			  </bandbox>
+									               		</h:td>
+										      	  </h:tr>
+										      	    
+										 		  <h:tr><h:td width="19%" align="right" style="font-size:8pt">
+										 						 <h:b><h:font size="1">NO. MR</h:font></h:b>
+										 				 </h:td>
+														 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									        			 <h:td width="28%">
+									        				<bandbox id="MRNumber" width="73%" style="font-size:8pt;font-weight:bold" onChange="getRegistration(MedisafeConstants.INPUT_BY_MANUAL);" onOpen="crNoMR.focus();">
+																<bandpopup>
+																	<vbox>		
+																		<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																		 	<h:tr><h:td>CARI PASIEN		
+																		 				<h:font color="white" weight="bold" size="4pt">*</h:font>
+														 						  </h:td>
+														 					</h:tr>
+																		</h:table>
+																		
+																		<separator spacing="5px"/>
+																					
+																		<h:table width="100%" align="center">
+																			<h:tr><h:td width="2%"/>
+																			      <h:td width="25%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+																				  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																				  <h:td width="30%" align="left"><textbox id="crNoMR" style="font-size:8pt;font-weight:bold" width="94%" height="14px"/></h:td>
+																				  <h:td width="2%"/>
+																			</h:tr>
+																			<h:tr><h:td width="2%"/>
+																			      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																				  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																				  <h:td width="30%" align="left"><textbox id="crNama" style="font-size:8pt;font-weight:bold" width="94%" height="14px"/></h:td>
+																				  <h:td width="2%"/>
+																			</h:tr>
+																			<h:tr><h:td width="2%"/>
+																			      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+																				  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																				  <h:td width="30%" align="left"><textbox id="crNoAlamat" style="font-size:8pt;font-weight:bold" width="94%" height="14px"/></h:td>
+																				  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="searchRegisteredPatient();"/></h:td>
+																				  <h:td width="2%"/>
+																			</h:tr>
+																		</h:table>
+																		
+																		<separator spacing="5px"/>
+												
+																		<label value="*) KHUSUS PASIEN YANG MEMILIKI NO. MR" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+																		<listbox id="MRNumberList" width="700px" onSelect="getRegistration(MedisafeConstants.INPUT_BY_SEARCH); MRNumber.closeDropdown();" mold="paging" pageSize="15">
+																			<listhead>
+																				<listheader label="NO. MR" width="12%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																				<listheader label="NAMA" width="35%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																				<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+																			</listhead>
+																	
+																			<listitem>
+																				<listcell label="11-11-11"/>
+																				<listcell label="Anastasia"/>
+																				<listcell label="Jl. Adisucipto no. 103"/>
+																			</listitem>
+																	
+																			<listitem>
+																				<listcell label="11-11-12"/>
+																				<listcell label="Andrea"/>
+																				<listcell label="Jl. Gejayan no. 8"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="11-11-13"/>
+																				<listcell label="Christoforus"/>
+																				<listcell label="Jl. RingRoad Utara no. 44"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="11-11-14"/>
+																				<listcell label="Johanes"/>
+																				<listcell label="Jl. Ahmad Yani no. 06"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="11-11-15"/>
+																				<listcell label="Andromeda"/>
+																				<listcell label="Jl. RingRoad Selatan no. 66"/>
+																			</listitem>
+																	
+																			<listitem>
+																				<listcell label="11-11-16"/>
+																				<listcell label="Charlotte"/>
+																				<listcell label="Jl. KotaBaru no. 18"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="11-11-17"/>
+																				<listcell label="Celine"/>
+																				<listcell label="Jl. RingRoad Barat no. 24"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="11-11-18"/>
+																				<listcell label="Mike"/>
+																				<listcell label="Jl. Ahmad Yani no. 08"/>
+																			</listitem>
+																	    </listbox>
+																	</vbox>
+																</bandpopup>
+															</bandbox>
+									         			 </h:td>
+									               		 
+									               		 <h:td width="19%" align="right"><h:b><h:font size="1">NO. NOTA</h:font></h:b></h:td>
+														 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									        			 <h:td width="28%">
+									        				<bandbox id="transactionNumber" width="73%" onOpen="searchNota.focus();" style="font-size:8pt;font-weight:bold">
+																<bandpopup>
+																	<vbox>		
+																		<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																			<h:tr><h:td>CARI NOTA		
+																						<h:font color="white" weight="bold" size="4pt">*</h:font>
+														 						  </h:td>
+														 					</h:tr>
+																		</h:table>
+																		<separator spacing="5px"/>			
+																		<h:table width="100%" align="center">
+																			<h:tr><h:td width="25%" align="right"><h:b><h:font size="1">NO. NOTA</h:font></h:b></h:td>
+																			      <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																				  <h:td width="45%" align="left"> <textbox id="searchNota" style="font-size:8pt" width="93%" height="14px"/></h:td>
+																			</h:tr>
+																			<h:tr><h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																		 		  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																		  		  <h:td width="45%" align="left"> <textbox id="searchName" style="font-size:8pt" width="93%" height="14px"/></h:td>
+																		  	</h:tr>
+																		    <h:tr><h:td width="25%" align="right"><h:b><h:font size="1">TANGGAL</h:font></h:b></h:td>
+																				  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																				  <h:td width="45%" style="font-size:8pt;font-weight:bold">
+																				 		 <datebox id="startDate" width="35%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
+																				  			&amp;nbsp;S.D.
+																				  		 <datebox id="endDate" width="35%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
+																				  </h:td>
+																				  <h:td width="20%" align="left">
+																				  		 
+																				  			<button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="nota.searchNote(searchNota, searchName, startDate, endDate, TransactionNumberList, locationList)"/>
+																				  		
+																				 </h:td>
+																			</h:tr>
+																		</h:table>
+																		
+																		<separator spacing="5px"/>
+												
+																		<label value="*) KHUSUS NOTA BARU DAN SUDAH DI-VALIDASI" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+																		<listbox id="TransactionNumberList" width="600px" onSelect="getLabDetail(); transactionNumber.closeDropdown();" mold="paging" pageSize="15">
+																			<listhead>
+																				<listheader label="NO. NOTA" width="22%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																				<listheader label="NAMA" width="32%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																				<listheader label="STATUS" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			</listhead>
+																	
+																			<listitem>
+																				<listcell label="J-LAB-0608-00001"/>
+																				<listcell label="Anastasia"/>
+																				<listcell label="BARU"/>
+																			</listitem>
+																	
+																			<listitem>
+																				<listcell label="J-LAB-0608-00002"/>
+																				<listcell label="Andrea"/>
+																				<listcell label="BARU"/>
+																			</listitem>
+																					
+																			<listitem>
+																				<listcell label="J-LAB-0608-00003"/>
+																				<listcell label="Christoforus"/>
+																				<listcell label="BARU"/>
+																			</listitem>
+																		</listbox>
+																	</vbox>
+																</bandpopup>
+															</bandbox>
+									         			 </h:td>
+									         	   </h:tr>
+										      	   
+										      	   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+												   	 	 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td width="28%"><textbox id="patientName" readonly="true" width="81%" height="15px" style="font-size:8pt;font-weight:bold"/></h:td>
+									               		 
+									               		 <h:td width="18%" align="right"><h:b><h:font size="1">NO. REGISTRASI</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td><textbox id="registrationNumber" readonly="true" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="81%" height="15px"/></h:td>
+									               		 
+									               </h:tr>
+									               
+										      	   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">UMUR</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td  width="28%"><textbox id="age" readonly="true" width="81%" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+									               		
+														 <h:td width="18%" align="right"><h:b><h:font size="1">DOKTER UTAMA</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td><textbox id="mainDoctor" readonly="true" width="80%" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+									             
+												   </h:tr>
+												   
+												   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">RUANGAN</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td width="28%"><textbox id="hall" width="81%" height="14px" readonly="true" style="font-size:8pt;font-weight:bold"/></h:td>
+														
+														 <h:td width="18%" align="right"><h:b><h:font size="1">BED</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td><textbox id="bed" width="80%" readonly="true" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+								                   </h:tr>
+								                   
+								                   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">NO. LABORAT</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td width="28%"><textbox id="laboratNo" width="81%" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+														
+														 <h:td width="18%" align="right"><h:b><h:font size="1">DOKTER PENGIRIM</h:font></h:b></h:td>
+												   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									               		 <h:td><textbox id="escortDoctor" width="80%" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+								                   </h:tr>
+											   </h:table>
+								 		 </h:td>
+					  		 		</h:tr>
+				  	 		  </h:table>
+			  	 			  <separator spacing="1px"/>
+				 	</groupbox>
+					</vbox>
+			 </h:td>
+			 <h:td width="10%"/>
+	   </h:tr>
+	</h:table>   	
+    <separator spacing="2px"/>
+   	 
+    <h:table width="100%" align="center">
+    	  <h:tr><h:td width="20%"/>
+		    	<h:td>	 	
+				      <vbox>
+						    <groupbox width="900px">
+							  	<caption label="HASIL PEMERIKSAAN LABORATORIUM"/>
+							  		<h:table width="100%" align="center">
+							  			<h:tr><h:td height="0px"/></h:tr>
+							  			<h:tr><h:td width="13%"/>
+							  				  <h:td>
+							  						<tree id="hasilLabTree" width="860px" height="194px">
+														<treecols>
+															<treecol label="NAMA PEMERIKSAAN" style="font-weight:bold;font-size:8pt" width="22%"/>
+															<treecol label="HASIL TEST" style="font-weight:bold;font-size:8pt" width="18%"/>
+															<treecol label="NORMAL RANGE" style="font-weight:bold;font-size:8pt" width="18%"/>
+															<treecol label="SATUAN" style="font-weight:bold;font-size:8pt" width="11%"/>
+														</treecols>
+														<treechildren id="anak">
+															<treeitem id="groupTreeitem">
+																<treerow>
+																	<treecell label="DARAH LENGKAP (HEMATOLOGI)"/>
+																</treerow>
+																<treechildren>
+																	<treeitem id="detailTreeitem">
+																		<treerow>
+																			<treecell label="HAEMOGLOBIN"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "13-16" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "12-14" width="35%"/>
+																			</treecell>
+																			<treecell label="G/DL"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="HEMATOKRIT"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "40-48" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "37-43" width="35%"/>
+																			</treecell>
+																			<treecell label="/VOL %"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="LEKOSIT"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "5.000 - 10.000" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "5.000 - 10.000" width="35%"/>
+																			</treecell>
+																			<treecell label="/MM3"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="TROMBOSIT"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "200.000 - 500.000" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "200.000 - 500.000" width="35%"/>
+																			</treecell>
+																			<treecell label="/MM3"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="ERITROSIT"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "4,5 - 5,5" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "4,0 - 5,0" width="35%"/>
+																			</treecell>
+																			<treecell label="JUTA/MM3"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="EOSINOPHIL"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "50-3000" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "50-300" width="35%"/>
+																			</treecell>
+																			<treecell label="/MM3"/>
+																		</treerow>
+																	</treeitem>
+																	
+																	<treeitem>
+																		<treerow>
+																			<treecell label="RETIKULOSIT"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "5 - 15" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "5 - 15" width="35%"/>
+																			</treecell>
+																			<treecell label="%"/>
+																		</treerow>
+																	</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="LAJU ENDAP DARAH"/>
+																			<treecell><textbox width="96%"/></treecell>
+																			<treecell>
+																				<label width="10%" value="PRIA "/>
+																				<textbox value = "0 - 10" width="35%"/>
+																				<label width="10%" value="WANITA"/>
+																				<textbox value = "0 - 15" width="35%"/>
+																			</treecell>
+																			<treecell label="MM/1 JAM"/>
+																		</treerow>
+																	</treeitem>
+																	
+																	<treeitem>
+																			<treerow>
+																				<treecell label="EOSINOPHIL"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																					<label width="10%" value="PRIA "/>
+																					<textbox value = "1 - 3" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "1 - 3" width="35%"/>
+																				</treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																			
+																			<treeitem>
+																			<treerow>
+																				<treecell label="BASOPHIL"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																					<label width="10%" value="PRIA "/>
+																					<textbox value = "0 - 1" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "0 - 1" width="35%"/>
+																				</treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																			
+																			<treeitem>
+																			<treerow>
+																				<treecell label="NETROPHIL BATANG"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																					<label width="10%" value="PRIA "/>
+																					<textbox value = "2 - 6" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "2 - 6" width="35%"/>
+																			    </treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																			
+																			<treeitem>
+																			<treerow>
+																				<treecell label="NETROPHIL SEGMENT"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																					<label width="10%" value="PRIA "/>
+																					<textbox value = "50 - 70" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "50 - 70" width="35%"/>
+																				</treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																			
+																			<treeitem>
+																			<treerow>
+																				<treecell label="LIMPHOSIT"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																					<label width="10%" value="PRIA "/>
+																					<textbox value = "20 - 40" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "20 - 40" width="35%"/>
+																				</treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																			
+																			<treeitem>
+																			<treerow>
+																				<treecell label="MONOSIT"/>
+																				<treecell><textbox width="96%"/></treecell>
+																				<treecell>
+																				<label width="10%" value="PRIA "/>
+																					<textbox value = "2 - 9" width="35%"/>
+																					<label width="10%" value="WANITA"/>
+																					<textbox value = "2 - 9" width="35%"/>
+																				</treecell>
+																				<treecell label="%"/>
+																			</treerow>
+																			</treeitem>
+																		</treechildren>
+																	</treeitem>
+														  </treechildren>
+													</tree>
+											 </h:td>
+											<h:td width="13%"/>
+									  </h:tr>
+							      </h:table>
+							  		
+								  <separator spacing="5px"/>
+						    </groupbox>
+					  </vbox>
+			    </h:td>
+			    <h:td width="20%"/>
+	      </h:tr>
+	      <h:tr><h:td width="20%"/>
+		    	<h:td><separator spacing="2px"/>
+			  			<h:table width="100%" align="center">
+				  		   	 <h:tr><h:td width="6%"/>
+					  		   	   <h:td width="5%" align="left">
+					  		   	   		  
+	    						   			 <button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+	    						   		 
+	    						   </h:td>
+	    						   <h:td width="5%" align="left">
+	    						   		  
+	    						   		 	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.modify();"/>
+	    						   		 
+	    						   </h:td>
+	    						   <!-- 
+	    						   <h:td width="5%">
+	    						   		  align="left">
+	    						  	 		 <button id="btnCancel" label="BATAL" image="/image/cancel.gif" style="width:70px;height:26px"/>
+	    						   		 
+	    						   </h:td>
+	    						    -->
+	    						   <h:td width="5%" align="left">
+	    						   		 
+	    						   			 <button id="btnNew" label="BARU" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getNewTransaction();"/>
+	    						   		 
+	    						   </h:td>
+	    						   <h:td align="right">
+	    						   		  
+		    						   		 <button id="btnPrint" label="CETAK HASIL" image="/image/print.gif" style="width:115px;height:26px;font-weight:bold;font-size:7pt">
+			    						   		 <attribute name="onClick">
+					     						 {
+					     						 	cetak();
+												 }
+												 </attribute>
+											 </button>
+	    						   		 
+	    						   </h:td><!--
+				  		   	 	   <h:td width="7%" align="right">
+				  		   	 	   		  
+	    						   		 	<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="LaboratoryResultTransaction.detach()"/>
+	    						   		 
+	    						   </h:td>
+	    						   --><h:td width="6%"/>
+	    		  			 </h:tr>
+				  		</h:table>
+		    	</h:td>
+			    <h:td width="20%"/>
+	      </h:tr>
+     </h:table>
+     <separator spacing="3px"/>
+</window>

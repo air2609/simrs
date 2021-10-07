@@ -1,0 +1,27 @@
+<window id="drugsItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(drugsItem, "narkobaList", "014");
+	}
+</zscript>
+
+   <listbox id="narkobaList" multiple="true" width="160px" rows="4" checkmark="true">
+	  <listhead>
+		<listheader id="narkoba" label="NARKOBA" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+	  </listhead>
+	  <listitem>
+		<listcell id="LAB87" label="AMPHETAMINE"/>
+	  </listitem>
+	  <listitem>
+		<listcell id="LAB88" label="BENZODIAZEPINE"/>
+	  </listitem>
+	  <listitem>
+		<listcell id="LAB89" label="COCCAIN"/>
+	  </listitem>
+	  <listitem>
+		<listcell id="LAB90" label="MORPHINE"/>
+	  </listitem>
+   </listbox>
+</window>

@@ -1,0 +1,274 @@
+<window id="returnKwitansi" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.cashier.ReturKwitansiController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	
+	ctr = new ReturKwitansiController();
+	void init(){
+		ctr.init(returnKwitansi);
+	}
+</zscript>
+
+	
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PENGEMBALIAN KWITANSI</h:td></h:tr>
+</h:table>
+	
+<separator spacing="7px"/>
+
+<h:table align="center" width="100%">
+	<h:tr><h:td width="16%"/>
+		  <h:td>
+		  		<!--<groupbox width="600px">
+		  		<separator spacing="2px"/>
+		  		<caption label="DATA PASIEN"/>
+			        --><h:table align="center" width="100%">
+			 			<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:p></h:td>
+							  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		        			  <h:td width="28%">
+			        				<bandbox id="MRNumber" width="70%" onOpen="crNoMR.focus();" style="font-size:8pt" onChange="ctr.getRegistration(MedisafeConstants.INPUT_BY_MANUAL);">
+										<bandpopup>
+											<vbox>		
+												<h:table align="center" width="100%" sclass="BasicBlueTitle">
+												 	<h:tr><h:td>CARI DATA PASIEN</h:td></h:tr>
+												</h:table>
+												
+												<separator spacing="5px"/>
+															
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="2%"/>
+												      	  <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:p></h:td>
+													  	  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+													  	  <h:td width="30%"><h:p align="left"><textbox id="crNoMR" width="94%" height="14px" style="font-size:8pt"/></h:p></h:td>
+													      <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
+												     	  <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+													  	  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+													  	  <h:td width="30%"><h:p align="left"><textbox id="crNama" width="94%" height="14px" style="font-size:8pt"/></h:p></h:td>
+													  	  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
+													      <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:p></h:td>
+														  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+														  <h:td width="30%"><h:p align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/></h:p></h:td>
+														  <h:td width="25%"><h:p align="left"><button label="CARI" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatient(crNoMR,crNama,crNoAlamat,patientList);" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt"/></h:p></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+												</h:table>
+												
+												<separator spacing="5px"/>
+						
+												<listbox id="patientList" width="700px" onSelect="ctr.getRegistration(MedisafeConstants.INPUT_BY_SEARCH); MRNumber.closeDropdown();" mold="paging" pageSize="15">
+													<listhead>
+														<listheader label="NO. MR" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														<listheader label="NAMA" width="35%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
+														<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+													</listhead>
+													<!-- 
+													<listitem>
+														<listcell label="11-11-11"/>
+														<listcell label="Anastasia"/>
+														<listcell label="Jl. Adisucipto no. 103"/>
+													</listitem>
+											
+													<listitem>
+														<listcell label="11-11-12"/>
+														<listcell label="Andrea"/>
+														<listcell label="Jl. Gejayan no. 8"/>
+													</listitem>
+													-->
+												</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+		         			  </h:td>
+		         	    </h:tr>
+			      	   
+			      	    <h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. KWITANSI</h:b></h:p></h:td>
+						   	  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			               	  <h:td width="28%">
+			               		  		<bandbox id="noteNumber" readonly="true" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="70%" height="15px" onOpen="searchNote.focus();">
+				               		  		<bandpopup>
+												<vbox>		
+													<h:table align="center" width="100%" sclass="BasicBlueTitle">
+													 	<h:tr><h:td>CARI KWITANSI</h:td></h:tr>
+													</h:table>
+													
+													<separator spacing="5px"/>
+																
+													<h:table width="100%" align="center">
+														<h:tr><h:td width="20%"><h:p align="right" style="font-size:8pt"><h:b>NO. KWITANSI</h:b></h:p></h:td>
+															  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+															  <h:td width="30%"><h:p align="left"><textbox id="searchNote" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+														</h:tr>
+														<h:tr><h:td width="20%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+															  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+															  <h:td width="30%"><h:p align="left"><textbox id="searchName" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+															  <h:td width="20%"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.searchBill();"/></h:p></h:td>
+														</h:tr>
+													</h:table>
+													
+													<separator spacing="5px"/>
+							
+													<listbox id="kwitansiList" width="600px"  onSelect="ctr.getNotes(); noteNumber.closeDropdown();" mold="paging" pageSize="15">
+														<listhead>
+															<listheader label="NO. KWITANSI" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+															<listheader label="NAMA" width="45%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
+															<listheader label="STATUS" width="25%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
+														</listhead>
+														<!-- 
+														<listitem>
+															<listcell label="KPJ-0611-000001"/>
+															<listcell label="RATNAWATI"/>
+															<listcell label="SUDAH DIVALIDASI"/>
+														</listitem>
+														<listitem>
+															<listcell label="KPJ-0611-000002"/>
+															<listcell label="RATNAWATI"/>
+															<listcell label="SUDAH DIVALIDASI"/>
+														</listitem>	
+														-->
+												    </listbox>
+												</vbox>
+											</bandpopup>
+										</bandbox>
+			               	  </h:td>
+			           </h:tr>
+			      	   
+			      	   <h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+					   	 	 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		               		 <h:td width="29%"><textbox id="patientName" width="76%" height="14px" readonly="true" style="font-size:8pt"/></h:td>
+					   </h:tr>
+			      	   
+			      	   <h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:p></h:td>
+					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		               		 <h:td width="29%"><textbox id="addr" width="76%" height="14px" readonly="true" style="font-size:8pt" rows="3"/></h:td>
+		                </h:tr>
+		      	   </h:table><!--
+	    	  <separator spacing="2px"/>
+			  </groupbox>
+		--></h:td>
+		<h:td width="22%"/>
+    </h:tr>
+</h:table>
+<h:table align="center" width="100%">	
+ 	<h:tr><h:td width="25%"/>
+ 		  <h:td>	 	
+    			<vbox>
+    			 	 <h:table align="center" width="100%">	
+			  	 		<h:tr><h:td width="1%"/>
+			  				  <h:td width="21%">
+							   		<h:p align="right">
+								   		<h:font color="red" size="1pt">
+								   			<h:b><label id="labelStatus" value="STATUS NOTA : " style="font-weight:bold;font-size:8pt"/></h:b>
+								  		</h:font>
+							  		</h:p>
+				  	  		   </h:td> 
+				  	  		   <h:td>
+							  		 <h:p align="left">
+							  		 	<h:font color="red" size="1pt">
+							  		 		<h:b><label id="statusNota" value="" style="font-weight:bold;font-size:8pt"/></h:b>
+							  			</h:font>
+							  		 </h:p>
+						  	   </h:td> 
+					     </h:tr>
+			        </h:table>
+			  		<groupbox width="550px">
+			  		<caption label="DAFTAR KWITANSI"/>
+			  			<h:table width="100%" align="center">
+			  				<h:tr><h:td height="10px"></h:td></h:tr>
+			  				<h:tr><h:td width="10%"/>
+			  				      <h:td>
+			  			  			  	<vbox>
+							  				<listbox id="billList" multiple="true" width="510px" height="215px">
+							  					<listhead>
+							  						<listheader label="NO. NOTA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							  						<listheader label="BIAYA" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							  					</listhead>
+												<!-- 
+							  					<listitem>
+							  						<listcell label="J-UGD-0606-000001"/>
+							  						<listcell label="Rp 60,000.00"/>
+							 					</listitem>
+							 					
+							 					<listitem>
+							  						<listcell label="J-UGD-0606-000002"/>
+							  						<listcell label="Rp 120,000.00"/>
+							 					</listitem>
+							 					-->
+							 				 </listbox>
+						  				 </vbox>
+									</h:td>
+									<h:td width="10%"/>
+							  </h:tr>
+						</h:table>
+								
+			  			<separator spacing="1px"/>
+			  			<h:table align="center" width="100%">
+      						 <h:tr><h:td width="72%"><h:p align="right" style="font-size:8pt"><h:b>PPN</h:b></h:p></h:td>
+      						 	   <h:td width="3%"><h:p align="center">:</h:p></h:td>
+      						       <h:td><decimalbox id="ppn" width="95%" height="15px" format="#,###" readonly="true" style="font-size:8pt;font-weight:bold"/></h:td>
+      						       <h:td width="3%"/>
+      						 </h:tr>
+			  			</h:table>
+			  			<h:table align="center" width="100%">
+      						 <h:tr><h:td width="72%"><h:p align="right" style="font-size:8pt"><h:b>TOTAL</h:b></h:p></h:td>
+      						 	   <h:td width="3%"><h:p align="center">:</h:p></h:td>
+      						       <h:td><decimalbox id="total" width="95%" height="15px" format="#,###" readonly="true" style="font-size:8pt;font-weight:bold"/></h:td>
+      						       <h:td width="3%"/>
+      						 </h:tr>
+			  			</h:table>
+			  			
+			  		   <separator spacing="4px"/>
+			   		</groupbox>
+			  </vbox>
+	 	 </h:td>
+	  	 <h:td width="25%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="25%"/>
+ 		  <h:td><separator spacing="5px"/>
+	  			<h:table width="100%" align="center">
+					<h:tr><h:td width="5%">
+								<h:p align="right">
+					    			<button id="btnSave" label="RETUR KWITANSI" image="/image/icons/kasir.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save();"/>
+					    		</h:p>
+					      </h:td>
+					      <!-- <h:td width="5%">
+					      		<h:p align="right">
+					    			<button id="btnModify" label="BUAT NOTA" image="/image/new.gif" style="width:100px;height:26px"/>
+					    		</h:p>
+					      </h:td> -->
+					      <h:td  width="5%">
+								<h:p align="left">
+					    			<button id="btnNew" label="BARU" image="/image/new.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.clear();"/>
+					    		</h:p>
+					      </h:td>
+					      <h:td>
+								<h:p align="right">
+					    			<button id="btnCetak" label="CETAK" image="/image/print.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" >
+					    				<attribute name="onClick">
+							    			{
+												final Window win = (Window) Executions.createComponents(
+																	"/zkpages/common/cetak.zul", null, null);
+											    win.doModal();
+											}
+										</attribute>
+					    			</button>
+					    		</h:p>
+					     </h:td><!--
+					     <h:td width="4%">
+					       		<h:p align="right">
+					    	 		<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="returnKwitansi.detach();"/>
+					     		</h:p>
+					     </h:td>
+					--></h:tr>
+				</h:table>
+ 		  </h:td>
+	  	  <h:td width="25%"/>
+	</h:tr>
+</h:table>
+<separator spacing="9px"/>	
+</window>

@@ -1,0 +1,268 @@
+<window id="masterItem" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="/include/medisafe.css"/>
+
+<zscript>   
+	import com.vone.medisafe.ui.master.item.ItemController;
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	ctr = new ItemController();
+	coaCtr = new CoaController();
+	
+	void init(){
+		ctr.init(masterItem);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterItem);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterItem);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterItem);
+	}
+	
+	void doModify(){
+		ctr.doModify(masterItem);
+	}
+	
+	void checkItemIfDrugs(){
+		ctr.checkItemIfDrugs();
+	}
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM MASTER ITEM</h:td></h:tr>
+</h:table>
+
+<separator spacing="4px"/>
+
+<h:table width="100%" align="center" border="0">
+<h:tr><h:td width="8%"/>
+	  <h:td><h:table width="100%" align="center" border="0">
+		  		<h:tr><h:td width="19%" align="right"><h:b><h:font size="1">GROUP ITEM</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		  <h:td width="29%">
+			 		  		<listbox id="itemGroupList" mold="select" width="83%" style="font-size:9pt" onSelect="checkItemIfDrugs();">
+			 		  			<listitem label="OBAT"/>
+			 		  			<listitem label="BAHAN MEDIS"/>
+			 		  		</listbox>
+			 		  </h:td>
+			 		
+			 		  <h:td width="18%" align="right"><h:b><h:font size="1">TIPE OBAT</h:font></h:b></h:td>
+			 		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		  <h:td>
+					 	   <listbox id="drugTypeList" width="83%" mold="select" style="font-size:9pt">
+					 	  		<listitem value="kosong" label="" selected="true"/>
+								<listitem value="1" label="1. PSIKOTROPIKA"/>
+								<listitem value="2" label="2. NARKOTIKA"/>
+								<listitem value="3" label="3. GENERIK"/>
+								<listitem value="4" label="4. PATEN"/>
+								<listitem value="5" label="5. BPJS"/>
+					 	   </listbox>
+			 		  </h:td>
+			 	</h:tr>
+		  		
+		  		<h:tr><h:td width="19%" align="right"><h:b><h:font size="1">KODE ITEM</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  <h:td width="28%"><textbox id="itemCode" width="81%" height="15px"/></h:td>
+			  		  
+			 		  <h:td width="18%" align="right"><h:b><h:font size="1">NAMA ITEM</h:font></h:b></h:td>
+			 		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		  <h:td><textbox id="itemName" width="81%" height="15px"/></h:td>
+			   </h:tr>
+			   
+			   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">SATUAN</h:font></h:b></h:td>
+					 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					 <h:td width="28%">
+					  		<listbox id="measureItemList" mold="select" width="83%" style="font-size:9pt">
+						  		<listitem label=""/>
+						  		<listitem label="STRIP"/>
+						  		<listitem label="AMPUL"/>
+						  	</listbox>
+			 		 </h:td>  
+			 		 
+			 		 <h:td width="18%" align="right"><h:b><h:font size="1">KODE BARCODE</h:font></h:b></h:td>
+					 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					 <h:td><textbox id="barcode" width="81%" height="14px"/></h:td>
+			   </h:tr>
+			   
+			   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">SUPPLIER</h:font></h:b></h:td>
+			 		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		 <h:td width="28%">
+			 		 		<listbox id="supplier" width="99%" rows="4" multiple="true" checkmark="true" style="font-size:9pt">
+								<listitem>
+									<listcell label="KIMIA FARMA"/>
+								</listitem>
+								<listitem>
+									<listcell label="METISKA"/>
+								</listitem>
+								<listitem>
+									<listcell label="KALBE FARMA"/>
+								</listitem>
+								<listitem>
+									<listcell label="KALBE FARMA"/>
+								</listitem>
+							</listbox>
+			 		 </h:td>
+			 		  
+			 		 <h:td width="18%" align="right"><h:b><h:font size="1">KETERANGAN OBAT</h:font></h:b></h:td>
+			 		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		 <h:td>
+					 	   <listbox id="medicineDesc" width="83%" mold="select" style="font-size:9pt">
+					 		 	<listitem value="kosong" label="" selected="true"/>
+								<listitem value="Y" label="1. BISA DI RETUR"/>
+								<listitem value="N" label="2. TIDAK BISA DI RETUR"/>
+					 	   </listbox>
+			 		 </h:td>
+			 	</h:tr>
+				
+				<h:tr><h:td width="19%" align="right"><h:b><h:font size="1">BATAS PENGGUNAAN</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  <h:td width="28%"><intbox id="plafon" width="50%" height="14px"/></h:td>
+			  		  
+					  <h:td width="18%" align="right"><h:b><h:font size="1">BATAS STOK AKHIR</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			 		  <h:td><intbox id="bufferLimit" width="50%" height="14px"/></h:td>
+			    </h:tr>
+			    
+			    <h:tr><h:td width="19%" align="right"><!-- NO. COA --> <h:b><h:font size="1">JASA R</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				      <h:td width="29%"><intbox id="jasaR" width="50%" height="14px"/>
+					 	   <!-- <bandbox id="coa" width="73%" style="font-size:8pt" onOpen="coaCode.focus();" height="14px" onChange="coaCtr.checkCoa(coa)">
+					 	  		<bandpopup>
+									<vbox>	
+										  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+												<h:tr><h:td>CARI COA</h:td></h:tr>
+										  </h:table>
+										  <separator spacing="3px"/>
+										  <h:table width="100%" align="center">
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%"> align="right" style="font-weight:bold;font-size:8pt">NO. COA</h:td>
+													  <h:td width="4%" align="center">:</h:td>
+													  <h:td width="35%"> align="left"><textbox id="coaCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="2%"/>
+												</h:tr>
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%"> align="right" style="font-weight:bold;font-size:8pt">NAMA</h:td>
+													  <h:td width="4%" align="center">:</h:td>
+													  <h:td width="35%"> align="left"><textbox id="coaName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+												      <h:td width="20%"> align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="coaCtr.searchCoa(coaCode, coaName, coaList);"/></h:td>
+												      <h:td width="2%"/>
+												</h:tr>
+										</h:table>
+										<separator spacing="3px"/>
+										<listbox id="coaList" width="600px"  mold="paging" pageSize="15" onSelect="coaCtr.getCoa(coaList, coa);coa.closeDropdown()">
+											<listhead>
+												<listheader label="NO. COA" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+												<listheader label="NAMA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+											</listhead>
+										</listbox>
+								   </vbox>
+						  	  </bandpopup>
+					       </bandbox>-->
+				      </h:td>
+				      
+				      <h:td width="18%" align="right"><h:b><h:font size="1">MAX ORDER</h:font></h:b></h:td>
+					  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  <h:td><intbox id="maxOrder" width="50%" height="14px" style="font-size:9pt"/></h:td>
+			  
+				</h:tr>
+				
+				<!--
+						  <h:td width="18%"> align="right">NO. ACC GUDANG</h:td>
+					  <h:td width="5%" align="center">:</h:td>
+					  <h:td><listbox id="invAccNo" mold="select" width="83%" height="14px" style="font-size:8pt"/></h:td>
+			
+			--></h:table>
+	  </h:td>
+	  <h:td width="8%"/>
+</h:tr>
+<h:tr><h:td width="8%"/>
+	  <h:td><separator spacing="1px"/>
+			  <h:table width="100%" align="center">
+				  <h:tr><h:td width="35%"/>
+				  		<h:td width="7%" align="right">
+				  			 
+	    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:95px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+	    		  			
+	    		  		</h:td>
+	    		  
+	    		  		<h:td width="7%" align="right">
+	       					 
+	    		  	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+	    		  	   		
+	    		 		</h:td>
+	    		 		
+	    		 		<h:td width="7%" align="right">
+				  			 
+	    						<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+	    		  			
+	    		  		</h:td>
+	    		  				   
+	    		  		<h:td align="left">
+	       		 			 	
+						   		<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+							
+				 		</h:td>
+	    		  		<h:td width="35%"/>
+	    		  </h:tr>
+			  </h:table>
+	  </h:td>
+	  <h:td width="8%"/>
+</h:tr>
+
+<h:tr><h:td width="8%"/>
+	  <h:td><h:table width="100%" align="center">
+    			<h:tr><h:td width="10%"/>
+    				  <h:td>	 	
+	    				  	<groupbox width="940px">
+				  				<caption label="DATA ITEM"/>
+				  					<h:table width="100%" align="center">
+				  						<h:tr><h:td width="2%"/>
+				  							  <h:td>
+				  							  		<h:table align="center" width="100%">
+															<h:tr><h:td align="right">
+													      			    
+																	  	 	<textbox id="cariTextbox" width="40%" height="15px" style="font-size:8pt;background-color:#82FFA8;font-weight:bold"/>
+																	  	
+																  </h:td>
+																  <h:td width="5%" align="right">
+																	    
+								    						   				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cariClick(itemList, cariTextbox);"/>
+															   			
+														   		  </h:td>
+													    	</h:tr>
+													</h:table>
+				  			  				  		<vbox>
+									  					<listbox id="itemList" mold="paging" pageSize="10" width="900px" height="165px">
+										  					<listhead>
+										  						<listheader label="KODE" width="8%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+										  						<listheader label="NAMA" width="33%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+										  						<listheader label="GROUP" width="13%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+										  						<listheader label="SUPPLIER" width="32%" style="font-weight:bold;font-size:8pt"/>
+										  						<listheader label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+										  					</listhead>
+										  				</listbox>
+							  						</vbox>
+											  </h:td>
+											  <h:td width="2%"/>
+										 </h:tr>
+									 </h:table>
+									 
+									 <separator spacing="3px"/>
+								</groupbox>
+			   			</h:td>
+	  				    <h:td width="10%"/>
+			      </h:tr>
+			  </h:table>
+	  </h:td>
+	  <h:td width="8%"/>
+</h:tr>
+</h:table>
+	
+<separator spacing="11px"/>
+</window>

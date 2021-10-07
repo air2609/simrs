@@ -1,0 +1,113 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<?page id="login_page" title="-LOGIN-"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();" onOK="doSubmit()">
+<style src="../../include/medisafe.css"/>
+	<zscript>
+
+		import com.vone.medisafe.ui.LoginController;
+		
+		LoginController loginCtr = new LoginController();
+		
+		void init(){
+			userName.focus();
+			
+			loginCtr.init(root);
+		}
+		
+		void doSubmit(){
+			loginCtr.doSubmit(root);
+		}
+		
+		void doReset(){
+
+			userName.setValue("");
+			password.setValue("");
+			userName.focus();						
+		}		
+
+	</zscript>
+	
+	<style>
+		INPUT {
+			height: 20px;
+
+			BACKGROUND-COLOR:#F2F1EE;
+
+			border-top : 1px solid #968875;
+			border-left : 1px solid #968875;
+			border-bottom : 1px solid #968875;
+			border-right : 1px solid #968875;
+
+			font-family: Verdana, Arial;
+			font-size: 8pt;
+		}
+		.title{
+			FONT:16pt Verdana;
+			FONT-WEIGHT:bold;
+			COLOR:#968875;
+		}
+		.login{
+			FONT:14pt Haettenschweiler;
+			COLOR:#968875;
+		}
+		.button{
+			FONT:10pt Verdana;
+			BACKGROUND-COLOR:#5F83C2;
+			FONT-WEIGHT:bold;
+			COLOR:white;
+			WIDTH:60px;
+		}
+		
+		.text {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 16px;
+			color: #333333;
+			font-weight: bold;
+		}		
+	</style>	
+<style>
+body {
+	background-image: url(../image/images/TS1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
+<h:body class="bodypadding" >
+	<h:table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+ 		 <h:tr>
+    			<h:td height="430">&amp;nbsp;</h:td>
+  		 </h:tr>
+  		 <h:tr>
+  		 	<h:td align="center" height="23"><h:center><h:b>Username</h:b></h:center></h:td>
+  		 </h:tr>
+  		 <h:tr>
+  		 	<h:td height="23">
+  		 		<h:div align="center">
+         			<textbox id="userName" width="180px" height="15px" style="font-weight:bold"/>
+		   		</h:div> 
+  		 	</h:td>
+  		 </h:tr>
+  		 <h:tr>
+  		 	<h:td align="center" height="23"><h:center><h:b>Password</h:b></h:center></h:td>
+  		 </h:tr>
+  		 <h:tr>
+  		 	<h:td height="23">
+  		 		<h:div align="center">
+         			<textbox type="password" id="password" width="180px" height="15px" style="font-weight:bold"/>
+		   		</h:div> 
+  		 	</h:td>
+  		 </h:tr>
+  		 <h:tr>
+  		 	<h:td align="center" height="23">
+  		 	        <separator spacing="5px"/>
+                  	<button id="login" width="80px" height="25px" label="Login" class="button" onClick="doSubmit();"/> <space/>
+                  	<button id="reset" width="80px" height="25px" label="Reset" class="button" onClick="doReset();"/>
+
+            </h:td>
+  		 </h:tr>
+  		<h:tr><h:td>&amp;nbsp;</h:td></h:tr>
+  		
+	</h:table>
+</h:body>
+</window>
+

@@ -1,0 +1,81 @@
+<window id="journalDetail" xmlns:h="http://www.w3.org/1999/xhtml" width="960px" onCreate="">
+
+<zscript>
+	
+		 
+</zscript>
+
+<style src="/include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>HISTORY PEMBAYARAN</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+	
+<h:table width="100%" align="center">
+<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="4px"/> 		  
+		 		<h:table width="100%" align="center">
+			    	  <h:tr><h:td width="28%"/>
+					    	<h:td>
+					    		  <vbox>
+										<listbox id="detailList" width="900px" height="400px" multiple="true">
+											<listhead>
+												<listheader label="BATCH ID"  style="font-weight:bold;font-size:8pt" width="18%"/>
+												<listheader label="VOUCHER NO." style="font-weight:bold;font-size:8pt" width="12%" sort="auto"/>
+												<listheader label="KETERANGAN" style="font-weight:bold;font-size:8pt" width="33%"/>
+												<listheader label="DEBET" style="font-weight:bold;font-size:8pt" width="13%" sort="auto"/>
+												<listheader label="KREDIT" style="font-weight:bold;font-size:8pt" width="13%" sort="auto"/>
+												<listheader label="APL DATE" style="font-weight:bold;font-size:8pt" width="13%" sort="auto"/>
+											</listhead>
+											
+											<listitem>
+												<listcell label="AP000000000000175"/>
+												<listcell label="AAABBCC"/>
+												<listcell label="VENDOR:SPR01TOTAL INVOICE:10890.0"/>
+												<listcell label="10890"/>
+												<listcell label="0"/>
+												<listcell label="21/10/2006"/>												
+											</listitem>
+											<listitem>
+												<listcell label="AP000000000000175"/>
+												<listcell label="AAABBCC"/>
+												<listcell label="VENDOR:SPR01;INV:VIT001;QTY:5"/>
+												<listcell label="0"/>
+												<listcell label="9900"/>
+												<listcell label="21/10/2006"/>																								
+											</listitem>
+											<listitem>
+												<listcell label="AP000000000000175"/>
+												<listcell label="AAABBCC"/>
+												<listcell label="VENDOR:SPR01;INV:PN001;QTY:1"/>
+												<listcell label="0"/>
+												<listcell label="990"/>
+												<listcell label="21/10/2006"/>																								
+											</listitem>
+										</listbox>
+								  </vbox>
+							 </h:td>
+						     <h:td width="28%"/>
+				       </h:tr>	
+					   <h:tr><h:td width="28%"/>
+					    	 <h:td><separator spacing="5px"/>
+								   <h:table align="center" width="100%">
+									   <h:tr><h:td>
+												<h:p align="right">
+									   				<button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="journalDetail.detach()"/>
+									    		</h:p>
+										   	 </h:td>
+									  </h:tr>
+								</h:table>
+						  </h:td>
+						  <h:td width="28%"/>
+				    </h:tr>
+			    </h:table>
+	      </h:td>
+	      <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="5px"/>
+</window>

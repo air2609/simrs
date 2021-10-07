@@ -1,0 +1,101 @@
+<window id="rekapTindakan" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.report.TreatmentReportController;
+	import org.zkoss.zul.Filedownload; 
+	import org.apache.poi.hssf.usermodel.*;
+	import java.io.*;
+	
+	ctr = new TreatmentReportController();
+	
+	void init()
+	{
+		ctr.init(rekapTindakan);
+	}
+	
+	public static void download()
+	{
+	 			try
+				{
+					String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+					String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+					FileInputStream in = new FileInputStream(path);
+					Filedownload.save(in, "application/vnd.ms-excel", "rekap_tindakan.xls");
+			
+				}
+				catch(IOException ioe)
+				{
+					ioe.printStackTrace();
+				}
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>LAPORAN REKAP TINDAKAN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="20px"/>
+<h:table align="center" width="100%" border="0">
+	<h:tr><h:td width="20%"/>
+		  <h:td align="center"><vbox>
+					
+					<h:table align="center" width="100%">
+						<h:tr>
+							<h:td width="100%">
+									<datebox id="dateFrom" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/>
+									<space/>
+									<label value="s.d" style="font-weight:bold;font-size:9pt"/>
+									<space/>
+									<datebox id="dateTo" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/>
+									<space/>
+									<listbox mold="select" id="tipeList" width="110px" style="font-size:9pt">
+							        	<listitem value="BPJS" label="BPJS" selected="true"/>
+							        	<listitem value="COVID" label="COVID-19"/>
+							        	<listitem value="NONBPJS" label="NON BPJS"/>
+							        	<listitem value="ALL" label="ALL"/>
+			    					</listbox>
+			               			<space/> 
+									<button id="btnPrint" label="LIHAT LAPORAN" image="/image/print.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.createReport();"/>
+							</h:td>
+					    </h:tr>
+					</h:table>
+				</vbox>
+		  </h:td>
+		  <h:td width="20%">
+		  </h:td>
+	</h:tr>
+	<h:tr>
+		<h:td width="20%"></h:td>
+		<h:td><vbox>
+					<separator spacing="2px"/>
+					<groupbox width="800px">
+						<separator spacing="0px"/>
+					  	<caption label="LAPORAN REKAP TINDAKAN" style="font-weight:bold;font-size:12pt"/>
+					  <h:table align="center" width="100%" border="0">
+					  	<h:tr>
+					  		<h:td colspan="4">
+					  			<listbox id="treatmentList" width="800px" height="330px">
+						  			<listhead>
+							  			<listheader label="KODE" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="NAMA TINDAKAN" width="50%" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="QTY" width="15%" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="TOTAL" width="20%" style="font-weight:bold;font-size:8pt"/>
+						  			</listhead>
+					  			</listbox>
+					  			<separator spacing="2px"/>
+					  		</h:td>
+					  	</h:tr>
+					  	<h:tr>
+					  		<h:td colspan="4" align="right">
+					  			<button id="btnExport" label="Export to Xls" image="/image/print.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.export();download();"/>
+					  		</h:td>
+					  	</h:tr>
+					  </h:table>
+					  </groupbox>
+			  </vbox>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="1px"/>
+</window>

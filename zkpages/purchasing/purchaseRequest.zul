@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page id="SC0191"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.purchasing.PORController;
+	
+	PORController ctr = new PORController();
+	
+	void init(){
+		ctr.init(root);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(root);
+	}
+	
+	void doSave(){
+		ctr.doSave(root);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);
+	}
+	
+	void doModify(){
+		ctr.doModify(root);
+	}
+	
+	void doNew(){
+		//ctr.doNew(root);
+		list.getItems().clear();
+	}
+	
+	void doRevoke(){
+		ctr.doRevoke(root);
+	}
+	
+	void doClose(){
+		ctr.doClose(root);
+	}
+	
+	void doSearch(){
+		ctr.doSearch(root);
+	}	
+	
+	void doRedrawSearch(){
+		ctr.redrawSearch();
+	}
+</zscript>
+
+<h:table width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>ORDER PERMINTAAN PEMBELIAN</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center" border="0">
+	<h:tr>
+		  <h:td align="right"><groupbox width="350px">
+  				<caption label="OPP"/>
+  				<separator spacing="2px"/>
+			   		<h:table width="100%" align="center">
+						<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">LOKASI TRANSAKSI</h:font></h:b></h:td>
+				  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  <h:td width="28%">
+				  			  		<listbox id="location" mold="select" width="82%" style="font-size:9pt">
+				  			  			<listitem value="purchasing" label="1. PURCHASING"/>
+				  			  		</listbox>
+				  			  </h:td>
+				  			  <h:td width="2%"/>
+				  		</h:tr>
+				  		<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">NO. OPP</h:font></h:b></h:td>
+				  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  <h:td width="28%">
+				  			  		<bandbox id="oppNo" width="73%" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" onOpen="searchOpp.focus();"  height="14px">
+					  			  		<bandpopup>
+											<vbox>	
+												<h:table align="center" width="100%" sclass="BasicBlueTitle">
+												 	<h:tr><h:td>PENCARIAN DATA OPP</h:td></h:tr>
+												</h:table>
+												
+												<separator spacing="5px"/>
+															
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="17%" align="right"><h:b><h:font size="1">NO. OPP</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="35%" align="left"> <textbox id="searchOpp" width="93%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="15%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSearch();"/></h:td>
+														  <h:td width="6%"/>
+												   </h:tr>
+												</h:table>
+												
+												<separator spacing="5px"/>
+						
+												<listbox id="listOpp" width="450px" onSelect="oppNo.value=self.selectedItem.label; doRedrawSearch();oppNo.closeDropdown();" mold="paging" pageSize="10">
+													<listhead>
+														<listheader label="NO. OPP" style="font-weight:bold;font-size:8pt" width="40%" sort="auto"/>
+														<listheader label="UNIT PEMINTA" style="font-weight:bold;font-size:8pt" width="60%" sort="auto"/>
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+				  			  		</bandbox>
+				  			  </h:td>
+				  			  <h:td width="2%"/>
+				  		</h:tr>
+		
+						<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">DI BUAT OLEH</h:font></h:b></h:td>
+				  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  <h:td width="28%"><textbox id="issuedBy" readonly="true" width="80%" height="14px" style="font-size:8pt;font-weight:bold"/></h:td>
+				  			  <h:td width="2%"/>
+				  		</h:tr>
+					</h:table>
+				<separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+		  <h:td width="50%" align="left">
+			<groupbox width="350px">
+				<caption label="SUPPLIER"/>
+				    <separator spacing="2px"/>
+					<h:table width="100%" align="center">
+					  		<h:tr><h:td width="30%" align="right"><h:b><h:font size="1">SUPPLIER</h:font></h:b></h:td>
+					  			  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  			  <h:td>
+						 		 	<bandbox id="supCode" width="90%" onOpen="searchSupCode.focus();" style="font-size:8pt">
+				  			  			<bandpopup>
+											<vbox>			
+												<h:table align="center" width="100%" sclass="BasicBlueTitle">
+												 	<h:tr><h:td>PENCARIAN DATA SUPPLIER</h:td></h:tr>
+												</h:table>
+												
+												<separator spacing="5px"/>
+															
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="6%"/>
+													      <h:td width="20%" align="right"><h:b><h:font size="1">SUPPLIER CODE</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="35%" align="left"> <textbox id="searchSupCode" style="font-size:8pt" width="90%" height="14px"/></h:td>
+												  		  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="6%"/>
+													      <h:td width="20%" align="right"><h:b><h:font size="1">SUPPLIER NAME</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="35%" align="left"> <textbox id="searchSupName" style="font-size:8pt" width="90%" height="14px"/></h:td>
+														  <h:td width="20%" align="left"> <button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.searchSupplier();"/></h:td>
+												  		  <h:td width="2%"/>
+													</h:tr>									
+												</h:table>
+												
+												<separator spacing="5px"/>
+						
+												<listbox id="listSupplier" width="350px" onSelect="ctr.getSupplier(); supCode.closeDropdown();" mold="paging" pageSize="10">
+													<listhead>
+														<listheader label="SUPPLIER CODE" style="font-weight:bold;font-size:8pt" width="40%" sort="auto"/>
+														<listheader label="SUPPLIER NAME" style="font-weight:bold;font-size:8pt" width="60%" sort="auto"/>
+													</listhead>
+												</listbox>
+											</vbox>
+										</bandpopup>
+			  			  			</bandbox>					  			  		
+					  			  </h:td>
+					  		</h:tr>
+					  		<h:tr><h:td width="30%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+					  			  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  			  <h:td><textbox id="supAddress" width="250px" style="font-size:8pt;font-weight:bold" height="14px" readonly="true"/></h:td>
+					  		</h:tr>
+					  		<h:tr><h:td width="30%" align="right"><h:b><h:font size="1">NO. TELP</h:font></h:b></h:td>
+					  			  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					  			  <h:td><textbox id="supTelp" width="85%" style="font-size:8pt;font-weight:bold" height="14px" readonly="true"/></h:td>
+					  		</h:tr>
+					  		
+					  </h:table>
+					 
+					  <separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+	</h:tr>
+</h:table>
+<separator spacing="1px"/>
+<h:table width="100%">
+	<h:tr><h:td width="18%"/>
+		  <h:td>
+		  		<vbox>	
+		  				<h:table align="center" width="100%">	
+			  				<h:tr><h:td width="1%"/>
+			  			      <h:td align="left"> 
+			  			      			<label id="status" value="XXX" style="font-size:9pt;font-weight:bold;color:RED"/>
+			  						
+			  				  </h:td> 
+			  	 			</h:tr>
+	         	        </h:table>
+			  			
+			  			<groupbox width="850px">
+			  				<caption label="DAFTAR ORDER PERMINTAAN PEMBELIAN"/>
+			  					<h:table width="100%" align="center">
+			  						<h:tr><h:td height="10px"></h:td></h:tr>
+			  						<h:tr><h:td width="2%"/>
+			  							  <h:td>
+			  			  				  	<vbox>
+							  					<listbox id="list" multiple="true" width="850px" height="229px">
+													<listhead>
+								  						<listheader label="KODE" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="KETERANGAN" width="25%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="JENIS" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="STOK" width="10%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="BUFFER" width="10%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="MAX ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>								  						
+								  						<listheader label="SATUAN" width="15%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="JLH ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>
+								  					</listhead>
+												</listbox>
+						  					</vbox>
+										 </h:td>
+										 <h:td width="2%"/>
+									</h:tr>
+								 </h:table>
+								 
+								 <separator spacing="2px"/>
+								
+								 <h:table align="center" width="100%">
+      								 <h:tr><h:td height="2"></h:td></h:tr>
+      								 <h:tr><h:td width="3%"/>
+       									   <h:td align="left">
+	       									     	
+			       									<button label="TAMBAH ITEM" id="btnAdd" image="/image/icons/gizi.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt">
+			       									<attribute name="onClick">
+			       									{
+	    												final Window win = (Window) Executions.createComponents(
+	    												 					"/zkpages/purchasing/tambahItem.zul",root,null);
+	    												win.doModal();
+	    											}
+			       									</attribute>
+			       									</button>
+		       									
+		     							   </h:td>
+		     							   <h:td width="5%" align="left">
+       		 							   		 	
+					   								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+												
+			 							   </h:td>
+			 							   <h:td width="3%"></h:td>
+        							 </h:tr>
+    							</h:table>
+								
+			  					
+			   			</groupbox>
+			   		</vbox>
+			   		<separator spacing="5px"/>
+			  <h:table width="100%" align="center">
+				  <h:tr><h:td width="5%"/>
+				  		<h:td width="5%" align="right">
+				  			 
+	    						<button id="btnSave"  label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+	    		  			
+	    		  		</h:td>
+	    		  		
+	    		  		<h:td width="5%" align="right">
+				  			 
+	    						<button label="UBAH" id="btnModify" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+	    		  			
+	    		  		</h:td>
+	    		  		
+		    		  	<h:td width="5%" align="right">
+	    		     		 
+	    				 		<button label="BATAL" id="btnCancel" image="/image/cancel.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+	    			 		
+	    		  		</h:td>    		  		
+	    		  
+	    		  		<h:td width="5%" align="right">
+				  			 
+	    						<button label="BARU" id="btnNew" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doNew()"/>
+	    		  			
+	    		  		</h:td>
+	    		  				   
+	    		  		<h:td width="7%" align="right">
+				  			 
+	    						<button label="PEMBATALAN ORDER" id="btnRevoke" image="/image/batal.gif" style="width:160px;height:26px;font-weight:bold;font-size:7pt" onClick="doRevoke()"/>    						
+	    		  			
+	    		  		</h:td>
+	    		  
+	    		  		<h:td align="right">
+	    		     		 
+						 		<button label="SELESAI" id="btnClose" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doClose()"/>
+	    			 		
+	    		  		</h:td>
+	    		  		<h:td width="5%"/>
+	    		 </h:tr>
+			 </h:table>
+		  </h:td>
+		  <h:td width="18%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+</window>

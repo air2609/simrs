@@ -1,0 +1,146 @@
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.admin.BranchController;
+
+	BranchController ctr = new BranchController();
+
+	void init(){
+
+		kodeBranch.focus();
+
+		ctr.init(root);
+	}
+	
+	void doSave(){
+			
+		ctr.doSave(root);	
+	}
+	
+	void doDelete(){
+			
+		ctr.doDelete(root);			
+	}
+	
+	void doModify(){
+	
+		ctr.doModify(root);	
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);	
+		listTable.setDisabled(false);	
+	}
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>BRANCH MASTER</h:td></h:tr>
+</h:table>
+	
+<separator spacing="10px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>	
+				<h:table width="100%" align="center">
+			    	<h:tr><h:td width="10%"/>
+			    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="10%"><h:p align="right" style="font-weight:bold;font-size:8pt">KODE</h:p></h:td>
+									      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              			  <h:td width="25%"><textbox id="kodeBranch" width="80%" height="15px" style="font-size:8pt"/></h:td>
+				       				</h:tr>
+				       			</h:table>
+			  			</h:td>
+			  			<h:td width="14%"/>
+			  	   </h:tr>
+			  	</h:table>
+	  	</h:td>
+	  	<h:td width="20%"/>
+	</h:tr>
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="4px"/>
+	   	    	<h:table width="100%" align="center">
+			    	<h:tr><h:td width="34%"/>
+			    		  <h:td>
+			  					<h:table width="100%" align="center">
+			    				<h:tr><h:td width="10%"/>
+			    					  <h:td><h:p align="right">
+			    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+			    					  		</h:p>
+			    					  </h:td>
+			    					  <h:td width="5%">
+			    					  		<h:p align="left">
+			    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt;" onClick="doModify()"/>
+			    		  		 	   		</h:p>
+			    		  		 	  </h:td>
+			    		  			  <h:td width="5%">
+			    		  			  		<h:p align="left">
+			    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+			    					   		</h:p>
+			    					  </h:td>
+			    					  <h:td width="5%">
+			    					  		<h:p align="left">
+			    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+			    					   		</h:p>
+			    					  </h:td>
+			    					  <h:td width="9%"/>
+			    				</h:tr>
+			    				</h:table>
+			    		</h:td>
+			  			<h:td width="34%"/>
+			  	   </h:tr>
+			  	</h:table>
+		 </h:td>
+	  	 <h:td width="20%"/>
+	</h:tr>		    
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="5px"/>
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="30%"/>
+			    		  <h:td>	 	
+						    	<vbox>
+									  <groupbox width="440px">
+									  	<caption label="LIST CABANG"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td height="10px"/></h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td><vbox>
+													  			  <listbox id="listTable" width="400px" height="248px" mold="paging" pageSize="18">
+																		<listhead>
+																			<listheader label="KODE CABANG" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																   </listbox>
+															   </vbox>		
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+											
+								  			<separator spacing="5px"/>
+								  			<h:table width="100%" align="center">
+									  		   	 <h:tr><h:td/>
+									  		   	 	   <h:td width="5%">
+									  		   	 	   		 <h:p align="right">
+						    						   		 	<button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" href="index.zul"/>
+						    						   		 </h:p>
+						    						   </h:td>
+						    						  <h:td width="2%"/>
+						    		  			 </h:tr>
+									  		</h:table>
+									  		<separator spacing="5px"/>
+									   </groupbox>
+							  </vbox>
+						</h:td>
+						<h:td width="30%"/>
+				   </h:tr>
+				</h:table>
+	     </h:td>
+	  	 <h:td width="20%"/>
+	</h:tr>	
+</h:table> 
+<separator spacing="28px"/>
+</window>

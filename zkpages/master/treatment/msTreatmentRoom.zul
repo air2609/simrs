@@ -1,0 +1,178 @@
+<window id="masterTreatmentRoom" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="/include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.master.treatment.TreatmentRoomController;
+	ctr = new TreatmentRoomController();
+	void init(){
+		ctr.init(masterTreatmentRoom);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterTreatmentRoom);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterTreatmentRoom);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterTreatmentRoom);
+	}
+	
+	void doModify(){
+		ctr.doModify(masterTreatmentRoom);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TREATMENT ROOM</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>	
+		  <h:td>	
+				<h:table width="100%" align="center">
+			    	<h:tr><h:td width="16%"/>
+			    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>KODE</h:b></h:p></h:td>
+									      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              			  <h:td width="28%"><textbox id="treatmentCode" width="80%" height="16px" style="font-size:8pt"/></h:td>
+				       				</h:tr>
+				       				
+				       				<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NAMA KAMAR</h:b></h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="28%"><textbox id="roomName" width="80%" height="16px" style="font-size:8pt"/></h:td>
+				        			</h:tr>
+				        			
+				        			<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>KELAS TARIF</h:b></h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="28%">
+				             			  		<listbox mold="select" id="tclass" width="53%" style="font-size:9pt">
+				               			  			<listitem label=""/>
+				               			  			<listitem label="1. KELAS 1"/>
+													<listitem label="2. KELAS 2"/>
+													<listitem label="3. KELAS 3"/>
+													<listitem label="0. VIP"/>
+													<listitem label="9. VVIP"/>
+											 	</listbox>
+				             			  </h:td>
+				             	    </h:tr>
+				        			
+				        			<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>BIAYA KAMAR</h:b></h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="28%"><decimalbox id="treatmentFee" format="#,##0.##" width="51%" height="16px" style="font-size:8pt"/></h:td>
+				             		</h:tr>
+				             		<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. COA</h:b></h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="28%"><listbox id="coa" mold="select" width="82%" style="font-size:9pt"/></h:td>
+				        		    </h:tr>
+				    			</h:table>
+			  			</h:td>
+			  			<h:td width="22%"/>
+			  	   </h:tr>
+			  </h:table>
+	  	 </h:td>
+	  	 <h:td width="20%"/>	
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>	
+		  <h:td><separator spacing="4px"/>
+	   		    <h:table width="100%" align="center">
+					<h:tr><h:td width="35%"/>
+						  <h:td width="5%">
+						  	 <h:p align="right">
+			    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave();"/>
+			    		  	 </h:p>
+			    		  </h:td>
+			    		  
+			    		  <h:td width="5%">
+			       			  <h:p align="right">
+			    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px" onClick="doModify();"/>
+			    		  	  </h:p>
+			    		  </h:td>
+			    		 		
+			    		  <h:td width="5%">
+						  	  <h:p align="right">
+			    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px" onClick="doCancel();"/>
+			    		  	  </h:p>
+			    		  </h:td>
+			    		  				   
+			    		  <h:td width="5%">
+			       		 	  <h:p align="left">	
+								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px" onClick="doDelete();"/>
+							  </h:p>
+						  </h:td>
+			    		  <h:td width="35%"/>
+			    	</h:tr>
+				</h:table>	
+		  </h:td>
+	  	 <h:td width="20%"/>	
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>	
+		  <h:td><separator spacing="4px"/>	
+				<h:table width="100%" align="center">
+			    	  <h:tr><h:td width="30%"/>
+					    	<h:td>	 	
+							      <vbox>
+										  <groupbox width="800px">
+										  	<caption label="DATA TREATMENT ROOM"/>
+										  		<h:table width="100%" align="center">
+											  		  <h:tr><h:td  height="10px"/></h:tr>
+											  		  <h:tr><h:td width="11%"/>
+													  		<h:td>
+													  			  <listbox id="treatmentRoomList" multiple="true" width="760px" height="187px" mold="paging" pageSize="13">
+																		<listhead>
+																			<listheader label="KODE" width="15%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																			<listheader label="NAMA KAMAR" width="45%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																			<listheader label="KELAS TARIF" width="18%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																			<listheader label="BIAYA KAMAR" width="20%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																	</listbox>		
+															</h:td>
+															<h:td width="11%"/>
+													  </h:tr>
+										  		</h:table>
+												
+												<separator spacing="3px"/>
+										  		
+										  		<h:table align="center" width="100%">
+													<h:tr><h:td width="40%"/>
+														  <h:td>
+																<!--<h:left>
+												   	 					<image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+												      					<image id="imgspace1" src="/image/space.gif" width="20px"/>
+												 	  					<image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+												 	  					<image id="imgspace3" src="/image/space.gif" width="20px"/>
+												 	  					<image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+												 	  					<image id="imgspace2" src="/image/space.gif" width="20px"/>
+												 	  					<image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+												 				</h:left>
+														  --></h:td>
+														  <h:td width="5%">
+																<h:p align="right">
+												    				<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+												    			</h:p>
+												    	  </h:td>
+												    	  <h:td width="3%"/>
+													</h:tr>
+												</h:table>
+										  		
+									  			<separator spacing="5px"/>
+										   </groupbox>
+								 	  </vbox>
+								</h:td>
+								<h:td width="30%"/>
+					      </h:tr>
+				   </h:table>
+		    </h:td>
+	  	    <h:td width="20%"/>	
+	</h:tr>
+</h:table>
+<separator spacing="16px"/>
+</window>

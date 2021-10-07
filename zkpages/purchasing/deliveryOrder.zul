@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init()"><!--
+ xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.zkoss.org/2005/zul ../../../medisafe/zul.xsd "
+--><style src="../../include/medisafe.css"/>
+<zscript>  
+	import com.vone.medisafe.ui.purchasing.DOController;
+
+	DOController ctr = new DOController();	
+
+	void init(){
+		ctr.init(root);
+	}
+
+	void doSearch(){
+		ctr.doSearch(root);
+	}
+	
+	void doSearchDO(){
+		ctr.doSearchDO();
+	}
+	
+	void doSearchSup(){
+		ctr.doSearchSup(root);
+	}
+	
+	void doSave(){
+		ctr.doSave(root);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(root);
+	}
+	
+	void doCalculate(){
+		ctr.doCalculate();
+	}
+	
+	void doRevoke(){
+		ctr.doRevoke();
+	}
+	
+	void doNew(){
+		ctr.doNew();
+	}
+	
+	void doModify(){
+		ctr.doModify(root);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);
+	}
+	
+	void doApprove(){
+		ctr.doApprove();
+	}
+	
+</zscript>
+<h:table width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>BUKTI PENERIMAAN BARANG</h:td></h:tr>
+</h:table>
+
+<separator spacing="4px"/>
+
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="7%"/>
+		  <h:td>
+		  		<hbox>
+					  <groupbox width="460px">
+						<separator spacing="2px"/>
+						<caption label="PENERIMAAN BARANG"/>
+							<h:table width="100%">
+							   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">LOKASI GUDANG</h:font></h:b></h:td>
+				  			  		 <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  		 <h:td width="20%">
+				  			  		 	<listbox id="location" mold="select" width="81%" style="font-size:9pt">
+				  			  		 		<listitem value="warehouse" label="1. WAREHOUSE"/>
+				  			  		 	</listbox>
+				  			  		 </h:td>
+				  			   </h:tr>
+				  			   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">NO. OP</h:font></h:b></h:td>
+				  			  		 <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  		 <h:td width="20%">
+					  			  			<bandbox id="poNo" width="72%" onOpen="poNoSearch.focus();" style="font-size:8pt">
+						  			  			<bandpopup>
+													<vbox>	
+														  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA ORDER PEMBELIAN</h:td></h:tr>
+														  </h:table>
+															
+														  <separator spacing="5px"/>
+															
+														  <h:table width="100%" align="center">
+																<h:tr><h:td width="2%"/>
+																      <h:td width="20%" align="right"><h:b><h:font size="1">NO. OP</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"> <textbox id="poNoSearch" style="font-size:8pt" width="90%" height="14px"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+																<h:tr><h:td width="2%"/>
+																      <h:td width="20%" align="right"><h:b><h:font size="1">NAMA SUPPLIER</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"> <textbox id="supNameSearch" style="font-size:8pt" width="90%" height="14px"/></h:td>
+																	  <h:td width="20%" align="left"> <button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSearch()"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+														  </h:table>
+															
+														  <separator spacing="3px"/>
+														  <listbox id="listOp" width="550px" onSelect="poNo.value=self.selectedItem.label; poNo.closeDropdown();" mold="paging" pageSize="10">
+																<listhead>
+																	<listheader label="NO. PO" width="22%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="NAMA SUPPLIER" style="font-weight:bold;font-size:8pt" width="30%" sort="auto"/>
+																	<listheader label="TANGGAL"  width="15%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														  </listbox>
+											    	</vbox>
+											    </bandpopup>
+					  			  		    </bandbox>
+				  			         </h:td>
+				  		       </h:tr>
+		
+							   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">TANGGAL TERIMA</h:font></h:b></h:td>
+						  		     <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			 <h:td width="20%"><datebox id="recDate" style="font-size:8pt" width="54%" format="dd/MM/yyyy" height="14px"/></h:td>
+						  	   </h:tr>
+						  		
+							   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">DITERIMA OLEH</h:font></h:b></h:td>
+						  		     <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			 <h:td width="20%"><textbox id="recBy" style="font-size:8pt;font-weight:bold" width="79%" height="14px"/></h:td>
+						       </h:tr>
+							   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">NO. BPP</h:font></h:b></h:td>
+								     <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			 <h:td width="20%">
+						  			 		<bandbox id="bppNo" width="72%" style="font-size:8pt" onOpen="doNoSearch.focus();" height="15px">
+						  			 			<bandpopup>
+													<vbox>	
+														  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA BPP</h:td></h:tr>
+														  </h:table>
+															
+														  <separator spacing="5px"/>
+															
+														  <h:table width="100%" align="center">
+																<h:tr><h:td width="6%"/>
+																      <h:td width="20%" align="right"><h:b><h:font size="1">NO. BPP</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"> <textbox id="doNoSearch" style="font-size:8pt" width="90%" height="14px"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+																<h:tr><h:td width="6%"/>
+																      <h:td width="20%" align="right"><h:b><h:font size="1">LOKASI GUDANG</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="35%" align="left"> <textbox id="whouseSearch" style="font-size:8pt" width="90%" height="14px"/></h:td>
+																	  <h:td width="20%" align="left"> <button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSearchDO()"/></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+														  </h:table>
+															
+														  <separator spacing="3px"/>
+														  <listbox id="listDo" width="550px" onSelect="bppNo.value=self.selectedItem.label; bppNo.closeDropdown();" mold="paging" pageSize="10">
+																<listhead>
+																	<listheader label="NO. DO" width="22%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="NAMA GUDANG" style="font-weight:bold;font-size:8pt" width="30%" sort="auto"/>
+																	<listheader label="TANGGAL"  width="15%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														  </listbox>
+											    	</vbox>
+											    </bandpopup>
+						  			 		</bandbox>
+						  			 </h:td>
+						  	   </h:tr>
+				
+							   <h:tr><h:td width="12%" align="right"><h:b><h:font size="1">DISETUJUI OLEH</h:font></h:b></h:td>
+						  		     <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			 <h:td width="20%"><textbox id="approvedBy" style="font-size:8pt;font-weight:bold" width="79%" readonly="true" height="14px"/></h:td>
+						  	   </h:tr>
+							</h:table>
+							
+							<separator spacing="5px"/>
+					</groupbox>
+					<separator spacing="10px"/>
+					<separator spacing="10px"/>
+					<groupbox width="440px">
+						<caption label="SUPPLIER"/> 
+					    <separator spacing="8px"/>
+							<h:table width="100%" align="center">
+						  		<h:tr><h:td width="11%" align="right"><h:b><h:font size="1">KODE SUPPLIER</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						 			  <h:td width="20%"><textbox id="supCode" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%" align="right"><h:b><h:font size="1">NAMA SUPPLIER</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			  <h:td width="20%"><textbox id="supName" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						 			  <h:td width="20%"><textbox id="supAddress" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" rows="3"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%" align="right"><h:b><h:font size="1">NO. TELP</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						  			  <h:td width="20%"><textbox id="supTelp" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  </h:table>
+						<separator spacing="5px"/>
+					 </groupbox>
+				 </hbox>
+ 		   </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="5%"/>
+		  <h:td>
+		  		<vbox>
+			  		  <h:table align="center" width="100%">	
+				  			<h:tr><h:td width="1%"/>
+				  				  <h:td width="4%" align="left" style="font-size:9pt">
+								   		 
+									   		<h:font color="red">
+									   			<label value="STATUS"/>
+									  		</h:font>
+								  		
+					  	  		   </h:td> 
+							  	   <h:td width="3%" align="center" style="font-size:9pt">
+								  		  
+									  		 <h:font color="red">
+									  			:
+									  		 </h:font>
+								  		 
+							  	   </h:td> 
+							  	   <h:td align="left" style="font-size:8pt">
+								  		  
+								  		 	<h:font color="red">
+								  		 		<label id="status" value="" style="font-weight:bold;font-size:9pt"/>
+								  			</h:font>
+								  		
+							  	   </h:td> 
+						  	 </h:tr>
+			         </h:table>
+			  		 <groupbox width="940px">
+			  				<caption label="DATA ORDER PEMBELIAN"/>
+			  					<h:table width="100%" align="center">
+			  						<h:tr><h:td height="10px"></h:td></h:tr>
+			  						<h:tr><h:td width="2%"/>
+			  							  <h:td>
+				  			  				  	<vbox>
+								  					<listbox id="list" multiple="true" width="910px" height="130px">
+									  					<listhead>
+									  						<listheader label="KODE" width="8%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+									  						<listheader label="KETERANGAN" width="22%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+									  						<listheader label="ORD/A" width="6%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="BONUS" width="6%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="SATUAN" width="8%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="HRG SAT" width="9%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="ORD/S" width="6%" style="font-weight:bold;font-size:8pt"/>						  						
+									  					    <listheader label="ORD/T" width="6%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="BNS/S" width="6%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="BNS/T" width="6%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="DISKON" width="7%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="SUBTOTAL" width="17%" style="font-weight:bold;font-size:8pt"/>
+									  					</listhead>
+									  			   </listbox>
+						  					</vbox>
+										 </h:td>
+										 <h:td width="2%"/>
+									</h:tr>
+								 </h:table>
+								 
+								 <h:table align="center" width="100%">
+      								 <h:tr><h:td width="1%"/>
+      								 <h:td width="6%" align="right"><h:b><h:font size="1">TOTAL</h:font></h:b></h:td>
+			  				    		   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			  				    		   <h:td width="12%">
+			  				    		   			<decimalbox id="total" style="font-size:8pt" format="#,###" readonly="true" width="90%" height="14px"/>
+			  				    		   </h:td>
+			  				    		 
+			  				    		   <h:td width="4%" align="center"><h:b><h:font size="1">-</h:font></h:b> </h:td>
+			 							   <h:td align="right"><h:b><h:font size="1">DISKON</h:font></h:b></h:td>
+			  				    		   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			  				    		   <h:td width="17%"><decimalbox id="discount" style="font-size:8pt" format="#,###" width="50%" height="14px"/>
+			  				    		   					 <listbox id="discountType" mold="select" style="font-size:9pt" width="41%">
+			  				    		   					 	<listitem label="1. RP"/>
+			  				    		   					 	<listitem label="2. %"/>
+			  				    		   					 </listbox>
+			  				    		   </h:td>
+			  				    		   
+			  				    		   <h:td width="3%" align="center"><h:b><h:font size="1">+</h:font></h:b></h:td>
+							    		   <h:td align="right"><h:b><h:font size="1">PPN</h:font></h:b></h:td>
+			  				    		   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+
+			  				    		   <h:td width="17%"><decimalbox id="ppn" style="font-size:8pt" format="#,###" width="50%" height="14px"/>
+			  				    		   					 <listbox id="ppnType" mold="select" style="font-size:9pt" width="41%">
+			  				    		   					 	<listitem label="1. RP"/>
+			  				    		   					 	<listitem label="2. %"/>
+			  				    		   					 </listbox>
+			  				    		   </h:td>
+			 							   
+			 							   <h:td width="3%" align="center"><h:b><h:font size="1">=</h:font></h:b></h:td>     							
+		     							   <h:td width="13%" align="right"><h:b><h:font size="1">GRAND TOTAL</h:font></h:b></h:td>
+			  				    		   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			  				    		   <h:td width="14%"><decimalbox id="gtotal" format="#,###" style="font-size:8pt" readonly="true" width="85%" height="14px"/></h:td>
+			  				    		   <h:td width="2%"/>
+			  				    	 </h:tr>
+								 </h:table>
+	
+								 <separator spacing="2px"/>
+			   		   </groupbox>
+			   	</vbox>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+	<h:tr><h:td width="5%"/>
+		  <h:td>
+			    <h:table width="100%" align="center">
+					  <h:tr><h:td width="3%"/>
+					  		<h:td width="10%" align="right">
+
+		    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+		    		  			
+		    		  		</h:td>
+		    		  		
+		    		  		<h:td width="5%" align="right">
+					  			 
+		    						<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+		    		  			
+		    		  		</h:td>
+		    		  		
+		    		  		<h:td width="5%" align="right">
+		    		     		 
+		    				 		<button label="BATAL" id="btnCancel" image="/image/cancel.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+		    			 		
+		    		  		</h:td>     
+		    		  
+		    		  		<h:td width="5%" align="right">
+					  			 
+		    						<button id="btnNew" label="BARU" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doNew();"/>
+		    		  			
+		    		  		</h:td>
+		    		  				   
+		    		  		<h:td width="7%" align="right">
+					  			 
+		    						<button id="btnRevoke" label="PEMBATALAN BPP" image="/image/batal.gif" style="width:150px;height:26px;font-weight:bold;font-size:7pt" onClick="doRevoke();">    						
+		    						</button>
+		    		  			
+		    		  		</h:td>
+		    		  
+		    		  	    <h:td width="7%" align="left">
+		    		  			 
+		    			    		<button id="btnApprove" label="DISETUJUI" image="/image/check.gif" style="width:110px;height:26px;font-weight:bold;font-size:7pt" onClick="doApprove();"/>
+		    					
+		    		  		</h:td>
+		    				
+		    				<h:td align="right">
+					  			 
+		    						<button id="btnPrint" label="CETAK" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt">
+									<attribute name="onClick">
+									{
+										final Window win = (Window) Executions.createComponents(
+															"/zkpages/polyclinic/cetak.zul", null, null);
+									    win.doModal();
+									}
+									</attribute>
+		    						</button>
+		    					
+		    		  		</h:td>
+		    						   
+		    		  		<h:td width="10%" align="left">
+		    		     		 
+		    				 		<button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" href="index.zul"/>
+		    			 		
+		    		  		</h:td>
+		    		  		<h:td width="3%"/>
+		    		 </h:tr>
+			   </h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+</window>

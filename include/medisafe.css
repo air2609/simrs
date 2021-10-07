@@ -1,0 +1,168 @@
+.BasicBlueOLD {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+}
+
+.BasicBlue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #00BFFF;
+}
+
+.BasicBlueTitleOLD {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.BasicBlueTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #000000;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.BasicBlueTitle2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.BasicBlueTitle3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.MenuBlue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+	border-top: WHITE;
+	border-right: WHITE;
+	border-bottom: WHITE;
+	border-left: WHITE;
+}
+
+.Medi {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	text-transform: lowercase;
+	color: #A8FF76;
+	text-align: right;
+	line-height: 25px;
+}
+.Safe {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	text-transform: lowercase;
+	color: #FFFFFF;
+	text-align: right;
+	line-height: 25px;
+}
+.tableblue {
+	background-image: url(../image/images/CMC.jpg);
+	font-family: "Century Gothic";
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	vertical-align: middle;
+}
+.labelAccordion {
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #5F83C2;
+	vertical-align: middle;
+}
+.Float {
+	margin: 0px;
+	padding: 0px;
+	border-top: 2px solid #eeeeee;
+	border-right: 2px solid #eeeeee;
+	border-bottom: 2px solid #eeeeee;
+	border-left: 2px solid #eeeeee;
+	background-image: url(../image/BGCMC.jpg);
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	background-position: center center;
+	
+}
+.bodypadding {
+	margin: 2px;
+	padding: 0px;
+}
+.bodypadding2 {
+	padding: 0px;
+	margin: 2px;
+	border: 2px solid #5F83C2;
+}
+.Bancgroundlogo {
+	background-image: url(BGCMC.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	font-family: "Century Gothic";
+	font-size: 12px;
+	text-transform: capitalize;
+	color: #666666;
+	text-align: left;
+}
+.borderbottom {
+	background-color: #5F83C2;
+	margin: 0px;
+	padding: 0px;
+	clip: rect(2px,auto,auto,auto);
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 2px;
+}
+.basicBlue2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	background-color: #5F83C2;
+	border: 2px solid #5F83C2;
+}
+.FloatCopy {
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-right-width: 5px;
+	border-bottom-width: 5px;
+	margin: 0px;
+	padding: 0px;
+
+}
+

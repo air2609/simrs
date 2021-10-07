@@ -1,0 +1,53 @@
+<window id="labPanel" xmlns:h="http://www.w3.org/1999/xhtml" width="950px" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.laborat.PanelLabController;
+	ctr = new PanelLabController();
+	void init(){
+		ctr.init(labPanel);
+	}
+	
+	void getItems(){
+		ctr.getItems();
+	}
+	
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM PANEL LAB</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="6px"/>	
+	
+	<h:table width="100%" align="center">
+    		<h:tr><h:td width="4%"/>	
+	     		  <h:td>	
+	    				<hbox><separator spacing="1px"/>
+		    				  <include src="/zkpages/laboratory/hematologi.zul"/>
+		    				  <include src="/zkpages/laboratory/kimia.zul"/>
+		    				  <include src="/zkpages/laboratory/imunoSerologi.zul"/>	
+		    				  <include src="/zkpages/laboratory/elektrolit.zul"/>	 
+		    				  <vbox>
+		    				  	<include src="/zkpages/laboratory/lcs.zul"/>	
+		    				  		 <h:table width="100%" align="center">
+									 	 <h:tr><h:td align="right"> 
+											   			<button label="TAMBAH" image="/image/add.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getItems();"/>
+											   		 
+											   </h:td>
+											   <h:td width="5%"/>
+											   <h:td width="5%" align="left">
+											  		
+											  		 	<button label="SELESAI" style="width:90px;height:26px;font-weight:bold;font-size:7pt" image="/image/hapus.gif" onClick="labPanel.detach()"/>
+											  		
+											   </h:td>
+										 </h:tr>
+									 </h:table>  				  		
+		    				  </vbox>
+	    			   </hbox>
+    			 </h:td>
+    			 <h:td width="4%"/>	
+	  	   </h:tr>
+  	</h:table>
+<separator spacing="3px"/>
+</window>

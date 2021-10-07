@@ -1,0 +1,303 @@
+9-2-07
+
+1. SETELAH KLIK BARU, history transaksi dihilangkan.
+
+
+2. di List TINDAKAN LABORATORIUM, hilangkan NAMA KATEGORI-nya 
+
+
+==========================================================================================================================================
+5-FEBRUARI-2007
+
+TRANSAKSI LABORATORIUM
+=======================
+1. jika data diskon di ubah (via searching nota), ketika di simpan, muncul null pointer.
+	Feb 5, 2007 2:36:18 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:591
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.saveModifyNote(NoteManagerImpl.java:139)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	>>	at java.lang.reflect.Method.invoke(Unknown Source)
+	-- ok
+
+2. setelah simpan, bisa langsung ubah. (contoh lihat di apotik Controller)
+   -ok
+   
+LABORATORY TREATMENT DETAIL
+===========================
+1. jika ada detail pemeriksaan yang sudah di pakai dalam transaksi, maka data tsb tidak bisa di hapus.
+   karena jika dihapus..akan mengacaukan data..
+   tolong di cegat..supaya data yang sudah di pakai dalam transaksi, tidak bisa di hapus.
+
+2. hmm..kira2 tombol UBAH diperlukan gak ya..??
+   masalahnya kalo ada data yang salah input, tetapi data tersebut sudah di pakai di data transaksi, maka
+   data tersebut jadinya tidak bisa di hapus (jika dilakukan pencegatan nantinya). 
+   -ok
+   
+==========================================================================================================================================
+
+1-FEB-2007
+==========
+FORM TRANSAKSI LAB
+
+1.	di List TINDAKAN LABORATORIUM, hilangkan NAMA KATEGORI-nya 
+
+
+==========================================================================================================================================
+
+
+26-JANUARI-2007
+===============
+1. tulisan di list (hasil pencarian nota) dan inbox jumlah, hurufnya di gedein
+2. huruf di panel lab digedein
+
+
+==========================================================================================================================================
+
+25-JANUARI-2006
+
+FORM INPUT LABORATORIUM
+=======================
+
+	1. tulisan di list "DATA LIST LABORATORIUM" diset 8pt
+	   (tambah tindakan)
+	   	-- ok
+	2. harga di list dibuat ###,###
+		-- ok
+	3. jika sebelumnya isi data transaksi pasien rajal, trus isi data pasien rujukan.
+	   ketika mencari nota pasien rujukan, kog pasien rujukan bisa punya no. registrasi??
+	   (ketika klik baru, no. registrasi dari transaksi sebelumnya belum di clear)
+		-- ok
+	4. jika sebelumnya isi data transaksi pasien ranap, trus isi data pasien rujukan.
+	   ketika mencari nota pasien rujukan, kog pasien rujukan bisa punya no. registrasi, dokter utama, ruangan dan bed??
+	   (ketika klik baru, no. registrasi, dokter utama, ruangan dan bed dari transaksi sebelumnya belum di clear)
+		-- ok
+	5. di list "DATA TINDAKAN LABORATORIUM, di field KETERANGAN, kog tidak ada kategori pemeriksaan..?? 
+	   (-->terjadi bila penambahan dilakukan via PANEL LAB)
+	   FORMAT = nama pemeriksaan-kategori
+	   	-- ok 
+	6. hilangkan tombol batal
+		-- ok
+	7. data di list (hasil pencarian via nota), hurufnya digedein, dan FORMAT = nama pemeriksaan-kategori
+		-- ok 
+	8. perubahan data tidak bisa di SIMPAN. muncul null pointer.
+		Jan 24, 2007 4:21:27 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+		SEVERE: >>java.lang.NullPointerException
+		>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.saveModifyNote(NoteManagerImpl.java:131)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+		>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+		>>	at java.lang.reflect.Method.invoke(Method.java:585)
+		>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+		>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+		>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:148)
+	-- ok
+
+
+FORM TAMBAH PEMERIKSAAN
+=======================
+	1. tulisan di list diset 8pt
+	-- ok
+
+
+FORM PANEL LAB
+==============
+
+	1. tulisan di list diset 8pt
+		-- ok (di kimiaController)
+	2. setelah klik TAMBAH (tanpa memilih data), form tetap berada di FORM PANEL LAB.
+		-- ok
+
+
+FORM HASIL LABORATORIUM
+=======================
+1. jika sebelumnya telah mengisi data hasil untuk pasien ranap, maka ketika mencari data nota 
+   untuk pasien rujukan..si pasien rujukan bisa mempunyai NO. REGISTRASI, DOKTER UTAMA, RUANGAN dan BED
+   -->kayaknya sih..ketika klik BARU, 4 field itu tidak di-clear.
+	-- ok
+2. jika input MR, maka di field NO. NOTA hanya akan muncul nota2 lab yang dimiliki si pasien.
+
+
+=================================================================================================
+19-januari-2007
+
+1. hilangkan tombol batal
+	-- ok
+2. harga di list dibuat ###,###
+	-- ok
+=================================================================================================
+
+
+BUGSON 201206 
+=============
+FORM HASIL LAB
+==============
+1. textbox di normal range, jangan di disabled, karena data changeable..
+   pada awalnya memang retrieve dari database, tetapi user dapat mengubah nilai 
+   dari normal range tsb.
+   -- ok --
+2. untuk tanggal pengambilan, jamnya di set yang 24 jam saja
+   -- ok --
+3. kog v_who_create-nya tidak terisi nama USER??? 
+	--> ditable tb laboratory result & tb laboratory result detail
+	-- ok --
+4. jika pencarian via NO. HASIL LAB dan NO. NOTA
+   --> untuk pasien ranap, munculkan informasi ruangan dan bed.
+   -- ok --
+5. untuk di NO. NOTA, statusnya bisa BARU dan VALIDASI
+   -- ok --
+
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika klik cari, tanpa memasukkan kata kunci, munculkan
+   konfirmasi supaya user memasukkan kata kunci disalah satu field (kode/nama)
+   (contoh : lihat yang bagian poliklinik)
+   -- OK --
+
+
+=================================================================================================
+
+
+BUGSON 181206
+=============
+1. pencarian via nota??
+   misalnya untuk pasien ranap, user hanya mau mengisi hasil pemeriksaan
+   di nota tertentu.
+2. jika pencarian via nota, untuk pasien ranap munculkan ruangan dan bed
+	-- OK --
+3
+
+
+BUGSON 151206
+=============
+DATABASE
+========
+1. kog v_who_create-nya tidak terisi nama USER??? --> ditable tb_examination
+	-- OK --
+2. n_payment_status juga tidak terisi. --> ditable tb_examination
+   fungsi n_payment_status adalah untuk mengetahui status nota, apakah
+   sudah dibayar oleh pasien atau belum
+   ketika klik SIMPAN, n_payment status harus terisi.
+   lihat MedisafeConstants.java..
+   kalo nota belum dibayar, n_payment_status=0
+   -- OK --
+ 
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika klik cari, tanpa memasukkan kata kunci, munculkan
+   konfirmasi supaya user memasukkan kata kunci disalah satu field (kode/nama)
+   (contoh : lihat yang bagian poliklinik)
+   -- OK --
+   
+   
+================================================================================================
+
+BUGSON 131206
+=============
+1. ketika klik baru, semua field dikosongkan.
+   yang terjadi sekarang adl..ketika data pasien ranap ditemukan
+   kemudian user menekan tombol baru, FIELD RUANGAN dan BED masih terisi
+   dengan ruangan dan bed si pasien.
+   -- ok
+ 
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika klik cari, tanpa memasukkan kata kunci, munculkan
+   konfirmasi supaya user memasukkan kata kunci disalah satu field (kode/nama)
+   (contoh : lihat yang bagian poliklinik)
+   -- message service tdk jalan (?)
+   -- ok
+2. ketika user klik SIMPAN tetapi belum memilih treatment, proses
+   dikembalikan ke FORM TAMBAH PEMERIKSAAN, bukan ke FORM TRANSAKSI--udah saya perbaiki 
+
+FORM HASIL LAB
+==============
+1. textbox untuk hasil test, normal range pria dan wanita digedein aja,
+   karena isi hasil dan range bisa panjang.
+   -- ok
+2. difield no. NOTA hanya bisa ditampilkan nota TRANSAKSI LAB yang sudah divalidasi
+   dan masih aktif.
+   
+   
+===================================================================================================
+BUGSON 121206
+==============
+TRANSAKSI LAB
+==============
+
+FORM UTAMA
+==========
+1. ketika klik baru, field RUANGAN dan BED ditampilkan kembali
+   (terjadi setelah mengisi data pasien rujukan) -- ok
+2. format keterangan = nama pemeriksaan-kategori
+   misalnya : DARAH LENGKAP-HEMATOLOGI
+              GLUKOSA PUASA-KIMIA KLINIK
+              -- ok
+
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika user klik SIMPAN tetapi belum memilih treatment, proses
+   dikembalikan ke FORM TAMBAH PEMERIKSAAN, bukan ke FORM TRANSAKSI
+
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika user klik SIMPAN tetapi belum memilih treatment, proses
+   dikembalikan ke FORM TAMBAH PEMERIKSAAN, bukan ke FORM TRANSAKSI
+
+
+DATABASE
+========
+1. kog v_who_create-nya tidak terisi nama USER??? --> ditable tb_examination
+   -- ok
+2. n_payment_status juga tidak terisi. --> ditable tb_examination
+   fungsi n_payment_status adalah untuk mengetahui status nota, apakah
+   sudah dibayar oleh pasien atau belum
+   -- ok
+3. 
+
+HASIL LABORATORIUM
+==================
+1. setelah klik rujukan dan data telah disimpan, 
+   field BED dan RUANGAN di-visible lagi
+   -- ok
+2. ketika klik baru, field yang enabled hanya field NO. MR
+   -- ok
+3. field TANGGAL PENGAMBILAN di set dari java aja (kalo bisa)
+   karena user hanya butuh informasi TANGGAL dan WAKTU
+
+===================================================================================================
+
+BUGSON0812
+==========
+
+FORM TRANSAKSI
+==============
+1. jika pasien ranap, munculkan ruangan dan bed tempat pasien mondok
+   di field RUANGAN dan BED  --  ok
+2. jika pasien rujukan, ketika rujukan di checklist, field RUANGAN 
+   dan BED dihilangkan (seperti NO. MR dan NO. REGISTRASI)  --  ok
+3. satuan pemeriksaan hanya akan muncul jika pasien kelas II.
+   sedangkan pasien kelas I atau III, satuan pemeriksaan tidak muncul,
+   padahal pasien melakukan pemeriksaan yang sama.
+   (blm: tfee.getMsTreatment() tidak cocok??)
+   (mungkin kesalahan waktu ngambil treatment berdasarkan kelas)
+   (kalau kelas II tfee.getMsTreatment() cocok)
+   (3 - 3 - 1)
+4. di LIST TINDAKAN LABORATORIUM, format di column KETERANGAN = 
+   nama pemeriksaan-kategori
+   misalnya : DARAH LENGKAP-HEMATOLOGI
+              GLUKOSA PUASA-KIMIA KLINIK -- ok
+
+
+
+FORM TAMBAH PEMERIKSAAN
+=======================
+1. ketika user klik SIMPAN tetapi belum memilih treatment, proses
+   dikembalikan ke FORM TAMBAH PEMERIKSAAN, bukan ke FORM TRANSAKSI
+  
+FORM PANEL LAB
+==============
+1. ketika user klik TAMBAH tetapi belum memilih treatment, proses
+   dikembalikan ke FORM PANEL LAB, bukan ke FORM TRANSAKSI
+  

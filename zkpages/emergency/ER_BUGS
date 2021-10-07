@@ -1,0 +1,145 @@
+14-FEBRUARI-2007
+================
+
+1. jika cari pasien via nota, munculkan no. mr pasien
+2. pasien punya no. registrasi rawat inap..tapi kog format no. notanya jadi rawat jalan ya..??
+
+
+==============================================================================================================================
+
+8-FEBRUARI-2007
+===============
+1. untuk di form tambah tindakan, jika DOKTER PEMERIKSA di input manual, 
+   ketika klik tab, dibuat bisa muncul nama dokternya bisa gak?
+   atau..
+   setelah klik simpan, di list DATA TINDAKAN UGD dimunculkan nama dokternya, bukan kodenya..
+
+
+
+========================================================================================================================
+
+7-FEBRUARI-2007
+===============
+
+1. jika input Biaya lain-lain, kemudian klik SIMPAN, muncul null pointer.
+	Feb 7, 2007 9:27:22 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:591
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.common.util.DiscontListener.<init>(DiscontListener.java:43)
+	>>	at com.vone.medisafe.ui.common.CommonMiscController.getMisc(CommonMiscController.java:139)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	--OK
+2. ketika mau mengubah data (via searching), munculkan history transaksi pasien.
+
+
+3. DISKON bisa 100% (ketika ubah nota)   
+   -OK
+
+========================================================================================================================
+
+5-FEBRUARI-2007
+===============
+1. untuk validasi nota via pencarian nota, jika di dalam nota yang ada data obat, muncul 
+   "Transaction has been roolled back because it has been marked as rollback-only"
+   --> karna coa di db = null;
+   -->OK
+2. DISKON bisa 100% (ketika ubah nota)   
+
+3. setelah simpan, bisa langsung di ubah.
+   --OK
+
+4. untuk history pasien, jika di klik bulannya, could not initilize proxy - the owning Session was closed
+   --OK
+   
+5. ketika mau mengubah data (via searching), munculkan history transaksi pasien.
+
+6. untuk tambah biaya lain-lain, muncul null pointer (kadang-kadang)
+   -> liat discount listener line 43
+   
+7. setelah klik SIMPAN, button biaya lain2 di-disabled
+   --OK
+8. ketika searching nota, button biaya lain2 di-disabled
+   --OK
+=========================================================================================================
+26-JANUARI-2007
+
+1. field DOKTER UTAMA-nya, berisi data semua dokter saja (seperti yang diadmisi);
+   --OK
+2. ketika menambah data pasien via master pasien, kemudian user melakukan pencarian data pasien tsb 
+   dengan input no. mr manually, yang terjadi skrg adalah, input manually tidak bisa dilakukan 
+   (data pasien selalu tidak ketemu), tetapi kalo via band box data pasien ditemukan.
+   --OK
+3. setelah simpan, 
+   untuk pasien baru, kog pasien jadi gak punya no. registrasi ya??
+   sedangkan untuk pasien yang sudah punya no. registrasi, no. registrasi baru kelihatan, setelah klik simpan.
+   field n_reg_id (database) juga selalu kosong.
+   
+   no. nota di-disabled.
+   button biaya lain2 di-disabled
+   
+4. setelah simpan, kog gak bisa langsung ubah??
+   --OK
+5. ketika detail nota ditemukan, btn BIAYA LAIN-LAIN di-disabled
+   --OK 
+6. kalo hasil pencarian nota-nya ditemukan, kenapa field NO. MR tidak terisi..??
+   --OK
+7. di UGD, searching nota, detail notanya kog gak muncul ya..???
+   --OK
+
+
+=====================================================================
+20112006
+UGD
+SCREEN UTAMA
+============
+1. tombol BARU selalu aktif, karena ada kemungkinan user salah input data pasien..
+   maka untuk membersihkan layar kembali, user harus menekan tombol baru.
+
+2. ketika klik baru, history transaksi masih nge-kept data pasien yang 
+   lama.
+   
+3. jika data pasien baru sudah di input (via MASTER PASIEN), ketika user 
+   input no. mr pasien tsb manually, selalu muncul konfirmasi 
+   "Pasien Tidak Ada, Data History Tidak Dapat Ditampilkan".
+   handle it please...karena data pasien sudah ada, tetapi belum 
+   ada history transaksinya.
+ 
+
+
+=====================
+14062006
+DOKTER UTAMA-NYA DIBUAT NOT MANDATORY
+=====================
+121106
+di form utama	
+=============
+1. jika user sudah menambahkan tindakan dan melakukan perhitungan. 
+   kemudian user melakukan penghapus	an row di list data tindakan UGD, 
+   LAKUKAN PERHITUNGAN ULANG. (yang sekarang, user bisa langsung menyimpan
+   data, mengakibatkan data tidak sinkron)--DONE
+2. setelah click baru, no. nota dan no. registrasi di disabled.--DONE
+3. begitu onLoad, nama, jenis kelamin, tanggal lahir, umur, alamat, tipe pasien
+   dan total di disabled saja. -OK
+4. data obat/tindakan yang sama jangan dimunculkan ulang (not urgent..tapi tetap harus dikerjakan)
+5. Ubah dan batal belum dikerjakan????
+6. ketika klik simpan, field dokter utama dan tipe pembawa di disabled--DONE
+
+
+
+
+COMMON
+======
+1. untuk validasi dan pembatalan nota, jika terjadi kesalahan
+   pengisian username atau password, kembalikan posisi ke form validasi / 
+   pembatalan nota (setelah klik ok dari messagebox).
+   
+  
+
+
+
+
+
+HISTORY
+=======
+1. huruf di LABEL judul, hurufnya DiGEDEin.

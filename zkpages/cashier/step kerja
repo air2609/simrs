@@ -1,0 +1,113 @@
+1. Kerjakan msBank
+		-> table yang digunakan : ms_bank
+		-> master/bank/msBank.zul
+		
+2. Kerjakan msInsurance
+		-> table yang digunakan : ms_Insurance
+		-> master/bank/msInsurance.zul
+		
+3. Kerjakan Kasir
+		
+		-> Table2 yang digunakan : 
+				tb_registration
+				tb_examination
+				tb_exam_detail
+				patient_bill_detail
+				patient_settlement --> cara pembayaran
+				list--> retrieve dari exam detail
+				save -> patient_bill_detail
+	
+				cara pembayaran --> di save ke tb_patient_settlement
+	
+	
+Jika Pasien Ranap/Pasien Rajal --> checkbox RUJUKAN/BEBAS didisabled
+
+tab 1
+	Setelah no. MR ditemukan, no. Registrasi beserta data pasien ditampilkan.
+			--> table yang digunakan : tb_registration
+	
+	Untuk bandbox NO. NOTA akan ditampilkan semua no. nota si pasien selama 
+	menjadi pasien Ranap.
+			--> table yang digunakan : tb_exam
+	
+		--> User memilih no. nota yang akan dibayar oleh pasien.
+		    Jika PILIH TRANSAKSI = SEMUA TRANSAKSI
+		         maka semua transaksi akan di checklist
+		         
+	 		Jika PILIH TRANSAKSI = SEMUA TRANSAKSI LUNAS DAN VALIDASI
+		         maka transaksi yang ter-checklist hanya transaksi yang
+		         statusnya lunas dan sudah divalidasi
+		         
+		   Jika PILIH TRANSAKSI = SEMUA TRANSAKSI BELUM LUNAS
+		         maka transaksi yang ter-checklist hanya transaksi yang
+		         statusnya belum lunas
+	
+	Setelah NO. NOTA dipilih, maka data transaksi pasien akan ditampilkan didalam 
+	list "DATA TRANSAKSI PASIEN"
+		--> retrieve data dari table : tb_exam_detail
+	
+	   di list "DATA TRANSAKSI PASIEN", user dapat mengisikan diskon (per item)
+	   		Jika pasien ada tanggungan asuransi, pindah ke tab 3
+	   		    kondisi list --> tampil sama persis dengan yang ada di list
+	   		                     DATA TRANSAKSI PASIEN
+	   		    pasien bisa mendapat tanggungan per item
+	   			
+	   			tekan SIMPAN untuk mendisable form dan proses berlanjut ke tab 2
+	   			
+	Tekan TOMBOL SIMPAN untuk mendisable FORM TRANSAKSI PEMBAYARAN PASIEN
+	
+tab 2
+	  Jika cara pembayaran menggunakan kartu kredit/kartu debit
+	     	1. pilih kartu --> ms_bank_payment_type
+	     	2. pilih nama bank --> ms_bank
+	     	3. tipe_kartu --> ms_credit_card_type
+	     	4. input no. account
+	     	5. jumlah uang yang mau ditagihkan ke bank
+	     	6. tekan TAMBAH
+	     	7. data akan ditambahkan ke dalam list KETERANGAN BAYAR
+	     	
+	  Jika pembayaran ditanggung perusahaan/perusahaan 
+	  		1. Pilih Tipe Penanggung
+	  		 	-	Jika DITANGGUNG PERORANGAN -> field NAMA PERUSAHAAN disabled
+	   			-   Jika DITANGGUNG PERUSAHAAN -> field NAMA, ALAMAT, UNTUK PEMBAYARAN -> disabled
+	   		2. input jumlah uang yang ditanggung
+	   		3. tekan TAMBAH
+	     	4. data akan ditambahkan ke dalam list KETERANGAN BAYAR
+	     	
+   	 Tekan TOMBOL SIMPAN untuk mendisable FORM CARA PEMBAYARAN
+
+tab 3
+	1. user memilih item2 yang akan ditanggung oleh perusahaan.
+	2. user memiih nama perusahaan yang menanggung dan jumlah yang ditanggung.
+	3. Tekan TOMBOL SIMPAN untuk mendisable FORM TRANSAKSI PEMBAYARAN PASIEN dan
+	   kembali ke tab 1.
+	   
+tab 1
+
+klik tombol HITUNG
+
+		BIAYA				 =	total biaya bill (belum termasuk diskon RS)	
+		DISKON				 =	diskon dari total bill
+		PPN					 =	
+		TOTAL DISKON		 =	total diskon (diskon+jumlah diskon) --> diset dalam bentuk rupiah
+		TOTAL TAGIHAN		 =	total setelah diskon dan PPN
+		JUMLAH DEPOSIT		 =	hanya akan aktif jika JENIS TRANSAKSI = DEPOSIT
+		BAYAR TUNAI			 =	jumlah pembayaran dengan uang tunai
+		BAYAR NON TUNAI		 =	jumlah pembayaran dengan kartu kredit/kartu debit
+		KEKURANGAN/KELEBIHAN =
+
+klik BAYAR
+maka data akan tersimpan ke dalam :
+	list di : tab 1 --> DATA TRANSAKSI PASIEN --> tb_patient_bill_detail
+			  tab 3 --> DATA TRANSAKSI PASIEN --> tb_patient_bill_detail
+   
+   	tb_patient_bill :
+   		--> NO. KWITANSI + NO. REGISTRASI
+   		--> BIAYA s.d KEKURANGAN/KELEBIHAN 
+   		--> PENANGGUNG PERORANGAN
+   	
+   	tab 2 -> di save ke tb_patient_settlement	
+
+JIKA PASIEN RUJUKAN
+	--> jk RUJUKAN/BEBAS di check, NO. MR + NO. REGISTRASI akan disabled
+	--> proses selanjutnya sama dengan pasien RANAP/RAJAL.

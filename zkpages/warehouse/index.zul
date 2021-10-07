@@ -1,0 +1,12 @@
+<window title="WAREHOUSE" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="Transaksi Warehouse" href="zkpages/warehouse/warehouse.zul"/>
+			<!-- 	<menuitem label="Pemesanan Item" href="zkpages/common/mintaItem.zul"/>
+				<menuitem label="Transaksi BED" href="zkpages/bangsal/bedTransaction.zul"/> -->
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

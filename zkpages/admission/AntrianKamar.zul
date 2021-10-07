@@ -1,0 +1,224 @@
+<window id="antrianKamar" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<style src="../../include/medisafe.css"/>
+<zscript>
+
+	import com.vone.medisafe.ui.admission.AntrianKamarController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	import com.vone.medisafe.ui.admission.RanapController;
+	
+	ctr = new AntrianKamarController();
+	ranap = new RanapController();
+
+	void init(){
+		ctr.init(antrianKamar);
+	}
+	
+	void getRegistration(int type){
+		ctr.getRegistration(type);
+	}
+	
+	void getHallList(Listbox kelas1, Listbox kelas2){
+		ranap.getHallList(kelas1,avaliableBedList,kelas2);
+	}
+	
+	void getHall(){
+		ctr.getHall();
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM ANTRIAN KAMAR</h:td></h:tr>
+</h:table>
+	
+<separator spacing="10px"/>
+
+<h:table align="center" width="100%">
+	  <h:tr><h:td width="7%"/>
+			<h:td>		
+				  <groupbox width="900px">
+				  <separator spacing="2px"/>
+				  <caption label="DATA PASIEN"/>
+				  <h:table align="center" width="100%">
+				 	<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			        	  <h:td width="28%">
+			        			<bandbox id="mRNumber" width="73%" onChange ="getRegistration(MedisafeConstants.INPUT_BY_MANUAL);" onOpen="crNoMR.focus();"  style="font-size:8pt">
+									<bandpopup>
+										<vbox>		
+											<h:table align="center" width="100%" sclass="BasicBlueTitle">
+												<h:tr><h:td>CARI DATA PASIEN	
+															<h:font color="white" weight="bold" size="4pt">*</h:font>
+													  </h:td>
+												</h:tr>
+											</h:table>
+											<separator spacing="3px"/>			
+											<h:table width="100%" align="center">
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+													  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="30%" align="left"><textbox id="crNoMR" width="90%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="2%"/>
+												</h:tr>
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+													  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="30%" align="left"><textbox id="crNama" width="90%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="2%"/>
+												</h:tr>
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+													  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="30%" align="left"><textbox id="crNoAlamat" width="90%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchRanapPatient(crNoMR,crNama,crNoAlamat,mrList);"/></h:td>
+													  <h:td width="2%"/>
+												</h:tr>
+											</h:table>
+											<separator spacing="3px"/>
+											<label value="*) KHUSUS PASIEN RAWAT INAP" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+											<listbox id="mrList" width="650px" onSelect="getRegistration(MedisafeConstants.INPUT_BY_SEARCH); mRNumber.closeDropdown();" mold="paging" pageSize="10">
+												<listhead>
+													<listheader label="NO. MR" style="font-weight:bold;font-size:8pt" width="18%" sort="auto"/>
+													<listheader label="NAMA" style="font-weight:bold;font-size:8pt" width="30%" sort="auto"/>
+													<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+												</listhead>
+											</listbox>
+										</vbox>
+									</bandpopup>
+								</bandbox>
+			         		</h:td>
+			         
+			         		<h:td width="18%" align="right"><h:b><h:font size="1">NO. REGISTRASI</h:font></h:b></h:td>
+						    <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               	<h:td><textbox id="registrationNumber" readonly="true" style="background-color: #e7e5de;font-style:8pt;font-weight:bold;font-size:8pt" width="81%" height="15px"/></h:td>
+			               	<h:td width="3%"/>
+			          </h:tr>
+				      			
+				      <h:tr><h:td width="18%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+						    <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               	<h:td width="27%"><textbox id="name" width="80%" height="14px" style="font-size:8pt"/></h:td>
+			                
+			                <h:td width="18%" align="right" ><h:b><h:font size="1">UMUR</h:font></h:b></h:td>
+						   	<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               	<h:td><h:b><textbox id="age" width="80%" height="14px" readonly="true" style="font-size:8pt"/></h:b></h:td>
+			          </h:tr>
+			         		
+			          <h:tr><h:td width="18%" align="right"><h:b><h:font size="1">JENIS KELAMIN</h:font></h:b></h:td>
+						   	<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			          <h:td width="27%">
+			               			<radiogroup id="jenisKelamin">
+										<radio value="M" id="male" style="font-weight:bold;font-size:8pt" label="PRIA"/>
+										<radio value="F" id="female" style="font-weight:bold;font-size:8pt" label="WANITA"/>
+									</radiogroup>
+							</h:td>
+							
+							<h:td width="18%" align="right"><h:b><h:font size="1">KELAS TARIF</h:font></h:b></h:td>
+						   	<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               	<h:td><listbox id="tclassList" mold="select" onSelect="getHallList(tclassList,kelasTarifList);" width="83%" style="font-size:9pt"/>
+			          </h:td>
+					  </h:tr>
+			          			
+			          <h:tr><h:td width="18%" align="right"><h:b><h:font size="1">RUANGAN</h:font></h:b></h:td>
+						  	<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			          <h:td width="27%">
+							     <bandbox id="ruangan" width="73%" autodrop="true" onOpen="kelasTarifList.focus();" style="font-size:8pt">
+									 <bandpopup>
+										 <vbox>		
+												<h:table align="center" width="100%" sclass="BasicBlueTitle">
+													<h:tr><h:td>CARI DATA KAMAR</h:td></h:tr>
+												</h:table>
+												<separator spacing="5px"/>		
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="25%" align="right"><h:b><h:font size="1">KELAS TARIF</h:font></h:b></h:td>
+														  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="35%">
+														  		<listbox id="kelasTarifList" mold="select" width="90%" style="font-size:9pt" onSelect="getHallList(kelasTarifList,tclassList);">
+							               							<!-- <listitem label=""/>
+							               							<listitem label="1. Kelas 1"/>
+			   		 												<listitem label="2. Kelas 2"/>
+																	<listitem label="3. Kelas 3"/>
+																	<listitem label="0. VIP"/>
+																	<listitem label="9. VVIP"/> -->
+												 				</listbox>
+														  </h:td>
+													  	  <h:td width="12%"/>
+													</h:tr>
+												</h:table>
+												<separator spacing="3px"/>
+												<listbox id="avaliableBedList" width="450px" onSelect="getHall(); ruangan.closeDropdown();">
+													<listhead>
+														<listheader label="RUANGAN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														<listheader label="BED YANG TERSISA" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+													</listhead>
+												</listbox>
+										  </vbox>	
+									  </bandpopup>
+								  </bandbox>
+							</h:td>
+			               	
+			       </h:tr>
+				  </h:table>
+				  <separator spacing="2px"/>
+			 	  </groupbox>
+			</h:td>
+			<h:td width="7%"/>
+	  </h:tr>
+</h:table> 
+<separator spacing="5px"/>
+	
+
+<h:table width="100%" align="center">
+	  <h:tr><h:td width="7%"/>
+	    	<h:td>	 	
+			      <vbox>
+						<groupbox width="900px">
+						  	<caption label="DAFTAR PEMESAN KAMAR"/>
+						  		<h:table width="100%" align="center">
+							  		<h:tr><h:td height="10"></h:td></h:tr>
+							  		<h:tr><h:td width="5%"/>
+							  			  <h:td>
+									  			<vbox>
+													  <listbox id="roomReservationList" multiple="true" width="860px" height="243px">
+														  <listhead>
+														  <listheader label="NO. MR" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														  <listheader label="NAMA PASIEN" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														  <listheader label="KELAS TARIF" width="12%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														  <listheader label="RUANGAN" width="20%" style="font-weight:bold;font-size:8pt"/>
+														  <listheader label="TGL ANTRI" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														  </listhead>
+														  
+													  </listbox>
+												</vbox>
+									      </h:td>
+										  <h:td width="5%"/>
+								   </h:tr>
+							   </h:table>
+								
+						  <separator spacing="5px"/>
+						  </groupbox>
+				   </vbox>
+		    </h:td>
+	  		<h:td width="7%"/>
+	  </h:tr>
+	  <h:tr><h:td width="7%"/>
+	    	<h:td><separator spacing="5px"/>
+				  <h:table width="100%" align="center">
+						<h:tr><h:td width="7%"/>
+							  <h:td align="right">
+								  	<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save();"/>
+					    	</h:td>
+				    		  				   
+				    		  <h:td width="5%" align="right">
+								  	<button id="btnNew" label="BARU" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.clear();"/>
+					    		</h:td> 
+				    		  <h:td align="left">
+					    		   <button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.delete();"/>
+					    		</h:td>
+					    		<h:td width="7%"/>
+				    	</h:tr>
+				  </h:table>	
+	    	</h:td>
+	  		<h:td width="7%"/>
+	  </h:tr>
+</h:table>
+<separator spacing="5px"/>
+</window>

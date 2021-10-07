@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.vone.medisafe.mapping.TbBor" table="tb_bor" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">tb_bor_id_seq</param>
+            </generator>
+        </id>
+        <property name="bedId" type="integer">
+            <column name="bed_id"/>
+        </property>
+        <property name="tclassId" type="integer">
+            <column name="tclass_id"/>
+        </property>
+        <property name="hallId" type="integer">
+            <column name="hall_id" />
+        </property>
+        <property name="bedTrxId" type="integer">
+            <column name="bed_trx_id" />
+        </property>
+        <property name="bedDate" type="date">
+            <column name="bed_date" />
+        </property>
+ 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,164 @@
+<?component name="VONEButton" macro-uri="/zkpages/macros/VONEButton.zul"?>
+
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.admin.SubsystemController;
+
+	SubsystemController ctr = new SubsystemController();
+
+	void init(){
+
+		ctr.init(root);
+	}
+	
+	void doSave(){
+			
+		ctr.doSave(root);	
+	}
+	
+	void doDelete(){
+			
+		ctr.doDelete(root);			
+	}
+	
+	void doModify(){
+	
+		ctr.doModify(root);	
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);	
+
+	}
+	
+</zscript>
+
+ 	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>SUBSYSTEM MASTER</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="7px"/>
+
+
+<h:table width="100%"  align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+			    	<h:tr><h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="4%"/>
+										  <h:td width="12%"><h:p align="right" style="font-weight:bold;font-size:8pt">KODE</h:p></h:td>
+									      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              			  <h:td width="27%"><textbox id="kodeSubsystem" width="80%" height="14px"  style="font-size:8pt"/></h:td>
+				              			  <h:td width="4%"/>
+				       				</h:tr>
+				       				
+				        			<h:tr><h:td width="4%"/>
+				        				  <h:td width="12%"><h:p align="right" style="font-weight:bold;font-size:8pt">NAMA SUBSYSTEM</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><textbox id="namaSubsystem" width="80%" height="14px" style="font-size:8pt"/></h:td>
+				             			  <h:td width="4%"/>
+				        			</h:tr>
+				    			</h:table>
+			  			</h:td>
+			  		</h:tr>
+			  	</h:table>
+	  	
+	 	  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>		    
+						    
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="3px"/>	    
+			    <h:table width="100%" align="center">
+			    	<h:tr>
+			    		  <h:td>
+			  					<h:table width="100%" align="center">
+				    				<h:tr><h:td width="10%"/>
+				    					  <h:td><h:p align="right">
+				    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+					    					    </h:p>
+					    				  </h:td>
+				    					  <h:td width="5%">
+				    					  		<h:p align="left">
+				    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify()"/>
+				    		  		 	   		</h:p>
+				    		  		 	  </h:td>
+				    		  			  <h:td width="5%">
+				    		  			  		<h:p align="left">
+				    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+				    					   		</h:p>
+				    					  </h:td>
+				    					  <h:td><h:p align="left">
+				    					  	 		<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+				    					  		</h:p>
+				    					  </h:td>
+				    					  <h:td width="9%"/>
+				    				</h:tr>
+			    				</h:table>
+			    		  </h:td>
+			  	     </h:tr>
+			  	 </h:table>
+	    
+	  	  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>		    
+						    
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="3px"/>	   
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="5%"/>
+			    		  <h:td>	 	
+						    	<vbox>
+									  <groupbox width="550px">
+									  	<caption label="LIST SCREEN"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td  height="10px"></h:td></h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td>
+															  <listbox id="listTable" width="510px" height="273px" mold="paging" pageSize="20">
+																	<listhead>
+																		<listheader label="KODE" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="NAMA SUBSYSTEM" width="50%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	</listhead>
+																	
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="Pasien Umum"/>
+																	</listitem>					
+																
+															   </listbox>		
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+											
+								  			<separator spacing="5px"/>
+								  			<h:table width="100%" align="center">
+									  		   	 <h:tr><h:td/>
+									  		   	 	   <h:td width="7%">
+									  		   	 	   		 <h:p align="right">
+						    						   			 <button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick=""/>
+						    						   		 </h:p>
+						    						   </h:td>
+						    						   <h:td width="3%"/>
+						    		  			 </h:tr>
+									  		</h:table>
+									  		<separator spacing="5px"/>
+									 </groupbox>
+							  </vbox>
+						</h:td>
+						<h:td width="5%"/>
+				  </h:tr>
+				</h:table>
+	    
+		 </h:td>
+		 <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+
+<separator spacing="11px"/>
+</window>

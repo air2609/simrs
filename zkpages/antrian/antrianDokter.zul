@@ -1,0 +1,55 @@
+<window id="antrianDokter" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.antrian.AntrianDokterController;
+	ctr = new AntrianDokterController();
+	void init(){
+	 ctr.init(antrianDokter);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center" border="10">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle2"><label value="ANTRIAN DOKTER "/> 
+    	<label style="font-family: Arial, Helvetica, sans-serif;text-transform: capitalize;font-size: 30px;font-weight: bold" id="hospitalName" value="RS. TIARA SELLA"/></h:th>
+    </h:tr>
+    
+    <h:tr>
+    	<h:td colspan="2" align="center" sclass="BasicBlueTitle3"><label id="dokter1" style="font-weight:bold;font-size:20pt" value="NAMA DOKTER"/></h:td>
+    </h:tr>
+    
+	<h:tr>
+		<h:td>
+			<window  width="950px" id="dokterSatu">
+				<listbox id="listPasien1" height="400px" width="950px" mold="paging" pageSize="12">
+					<listitem label=""/>
+				</listbox>
+			</window>
+		</h:td>
+		<!-- 
+		<h:td>
+			<window  width="500px" id="dokterDua">
+				<listbox id="listPasien2" height="450px" width="500px" mold="paging" pageSize="15">
+				<listhead>
+					<listheader><label id="dokter2" style="font-weight:bold;font-size:15pt" value=""/></listheader>
+				</listhead>
+					<listitem label=""/>
+				</listbox>
+			</window>
+		</h:td> -->
+	</h:tr>
+</h:table>
+<separator spacing="15px"/>
+<h:table width="60%" border="0" align="center">
+	<h:tr>
+		<h:td>
+			<h:marquee>
+				<label id="myLabel" style="font-weight:bold;font-size:15pt"/>
+			</h:marquee>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="20px"/>
+<timer id="timer" repeats="true" onTimer="ctr.onTimer()"/> 	
+	
+</window>

@@ -1,0 +1,97 @@
+<window id="defaultAcct" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	
+	import com.vone.medisafe.ui.accounting.AcctDefaultDataInput;
+	
+	ctr = new AcctDefaultDataInput();
+	
+	void init(){
+		ctr.init(defaultAcct);
+	}
+	
+	void doSave(){
+		ctr.doSave(defaultAcct);
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM ACCT DEFAULT</h:td></h:tr>
+	</h:table>
+
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	  <h:tr><h:td width="14%"/>
+		    <h:td>	
+				  <h:table width="100%" align="center">
+				    	<h:tr><h:td width="5%"/>
+				    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">AR PASIEN RANAP</h:p></h:td>
+									      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              			  <h:td width="27%"><listbox id="inAr" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				       				</h:tr>
+				       				<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">AR PASIEN RAJAL</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="outAr" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>
+				        			<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">AP</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="ap" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>
+				        			<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">AP PASIEN</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="apPatient" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>				        			
+				        			<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">PPH 21</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="pph" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>
+				        			<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">BIAYA LAIN-LAIN</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="miscTrx" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>				        			
+				        			<h:tr><h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">AP STAFF</h:p></h:td>
+							  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				             			  <h:td width="27%"><listbox id="apStaff" width="95%" mold="select" height="14px" style="font-size:9pt"/></h:td>
+				        			</h:tr>						        			
+				    			</h:table>
+				  			</h:td>
+				  			<h:td width="15%"/>
+				  	   </h:tr>
+			  	 </h:table>
+			  	
+			</h:td>
+			<h:td width="14%"/>
+	  </h:tr>		
+	  <h:tr><h:td width="14%"/> 
+		    <h:td><separator spacing="4px"/>    
+				   <h:table width="100%" align="center">
+				    	<h:tr><h:td width="12%"/>
+				    		  <h:td>
+				  					<h:table width="100%" align="center">
+					    				<h:tr><h:td width="10%"/>
+					    					  <h:td><h:p align="right">
+					    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave();"/>
+					    					  		</h:p>
+					    					  </h:td>
+					    					  <h:td width="5%">
+													<h:p align="right">
+												    	<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" href="index.zul"/>
+													</h:p>
+											  </h:td>
+					    					  <h:td width="10%"/>
+					    				</h:tr>
+				    				</h:table>
+				    		</h:td>
+				  			<h:td width="12%"/>
+				  	   </h:tr>
+				  	</h:table>
+		  	</h:td>
+		  	<h:td width="14%"/>
+	   </h:tr>		
+</h:table> 
+<separator spacing="143px"/>
+</window>

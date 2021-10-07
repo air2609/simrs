@@ -1,0 +1,140 @@
+<window id="addPemeriksaanLab" xmlns:h="http://www.w3.org/1999/xhtml" width="760px" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.laborat.TambahPemeriksaanController;
+	ctr = new TambahPemeriksaanController();
+	
+	void init(){
+		ctr.init(addPemeriksaanLab);
+	}
+	
+	void getTreatment()
+	{
+		ctr.getTreatment();
+	}
+	
+	void getOut(){
+		ctr.getOut();
+	}
+	
+	void search(){
+		ctr.searchTreatment();
+	}
+	
+</zscript>
+
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TAMBAH PEMERIKSAAN</h:td></h:tr>
+</h:table>
+	
+	<separator spacing="10px"/>	
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td>	
+			   <h:table width="100%" align="center">
+			    	<h:tr><h:td width="10%"/>
+			    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="15%" align="right"><h:b><h:font size="1">KODE</h:font></h:b></h:td>
+									      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				              			  <h:td width="25%" align="left"><textbox id="treatmentCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+				       				</h:tr>
+				       				
+				        			<h:tr><h:td width="15%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+							  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				             			  <h:td width="25%"><textbox id="treatmentName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+				             			  <h:td width="5%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="search();"/></h:td>
+				        			</h:tr>
+				    			</h:table>
+			  			</h:td>
+			  			<h:td width="20%"/>
+			  	   </h:tr>
+		  	  </h:table>
+	  	
+			  <separator spacing="5px"/>
+			  <h:table width="100%" align="center">
+			    	<h:tr><h:td width="30%"/>
+					      <h:td>	 	
+						    	<vbox>
+									  <groupbox width="700px" height="320px">
+									  	<caption label="DATA PEMERIKSAAN"/>
+									  	<separator spacing="2px"/>
+									  		<h:table width="100%" align="center">
+										  		<h:tr><h:td height="10"></h:td></h:tr>
+										  		<h:tr><h:td width="13%"/>
+												  	  <h:td>
+													  		<vbox>
+															<listbox id="treatmentList" multiple="true" width="660px" height="250px" checkmark="true">
+																<listhead>
+																	<listheader label="KODE" sort="auto" width="13%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA" width="53%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KATEGORI" width="20%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="HARGA" width="21%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+																<!--  
+																<listitem>
+																	<listcell label="AST"/>
+																	<listcell label="AST (SGOT)"/>
+																	<listcell label="KIMIA KLINIK"/>
+																	<listcell label="25000"/>
+																</listitem>
+																
+																<listitem>
+																	<listcell label="ALT"/>
+																	<listcell label="ALT (SGPT)"/>
+																	<listcell label="KIMIA KLINIK"/>
+																	<listcell label="55000"/>
+																</listitem>
+																
+																<listitem>
+																	<listcell label="AMP"/>
+																	<listcell label="AMPHETAMINE"/>
+																	<listcell label="NARKOBA"/>
+																	<listcell label="15000"/>
+																</listitem>
+																
+																<listitem>
+																	<listcell label="LDH"/>
+																	<listcell label="LDH"/>
+																	<listcell label="PANEL JANTUNG"/>
+																	<listcell label="25000"/>
+																</listitem>
+																-->
+															</listbox>
+															</vbox>
+													  </h:td>
+													  <h:td width="13%"/>
+												</h:tr>
+									  		</h:table>
+											
+											<separator spacing="3px"/>
+											
+								  			<h:table width="100%" align="center">
+									  		   	 <h:tr><h:td width="4%"/>
+								  		  		   	   <h:td width="5%" align="left">
+								  		  		   	   		  
+						    						   		 	<button label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getTreatment();"/>
+						    						   		 
+						    						   </h:td>
+						    						   <h:td align="right"> 
+						    						   		 	<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="addPemeriksaanLab.detach()"/>
+						    						   		 
+						    						   </h:td>
+						    						   <h:td width="4%"/>
+						    		  			 </h:tr>
+									  		</h:table>
+									  		<separator spacing="3px"/>
+									   </groupbox>
+							  </vbox>
+						</h:td>
+						<h:td width="30%"/>
+				  </h:tr>
+			    </h:table>
+	 	  <separator spacing="10px"/>
+		  </h:td>
+	</h:tr>
+</h:table> 
+</window>

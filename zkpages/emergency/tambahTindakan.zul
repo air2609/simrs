@@ -1,0 +1,130 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="70%" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	void init(){
+		treatmentCode.focus();
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TAMBAH TINDAKAN</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="10px"/>	
+	
+<h:table width="100%" align="center" sclass="Bancgroundlogo">
+<h:tr><h:td>	
+	  <h:table width="100%" align="center">
+    	<h:tr><h:td width="15%"/>
+    		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="19%"><h:p align="right">KODE</h:p></h:td>
+					      <h:td width="5%"><h:p align="center">:</h:p></h:td>
+              			  <h:td width="26%"><h:p align="left"><textbox id="treatmentCode" width="78%" height="14px"/></h:p></h:td>
+       				</h:tr>
+       				
+        			<h:tr><h:td width="19%"><h:p align="right">NAMA</h:p></h:td>
+			  			  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+             			  <h:td width="26%"><textbox id="treatmentName" width="78%" height="14px"/></h:td>
+             			 <h:td width="5%"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:25px"/></h:p></h:td>
+        			</h:tr>
+    			</h:table>
+  			</h:td>
+  			<h:td width="15%"/>
+  	   </h:tr>
+  	 </h:table>
+  	
+   <separator spacing="5px"/>
+  
+    <h:table width="100%" align="center">
+    	<h:tr><h:td width="36%"/>
+    	<h:td>	 	
+    	<hbox>
+			  <groupbox width="560px" height="185px">
+			  	<caption label="DATA TINDAKAN UGD"/>
+			  		<h:table width="100%" align="center">
+			  		<h:tr><h:td height="10"></h:td></h:tr>
+			  		<h:tr><h:td width="13%"/>
+			  		<h:td>
+			  		<vbox>
+					<listbox id="ERTreatmentList" multiple="true" width="530px" height="240px" checkmark="true">
+					<listhead>
+						<listheader label="KODE" sort="auto" width="20%"/>
+						<listheader label="NAMA" sort="auto" width="50%" />
+					</listhead>
+			
+					<listitem>
+						<listcell label="AB00001"/>
+						<listcell label="PERIKSA UGD"/>
+					</listitem>
+					
+					<listitem>
+						<listcell label="BB00001"/>
+						<listcell label="JAHIT LUKA 1 S.D. 3CM"/>
+					</listitem>
+					
+					<listitem>
+						<listcell label="CB00001"/>
+						<listcell label="JAHIT LUKA 4 S.D. 7 CM"/>
+					</listitem>
+					
+					<listitem>
+						<listcell label="DB00001"/>
+						<listcell label="JAHIT LUKA 14 S.D. 20 CM"/>
+					</listitem>
+			
+					<listitem>
+						<listcell label="EB00001"/>
+						<listcell label="TINDIK"/>
+					</listitem>
+					
+					</listbox>
+					</vbox>
+					</h:td>
+					<h:td width="13%"/>
+					</h:tr>
+			  		</h:table>
+					
+					<separator spacing="3px"/>
+			  		
+			  		<h:table width="100%" align="center">
+			  		     <h:tr><h:td align="center">
+			  		     	   <image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+			  			       <image id="imgspace1" src="/image/space.gif" width="20px"/>
+					 	 	   <image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+					 	 	   <image id="imgspace3" src="/image/space.gif" width="20px"/>
+					 	 	   <image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+					 	 	   <image id="imgspace2" src="/image/space.gif" width="20px"/>
+					 	 	   <image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+					 	  	 </h:td>
+					 	</h:tr>
+			  		</h:table>
+			  		
+		  			<h:table width="100%" align="center">
+			  		   	 <h:tr><h:td width="1%"/>
+		  		  		   	   <h:td><h:p align="left">
+    						   		 <button label="TAMBAH" style="width:70px;height:25px" href="javascript:history.go(0)"/>
+    						   		 </h:p>
+    						   </h:td>
+			  		   	 	   <h:td><h:p align="right">
+    						   		 <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:25px" href="javascript:history.go(0)"/>
+    						   		 </h:p>
+    						   </h:td>
+    						   <h:td width="2%"/>
+    		  			 </h:tr>
+			  		</h:table>
+			  		<separator spacing="1px"/>
+			   </groupbox>
+	  </hbox>
+	  		<separator spacing="5px"/>
+	  </h:td>
+	  <h:td width="30%"/>
+	  </h:tr>
+    </h:table>
+  
+    <separator spacing="4px"/>
+</h:td></h:tr>
+</h:table> 
+</window>

@@ -1,0 +1,147 @@
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate ="init();" sclass="Float">
+
+<style src="/include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.accounting.CoaController;
+
+	CoaController ctr = new CoaController();
+
+	void init(){
+
+		ctr.init(root);
+	}
+	
+	void doDelete(){
+	
+		ctr.doDelete(root);
+	}
+	
+	void doModify(){
+		
+		ctr.createFillModify();
+	}	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>CHART OF ACCOUNTS</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+	
+<h:table width="100%" align="center">
+<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="4px"/> 		  
+		 		<h:table width="100%" align="center">
+			    	  <h:tr><h:td width="30%"/>
+					    	<h:td>	 	
+					    		   <h:table width="100%" align="center">
+									   <h:tr><h:td width="50%"/>
+									   		 <h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">STATUS</h:p> </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									  		 <h:td width="20%">
+											 	<h:p align="left">
+											 		<listbox id="status" width="100%" mold="select" style="font-size:9pt">
+											 			<listitem value="1" label="1. AKTIF" />
+											 			<listitem value="2" label="2. TIDAK AKTIF" />
+											 			<listitem value="0" label="3. SEMUA" />
+											  		</listbox>
+											  	</h:p>
+											  </h:td>
+										</h:tr>
+									</h:table>
+									<separator spacing="2px"/>
+										<vbox>
+											  <tree id="tree" width="900px" height="402px">
+													<treecols>
+														<treecol label="NO. ACCT" style="font-weight:bold;font-size:8pt" width="18%"/>
+														<treecol label="STATUS" style="font-weight:bold;font-size:8pt" width="10%" />
+														<treecol label="NAMA" style="font-weight:bold;font-size:8pt" width="30%"/>																														
+														<treecol label="TIPE" style="font-weight:bold;font-size:8pt" width="18%"/>	
+														<treecol label="BALANCE" style="font-weight:bold;font-size:8pt" width="12%"/>														
+													</treecols>
+													<treechildren>
+														<treeitem>
+															<treerow>
+																<treecell label="1015"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label=""/>
+																		<treecell label="AKTIF"/>
+																		<treecell label="ACCOUNTS RECEIVABLE"/>
+																		<treecell label="ACCOUNTS RECEIVABLE"/>																		
+																		<treecell label="RP 1,000,000"/>																		
+																	</treerow>
+																</treeitem>
+															
+															</treechildren>
+														</treeitem>
+														<treeitem>
+															<treerow>
+																<treecell label="1410"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label=""/>
+																		<treecell label="AKTIF"/>
+																		<treecell label="EMPLOYEE LOANS"/>
+																		<treecell label="OTHER CURRENT ASSET"/>																		
+																		<treecell label="RP 1,000,000"/>																		
+																	</treerow>
+																</treeitem>
+															
+															</treechildren>
+														</treeitem>
+													</treechildren>
+												</tree>
+										  </vbox>
+										  <separator spacing="6px"/>
+										  <h:table align="center" width="100%">
+											   <h:tr><h:td width="5%">
+															<h:p align="right">
+											    				<button label="TAMBAH ACCT" image="/image/add.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt">
+												    				<attribute name="onClick">
+													     				{
+													     					final Window win = (Window) Executions.createComponents(
+																								"/zkpages/accounting/coa/coaAdd.zul", null, null);
+																		    win.doModal();
+																		}
+																	</attribute>
+																</button>
+											    			</h:p>
+											    	  </h:td>
+											    	  <h:td width="5%">
+															<h:p align="left">
+																<button label="UBAH" image="/image/edit.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+															</h:p>
+													  </h:td>
+											    	  <h:td width="5%">
+															<h:p align="left">
+																<button label="HAPUS" image="/image/delete.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+															</h:p>
+													  </h:td>
+													  <h:td>
+															<h:p align="right">
+																<button label="CETAK" image="/image/print.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt"/>
+													   		</h:p>
+													  </h:td>
+													  <h:td width="5%">
+															<h:p align="right">
+																<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt"/>
+													   		</h:p>
+													  </h:td>
+												</h:tr>
+										  </h:table>
+						  </h:td>
+						  <h:td width="30%"/>
+				    </h:tr>
+			    </h:table>
+	      </h:td>
+	      <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="12px"/>
+</window>

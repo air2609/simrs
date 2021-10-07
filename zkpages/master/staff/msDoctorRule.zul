@@ -1,0 +1,155 @@
+<window id="masterDoctorRule" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.ui.master.CommisionRuleController;
+	ctr = new CommisionRuleController();
+	
+ 	void init(){
+ 		ctr.init(masterDoctorRule);
+ 	}
+</zscript>
+<style src="/include/medisafe.css"/>
+	
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM DOCTOR FEE RULE</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="3px"/>
+	<h:table align="center" width="100%">
+		<h:tr><h:td width="2%"/>
+			  <h:td><h:table align="center" width="100%">
+					    <h:tr><h:td width="20%"/>
+					    	  <h:td><!--
+								    <groupbox width="900px">
+								    <caption label="DATA DOKTER"/>-->
+								   		<separator spacing="2px"/>
+							     	    <h:table align="center" width="100%">
+							     	    	<h:tr><h:td width="15%"><h:p align="right" style="font-weight:bold;font-size:8pt">UNIT</h:p></h:td>
+									  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="28%"><listbox id="unitList" mold="select" width="84%" height="14px" style="font-size:9pt"/></h:td>
+						              		</h:tr>
+							      			
+							      			<h:tr><h:td width="13%"><h:p align="right" style="font-weight:bold;font-size:8pt">SHIFT</h:p></h:td>
+									  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td><listbox id="shifList" mold="select" width="84%" style="font-size:9pt"/></h:td>
+						               		</h:tr>
+							      			
+							      			<h:tr><h:td width="13%"><h:p align="right" style="font-weight:bold;font-size:8pt">TIPE DOKTER</h:p></h:td>
+									  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="28%"><listbox id="doctorTypeList" mold="select" width="84%" height="14px" style="font-size:9pt"/></h:td>
+						                    </h:tr>
+							      			
+							      			<h:tr><h:td width="13%"><h:p align="right" style="font-weight:bold;font-size:8pt">PERSENTASE RS</h:p></h:td>
+									  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td style="font-weight:bold;font-size:9pt"><intbox id="percentage" width="30%" maxlength="3" height="14px" style="font-size:8pt"/><h:b>%</h:b></h:td>
+						                    </h:tr>
+						         		</h:table>
+						         	    <separator spacing="2px"/><!--  
+						           </groupbox>
+							  --></h:td>
+					  	      <h:td width="30%"/>
+					    </h:tr>
+				   </h:table>
+	            </h:td>
+	            <h:td width="2%"/>
+	      </h:tr>
+		  <h:tr><h:td width="2%"/>
+			    <h:td><h:table width="100%" align="center">
+			    			<h:tr><h:td width="34%"/>
+			    				  <h:td>
+			  							<h:table width="100%" align="center">
+				    						<h:tr><h:td width="10%"/>
+				    					  		  <h:td><h:p align="right">
+				    					  					<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="ctr.doSave();"/>
+				    					  				</h:p>
+				    					  		  </h:td>
+				    					  		  <h:td width="5%">
+				    					  				<h:p align="left">
+				    		  		 	   					<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px" onClick="ctr.doModify();"/>
+				    		  		 	   				</h:p>
+				    		  		 	  		  </h:td>
+				    		  			 		  <h:td width="5%">
+				    		  			  				<h:p align="left">
+				    					   					<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px;" onClick="ctr.doCancel();"/>
+				    					   				</h:p>
+				    					  		  </h:td>
+				    					 		  <h:td width="5%">
+				    		  			  				<h:p align="left">
+				    					   					<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;" onClick="ctr.doDelete();"/>
+				    					   				</h:p>
+				    					  		  </h:td>
+				    					  		  <h:td width="10%"/>
+				    						</h:tr>
+			    						</h:table>
+			    				  </h:td>
+			  					  <h:td width="34%"/>
+			  	   		    </h:tr>
+			  		  </h:table>
+	  		  </h:td>
+			  <h:td width="2%"/>
+		</h:tr>
+		<h:tr><h:td width="2%"/>
+		      <h:td><h:table align="center" width="100%">
+					    <h:tr><h:td width="16%"/>
+							  <h:td><separator spacing="2px"/>
+							        <groupbox width="800px">
+							     		<caption label="DOCTOR FEE RULE LIST"/>
+							   			<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="10px"/></h:tr>
+									  		  <h:tr><h:td width="10%"/>
+											  		<h:td>
+											  			  <listbox id="dokterFeeList" multiple="true" width="760px" height="233px" mold="paging" pageSize="10">
+																<listhead>
+																	<listheader label="UNIT" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="SHIFT" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TIPE DOKTER" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="PERSENTASE RS" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/> 
+																</listhead>
+																
+																<listitem>
+																	<listcell label="123"/>
+																	<listcell label="dr. Hutabarat"/>
+																	<listcell label="Anak"/>
+																	<listcell label="123123"/>
+																</listitem>
+														  </listbox>		
+													</h:td>
+													<h:td width="10%"/>
+											  </h:tr>
+									  	</h:table>
+											
+										<separator spacing="2px"/>
+									  		
+									  	<h:table align="center" width="100%">
+											<h:tr><h:td width="40%"/>
+												  <h:td>
+														<h:left>
+										 				<!-- 	<image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+										   					<image id="imgspace1" src="/image/space.gif" width="20px"/>
+										  					<image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+										  					<image id="imgspace3" src="/image/space.gif" width="20px"/>
+										  					<image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+										  					<image id="imgspace2" src="/image/space.gif" width="20px"/>
+										  					<image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+										 			-->	</h:left>
+												  </h:td><!--
+												  <h:td width="5%">
+														<h:p align="right">
+										    				<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+										    			</h:p>
+										    	  </h:td>
+										    	  --><h:td width="3%"/>
+											</h:tr>
+										</h:table>
+							   			<separator spacing="2px"/>
+							   	   </groupbox>
+							  </h:td>
+					  	      <h:td width="16%"/>
+					     </h:tr>
+				   </h:table>
+			  </h:td>
+			  <h:td width="2%"/>
+		</h:tr>
+	</h:table>	
+<separator spacing="15px"/>
+</window>

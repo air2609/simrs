@@ -1,0 +1,40 @@
+<window id="bor" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.report.BORController;
+	ctr = new BORController();
+	void init(){
+	 ctr.init(bor);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center" border="1" width="100%">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle">LAPORAN BED OCCUPANCY RATE (BOR)</h:th>
+    </h:tr>
+ 	<h:tr>
+ 		
+ 		<h:td align="right" colspan="2">
+ 			<separator spacing="5px"/>
+ 			<hbox>
+ 				<label value="Tanggal Mulai : "/>
+ 				<datebox id="startDate" format="dd/MM/yyyy"/>
+ 				<label value="Tanggal Akhir : "/>
+ 				<datebox id="endDate" format="dd/MM/yyyy"/>
+ 				<button label="VIEW"/>
+ 			</hbox>
+ 		</h:td>
+ 		
+ 	</h:tr>
+ 	<h:tr>
+		<h:td>
+			<window  width="100%" id="bedWindows">
+				<listbox id="listBor" height="400px" width="100%" mold="paging" pageSize="12">
+					<listhead id="listhead">
+					</listhead>
+				</listbox>
+			</window>
+		</h:td>
+	</h:tr>
+</h:table>
+</window>

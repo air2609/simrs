@@ -1,0 +1,537 @@
+FORMAT NO. NOTA RETUR : R-SUBDIVISI-YYMM-XXXXXX
+
+UNTUK SUPERVISOR/KABAG LAB :
+----------------------------
+1. ONLOAD 
+   - SEMUA FIELD DIKOSONGKAN.
+   - SEMUA FIELD ENABLED, KECUALI NO. NOTA DAN NO. REGISTRASI
+   - BUTTON YANG ENABLED : SELESAI
+   - BUTTON2 YANG LAIN DI-DISABLED
+
+2. PEMBATALAN RETUR
+   2.A. INITIAL
+        2.A.1 NOTA RETUR SUDAH DIVALIDASI
+   2.B. USER MENCARI NO. NOTA RETUR YANG AKAN DIBATALKAN
+   		2.B.1 USER INPUT NO. NOTA RETUR
+	   		  2.B.1.a PENCARIAN VIA BANDBOX
+  			  	       2.B.1.a.1. USER INPUT NO.NOTA RETUR 
+  			  	       2.B.1.a.2. USER MENEKAN TOMBOL CARI
+					   2.B.1.a.3. JIKA :
+  			  	    				- DATA TIDAK DITEMUKAN : 	
+  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+  			  	    				- DATA DITEMUKAN :
+  			  	    				     --> TAMPILKAN KEDALAM LIST NOTA
+  			  	    				     --> USER MEMILIH NOTA
+  			  	    				     
+  			  2.B.1.b INPUT NO. NOTA RETUR MANUALLY
+  			      	   2.B.1.b.1   JIKA :
+  			  	    				- DATA TIDAK DITEMUKAN : 	
+  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+  			  	    				- DATA DITEMUKAN --> REFER TO 2.C
+  			  	    				
+			
+	2.C DISPLAY DATA PASIEN BESERTA ISI TRANSAKSI YANG ADA DI NOTA RETUR YANG DI PILIH
+	    DI FORM UTAMA.
+	    TOMBOL YANG DI-ENABLED :
+	    - PEMBATALAN RETUR
+	    - BARU
+	    
+    2.D USER MENEKAN TOMBOL PEMBATALAN RETUR
+			   2.2.a USER MENEKAN TOMBOL PEMBATALAN RETUR
+			   2.2.b USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+				     2.2.b.1 JIKA :
+				             2.2.b.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+				          	 2.2.b.1.b NO, KEMBALI KE FORM UTAMA
+				   
+			         NOTE :	 DATA AKAN DIBERI FLAG YANG MENANDAKAN STATUS NOTA = BATAL
+						   		TABEL YANG DIGUNAKAN : 
+							      - TB_EXAMINATION 
+							   	    FIELD :
+							   	    -  STATUS NOTA			  : v_cancelation_status 
+									-  ALASAN PEMBATALAN NOTA : v_cancelation_note
+							        -  USERNAME & PASSWORD    : v_who_change varchar 
+
+    2.E	 SEMUA FIELD DI-DISABLED DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"			            
+   	2.F. POST CONDITION :  
+		  - NOTA BERHASIL DIBATALKAN.
+			   
+3. BARU
+   3.1. INITIAL
+		1. SEMUA FIELD DI-DISABLED.
+		2. USER MENEKAN TOMBOL BARU
+		3. FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO 1)
+			    
+    3.2. POST CONDITION
+    
+------------------------------------------------------------------------------------
+BAGIAN STAFF :
+
+A. ONLOAD 
+   1. INITIAL
+      - SEMUA FIELD ENABLED, KECUALI NO. NOTA, NO. NOTA RETUR DAN NO. REGISTRASI
+      - BUTTON YANG ENABLED : SELESAI
+      - BUTTON2 YANG LAIN DI-DISABLED
+     
+B. SIMPAN
+   1. USER MENCARI DATA PASIEN
+		   1.1 PASIEN RANAP
+		      	 1.1.1 USER MENCARI NO. MR PASIEN
+				      	1.1.1.a PENCARIAN VIA BANDBOX
+								1.1.1.a.1 USER INPUT NO.MR ATAU NAMA ATAU ALAMAT PASIEN
+								1.1.1.a.2 USER MENEKAN TOMBOL CARI
+										  JIKA :
+											  - DATA TIDAK DITEMUKAN : 	
+											     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											  - DATA DITEMUKAN
+											     --> TAMPILKAN KEDALAM LIST DATA PASIEN
+											  	 --> USER MEMILIH DATA PASIEN
+										  		 --> DISPLAY DATA PASIEN
+													 	    				     
+						 1.1.1.b INPUT NO. MR MANUALLY
+						       	 JIKA :
+									 - DATA TIDAK DITEMUKAN : 	
+									    --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+									 - DATA DITEMUKAN
+							  		   --> DISPLAY DATA PASIEN
+							  		   
+						 TABLE YANG DIGUNAKAN :
+						 * TB REGISTRATION
+							- NO. MR		    : v_mr_code (LINK KE MS PATIENT BERDASARKAN n_patient_id)
+							- NO. REGISTRASI	: v_reg_secondary_id
+							- NAMA		    	: v_patient_name       --> MS PATIENT
+							- ALAMAT			: v_patient_main_addr  --> MS PATIENT
+						 
+				 1.1.2 DI LIST DATA TINDAKAN APOTIK, DISPLAY SEMUA DATA OBAT-BAHAN MEDIS YANG MASIH BERSISA, 
+				 	   YANG DIGUNAKAN PASIEN SELAMA MONDOK.
+				 	      TABLE YANG DIGUNAKAN :
+							 * TB PATIENT INVENTORY
+							    - KODE				: n_item_id	(TB ITEM TRX)
+								- NAMA OBAT			: v_item_name (TB ITEM TRX LINK KE MS ITEM)	
+								- GENERIK			: 	
+								- RACIKAN			: v_dingr_id
+								- NARKOTIK			: v_narcotic_item 
+								- PSIKOTROPIKA		: v_psychotropic_item
+								- SATUAN			: n_mitem_id (TB ITEM TRX LINK KE MS ITEM LINK KE MS ITEM MEASUREMENT)	
+								- JUMLAH			: n_qty_overall - n_qty_used 			  	   
+				
+				 1.1.3 TOMBOL SIMPAN DAN BARU DI-ENABLED.
+				 1.1.4 NEXT TO 4
+							 							
+		   1.2 PASIEN RAJAL/RUJUKAN 
+		       # NOTE : USER BISA MELAKUKAN PENCARIAN BERDASARKAN NO. MR ATAU NO. NOTA
+		                ATAU NO. RESEP
+			    1.2.1 USER INPUT MR
+			     	  1.2.1.1 PENCARIAN VIA BANDBOX
+								1.2.1.1.1 USER INPUT NO.MR ATAU NAMA ATAU ALAMAT PASIEN
+								1.2.1.1.2 USER MENEKAN TOMBOL CARI
+											1.2.1.1.2.a JIKA :
+														  - DATA TIDAK DITEMUKAN : 	
+														     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+														  - DATA DITEMUKAN
+														     --> TAMPILKAN KEDALAM LIST DATA PASIEN
+														  	 --> USER MEMILIH DATA PASIEN
+												  			 --> DISPLAY DATA PASIEN
+															 --> DI BANDBOX NO. NOTA, AKAN MUNCUL NOMOR2 NOTA APOTIK (YANG MASIH AKTIF) SI PASIEN (SESUAI DG NO. MR)
+								  			  	   			 --> USER MEMILIH NO. NOTA YANG DIINGINKAN
+												 	    	 --> NEXT TO 2			     
+					 1.2.1.2 INPUT NO. MR MANUALLY
+							    1.2.1.1.1   JIKA :
+											 - DATA TIDAK DITEMUKAN : 	
+											    --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+											 - DATA DITEMUKAN
+								  			   - DISPLAY DATA PASIEN
+								  			   - DI BANDBOX NO. NOTA, AKAN MUNCUL NOMOR2 NOTA APOTIK (YANG MASIH AKTIF) SI PASIEN (SESUAI DG NO. MR)
+							  			  	   - USER MEMILIH NO. NOTA YANG DIINGINKAN
+							  			  	   - NEXT TO 2
+						 		 			  	   
+			   1.2.2 CARI NO. NOTA
+			     	 1.2.2.1 PENCARIAN VIA BANDBOX
+							 1.2.2.1.1 USER INPUT NO.NOTA ATAU NAMA
+							 1.2.2.1.2 USER MENEKAN TOMBOL CARI
+									   1.2.2.1.2.1 JIKA :
+													  - DATA TIDAK DITEMUKAN : 	
+														--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+													  - DATA DITEMUKAN :
+														--> TAMPILKAN KEDALAM LIST NOTA
+														--> USER MEMILIH NOTA
+														--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+														--> NO. RESEP DITAMPILKAN SESUAI DENGAN NO. NOTA
+														--> NEXT TO 2		  			  	    		         
+					  1.2.2.2 INPUT NO. NOTA MANUALLY
+							  1.2.2.2.1  JIKA :
+									     - DATA TIDAK DITEMUKAN : 	
+										 	--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+										 - DATA DITEMUKAN :
+											--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+											--> NO. RESEP DITAMPILKAN SESUAI DENGAN NO. NOTA
+					  				   		--> NEXT TO 2
+			
+			   1.2.3 CARI NO. RESEP
+			      	 1.2.3.1 PENCARIAN VIA BANDBOX
+							 1.2.3.1.1 USER INPUT NO. RESEP
+							 1.2.3.1.2 USER MENEKAN TOMBOL CARI
+							 1.2.3.1.3 JIKA :
+										  - DATA TIDAK DITEMUKAN : 	
+											--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+										  - DATA DITEMUKAN :
+											--> TAMPILKAN KEDALAM LIST RESEP
+											--> USER MEMILIH NO. RESEP
+											--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. RESEP
+											--> NEXT TO 2		
+											
+					 1.2.3.2 INPUT NO. RESEP MANUALLY
+							 1.2.3.2.1 JIKA :
+								       - DATA TIDAK DITEMUKAN : 	
+									 	 --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+									   - DATA DITEMUKAN :
+										 --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. RESEP
+										 --> NEXT TO 2		
+			
+					 TABLE YANG DIGUNAKAN :
+					 
+					 * TB REGISTRATION
+							- NO. MR		    : v_mr_code (LINK KE MS PATIENT BERDASARKAN n_patient_id)
+							- NO. REGISTRASI	: v_reg_secondary_id
+							- NAMA		    	: v_patient_name       --> MS PATIENT
+							- ALAMAT			: v_patient_main_addr  --> MS PATIENT
+						
+					 * TB EXAMINATION
+							- NO. NOTA			: v_note_no
+							- NO. RESEP			: v_recipe_no
+			  
+    2. TOMBOL SIMPAN DAN BARU DI-ENABLED.
+    3. DISPLAY SEMUA OBAT-BAHAN MEDIS YANG SESUAI DENGAN ISI DARI NO. RESEP
+       NOTE : OBAT YANG BISA DIRETUR, HANYA OBAT NON-RACIKAN!!!!
+       
+       FIELD YANG DI-ENABLED, HANYA FIELD2 DG OBAT/BHN MEDIS YANG BISA DI RETUR.
+       JADI, JIKA ADA OBAT RACIKAN (MISALNYA), MAKA TEXTBOX DI COLUMN JLH RETUR 
+       DI-DISABLED.
+     		
+	   * TB ITEM TRX
+			- KODE				: n_item_id	(TB ITEM TRX)
+			- NAMA OBAT			: v_item_name (TB ITEM TRX LINK KE MS ITEM)	
+			- GENERIK			: 	
+			- RACIKAN			: v_dingr_id
+			- NARKOTIK			: v_narcotic_item 
+			- PSIKOTROPIKA		: v_psychotropic_item
+			- SATUAN			: n_mitem_id (TB ITEM TRX LINK KE MS ITEM LINK KE MS ITEM MEASUREMENT)	
+			- JUMLAH			: n_qty	
+	   
+    4. USER MENGISI JUMLAH RETUR
+    5. USER MENEKAN TOMBOL SIMPAN
+   	   5.1	TERDAPAT KESALAHAN PENGISIAN DATA, MUNCULKAN KONFIRMASI
+		    GAGALKAN PROSES PENYIMPANAN DATA.
+	   5.2  JIKA TIDAK ADA KESALAHAN PENGISIAN DATA  
+			5.2.1 CREATE NO. NOTA RETUR
+			      TABLE YANG DIGUNAKAN :
+			         - TB RETUR PHARMACY TRX
+			          	 NO. NOTA RETUR : v_retur_code 
+			          	 NO. MR		    : n_mr_id (KALO PASIEN RAJAL/RANAP)
+			          	 
+			         - TB RETUR PHARMACY TRX
+			           	 KODE			: n_item_id	
+			      	     JLH RETUR		: n_qty --> BERARTI TB INVENTORY ITEM BERTAMBAH SESUAI DG BATCH ITEMNYA.
+
+			5.2.2 TOMBOL YANG ENABLED :
+			 	  - UBAH
+			 	  - BARU
+			 	  - VALIDASI
+			 	  - PEMBATALAN RETUR
+			 	  - CETAK
+		   
+		    5.2.3 TOMBOL YANG DISABLED :
+		          - BATAL
+		          - SELESAI
+		          - SIMPAN
+			      
+			
+		      	     
+C. UBAH
+   C.1 PERUBAHAN YANG DILAKUKAN LANGSUNG SETELAH USER MENEKAN TOMBOL SIMPAN
+	   C.1.1 INITIAL CONDITION
+		     1. INITIAL
+		        1.1 DATA SUDAH DI SAVE DAN BELUM DI VALIDASI
+		        1.2 SEMUA FIELD DISABLED
+		     2. USER MENEKAN TOMBOL UBAH 
+		        2.1 TOMBOL YANG ENABLED :
+			        - BATAL
+					- SIMPAN
+					
+					TOMBOL YANG DISABLED :
+					- UBAH
+					- CETAK 
+					- SELESAI
+					- BARU
+					- PEMBATALAN RETUR
+					- VALIDASI
+								  
+				2.2 FIELD YANG ENABLED HANYA LIST DATA TINDAKAN APOTIK (OBAT/BAHAN MEDIS YANG DIGUNAKAN PASIEN)
+				    DISPLAY STATUS NOTA.
+				2.3 USER MEMILIH ROW YANG INGIN DIUBAH
+				    2.3.1 JIKA PERUBAHAN JADI DILAKUKAN :
+					       2.3.1.a EDIT ROW  
+							   	   2.3.1.a.1 USER MELAKUKAN PERUBAHAN
+										   	   2.3.1.a.1 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+										       2.3.1.a.2 KONFIRMASI UPDATE BERHASIL
+										       2.3.1.a.3 SEMUA FIELD DI-DISABLED
+				    2.3.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+				    	  2.3.2.1 USER MENEKAN TOMBOL BATAL (REFER TO D)
+				    	  2.3.2.2 SEMUA FIELD KEMBALI DI-DISABLED   
+								    			  
+	  C.1.2  POST CONDITION :
+			 1. DATA BERHASIL DIUPDATE
+			 2. TOMBOL YANG ENABLED :
+				- SEMUA FIELD DI-DISABLED
+				- TOMBOL YANG ENABLED : 
+					- UBAH
+					- PEMBATALAN RETUR
+					- VALIDASI
+					- CETAK
+					- BARU
+								
+				  TOMBOL YANG DISABLED :
+					- BATAL
+					- SIMPAN
+					- SELESAI  
+								     
+						 TABLE YANG TERLIBAT SETELAH PERUBAHAN DATA :
+							- TB ITEM TRX
+							
+							- TB_ITEM_INVENTORY (ITEM DIKEMBALIKAN/DIKURANGI SESUAI DENGAN NO. BATCH)
+							      FIELD YANG DIGUNAKAN : 
+							      - BATCH NO.   : n_batch_id (LINK TO TB BATCH ITEM)
+							      - JUMLAH STOK : n_item_inv_qty 
+									 NOTE : JIKA JLH RETUR BER(+), MAKA JUMLAH STOK DI INVENTORY AKAN BERKURANG
+									        JIKA JLH RETUR DI(-)I, MAKA JUMLAH STOK DI INVENTORY AKAN BERTAMBAH
+						   
+						    - TB RETUR PHARMACY TRX
+					          	 NO. NOTA RETUR : v_retur_code 
+					          	 NO. MR		    : n_mr_id (KALO PASIEN RAJAL/RANAP)
+						 	
+						 	- TB RETUR PHARMACY DETAIL
+						 	  --> JUMLAH RETUR : n_qty
+						 	  
+	C.2 PERUBAHAN DATA YANG TERTUNDA (DATA SUDAH TERSIMPAN DI DATABASE)
+	   	C.2.1 INITIAL CONDITION
+					     1. INITIAL
+					        1.1 DATA SUDAH DI SAVE DAN BELUM DI VALIDASI
+					        1.2 SEMUA FIELD DISABLED
+					        1.3 USER MENCARI NO. NOTA
+					   	   	    1.3.1 USER INPUT NO. NOTA 		
+						  			   1.3.1.a USER MENCARI NO. NOTA PASIEN
+											   1.3.1.a.1 PENCARIAN VIA BANDBOX
+														 2.1.1.a.1.a USER INPUT NO.NOTA ATAU NAMA
+														 2.1.1.a.1.b JIKA :
+																  	 - DATA TIDAK DITEMUKAN : 	
+																  	   --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+																  	 - DATA DITEMUKAN :
+																  	   --> TAMPILKAN KEDALAM LIST NOTA
+																  	   --> USER MEMILIH NOTA
+																  	   --> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+																  			  	    		         
+											   1.3.1.a.2 INPUT NO. NOTA MANUALLY
+														 2.1.1.a.2.a JIKA :
+																  	 - DATA TIDAK DITEMUKAN : 	
+																  		--> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+																  	 - DATA DITEMUKAN :
+																		--> DISPLAY DATA PASIEN+DATA TRANSAKSI SESUAI DENGAN NO. NOTA
+					     2. USER MENEKAN TOMBOL UBAH 
+					        2.1 TOMBOL YANG ENABLED :
+						          - BATAL
+						          - SIMPAN
+						     
+						        TOMBOL YANG DISABLED :
+								  - UBAH
+								  - CETAK 
+								  - SELESAI
+								  - BARU
+								  - PEMBATALAN RETUR
+								  - VALIDASI
+								  
+					        2.2 FIELD YANG ENABLED HANYA LIST DATA TINDAKAN APOTIK 
+					            DISPLAY STATUS NOTA.
+							2.3 USER MEMILIH ROW YANG INGIN DIUBAH
+							    2.3.1 JIKA PERUBAHAN JADI DILAKUKAN :
+								       2.3.1.a EDIT ROW  
+										   	   2.3.1.a.1 USER MELAKUKAN PERUBAHAN
+													   	   2.3.1.a.1 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+													       2.3.1.a.2 KONFIRMASI UPDATE BERHASIL
+													       2.3.1.a.3 SEMUA FIELD DI-DISABLED
+							    2.3.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+							    	  2.3.2.1 USER MENEKAN TOMBOL BATAL (REFER TO D)
+							    	  2.3.2.2 SEMUA FIELD KEMBALI DI-DISABLED    
+								    			  
+        C.2.2  POST CONDITION :
+				1. DATA BERHASIL DIUPDATE
+				2. TOMBOL YANG ENABLED :
+				    - SEMUA FIELD DI-DISABLED
+				    - TOMBOL YANG ENABLED : 
+						- UBAH
+						- PEMBATALAN RETUR
+						- VALIDASI
+						- CETAK
+						- BARU		
+					
+					TOMBOL YANG DISABLED :
+						- BATAL
+						- SIMPAN
+						- SELESAI  
+								     
+						TABLE YANG TERLIBAT SETELAH PERUBAHAN DATA :
+							- TB ITEM TRX
+							
+							- TB_ITEM_INVENTORY (ITEM DIKEMBALIKAN/DIKURANGI SESUAI DENGAN NO. BATCH)
+							      FIELD YANG DIGUNAKAN : 
+							      - BATCH NO.   : n_batch_id (LINK TO TB BATCH ITEM)
+							      - JUMLAH STOK : n_item_inv_qty 
+									 NOTE : JIKA JLH RETUR BER(+), MAKA JUMLAH STOK DI INVENTORY AKAN BERKURANG
+									        JIKA JLH RETUR DI(-)I, MAKA JUMLAH STOK DI INVENTORY AKAN BERTAMBAH
+						   
+						    - TB RETUR PHARMACY TRX
+					          	 NO. NOTA RETUR : v_retur_code 
+					          	 NO. MR		    : n_mr_id (KALO PASIEN RAJAL/RANAP)
+						 	
+						 	- TB RETUR PHARMACY DETAIL
+						 	  --> JUMLAH RETUR : n_qty
+   
+D. BATAL
+   D.1 INITIAL
+       D.1.1 USER TELAH MENEKAN TOMBOL UBAH.
+   D.2 USER MENEKAN TOMBOL BATAL
+   D.3 FORM DIKEMBALIKAN KE KEADAAN SEBELUM USER MENEKAN TOMBOL UBAH. FORM DIDISABLED.
+	
+E. BARU
+   E.1 INITIAL
+	   E.1.1 DATA TELAH DISIMPAN DAN SEMUA FIELD DI-DISABLED.
+			 TOMBOL BARU = ENABLED
+	   E.1.2 USER MENEKAN TOMBOL BARU
+	   E.1.3 FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO A)
+			    
+   5.2 POST CONDITION
+	   		1. FORM BERHASIL DIKOSONGKAN	
+	   		
+F. PEMBATALAN RETUR
+    F.1 NOTA YANG BELUM DIVALIDASI (BISA DIBATALKAN OLEH STAFF)	
+			1. INITIAL
+			   1.1 SEMUA FIELD DI-DISABLED
+			2. USER MENEKAN TOMBOL PEMBATALAN NOTA
+				2.1 USER MENEKAN TOMBOL PEMBATALAN NOTA
+				2.2 USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+					2.2.1  JIKA :
+				           2.2.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+				           2.2.1.b NO, KEMBALI KE FORM UTAMA
+			   	2.2 KONFIRMASI BAHWA NOTA SUDAH DIBATALKAN
+			   	2.3 FORM DIKOSONGKAN DAN SEMUA DATA YANG DISIMPAN SESUAI DG NO. NOTA TSB
+			   	    DIHAPUS DARI DATABASE.
+			   	    
+			NOTE : - DATA YANG AKAN DIHAPUS DARI DATABASE
+					 SEMUA DATA PASIEN YANG MEMPUNYAI PATIENT ID = n_patient_id, DENGAN NO NOTA = v_note_no AKAN DIHAPUS.
+						 TABLE YANG BERKAITAN :
+						    - TB ITEM TRX 	
+							- TB EXAMINATION
+					 SEMUA ITEM YANG DIINPUTKAN AKAN DIKEMBALIKAN KE INVENTORY
+					     TABLE YANG BERKAITAN :
+						   	 - TB BATCH ITEM
+							 - TB INVENTORY (UNTUK MENGEMBALIKAN STOK SEPERTI SEBELUM DILAKUKAN RETUR)
+							 
+		   3. POST CONDITION :  
+			   - NOTA BERHASIL DIBATALKAN.	       	  
+	    
+   F.2 NOTA YANG SUDAH DIVALIDASI (HANYA BISA DIBATALKAN OLEH SUPERVISOR/KABAG)	
+         --> LIHAT BAGIAN SUPERVISOR/KABAG
+         
+G. VALIDASI
+   G.1 VALIDASI DILAKUKAN LANGSUNG SETELAH USER MENEKAN TOMBOL SIMPAN
+		 G.1.1 INITIAL
+			    1. SEMUA FIELD DI-DISABLED
+				2. USER MENEKAN TOMBOL VALIDASI
+				3. USER MENGISI :
+				     - TANGGAL 
+				     - SHIFT
+				     - USERNAME
+				     - PASSWORD
+						       
+				 	3.1 JIKA OK
+				  		3.1.a DI FORM MUNCUL LABEL "NOTA SUDAH DIVALIDASI"
+				   	3.2 JIKA BATAL
+				   	    3.2.a KEMBALI KE FORM UTAMA
+			
+				    TABLE YANG DIGUNAKAN :
+					     -	TB_EXAMINATION 
+					    	    FIELD :
+					    	    - v_validate_status
+				       			- USERNAME & PASSWORD : v_who_create 
+		  						- TANGGAL		      : d_whn_create 
+		  				
+		  				TOMBOL2 YANG ENABLED :
+		  				- CETAK
+		  				- BARU
+  		 G.1.2 POST CONDITION
+  		        - NOTA BERHASIL DI VALIDASI
+  		        			    
+	G.2 VALIDASI TIDAK LANGSUNG DILAKUKAN SETELAH USER MENEKAN TOMBOL SIMPAN  
+		 (VALIDASI YANG TERTUNDA)
+		 G2.1 INITIAL  
+		        - FORM DALAM KEADAAN AWAL (REFER TO A)
+			         
+		 G.2.2 USER MENCARI NO. NOTA RESEP
+			    G.2.2.1 USER INPUT NO. NOTA RESEP
+						 G.2.2.1.a PENCARIAN VIA BANDBOX
+				  			  	    G.2.2.1.a.1. USER INPUT NO.NOTA RESEP ATAU NAMA
+				  			  	    G.2.2.1.a.2. JIKA :
+				  			  	    				- DATA TIDAK DITEMUKAN : 	
+				  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    				- DATA DITEMUKAN :
+				  			  	    				     --> TAMPILKAN KEDALAM LIST NOTA
+				  			  	    				     --> USER MEMILIH NOTA
+				  			  	    				     
+				  		G.2.2.1.b INPUT NO. NOTA RESEP MANUALLY
+				  		   	       G.2.2.1.b.1   JIKA :
+				  			  	    				- DATA TIDAK DITEMUKAN : 	
+				  			  	    				     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+				  			  	    				- DATA DITEMUKAN --> REFER TO 2.C
+												 
+					G.2.2.2 DISPLAY DATA PASIEN BESERTA ISI TRANSAKSI YANG ADA DI NOTA YANG TELAH DI PILIH
+					    	 DI FORM UTAMA. (SEMUA DATA DI-DISABLED)
+					    	
+			  G.2.3 USER MENEKAN TOMBOL VALIDASI 
+			  G.2.4 USER MENGISI :
+					   - TANGGAL 
+					   - SHIFT
+					   - USERNAME
+					   - PASSWORD
+						       
+					 G.2.4.1 JIKA OK
+					    		3.1.a DI FORM MUNCUL LABEL "NOTA SUDAH DIVALIDASI"
+					 G.2.4.2 JIKA BATAL
+					     	    3.2.a KEMBALI KE FORM UTAMA
+			  
+				    TABLE YANG DIGUNAKAN :
+				     -	TB_EXAMINATION 
+				    	    FIELD :
+				    	    - v_validate_status
+			       			- USERNAME & PASSWORD : v_who_create 
+	  						- TANGGAL		      : d_whn_create 
+	  				
+	  				TOMBOL2 YANG ENABLED :
+	  				- CETAK
+	  				- BARU
+
+		G.2.2 POST CONDITION
+  		       - NOTA BERHASIL DI VALIDASI
+		
+H. CETAK
+   H.1 INITIAL
+		H.1.1 SEMUA FIELD DI-DISABLED
+		H.1.2 NOTA SUDAH DISIMPAN
+   H.2 USER MENEKAN TOMBOL CETAK
+   H.3 MUNCUL KONFIRMASI
+	   H.3.1 JIKA :
+		     H.3.1.1 YES, KEMBALI KE FORM UTAMA, DAN NOTA DI CETAK
+		     H.3.1.2 NO, KEMBALI KE FORM UTAMA
+		     
+I. SELESAI
+   I.1. INITIAL
+	    I.1.1 SEMUA FIELD HARUS DIBERSIHKAN (REFER TO E)
+   I.2. USER MENEKAN TOMBOL SELESAI
+   I.3. FORM DITUTUP  

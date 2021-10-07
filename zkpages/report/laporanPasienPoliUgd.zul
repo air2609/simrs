@@ -1,0 +1,82 @@
+<window id="LaporanPasienPoliUgd" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.report.LaporanPoliUgd;
+	
+	ctr = new LaporanPoliUgd();
+	
+	void init()
+	{
+		ctr.init(LaporanPasienPoliUgd);
+	}
+	
+
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>LAPORAN TRANSAKSI PASIEN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="79px"/>
+<h:table align="center" width="100%">
+	<h:tr><h:td width="25%"/>
+		  <h:td><vbox>
+					<groupbox width="500px">
+					<separator spacing="8px"/>
+					<h:table align="center" width="100%">
+						<h:tr><h:td width="5%"/>
+							  <h:td><h:table width="100%" align="center">
+										<h:tr><h:td width="6%" align="right"><h:b><h:font size="1">LOKASI</h:font></h:b></h:td>
+											  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="25%" style="font-size:8pt;font-weight:bold">
+												 <listbox id="locationList" width="70%" mold="select" height="20px" style="font-size:9pt"/>
+											  </h:td>
+										</h:tr>
+										<h:tr><h:td width="6%" align="right"><h:b><h:font size="1">SHIFT</h:font></h:b></h:td>
+											  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="18%" style="font-size:8pt;font-weight:bold">
+												 <listbox id="shiftList" width="50%" mold="select" height="20px" style="font-size:9pt">
+												 	<listitem value="2" label="SHIFT PAGI" selected="true"/>
+												 	<listitem value="1" label="SHIFT SORE"/>
+												 	<listitem value="3" label="SHIFT MALAM"/>
+												 </listbox>
+											  </h:td>
+										</h:tr>
+										<h:tr><h:td width="6%" align="right"><h:b><h:font size="1">TANGGAL</h:font></h:b></h:td>
+											  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="18%" style="font-size:8pt;font-weight:bold">
+												 <datebox id="startDate" width="35%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
+													&amp;nbsp;S.D.
+												 <datebox id="endDate" width="35%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
+											  </h:td>
+										</h:tr>
+							        </h:table>
+							  </h:td>
+						      <h:td width="5%"/>
+					    </h:tr>
+						<h:tr><h:td width="5%"/>
+					    	  <h:td><separator spacing="2px"/>
+					    	  		<h:table width="100%" align="center">
+										<h:tr><h:td width="25%"/>
+											  <h:td align="right">
+												  	 
+									    				<button id="btnPrint" label="LIHAT LAPORAN" image="/image/print.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.createRepport();"/>
+									    	  		
+									    	  </h:td>
+										   	  <h:td width="5%"/>
+									    </h:tr>
+									</h:table>
+					    	  
+							  </h:td>
+							  <h:td width="5%"/>
+						</h:tr>
+					</h:table>
+					<separator spacing="10px"/>
+					</groupbox>
+				</vbox>
+		  </h:td>
+		  <h:td width="25%"/>
+	</h:tr>
+</h:table>
+<separator spacing="100px"/>
+</window>

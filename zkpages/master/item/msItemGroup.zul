@@ -1,0 +1,139 @@
+<window id="masterItemGroup" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="/include/medisafe.css"/>
+<zscript> 
+	import com.vone.medisafe.ui.master.item.ItemGroupController;
+	ctr = new ItemGroupController();
+	
+	void init(){
+		ctr.init(masterItemGroup);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterItemGroup);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterItemGroup);
+	}
+	
+	void doModify(){
+		ctr.doModify(masterItemGroup);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterItemGroup);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM MASTER GROUP ITEM</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="30%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td><h:table width="100%" align="center">
+									<h:tr><h:td width="13%" align="right" style="font-size:8pt"><h:b>KODE</h:b></h:td>
+										  <h:td width="3%" align="center"><h:b>:</h:b></h:td>
+										  <h:td width="28%"><textbox id="itemGroupCode" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							  		</h:tr>
+									<h:tr><h:td width="13%" align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:td>
+										  <h:td width="3%" align="center"><h:b>:</h:b></h:td>
+										  <h:td width="28%"><textbox id="itemGroupName" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							  		</h:tr>
+							    </h:table>
+						  </h:td>
+						  <h:td width="7%"/>
+					</h:tr>
+				</h:table>
+		</h:td>
+		<h:td width="30%"/>
+	</h:tr>
+	<h:tr><h:td width="30%"/>
+		  <h:td><separator spacing="4px"/>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="35%"/>
+						  <h:td width="5%">
+						  	 <h:p align="right">
+			    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave();"/>
+			    		  	 </h:p>
+			    		  </h:td>
+			    		  
+			    		  <h:td width="5%">
+			       			  <h:p align="right">
+			    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px" onClick="doModify();"/>
+			    		  	  </h:p>
+			    		  </h:td>
+			    		 		
+			    		  <h:td width="5%">
+						  	  <h:p align="right">
+			    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px" onClick="doCancel();"/>
+			    		  	  </h:p>
+			    		  </h:td>
+			    		  				   
+			    		  <h:td width="5%">
+			       		 	  <h:p align="left">	
+								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px" onClick="doDelete();"/>
+							  </h:p>
+						  </h:td>
+			    		  <h:td width="35%"/>
+			    	</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="30%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="30%"/>
+		  <h:td><separator spacing="4px"/>	
+				<h:table width="100%" align="center">
+		    		<h:tr><h:td width="20%"/>
+		    			  <h:td>	 	
+		    				    <vbox>
+						  			<groupbox width="450px">
+						  				<caption label="GROUP ITEM"/>
+						  					<h:table width="100%" align="center">
+						  						<h:tr><h:td height="10px"/></h:tr>
+						  						<h:tr><h:td width="3%"/>
+						  							  <h:td>
+							  			  				  	<vbox>
+											  					<listbox id="itemGroupList" width="410px" height="293px" mold="paging" pageSize="9">
+												  					<listhead>
+												  						<listheader label="KODE" style="font-weight:bold;font-size:8pt" sort="auto" width="18%"/>
+												  						<listheader label="NAMA" style="font-weight:bold;font-size:8pt" sort="auto" width="50%"/> 
+												  					</listhead>
+																</listbox>
+										  					</vbox>
+													 </h:td>
+													 <h:td width="3%"/>
+												</h:tr>
+											 </h:table>
+											 
+											<separator spacing="3px"/>
+										
+											<!--<h:table align="center" width="100%">
+			      								 <h:tr><h:td/>
+			      								 	   <h:td width="7%">
+			    		     								<h:p align="right">
+			    				 								<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+			    			 								</h:p>
+			    		  							   </h:td>
+					     							   <h:td width="3%"/>
+			        							 </h:tr>
+			    							</h:table>
+											
+						  			        --><separator spacing="5px"/>
+						   			 
+						   			 </groupbox>
+					   		     </vbox>
+			 				</h:td>
+			  				<h:td width="20%"/>
+					  </h:tr>
+			     </h:table>
+		  </h:td>
+		  <h:td width="30%"/>
+	</h:tr>
+</h:table>
+<separator spacing="19px"/>
+</window>

@@ -1,0 +1,109 @@
+<window id="coaFillMod" xmlns:h="http://www.w3.org/1999/xhtml" width="560px" onCreate="init();">
+
+<zscript>
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	CoaController ctr = new CoaController();
+	
+	void init(){
+	 	ctr.initFillMod(coaFillMod);
+	}
+	
+	void doSave(){
+		ctr.doSaveModify(coaFillMod);
+	}
+		 
+</zscript>
+
+    <style src="/include/medisafe.css"/>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM PENGISIAN</h:td></h:tr>
+	</h:table>
+
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td><h:table width="100%" align="center">
+			       <h:tr><h:td width="12%"/>
+			    		  <h:td><groupbox width="500px">
+								    <caption label="ACCOUNT"/>
+								   		<separator spacing="2px"/>
+											<h:table width="100%" align="center">
+												<h:tr><h:td width="13%"><h:p align="right" style="font-weight:bold;font-size:8pt">ACCOUNT TYPE</h:p></h:td>
+												      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							              			  <h:td width="25%"><textbox id="accType" width="80%" height="14px" readonly="true" style="font-size:8pt"/></h:td>
+							       				</h:tr>
+							       				
+							        			<h:tr><h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">ACCOUNT NO.</h:p></h:td>
+										  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							             			  <h:td width="25%"><textbox id="accNo" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							        			</h:tr>
+							        			
+							        			<h:tr><h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">ACCOUNT NAME</h:p></h:td>
+										  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							             			  <h:td width="25%"><textbox id="accName" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							        			</h:tr>
+							       		    </h:table>
+							       		<separator spacing="2px"/>
+				       		  </groupbox>
+			  			</h:td>
+			  			<h:td width="14%"/>
+			  	   </h:tr>
+			  	</h:table>
+			  	<separator spacing="10px"/>
+			  	<h:table width="100%" align="center">
+			  	   <h:tr><h:td width="12%"/>
+			    		 <h:td><groupbox width="500px">
+								    <caption label="ACCOUNT INFORMATION"/>
+								   		<separator spacing="2px"/>
+											<h:table width="100%" align="center">
+												<h:tr><h:td width="13%"><h:p align="right" style="font-weight:bold;font-size:8pt">STATUS</h:p></h:td>
+												      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							              			  <h:td width="25%"><checkbox id="accStatus" label="ACTIVE" width="80%" height="14px" style="font-weight:bold;font-size:8pt"/></h:td>
+							       				</h:tr>
+							       				
+							        			<h:tr><h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">BALANCE</h:p></h:td>
+										  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							             			  <h:td width="25%"><decimalbox id="accBalance" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							        			</h:tr>
+							        			
+							        			<h:tr><h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">SUBACCOUNT OF</h:p></h:td>
+										  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							             			  <h:td width="25%"><listbox id="accSubof" width="82%" mold="select" style="font-size:9pt"/></h:td>
+							        			</h:tr>
+							    			</h:table>
+							    		<separator spacing="2px"/>
+							    </groupbox>
+			  			</h:td>
+			  			<h:td width="14%"/>
+			  	   </h:tr>
+		  	    </h:table>
+		  </h:td>
+	</h:tr>		
+	<h:tr><h:td><separator spacing="10px"/>  
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="5%"/>
+			    		  <h:td>
+			  					<h:table width="100%" align="center">
+				    				<h:tr><h:td width="5%">
+				    							<h:p align="left">
+				    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave();"/>
+						   					    </h:p>
+						   				  </h:td>
+						   				  <h:td width="5%">
+				    					  		<h:p align="right">
+				    					   			<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px;" onClick="coaFillMod.detach();"/>
+				    					   		</h:p>
+				    					  </h:td>
+				    				</h:tr>
+			    				</h:table>
+			    		</h:td>
+			    		<h:td width="5%"/>
+			  	  </h:tr>
+			  	</h:table>
+		 </h:td>
+	</h:tr>		
+</h:table> 
+<separator spacing="10px"/>
+</window>

@@ -1,0 +1,237 @@
+<?page id="medic_staff_group_page" title="Form Grup Staf Medis"?>
+
+<window id="medicStaffGroup" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.master.MedicStaffGroupController;
+	ctr = new MedicStaffGroupController();
+ 	void init(){
+ 		ctr.init(medicStaffGroup);
+ 		id.focus();
+ 	}
+ 	void doSave(){
+ 		ctr.doSave(medicStaffGroup);
+ 	}
+ 	void doModify(){
+ 		ctr.doModify(medicStaffGroup);
+ 	}
+ 	void doCancel(){
+ 		ctr.doCancel(medicStaffGroup);
+ 	}
+ 	void doDelete(){
+ 		ctr.doDelete(medicStaffGroup);
+ 	}
+</zscript>
+	
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM GROUP STAFF MEDIS</h:td></h:tr>
+</h:table>
+	
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td><h:table width="100%" align="center">
+				   	<h:tr><h:td width="12%"/>
+				   		  <h:td>	
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="10%"><h:p align="right" style="font-weight:bold;font-size:8pt">KODE</h:p></h:td>
+									      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							    		  <h:td width="25%"><textbox id="id" width="80%" height="14px" style="font-size:8pt"/></h:td>
+							    	</h:tr>
+							    	<h:tr><h:td width="10%"><h:p align="right" style="font-weight:bold;font-size:8pt">NAMA</h:p></h:td>
+										  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							    		  <h:td width="25%"><textbox id="name" width="80%" height="14px" style="font-size:8pt"/></h:td>
+									</h:tr>
+								</h:table>
+						  </h:td>
+				  		  <h:td width="14%"/>
+				    </h:tr>
+			 </h:table>
+	     </h:td>
+		 <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="4px"/> 		
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="33%"/>
+			    		  <h:td>
+			  					<h:table width="100%" align="center">
+				    				<h:tr><h:td width="10%"/>
+				    					  <h:td><h:p align="right">
+				    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave()"/>
+				    					  		</h:p>
+				    					  </h:td>
+				    					  <h:td width="5%">
+				    					  		<h:p align="left"> 
+				    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px" onClick="doModify()"/>
+				    		  		 	   		</h:p>
+				    		  		 	  </h:td>
+				    		  			  <h:td width="5%">
+				    		  			  		<h:p align="left">
+				    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px;" onClick="doCancel()"/>
+				    					   		</h:p>
+				    					  </h:td>
+				    					  <h:td width="5%">
+				    					  		<h:p align="left">
+				    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;" onClick="doDelete()"/>
+				    					   		</h:p>
+				    					  </h:td>
+				    					  <h:td width="10%"/>
+				    				</h:tr>
+			    				</h:table>
+			    		</h:td>
+			  			<h:td width="33%"/>
+			  	   </h:tr>
+			  	</h:table>
+	      </h:td>
+		  <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="4px"/> 	  
+	   		    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="30%"/>
+					      <h:td>	 	
+						    	<vbox>
+									  <groupbox width="500px">
+									  	<caption label="DATA GROUP STAFF"/>
+									  		<h:table width="100%" align="center">
+										  		<h:tr><h:td  height="10"></h:td></h:tr>
+										  		<h:tr><h:td width="10%"/>
+												  	  <h:td>
+												  			<listbox id="medicStaffGroupList" multiple="true" width="460px" height="237px" mold="paging" pageSize="17">
+															<listhead>
+																<listheader label="KODE" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NAMA" width="50%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+															</listhead>
+															<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+																	<listitem>
+																		<listcell label="1"/>
+																		<listcell label="1"/>
+																	</listitem>
+															<!--<listitem value="${each.villageId}" forEach="${allVillage}">
+										      					<listcell label="${each.VVillageCode}"/>
+										      					<listcell label="${each.VVillageName}"/>
+										    				</listitem>
+															--></listbox>		
+													  </h:td>
+													  <h:td width="10%"/>
+												</h:tr>
+									  		</h:table>
+											<separator spacing="3px"/>
+									  		
+									  		<!--<h:table width="100%" align="center">
+									  		     <h:tr><h:td align="center">
+									  		     	 	<image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+									  			       	<image id="imgspace1" src="/image/space.gif" width="20px"/>
+											 	 	   	<image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+											 	 	   	<image id="imgspace3" src="/image/space.gif" width="20px"/>
+											 	 	   	<image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+											 	 	  	<image id="imgspace2" src="/image/space.gif" width="20px"/>
+											 	 	   	<image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+											 	        </h:td>
+											 	  </h:tr>
+									  		</h:table>
+									  		
+								  			-->
+								  			<h:table width="100%" align="center">
+									  		   	 <h:tr><h:td width="2%"/>
+									  		   	 	   <h:td><h:p align="right">
+						    						   		 <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+						    						   		 </h:p>
+						    						   </h:td>
+						    						   <h:td width="3%"/>
+						    		  			 </h:tr>
+									  		</h:table>
+									  		
+									  		<separator spacing="5px"/>
+									</groupbox>
+							  </vbox>
+						</h:td>
+						<h:td width="30%"/>
+				  </h:tr>
+			   </h:table>
+		  </h:td>
+		  <h:td width="20%"/> 
+	</h:tr>
+</h:table> 
+<separator spacing="28px"/>
+</window>

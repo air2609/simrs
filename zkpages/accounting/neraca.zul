@@ -1,0 +1,128 @@
+<window id="neraca" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.accounting.NeracaController;
+	import com.vone.medisafe.accounting.AccountingReport;	
+	import org.apache.poi.hssf.usermodel.*;
+	import java.io.*;
+	
+	NeracaController ctr = new NeracaController();
+	void init(){
+		ctr.init(neraca);
+	}
+	
+	public static void download()
+	 {
+	 	try
+		{
+			String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+			String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+			FileInputStream in = new FileInputStream(path);
+			Filedownload.save(in, "application/vnd.ms-excel", "neraca.xls");
+			
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	 }
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>NERACA</h:td></h:tr>
+</h:table>
+	
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="11%"/>
+    	  <h:td>	 	
+	    	  <vbox>
+			       		<h:table width="100%" align="center" border="0">
+								<h:tr><h:td height="5px" colspan="3" align="right">
+									PERIODE : <datebox id="periode" format="dd/MM/yyyy"/> <button id="btnNeraca" label="LIHAT NERACA" onClick="ctr.openNeraca()"/>
+								</h:td></h:tr>
+								<h:tr><h:td width="2%"/>
+									  <h:td>
+									  		<vbox>
+										  			<separator spacing="2px"/>
+										  			<tree id="neracaTree" width="840px" height="428px" multiple="true">
+														<treecols id="neracaTreecols">
+															<treecol label="NO. REKENING" width="30%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="NAMA" width="45%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="SALDO" width="18%" style="font-weight:bold;font-size:8pt"/>
+														</treecols>
+														<treechildren id="neracaTreechildren">
+															<treeitem>
+																<treerow>
+																	<treecell label="AKTIVA"/>
+																</treerow>
+																<treechildren>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="AA"/>
+																			<treecell label="AA"/>
+																			<treecell label="10,000"/>
+																		</treerow>
+								 					 				</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="BB"/>
+																			<treecell label="BB"/>
+																			<treecell label="10,000"/>
+																		</treerow>
+																	</treeitem>
+																</treechildren>
+															</treeitem>
+															<treeitem>
+																<treerow>
+																	<treecell label="KEWAJIBAN"/>
+																</treerow>
+																<treechildren>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="AA"/>
+																			<treecell label="AA"/>
+																			<treecell label="10,000"/>
+																		</treerow>
+								 					 				</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="BB"/>
+																			<treecell label="BB"/>
+																			<treecell label="10,000"/>
+																		</treerow>
+																	</treeitem>
+																</treechildren>
+															</treeitem>
+														</treechildren>
+													</tree>
+									  		</vbox>
+									  </h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+						</h:table>
+			  </vbox>
+		  </h:td>
+		  <h:td width="11%"/>
+	</h:tr>
+	<h:tr><h:td width="11%"/>
+    	  <h:td><separator spacing="2px"/>
+    	  		<h:table width="100%" align="center" border="0">
+					<h:tr><h:td/>
+						  <h:td width="30%">
+							  	<h:p align="right">
+							  		<button id="btnExportToXLS" label="EXPORT TO XLS" image="/image/print.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.exportToXls();download();"/>
+				    				<button id="btnPrint" label="CETAK" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="AccountingReport.openCurrentNeraca(neraca)"/>
+				    	  		</h:p>
+				    	  </h:td>
+				   </h:tr>
+				</h:table>
+    	  </h:td>
+		  <h:td width="11%"/>
+	</h:tr>
+</h:table>
+<separator spacing="13px"/>
+</window>

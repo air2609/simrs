@@ -1,0 +1,162 @@
+<window id="addMedicine" xmlns:h="http://www.w3.org/1999/xhtml" width="770px">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM TAMBAH OBAT</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="10px"/>
+	
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td>	
+				<h:table width="100%" align="center">
+				    	<h:tr><h:td width="15%"/>
+				    		  <h:td>
+									<h:table width="100%" align="center">
+										<h:tr><h:td width="2%"/>
+											  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>KODE</h:b></h:p></h:td>
+										      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+					              			  <h:td width="25%"><textbox id="itemCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+					              			  <h:td width="3%"/>
+					       				</h:tr>
+					       				
+					        			<h:tr><h:td width="2%"/>
+					        				  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
+								  			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+					             			  <h:td width="25%"><textbox id="itemName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+					             			  <h:td width="3%"/>
+					             		</h:tr>
+					        			
+					        			<h:tr><h:td width="2%"/>
+					        				  <h:td width="15%"><h:p align="right" style="font-size:8pt"><h:b>JUMLAH</h:b></h:p></h:td>
+										      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+					              			  <h:td width="25%"><decimalbox id="quantity" width="40%" height="14px" style="font-size:8pt"/></h:td>
+					              		  	  <h:td width="5%"><h:p align="left"><button label="TAMBAH" image="/image/add.gif" style="width:70px;height:26px" onClick="searchItems();"/></h:p></h:td>
+					              		  	  <h:td width="3%"/>
+					        			</h:tr>
+					    			</h:table>
+				  			  </h:td>
+				  			  <h:td width="15%"/>
+				  	   </h:tr>
+			  	</h:table>
+		  	
+		   <separator spacing="5px"/>
+		    
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="36%"/>
+			    		  <h:td>	 	
+						    	<vbox>
+									  <groupbox width="710px" height="185px">
+									  	<caption label="DATA OBAT"/>
+									  	 <separator spacing="5px"/>
+						    		  		<h:table width="100%" align="center">
+										  		<h:tr><h:td height="7px"/></h:tr>
+										  		<h:tr><h:td width="13%"/>
+											  		  <h:td>
+													  		<vbox>
+														  		<listbox id="itemList" multiple="true" width="670px" height="210px" checkmark="true">
+																	<listhead>
+																		<listheader label="KODE" sort="auto" style="font-weight:bold;font-size:8pt" width="15%"/>
+																		<listheader label="JLH STOK" style="font-weight:bold;font-size:8pt" width="10%"/>
+																		<listheader label="NAMA" sort="auto" style="font-weight:bold;font-size:8pt" width="30%" />
+																		<listheader label="HARGA" width="11%" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="SATUAN" style="font-weight:bold;font-size:8pt" width="10%"/>
+																		<listheader label="JUMLAH" style="font-weight:bold;font-size:8pt" width="11%"/>
+																	</listhead>
+															
+																	<listitem onClick="panadol();">
+																		<listcell label="AB00001"/>
+																		<listcell label="PANADOL"/>
+																		<listcell label="10"/>
+																		<listcell label="10000"/>
+																		<listcell label="mg"/>
+																		<listcell><decimalbox id="panadol" width="90%"/></listcell>
+																	</listitem>
+																	
+																	<listitem onClick="aspirin();">
+																		<listcell label="BB00001"/>
+																		<listcell label="ASPIRIN"/>
+																		<listcell label="10"/>
+																		<listcell label="10000"/>
+																		<listcell label="mg"/>
+																		<listcell><decimalbox id="aspirin" width="90%"/></listcell>
+																	</listitem>
+																	
+																	<listitem>
+																		<listcell label="CB00001"/>
+																		<listcell label="PIL KB"/>
+																		<listcell label="10"/>
+																		<listcell label="10000"/>
+																		<listcell label="mg"/>
+																		<listcell><decimalbox width="90%"/></listcell>
+																	</listitem>
+																</listbox>
+															</vbox>
+													   </h:td>
+													   <h:td width="13%"/>
+												</h:tr>
+									  		</h:table>
+											
+											<separator spacing="3px"/>
+									  		
+									  		<!--<h:table width="100%" align="center">
+									  		     <h:tr><h:td align="center">
+									  		     	   <image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+									  			       <image id="imgspace1" src="/image/space.gif" width="20px"/>
+											 	 	   <image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+											 	 	   <image id="imgspace3" src="/image/space.gif" width="20px"/>
+											 	 	   <image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+											 	 	   <image id="imgspace2" src="/image/space.gif" width="20px"/>
+											 	 	   <image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+											 	  	 </h:td>
+											 	</h:tr>
+									  		</h:table>
+									  		--><!-- 
+									  			final Window win = (Window) Executions.createComponents(
+								    															"/zkpages/apotik/racikan.zul",null,null);
+								    										win.doModal();
+									  		 -->
+									  		
+									  		
+								  			<h:table width="100%" align="center">
+									  		   	 <h:tr><h:td width="4%"/>
+								  		  		   	   <h:td width="5%">
+						    						   		<h:p align="right">
+							    						   		 <button label="RACIKAN" style="width:78px;height:26px" image="/image/icons/pharmacy.gif">
+								    						   		 <attribute name="onClick">
+										       						 {
+										       						 	final Window win = (Window) Executions.createComponents(
+	    												 									"/zkpages/drugStore/racikan.zul",null,null);
+	    																win.doModal();
+	    										
+										       						 }
+										       						 </attribute>
+							    						   		 </button>
+						    						   		 </h:p>
+						    						   </h:td>
+									  		   	 	   <h:td><h:p align="right">
+						    						   			 <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="addMedicine.detach()"/>
+						    						   		 </h:p>
+						    						   </h:td>
+						    						   <h:td width="4%"/>
+						    		  			 </h:tr>
+									  		</h:table>
+									  		<separator spacing="1px"/>
+									   </groupbox>
+							     </vbox>
+			  		   <separator spacing="5px"/>
+			  		   </h:td>
+			  		   <h:td width="30%"/>
+			  	 </h:tr>
+		      </h:table>
+ 	   </h:td>
+</h:tr>
+</h:table> 
+
+</window>

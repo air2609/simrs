@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vone.medisafe.antrian.bpjs.MsPolyDoctor" table="ms_poly_doctor" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">ms_poly_doctor_id_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="staff" class="com.vone.medisafe.mapping.MsStaff" fetch="select">
+            <column name="doctor_id" />
+        </many-to-one>
+        <property name="photo" type="string">
+            <column name="photo"/>
+        </property>
+        <property name="polyStatus" type="string">
+            <column name="poly_status" length="20" />
+        </property>
+            <property name="bookingFlag" type="string">
+            <column name="booking_flag" length="1" />
+        </property>
+        <property name="maxPatient" type="integer">
+            <column name="max_patient"/>
+        </property>
+        <property name="scheduleFrom" type="time">
+            <column name="schedule_from"/>
+        </property>
+        <property name="scheduleTo" type="time">
+            <column name="schedule_to"/>
+        </property>
+        <property name="unit" type="string">
+            <column name="unit" length="255" />
+        </property>
+        <property name="doctorDescription" type="string">
+            <column name="doctor_description" length="1000" />
+        </property>
+        <property name="monSchedule" type="string">
+            <column name="mon_schedule" length="255" />
+        </property>
+        <property name="tueSchedule" type="string">
+            <column name="tue_schedule" length="255" />
+        </property>
+        <property name="wedSchedule" type="string">
+            <column name="wed_schedule" length="255" />
+        </property>
+        <property name="thuSchedule" type="string">
+            <column name="thu_schedule" length="255" />
+        </property>
+        <property name="friSchedule" type="string">
+            <column name="fri_schedule" length="255" />
+        </property>
+        <property name="satSchedule" type="string">
+            <column name="sat_schedule" length="255" />
+        </property>
+        <property name="sunSchedule" type="string">
+            <column name="sun_schedule" length="255" />
+        </property>
+    </class>
+</hibernate-mapping>

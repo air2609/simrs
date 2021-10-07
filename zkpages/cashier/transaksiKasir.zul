@@ -1,0 +1,612 @@
+<?page id="SC0021"?>
+<window id="CashierTransaction" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+
+	import com.vone.medisafe.cashier.CashierTransactionController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	
+	ctr = new CashierTransactionController();
+	
+	void init()
+	{
+		ctr.init(CashierTransaction);
+	}
+	
+	void searchNote(){
+		ctr.searchNote();
+	}
+	
+	void getNotesDetail(){
+		ctr.getNotesDetail();
+	}
+	
+	void getRegistration(int type){
+		ctr.getRegistration(type);
+	}
+	
+	void clear(){
+		ctr.clear();
+	}
+	
+	void getDiscountValue(){
+		ctr.getDiscountValue();
+	}
+	
+	void doSave(){
+		ctr.doSave();
+	}
+	
+	void searchBill(){
+		ctr.searchBill();
+	}
+	
+	void getBillDetil(){
+		ctr.getBillDetil();
+	}
+	
+	void cetak()
+	{
+		ctr.cetak();
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TRANSAKSI KASIR</h:td></h:tr>
+</h:table>	
+	
+<separator spacing="1px"/>
+	
+<h:table align="center" width="100%" border="0">
+	<h:tr><h:td width="14%"/>
+	      <h:td><vbox>
+	      		<groupbox width="920px">
+		           <caption label="DATA PASIEN"/>
+			     	   <h:table align="center" width="100%">
+			 				<h:tr><h:td width="19%" align="right"><h:b><h:font size="1">LOKASI TRANSAKSI</h:font></h:b></h:td>
+					   	    	  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               			  <h:td width="26%">
+			               			  	<listbox mold="select" id="locationList" onSelect="" width="222px" height="20     px" style="font-size:9pt">
+			               		 			<listitem value="KASIR" label="1. KASIR"/>
+			               			  	</listbox>
+		               			  </h:td>
+		               			  <h:td width="3%"/>
+			 					  <h:td width="19%" align="right"><h:b><h:font size="1">NO. KWITANSI</h:font></h:b></h:td>
+							   	  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				               	  <h:td>
+				               		  		<bandbox id="noteNumber" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="189px" height="15px" onOpen="searchNote.focus();" readonly="true">
+					               		  		<bandpopup>
+													<vbox>		
+														<h:table align="center" width="100%" sclass="BasicBlueTitle">
+														 	<h:tr><h:td>CARI KWITANSI		
+														 				<h:font color="white" weight="bold" size="4pt">*</h:font>
+																  </h:td>
+															</h:tr>
+														</h:table>
+														
+														<separator spacing="3px"/>
+																	
+														<h:table width="100%" align="center">
+															<h:tr><h:td width="26%" align="right"><h:b><h:font size="1">NO. KWITANSI</h:font></h:b></h:td>
+																  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="35%" align="left"><textbox id="searchNote" width="90%" height="14px"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="26%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="35%" align="left"><textbox id="searchName" width="90%" height="14px"/></h:td>
+																  <h:td width="15%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.searchBill();"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="26%" align="right"><h:b><h:font size="1">JENIS TRANSAKSI</h:font></h:b></h:td>
+								 								  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="35%">
+																  		<listbox id="billOptionList" mold="select" width="85%" style="font-size:9pt">
+																			<listitem value="2" label="KWITANSI TRANSAKSI" selected="true"/>
+																			<listitem value="4" label="KWITANSI RETUR"/>
+																		</listbox>
+																  </h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+														</h:table>
+														<!--<separator spacing="2px"/>
+														<h:table align="center" width="100%">
+															<h:tr><h:td width="5%"/>
+																  <h:td width="20%" align="right"><h:b><h:font size="1">PILIH TRANSAKSI</h:font></h:b></h:td>
+								 								  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="30%">
+																  		<listbox id="billOptionList" mold="select" width="95%" style="font-size:9pt">
+																			<listitem value="2" label="KWITANSI TRANSAKSI" selected="true"/>
+																			<listitem value="4" label="KWITANSI RETUR"/>
+																		</listbox>
+																  </h:td>
+																  <h:td width="20%"/>
+														    </h:tr>
+														</h:table>
+													   		
+														--><separator spacing="3px"/>
+								
+														<label value="*) UNTUK PASIEN YANG TELAH MEMBAYAR" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+														<listbox id="noteList" width="500px"  onSelect="getBillDetil(); noteNumber.closeDropdown();" mold="paging" pageSize="10">
+															<listhead>
+																<listheader label="NO. NOTA" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NAMA" width="30%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
+																
+															</listhead>
+													
+															<listitem>
+																<listcell label="KPJ-0611-000001"/>
+																<listcell label="RATNAWATI"/>
+																<listcell label="BARU"/>
+															</listitem>
+															<listitem>
+																<listcell label="KPJ-0611-000002"/>
+																<listcell label="RATNAWATI"/>
+																<listcell label="BARU"/>
+															</listitem>	
+													    </listbox>
+													</vbox>
+												</bandpopup>
+											</bandbox>
+				               	  </h:td>
+		               	    </h:tr>
+		      	      </h:table>
+		      	     
+		      	      <h:table align="center" width="100%">
+			      	     	<h:tr><h:td width="19%" align="right"><h:b><h:font size="1">JENIS TRANSAKSI</h:font></h:b></h:td>
+					   	    	  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               			  <h:td width="38%" align="left">
+			               			  	 
+				               			  	<radiogroup id="transactionType" onCheck="ctr.getTransactionType();">
+				               		 			<radio value="pelunasan" label="PELUNASAN"  style="font-weight:bold;font-size:7pt" checked="true"/>
+				               			  		<radio value="deposit" label="DEPOSIT"  style="font-weight:bold;font-size:7pt"/>
+				               		 			<radio value="pengembalian" label="RETUR-DEPOSIT"  style="font-weight:bold;font-size:7pt"/>
+				               			  	</radiogroup>
+			               			  	
+		               			  </h:td>
+		               			  <h:td width="1%"/>
+			      	     		  <h:td width="9%" align="right"><h:b><h:font size="1">NO. NOTA</h:font></h:b></h:td>
+							   	  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				               	  <h:td>
+				               		  		<bandbox id="transactionNumber" width="189px" onOpen="trxNo.focus();" style="font-size:8pt;font-weight:bold" readonly="true">
+					               		 	   <bandpopup>
+												   <vbox>		
+													    <h:table align="center" width="100%" sclass="BasicBlueTitle">
+													 	 	<h:tr><h:td>CARI NOTA		
+													 	 				<h:font color="white" weight="bold" size="4pt">*</h:font>
+																 </h:td>
+															</h:tr>
+													    </h:table>
+													
+													    <separator spacing="3px"/>
+														<h:table width="100%" align="center">
+															<h:tr><h:td width="12%"/>
+															      <h:td width="15%" align="right"><h:b><h:font size="1">NO. NOTA</h:font></h:b></h:td>
+																  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="40%" align="left"><textbox id="trxNo" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="12%"/>
+															      <h:td width="15%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="30%" align="left"><textbox id="name" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="searchNote();"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="12%"/>
+																  <h:td width="20%" align="right"><h:b><h:font size="1">JENIS TRANSAKSI</h:font></h:b></h:td>
+								 								  <h:td width="5%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%">
+																  		<listbox id="chooseTrx" mold="select" width="70%" style="font-size:9pt">
+																			<listitem value="2" label="NOTA TRANSAKSI" selected="true"/>
+																			<listitem value="4" label="NOTA RETUR"/>
+																		</listbox>
+																  </h:td>
+																  <h:td width="2%"/>
+														    </h:tr>
+														</h:table>
+														<!--<h:table align="center" width="100%">
+															<h:tr><h:td width="6%"/>
+																  <h:td width="20%" align="right"><h:b><h:font size="1">JENIS TRANSAKSI</h:font></h:b></h:td>
+								 								  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%">
+																  		<listbox id="chooseTrx" mold="select" width="97%" style="font-size:9pt">
+																			<listitem value="2" label="NOTA TRANSAKSI" selected="true"/>
+																			<listitem value="4" label="NOTA RETUR"/>
+																		</listbox>
+																  </h:td>
+																  <h:td width="20%"/>
+														    </h:tr>
+														</h:table>
+													   		
+													  	--><separator spacing="3px"/>
+														<label value="*) UNTUK RAWAT JALAN DAN RUJUKAN" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+														<listbox id="transactionNumberList" width="650px" multiple="true" checkmark="true" mold="paging" pageSize="10">
+															<listhead>
+																<listheader label="NO. NOTA" width="27%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NAMA PASIEN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="TANGGAL" width="13%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="STATUS LUNAS" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NILAI TRANSAKSI" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+															</listhead>
+													
+															<listitem>
+																<listcell label="J-UGD-0609-000001"/>
+																<listcell label="25/09/2006"/>
+																<listcell label="LUNAS"/>
+																<listcell label="SUDAH VALIDASI"/>
+															</listitem>
+													
+															<listitem>
+																<listcell label="J-UGD-0609-000002"/>
+																<listcell label="25/09/2006"/>
+																<listcell label="BELUM LUNAS"/>
+																<listcell label="SUDAH VALIDASI"/>
+															</listitem>
+																	
+															<listitem>
+																<listcell label="J-UGD-0609-000003"/>
+																<listcell label="25/09/2006"/>
+																<listcell label="BELUM LUNAS"/>
+																<listcell label="BELUM VALIDASI"/>
+															</listitem>
+														</listbox>
+														<separator spacing="2px"/>
+														<h:table width="100%" align="center">
+															<h:tr><h:td><button label="PILIH" image="/image/check.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="getNotesDetail(); transactionNumber.closeDropdown();"/></h:td></h:tr>
+														</h:table>
+												  </vbox>
+											</bandpopup>
+				               		 	</bandbox>
+				               	  </h:td>
+		               		</h:tr>	
+				  	  </h:table> 
+		      	     
+		      	      <h:table align="center" width="100%">
+			 			  <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+								<h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		        				<h:td width="30%">
+		        					<bandbox id="MRNumber" width="198px" onOK="getRegistration(MedisafeConstants.INPUT_BY_MANUAL);" onChange="getRegistration(MedisafeConstants.INPUT_BY_MANUAL);" onOpen="crNoMR.focus();" style="font-size:8pt">
+										<bandpopup>
+											<vbox>		
+												<h:table align="center" width="100%" sclass="BasicBlueTitle">
+												 	<h:tr><h:td>CARI DATA PASIEN		
+												 				<h:font color="white" weight="bold" size="4pt">*</h:font>
+														  </h:td>
+													</h:tr>
+												</h:table>
+											
+												<separator spacing="3px"/>
+														
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="2%"/>
+													      <h:td width="25%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><textbox id="crNoMR" width="94%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
+													      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><textbox id="crNama" width="94%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
+													      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><datebox id="crTgl" width="90%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
+													      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatient(crNoMR,crNama,crTgl,crNoAlamat,MRList);"/></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+												</h:table>
+											
+												<separator spacing="3px"/>
+											
+												<label value="*) KHUSUS PASIEN YANG MEMILIKI NO. MR DAN TER-REGISTRASI" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+												<listbox id="MRList" width="700px" onSelect="getRegistration(MedisafeConstants.INPUT_BY_SEARCH);MRNumber.closeDropdown();" mold="paging" pageSize="10">
+													<listhead>
+														<listheader label="NO. MR"  style="font-weight:bold;font-size:8pt" width="15%" sort="auto"/>
+														<listheader label="NAMA"  style="font-weight:bold;font-size:8pt" width="30%" sort="auto"/>
+														<listheader label="TGL. LAHIR"  style="font-weight:bold;font-size:8pt" width="15%"/>
+														<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+													</listhead>
+										
+													<listitem>
+														<listcell label="11-11-11"/>
+														<listcell label="Anastasia"/>
+														<listcell label="Jl. Adisucipto no. 103"/>
+													</listitem>
+										
+													<listitem>
+														<listcell label="11-11-12"/>
+														<listcell label="Andrea"/>
+														<listcell label="Jl. Gejayan no. 8"/>
+													</listitem>
+														
+													<listitem>
+														<listcell label="11-11-13"/>
+														<listcell label="Christoforus"/>
+														<listcell label="Jl. RingRoad Utara no. 44"/>
+													</listitem>
+												
+										   		</listbox>
+											</vbox>
+										</bandpopup>
+									</bandbox>
+		         			  </h:td>
+		         			  
+		         			  <h:td width="18%" align="right"><h:b><h:font size="1">NO. REGISTRASI</h:font></h:b></h:td>
+					   		  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		  <h:td width="30%"><textbox id="registrationNumber" readonly="true" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="80%" height="15px"/></h:td>
+		               </h:tr>
+		               
+			      	   <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+					   	     <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		 <h:td width="26%"><textbox id="patientName" readonly="true" width="80%" height="14px" style="font-size:8pt"/></h:td>
+					  		  
+					  		 <h:td width="18%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+					   		 <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		              		 <h:td width="30%"><textbox id="address" readonly="true" width="209px" height="14px" style="font-size:8pt" rows="3"/></h:td>
+		              </h:tr>
+			      	   
+			      	  <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">TIPE PASIEN</h:font></h:b></h:td>
+					   	    <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		<h:td width="26%"><textbox id="patientType" readonly="true" width="80%" height="14px" style="font-size:8pt"/></h:td>
+		               		
+		              		<h:td width="18%" align="right"><h:b><h:font size="1">BED</h:font></h:b></h:td>
+					   		<h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		              		<h:td width="30%"><textbox id="bed" readonly="true" width="80%" height="14px" style="font-size:8pt"/></h:td>
+		              </h:tr>
+			      	  <h:tr><h:td width="19%" align="right"><h:b><h:font size="1">NAMA PENANGGUNG</h:font></h:b></h:td>
+					   	    <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		<h:td width="26%"><textbox id="nameOnBill" width="80%" height="14px" style="font-size:8pt"/></h:td>
+		               		
+		              		<h:td width="18%" align="right"><h:b><h:font size="1">ALAMAT PENANGGUNG</h:font></h:b></h:td>
+					   		<h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		              		<h:td width="30%"><textbox id="addrOnBill" width="209px" height="14px" style="font-size:8pt" rows="3"/></h:td>
+		              </h:tr>
+	           	</h:table>
+            </groupbox>
+		   </vbox>
+		</h:td>
+		<h:td width="14%"/>
+    </h:tr>
+
+	<h:tr><h:td width="14%"/>
+		  <h:td>
+				<!--<h:table width="100%" align="center">
+	    			<h:tr><h:td width="11%"/>
+	    				  <h:td>
+	    				  		 align="left">	 	
+				    				  --><vbox>
+				    				  			<hbox>
+				    				  			<label id="labelStatus" value="STATUS NOTA : " style="font-weight:bold;font-size:8pt"/>
+				    				  			<label id="statusNota" value="" style="font-weight:bold;font-size:8pt"/>
+				    				  			</hbox>
+							  				<!--<h:table align="center" width="100%">	
+									  	 		<h:tr><h:td width="1%"/>
+									  				  <h:td width="12%" align="right">
+													   		 
+														   		<h:font style="font-size:8pt;font-weight:bold;color:WHITE">-</h:font>
+								   								<h:font color="red" size="1pt">
+														   			<label id="labelStatus" value="STATUS NOTA : " style="font-weight:bold;font-size:8pt"/>
+														  		</h:font>
+													  		
+										  	  		   </h:td> 
+										  	  		   <h:td align="left">
+													  		  
+													  		 	<h:font style="font-size:8pt;font-weight:bold;color:WHITE">-</h:font>
+								   								<h:font color="red" size="1pt">
+													  		 		<label id="statusNota" value="" style="font-weight:bold;font-size:8pt"/>
+													  			</h:font>
+													  		 
+												  	   </h:td> 
+											     </h:tr>
+									        </h:table>-->
+								  			<groupbox width="920px">
+								  			<caption label="DATA TRANSAKSI PASIEN"/>
+								  					<h:table width="100%" align="center">
+								  						<separator spacing="0px"/>
+								  						<h:tr><h:td width="2%"/>
+								  							  <h:td>
+									  			  				  	<vbox>
+													  					<listbox id="cashierList" multiple="true" width="880px" height="102px">
+														  					<listhead>
+														  						<listheader label="NO. NOTA" width="15%" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="KODE" width="9%" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="KETERANGAN" width="34%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="JUMLAH" width="7%" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="HARGA" width="11%" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="DISKON RS" width="9%" style="font-weight:bold;font-size:8pt"/>
+														  						<listheader label="SUBTOTAL" width="13%" style="font-weight:bold;font-size:8pt"/>
+														  					</listhead>
+													
+														  					<listitem>
+														  						<listcell label="J-UGD-0712-000001"/>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="PERBAN"/>
+														  						<listcell label="BM"/>
+														  						<listcell label="2"/>
+														  						<listcell label="10000"/>
+														  						<listcell label="RP 5000"/>
+											  						  			<listcell label="15000"/>
+											  						  		</listitem>
+														 					<listitem>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="PERBAN"/>
+														  						<listcell label="BM"/>
+														  						<listcell label="2"/>
+														  						<listcell label="10000"/>
+														  						<listcell label="RP 5000"/>
+											  						  			<listcell label="15000"/>
+											  						  		</listitem>
+														 					<listitem>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="AB00002"/>
+														  						<listcell label="JARUM SUNTIK"/>
+														  						<listcell label="BM"/>
+														  						<listcell label="1"/>
+														  						<listcell label="20000"/>
+														  						<listcell label="RP 5000"/>
+											  						  			<listcell label="15000"/>
+											  						  		</listitem>
+														 					
+														 					<listitem>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="AB00003"/>
+														  						<listcell label="ANTIBIOTIK"/>
+														  						<listcell label="O"/>
+														  						<listcell label="1"/>
+														  						<listcell label="10000"/>
+														  						<listcell label="RP 5000"/>
+											  						  			<listcell label="5000"/>
+											  						  		</listitem>
+														 					
+														 					<listitem>
+														  						<listcell label="AB00001"/>
+														  						<listcell label="AB00004"/>
+														  						<listcell label="PERIKSA GIGI"/>
+														  						<listcell label="T"/>
+														  						<listcell label="1"/>
+														  						<listcell label="10000"/>
+														  						<listcell label="RP 5000"/>
+											  						  			<listcell label="5000"/>
+											  						  		</listitem>
+													  					</listbox>
+												  					</vbox>
+															 </h:td>
+															 <h:td width="2%"/>
+														</h:tr>
+													 </h:table>
+												
+												<h:table width="100%" align="center">
+								  					<h:tr><h:td width="1%"/>
+								  				       	  <h:td width="10%" align="right"><h:b><h:font size="1">BIAYA</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="total" readonly="true" format="#,##0.##" height="14px" width="94%" style="font-size:9pt;font-weight:bold;"/></h:td>
+														  
+														  <h:td width="15%" align="right"><h:b><h:font size="1">PPN</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="ppn" value="10" format="#,##0.##" onChange="getDiscountValue();" height="14px" width="40%" style="font-size:9pt;font-weight:bold;"/>&amp;nbsp%</h:td>
+														  
+														  <h:td width="20%" align="right"><h:b><h:font size="1">BAYAR TUNAI</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+
+								  						  <h:td width="16%"><decimalbox id="cashPay" onChange="ctr.calculateSettlement();" format="#,##0.##" style="font-size:9pt;font-weight:bold" height="14px" width="84%"/></h:td>
+								  						  <h:td width="9%"><h:font style="font-size:19px;font-weight:bold;color:WHITE">|</h:font></h:td>
+														  
+													</h:tr>
+													<h:tr><h:td width="1%"/>
+								  				       	  <h:td width="10%" align="right"><h:b><h:font size="1">TTL. RETUR</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="returnTtl" readonly="true" format="#,##0.##" height="14px" width="94%" style="font-size:9pt;font-weight:bold;"/></h:td>
+														  
+														  <h:td width="15%" align="center"><textbox id="returnNo" readonly="true" height="14px" width="168px" value="R-DP1-0611-000001" style="font-size:9pt;font-weight:bold;"/></h:td>
+								  						  <h:td width="3%"/>
+								  						  <h:td width="15%"/>
+								  						 
+								  						  <h:td width="20%" align="right"><h:b><h:font size="1">BAYAR NON TUNAI</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+
+								  						  <h:td width="16%"><decimalbox id="creditPay"  value="10" readonly="true" format="#,##0.##" height="14px" width="84%" style="font-size:9pt;font-weight:bold;"/></h:td>
+								  						  <h:td width="10%"><h:font style="font-size:19px;font-weight:bold;color:WHITE">|</h:font></h:td>
+														 
+													</h:tr>
+													<h:tr><h:td width="1%"/>
+								  				       	  <h:td width="10%" align="right"><h:b><h:font size="1">DISKON</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%" align="left">
+								  						  		 
+									  						  		<decimalbox id="discount" format="#,##0.##" height="14px" width="55%" onChange="getDiscountValue();" style="font-size:9pt;font-weight:bold;"/>
+								  						  			<listbox id="discountType" mold="select" width="35%" height="19px" style="font-size:9pt" onSelect="getDiscountValue();">
+								  						  				<listitem label="RP" value="RP" selected="true"/>
+								  						  				<listitem label="%" value="%"/>
+								  						 			</listbox>
+								  						 		
+								  						  </h:td>
+								  				       	  
+														  <h:td width="15%" align="right"><h:b><h:font size="1">TTL. BIAYA</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="totalAmount" readonly="true" format="#,##0.##" height="14px" width="94%" style="font-size:9pt;font-weight:bold;"/></h:td>
+														  
+														  <h:td width="20%" align="right"><h:b><h:font size="1">BAYAR DEPOSIT</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+
+								  						  <h:td width="16%"><decimalbox id="depositPaid" onChange="ctr.calculateSettlement();" format="#,##0.##" height="14px" width="84%" style="font-size:9pt;font-weight:bold;"/></h:td>
+								  						  <h:td width="9%"><h:font style="font-size:19px;font-weight:bold;color:WHITE">|</h:font></h:td>
+													</h:tr>
+													
+													<h:tr><h:td width="1%"/>
+								  				       	  <h:td width="10%" align="right"><h:b><h:font size="1">TTL. DISC</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="discountTotal" readonly="true" format="#,##0.##" height="14px" width="94%" style="font-size:9pt;font-weight:bold;"/></h:td>
+														 
+														  <h:td width="15%" align="right"><h:b><h:font size="1">JUMLAH DEPOSIT</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="15%"><decimalbox id="amountOfDeposit" value="1324934" format="#,##0.##"  style="font-size:9pt;font-weight:bold" readonly="true" height="14px" width="94%"/></h:td>
+														  
+														  <h:td width="20%" align="right"><h:b><h:font size="1">KELEBIHAN/KEKURANGAN</h:font></h:b></h:td>
+								  						  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+								  						  <h:td width="16%"><decimalbox id="amountOfReturn" readonly="true" format="#,##0.##" height="14px" width="84%" style="font-size:9pt;font-weight:bold;"/></h:td>
+								  						  <h:td width="9%"><h:font style="font-size:19px;font-weight:bold;color:WHITE">|</h:font></h:td>
+													</h:tr>
+								  				</h:table>
+											</groupbox>
+							   		</vbox><!--
+				   			   
+		 				 </h:td>
+		  				 <h:td width="10%"/>
+				   </h:tr>
+			   </h:table>
+		  --><h:td width="14%"/>
+		  </h:td>
+    </h:tr>
+</h:table>				
+<h:table width="100%" align="center">
+	<h:tr><h:td width="9%"/>
+		  <h:td width="5%" align="left">
+				 
+    				<button id="btnPay" label="BAYAR" image="/image/icons/purchasing.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+    		  	
+    	  </h:td>
+    	  <h:td width="5%" align="right">
+				 
+    				<button id="btnNew" label="BARU" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="clear();"/>
+    		  	
+    	  </h:td><!--
+    	  <h:td width="7%" align="right">
+				 
+    				<button id="btnCancel" label="BATAL KWITANSI" image="/image/batal.gif" style="width:140px;height:26px"/>    						
+    			
+    	 </h:td> -->
+    	  <h:td align="right">
+    			 
+    		   		<button id="btnLock" label="LOCK" disabled="true" image="/image/lock.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.lock();"/>
+    			
+    	  </h:td>
+    	  <h:td align="left">
+    			 
+    		   		<button id="btnOut" label="CHECK OUT" disabled="true" image="/image/patient.jpg" style="width:120px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.checkOut();"/>
+    			
+    	  </h:td>
+    	  <h:td width="5%" align="right">
+			  	 
+    				<button id="btnCetak" label="CETAK" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="cetak();"/>
+				
+    	 </h:td><!--
+    	 <h:td width="5%" align="left">
+    	   		 
+    		 		<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px"/>
+    	 		
+    	</h:td>
+    	--><h:td width="9%"/>
+   </h:tr>
+</h:table>
+</window>

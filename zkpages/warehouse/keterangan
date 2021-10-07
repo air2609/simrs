@@ -1,0 +1,46 @@
+Misal :
+ 	Poli minta 10 item ke warehouse gede.
+ 	trus dari warehouse bisa ngeliat item beserta jml yang diminta (bln keliatan batch no.-nya)
+ 	
+ 	trus orang warehouse mencari item yang namanya Panadol.
+ 	ternyata Panadol punya banyak batch no. 
+ 	mis : 111111
+ 	      111112
+ 	      111113
+    nah..bisa aja si panadol yang diberikan ke bagian poliklinik
+    punya batch yang berbeda..(tapi jumlah yang 10 itu otomatis di taruh di batch paling atas)
+    mis : 11111   5 
+          11112   5
+          
+
+
+02-10-06
+	XXX gudang itu = ATASANNYA GUDANG..
+	saya gak tau bahasa indonesia yang tepat untuk menggambarkan itu tuh apa..
+	
+	contoh :
+	aku kerja di bagian gudang A. arif kerja di gudang B. babe kerja di Gudang C.
+	gudang A kedudukannya di bawah gudang B. gudang B kedudukannya di bawah gudang C.
+	
+	back to Form..
+	  Kode 			:  aax
+	  Nama			:  gudang A
+	  Lokasi		:  gudang bagian x
+	  XXX GUDANG	:  gudang B --> superiornya gudang A
+	  
+	  Kode 			:  abx
+	  Nama			:  gudang B
+	  Lokasi		:  gudang bagian bx
+	  XXX GUDANG	:  gudang C --> superiornya gudang B
+	  
+	  tapi satu gudang tidak harus punya superior.
+	  pengaruhnya nt di permintaan item ke gudang..
+	  misal :
+	  gudang A membutuhkan obat panadol 10 strip..
+	  gudang A mintanya ke gudang B (tidak bisa langsung ke gudang C, kalopun di gudang B juga 
+	  kehabisan stok, maka yang meminta si panadol itu adalah gudang B).
+	  
+	  udah nangkap maksudnya blum rif???
+	  XXX GUDANG = SUPERIOR gudang yang lain
+	  
+	         

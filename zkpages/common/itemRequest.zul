@@ -1,0 +1,31 @@
+<?page id="requestRoot"?>
+<window id="itemRequest" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox id="tbroot" width="100%">
+	<tabs>
+		<tab id="request" label="PERMINTAAN O-BM"/>
+		<tab id="approved" label="PERSETUJUAN PERMINTAAN O-BM"/>
+		<tab id="history" label="HISTORY PERMINTAAN"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/common/permintaanItem.zul"/>	
+		</tabpanel>
+		 
+		<tabpanel>
+			<include src="/zkpages/common/detailRequest.zul"/>
+		</tabpanel>
+		
+		<tabpanel>
+			<include src="/zkpages/common/historyRequest.zul"/>
+		</tabpanel>
+			
+	</tabpanels>
+	
+</tabbox>
+
+</window>

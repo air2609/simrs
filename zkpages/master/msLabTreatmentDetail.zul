@@ -1,0 +1,102 @@
+<window id="masterLabTreatment" xmlns:h="http://www.w3.org/1999/xhtml" sclass="Float" width="99%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.ui.master.treatment.TreatmentLabController;
+	ctr = new TreatmentLabController();
+	void init(){
+		ctr.init(masterLabTreatment);
+	}
+</zscript> 
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM TINDAKAN LABORATORIUM</h:td></h:tr>
+	</h:table>
+
+	<separator spacing="7px"/>
+	
+	<h:table width="100%" align="center">
+		<h:tr><h:td width="20%"/>
+			  <h:td>	
+				    <h:table width="100%" align="center">
+				    	<h:tr><h:td width="11%"/>
+				    		  <h:td>
+									<h:table width="100%" align="center">
+										<h:tr><h:td width="12%" align="right"><h:b><h:font size="1">KATEGORI</h:font></h:b></h:td>
+										      <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b>:</h:td>
+					              			  <h:td width="35%"><listbox id="categoryList" mold="select" width="95%" height="24px" style="font-size:9pt" onSelect="ctr.getDetailTreatment();"/></h:td>
+					              			  <h:td width="10%" align="right">
+					              			  		 
+					    					  			<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.getDetailTreatment();"/>
+					    					  		
+					    					  </h:td>
+					       				</h:tr>
+					       			</h:table>
+				  			</h:td>
+				  			<h:td width="10%"/>
+				  	   </h:tr>
+			  	   </h:table>
+		  	 </h:td>
+			 <h:td width="20%"/>
+	   </h:tr>		
+	   <h:tr><h:td width="20%"/> 
+			 <h:td><separator spacing="4px"/> 	    
+				     <h:table width="100%" align="center">
+				    	  <h:tr><h:td width="30%"/>
+						    	<h:td><vbox>	 	
+						    		  <groupbox width="550px">
+									  	<caption label="TINDAKAN LABORATORIUM"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td  height="10px"/></h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td><vbox>
+														  		  <listbox id="list" multiple="true" width="510px" height="331px" mold="paging" pageSize="23">
+																		<listhead>
+																			<listheader label="KODE" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA" width="50%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																		<listitem>
+																  <listcell label="fasdf"/>
+																  <listcell label="fasdf"/>
+																  </listitem>
+																  </listbox>		
+																  
+															  </vbox>
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+											
+											<separator spacing="3px"/>
+									  		
+									  		<h:table width="100%" align="center">
+										  		   <h:tr><h:td width="3%"/>
+										  		   		 <h:td align="right">
+										  		   		 	    
+										  		   		 			<button label="ISI DETAIL" image="/image/detail.gif" style="width:110px;height:26px;font-weight:bold;font-size:7pt">
+											  		   		 			<attribute name="onClick">
+												  		   		 			{
+												  		   		 				ctr.setSession();
+												  		   		 				final Window win = (Window) Executions.createComponents(
+							    												 					"/zkpages/master/detailLab.zul",null,null);
+							    												win.doModal();
+							    											}
+											  		   		 			</attribute>
+										  		   		 			</button>
+										  		   		 	   
+										  		   		 </h:td>
+										  		   		 <h:td width="2%"/>
+												   </h:tr>
+									  		</h:table>
+									  		
+								  			<separator spacing="5px"/>
+									   </groupbox>
+									   </vbox>
+							 		</h:td>
+									<h:td width="30%"/>
+						      </h:tr>
+					    </h:table>
+			    </h:td>
+		  </h:tr>
+	</h:table> 
+	<separator spacing="17px"/>
+</window>

@@ -1,0 +1,24 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%" height="555px">
+	<tabs>
+		<tab label="ICD-9-CM"/>
+		<tab label="PENCARIAN DATA ICD-9-CM"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/master/diagnose/msICD9CM.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/master/diagnose/cariICD-9-CM.zul"/>
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+</window>

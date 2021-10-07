@@ -1,0 +1,10 @@
+<window title="KLINIK GIZI" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="Transaksi Klinik Gizi" href="zkpages/klinikGizi/klinikGizi.zul"/>
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

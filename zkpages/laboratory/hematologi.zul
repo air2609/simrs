@@ -1,0 +1,88 @@
+<window id="hematologiItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(hematologiItem, "hematologiList", "003");
+	}
+</zscript>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td>
+		  		<vbox>
+					<listbox id="hematologiList" multiple="true" width="185px" height="545px" checkmark="true">
+					<listhead>
+						<listheader id="hematologi" label="HEMATOLOGI" style="font-weight:bold;font-size:8pt" sort="auto" width="50%"/>
+					</listhead>
+					<listitem>
+						<listcell id="LAB01" label="DARAH LENGKAP"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB02" label="DARAH RUTIN"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB03" label="DHF"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB04" label="HB"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB05" label="HCT"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB06" label="AL"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB07" label="HITUNG JENIS LEKOSIT"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB08" label="AT"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB09" label="AE"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB10" label="EOSINOPHIL"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB11" label="RETIKULOSIT"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB12" label="GOLONGAN DARAH"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB13" label="GOLONGAN DARAH + RH"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB14" label="LED"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB15" label="BE"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB16" label="CT"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB17" label="MCV"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB18" label="MCH"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB19" label="MCHC"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB20" label="FIBRINOGEN"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB21" label="MALARIA"/>
+					</listitem>
+					<listitem>
+						<listcell id="LAB22" label="FILARIA"/>
+					</listitem>
+					</listbox>
+				</vbox>
+		  </h:td>
+	</h:tr>
+</h:table>
+</window>

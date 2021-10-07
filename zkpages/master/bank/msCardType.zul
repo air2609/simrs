@@ -1,0 +1,210 @@
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" onCreate="init()" width="99%" sclass="Float">
+<style src="/include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.ui.master.CreditCardTypeController;
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	ctr = new CreditCardTypeController();
+	coaCtr = new CoaController();
+	
+	void init(){
+	 ctr.init(root);
+	}
+	
+	void doModify(){
+		ctr.doModify(root);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(root);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);
+	}
+	
+	void doSave(){
+		ctr.doSave(root);
+	}
+</zscript> 
+
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TIPE KARTU BANK</h:td></h:tr>
+</h:table>
+
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>	
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="20%"/>
+			    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="11%" align="right" style="font-weight:bold;font-size:8pt">NAMA BANK</h:td>
+									      <h:td width="3%" align="center">:</h:td>
+				              			  <h:td width="26%"><listbox id="bankLis" width="82%" mold="select" style="font-size:9pt"/></h:td>
+				       				</h:tr>
+				       				
+				        			<h:tr><h:td width="11%" align="right" style="font-weight:bold;font-size:8pt">NO. COA</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="26%">
+				             			  		<bandbox id="coa" width="73%" style="font-size:8pt" onOpen="coaCode.focus();">
+									             	<bandpopup>
+														<vbox>	
+															  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																	<h:tr><h:td>PENCARIAN DATA COA</h:td></h:tr>
+															  </h:table>
+															  <separator spacing="3px"/>
+															  <h:table width="100%" align="center">
+																	<h:tr><h:td width="2%"/>
+																	      <h:td width="25%" align="right" style="font-weight:bold;font-size:8pt">NO. COA</h:td>
+																		  <h:td width="4%" align="center">:</h:td>
+																		  <h:td width="35%" align="left"><textbox id="coaCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																  	      <h:td width="2%"/>
+																	</h:tr>
+																	<h:tr><h:td width="2%"/>
+																	      <h:td width="25%" align="right" style="font-weight:bold;font-size:8pt">NAMA</h:td>
+																		  <h:td width="4%" align="center">:</h:td>
+																		  <h:td width="35%" align="left"><textbox id="coaName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																		  <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px" onClick="coaCtr.searchCoa(coaCode, coaName, coaList)"/></h:td>
+																		  <h:td width="2%"/>
+																	</h:tr>
+																</h:table>
+																<separator spacing="3px"/>
+																<listbox id="coaList" width="600px" onSelect="coaCtr.getCoa(coaList, coa);coa.closeDropdown()" mold="paging" pageSize="15">
+																	<listhead>
+																		<listheader label="NO. COA" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="NAMA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	</listhead>
+																</listbox>
+														  </vbox>
+												     </bandpopup>
+									            </bandbox>
+					            		  </h:td>
+				        			</h:tr>
+				        			
+				        			<h:tr><h:td width="11%" align="right" style="font-weight:bold;font-size:8pt">TIPE KARTU</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="26%">
+				             			  		<listbox id="cardList" width="50%" mold="select" style="font-size:9pt">
+				             			  			<listitem label="" value="kosong" selected="true"/>
+				             			  			<listitem label="1. KARTU KREDIT" value="1"/>
+				             			  			<listitem label="2. KARTU DEBIT" value="2"/>
+				             			  		</listbox>
+				             			  </h:td>
+				        			</h:tr>
+				        			
+				        			<h:tr><h:td width="11%" align="right" style="font-weight:bold;font-size:8pt">NAMA KARTU</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="26%"><textbox id="cardName" width="80%" height="14px" style="font-size:8pt"/></h:td>
+				        			</h:tr>
+				    			</h:table>
+			  			</h:td>
+			  			<h:td width="22%"/>
+			  	   </h:tr>
+		  	    </h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="3px"/>  
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td width="34%"/>
+			    		  <h:td>
+			  					<h:table width="100%" align="center">
+				    				<h:tr><h:td width="10%"/>
+				    					  <h:td align="right">
+				    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+						   					    
+						   				  </h:td>
+				    					  <h:td width="5%" align="left">
+				    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify()"/>
+				    		  		 	   		
+				    		  		 	  </h:td>
+				    		  			  <h:td width="5%" align="left">
+				    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+				    					   		
+				    					  </h:td>
+				    					  <h:td width="5%" align="left">
+				    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+				    					   		
+				    					  </h:td>
+				    					  <h:td width="10%"/>
+				    				</h:tr>
+			    				</h:table>
+			    		</h:td>
+			  			<h:td width="34%"/>
+			  	   </h:tr>
+			  	</h:table>
+		 </h:td>
+		 <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="3px"/> 	    
+			    <h:table width="100%" align="center">
+			    	  <h:tr><h:td width="30%"/>
+					    	<h:td>	 	
+					    		  <groupbox width="850px">
+								  	<caption label="DATA TIPE KARTU"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td  height="10px"/></h:tr>
+									  		  <h:tr><h:td width="10%"/>
+											  		<h:td>
+											  			<listbox id="cardTypeList" multiple="true" width="810px" height="211px" mold="paging" pageSize="15">
+															<listhead>
+																<listheader label="NAMA BANK" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="TIPE KARTU" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NAMA KARTU" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="NO. COA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+															</listhead>
+															<listitem>
+															<listcell label="BCA"/>
+															<listcell label="KARTU KREDIT"/>
+															<listcell label="VISA"/>
+															<listcell label="123-1"/>
+															</listitem>
+															<listitem>
+															<listcell label="BCA"/>
+															<listcell label="KARTU KREDIT"/>
+															<listcell label="MASTER"/>
+															<listcell label="123-1"/>
+															</listitem>
+															<listitem>
+															<listcell label="BCA"/>
+															<listcell label="KARTU DEBIT"/>
+															<listcell label="ABC"/>
+															<listcell label="123-3"/>
+															</listitem>
+														</listbox>		
+													</h:td>
+													<h:td width="10%"/>
+											  </h:tr>
+								  		</h:table>
+										
+										<separator spacing="3px"/>
+								  		
+								  		<!--<h:table width="100%" align="center">
+								  		   <h:tr><h:td/>
+								  		   		 <h:td width="7%">
+								  		   		 	   <h:p align="right">
+								  		   		 			<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+								  		   		 	   
+								  		   		 </h:td>
+					    		 		 		 <h:td width="3%"/>
+										   </h:tr>
+								  		</h:table>
+								  		
+							  			--><separator spacing="5px"/>
+								   </groupbox>
+						 	  </h:td>
+							 <h:td width="30%"/>
+				        </h:tr>
+				   </h:table>
+		   </h:td>
+		   <h:td width="20%"/>
+	 </h:tr>
+</h:table> 
+<separator spacing="20px"/>
+</window>

@@ -1,0 +1,124 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	void init(){
+		noRegistrasi.focus();
+	}
+</zscript>
+
+<h:body sclass="Float">
+	
+<h:table align="center" width="100%" sclass="BasicBlue">
+	<h:tr><h:td><h:center><h:b>FORM PERMINTAAN PEMBUATAN MR</h:b></h:center>
+	      </h:td>
+	</h:tr>
+</h:table>
+	
+<separator spacing="10px"/>
+
+<h:table align="center" width="100%" sclass="Bancgroundlogo">
+	<h:tr><h:td width="20%"/>
+  		  <h:td>		
+ 				<h:table width="100%" align="center">
+					<h:tr><h:td width="14%"/>
+		  				  <h:td width="18%"><h:p align="right">No. Registrasi</h:p></h:td>
+		  				  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+            			  <h:td width="27%"><textbox id="noRegistrasi" width="80%"/></h:td>
+            			  <h:td width="12%"><h:p align="left"><button label="Cari" image="/image/cari.gif" width="70px"/></h:p></h:td>
+              			  <h:td width="15%"/>
+					</h:tr>	  
+				</h:table>
+	
+				<separator spacing="10px"/>
+	
+				<h:table width="100%" align="center">
+    				<h:tr><h:td width="15%"/>
+    					  <h:td>	 	
+    							<hbox>
+			 						 <groupbox width="430px" height="135px">
+			  							<caption label="List Permintaan Pembuatan MR"/>
+			  								<h:table width="100%" align="center">
+			  									<h:tr><h:td height="7"></h:td></h:tr>
+			  									<h:tr><h:td width="2%"/>
+			  										  <h:td>
+			  												<listbox id="list" multiple="true" width="400px" height="100px">
+															<listhead>
+																<listheader label="No. Registrasi" width="38%" sort="auto"/>
+																<listheader label="Nama Pasien" sort="auto"/>
+															</listhead>
+					
+															<listitem>
+																<listcell label="J-UGD-0806-000001"/>
+																<listcell label="Ahmad Dhani"/>
+															</listitem>
+					
+															<listitem>
+																<listcell label="J-UGD-0806-000006"/>
+																<listcell label="Cornelius"/>
+															</listitem>
+					
+															<listitem>
+																<listcell label="J-UGD-0806-000010"/>
+																<listcell label="Ali"/>
+															</listitem>
+					
+															<listitem>
+																<listcell label="J-UGD-0806-000010"/>
+																<listcell label="Zainal"/>
+															</listitem>
+					
+															</listbox>		
+
+													 </h:td>
+													 <h:td width="2%"/>
+											  </h:tr>
+			  							</h:table>
+									
+										<separator spacing="1px"/>
+									
+										<h:table width="30%" align="center">
+			  		     				<h:tr><h:td align="center">
+				  		     	   			  <h:center>
+				  		     	   				<image id="first" src="/image/moveFirst_dis.gif" width="10px"/>
+			  			       					<image id="imgspace1" src="/image/space.gif" width="14px"/>
+					 	 	   					<image id="prev" src="/image/movePrev_dis.gif" width="6px"/>
+					 	 	   					<image id="imgspace3" src="/image/space.gif" width="14px"/>
+					 	 	   					<image id="next" src="/image/moveNext_dis.gif" width="6px"/>
+					 	 	   					<image id="imgspace2" src="/image/space.gif" width="14px"/>
+					 	 	   					<image id="last" src="/image/moveLast_dis.gif" width="10px"/>
+					 	 	  			 	</h:center>
+					 	  	   				</h:td>
+					 				   </h:tr>
+			  						   </h:table>
+
+			  					      <separator spacing="1px"/>
+			   					</groupbox>
+	  				  		</hbox>
+			    	 	</h:td>
+	          		</h:tr>
+		 		</h:table>
+    
+    			<separator spacing="10px"/>				  			
+    
+				<h:table width="100%" align="center">
+	   	 		<h:tr><h:td width="15%"/>
+	          		  <h:td><h:p align="left">
+    					    <button label="Pendataan Pasien" image="/image/new.gif" style="width:120px;height:25px" href="DaftarPasien.zul"/>
+    				 		</h:p>
+    		   		  </h:td>
+			   		  <h:td><h:p align="right">
+    					    <button label="Selesai" image="/image/hapus.gif" style="width:70px;height:25px" href="index.zul"/>
+    				 		</h:p>
+    		   		  </h:td>
+    		   		  <h:td width="16%"/>
+    	 		</h:tr>
+				</h:table>
+	
+		<h:td width="14%"/>
+		</h:td>
+    </h:tr>
+</h:table>	
+
+<separator spacing="10px"/>				
+</h:body>	
+</window>

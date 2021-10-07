@@ -1,0 +1,82 @@
+<window id="penerimaanRajal" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.report.PenerimaanRajal;
+	
+	ctr = new PenerimaanRajal();
+	
+	void init(){
+		ctr.init(penerimaanRajal);
+	}
+
+</zscript>
+
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>LAPORAN PENERIMAAN RAWAT JALAN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="85px"/>
+<h:table align="center" width="100%">
+	<h:tr><h:td width="25%"/>
+		  <h:td><vbox>
+					<groupbox width="450px">
+					<separator spacing="10px"/>
+					<h:table align="center" width="100%">
+						<h:tr><h:td width="5%"/>
+							  <h:td><h:table width="100%" align="center">
+										<h:tr><h:td width="7%"><h:p align="right" style="font-size:8pt"><h:b>LOKASI</h:b></h:p></h:td>
+											  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="25%" style="font-size:8pt;font-weight:bold">
+												 <listbox id="locationList" width="90%" mold="select" height="14px" style="font-size:9pt"/>
+											  </h:td>
+										</h:tr>
+										<h:tr><h:td width="6%"><h:p align="right" style="font-size:8pt"><h:b>TANGGAL</h:b></h:p></h:td>
+											  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="18%" style="font-size:8pt;font-weight:bold">
+												 <datebox id="startDate" width="35%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
+													&amp;nbspS.D.
+												 <datebox id="endDate" width="35%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
+											  </h:td>
+										</h:tr>
+										<h:tr><h:td width="7%"><h:p align="right" style="font-size:8pt"><h:b>SHIFT</h:b></h:p></h:td>
+											  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+											  <h:td width="25%">
+												 <listbox id="shiftList" width="62%" mold="select" height="14px" style="font-size:9pt">
+												 	<listitem value="01" label="SHIFT PAGI" selected="true"/>
+												 	<listitem value="02" label="SHIFT SORE"/>
+												 	<listitem value="03" label="SHIFT MALAM"/>
+												 </listbox>
+											  </h:td>
+										</h:tr>
+										
+							        </h:table>
+							  </h:td>
+						      <h:td width="5%"/>
+					    </h:tr>
+						<h:tr><h:td width="5%"/>
+					    	  <h:td><separator spacing="2px"/>
+					    	  		<h:table width="100%" align="center">
+										<h:tr><h:td width="25%"/>
+											  <h:td>
+												  	<h:p align="right">
+									    				<button id="btnPrint" label="LIHAT LAPORAN" image="/image/print.gif" style="width:120px;height:26px" onClick="ctr.createReport();"/>
+									    	  		</h:p>
+									    	  </h:td>
+										   	  <h:td width="7%"/>
+									    </h:tr>
+									</h:table>
+					    	  
+							  </h:td>
+							  <h:td width="5%"/>
+						</h:tr>
+					</h:table>
+					<separator spacing="8px"/>
+					</groupbox>
+				</vbox>
+		  </h:td>
+		  <h:td width="25%"/>
+	</h:tr>
+</h:table>
+<separator spacing="92px"/>
+</window>

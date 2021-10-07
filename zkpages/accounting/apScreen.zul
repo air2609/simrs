@@ -1,0 +1,97 @@
+<window id="apScreen" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init()" sclass="Float">
+
+<style src="/include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.accounting.AccountPayableController;
+	AccountPayableController ctr = new AccountPayableController();
+	void init(){
+		ctr.init(apScreen);
+	}
+	void lihatJurnalClick(){
+		ctr.lihatJurnalClick();
+	}
+	void pembayaranClick(){
+		ctr.pembayaranClick();
+	}
+	void historyClick(){
+		ctr.historyClick();
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>ACCOUNT PAYABLE</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+	
+<h:table width="100%" align="center">
+<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="4px"/> 		  
+		 		<h:table width="100%" align="center">
+			    	  <h:tr><h:td width="28%"/>
+					    	<h:td>
+					    		  <vbox>
+										<listbox id="apList" width="900px" height="423px" multiple="true" mold="paging" pageSize="28">
+											<listhead>
+												<listheader label="NAMA SUPPLIER"  style="font-weight:bold;font-size:8pt;" width="30%" sort="auto"/>
+												<listheader label="JOURNAL BATCH ID"  style="font-weight:bold;font-size:8pt;" width="25%" sort="auto"/>
+												<listheader label="TOTAL TERHUTANG" style="font-weight:bold;font-size:8pt;" width="20%"/>
+												<listheader label="TANGGAL JATUH TEMPO" style="font-weight:bold;font-size:8pt;" width="20%" sort="auto"/>
+											</listhead>
+											
+											<listitem>
+												<listcell label="KONIMEX"/>
+												<listcell label="AP000000000000132"/>
+												<listcell label="10890"/>
+												<listcell label="21/12/2006"/>
+											</listitem>
+										</listbox>
+								  </vbox>
+							 </h:td>
+						     <h:td width="28%"/>
+				       </h:tr>	
+					   <h:tr><h:td width="28%"/>
+					    	 <h:td><separator spacing="5px"/>
+								   <h:table align="center" width="100%">
+									   <h:tr><h:td width="1%"/>
+									   		 <h:td width="7%">
+												<h:p align="right">
+									   				<button id="btnDetail" label="LIHAT JOURNAL" image="/image/detail.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt">
+									    				<attribute name="onClick">
+										     				{
+										     					lihatJurnalClick();
+															}
+														</attribute>
+													</button>
+												</h:p>
+										   	 </h:td>
+										   	 <h:td>
+												<h:p align="left">
+													<button id="btnPaid" label="PEMBAYARAN" image="/image/icons/kasir.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt">
+														<attribute name="onClick">
+										     				{
+										     					pembayaranClick();
+															}
+														</attribute>
+													</button>
+												</h:p>
+											 </h:td>
+											 <h:td width="7%">
+												<h:p align="left">
+													<button id="btnJournal" label="LIHAT HISTORY PEMBAYARAN" image="/image/detail.gif" style="width:195px;height:26px;font-weight:bold;font-size:7pt" onClick="historyClick();"/>
+												</h:p>
+											 </h:td>
+											 <h:td width="1%"/>
+									  </h:tr>
+								</h:table>
+						  </h:td>
+						  <h:td width="28%"/>
+				    </h:tr>
+			    </h:table>
+	      </h:td>
+	      <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="15px"/>
+</window>

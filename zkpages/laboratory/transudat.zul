@@ -1,0 +1,29 @@
+<window id="transudatItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(transudatItem, "transudatList", "006");
+	}
+</zscript>
+	  <listbox id="transudatList" multiple="true" width="180px" rows="5" checkmark="true">
+		  <listhead>
+			 <listheader id="transudatEksudat" label="TRANSUDAT / EKSUDAT" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+		  </listhead>
+		  <listitem>
+			<listcell id="LAB49" label="JUMLAH SEL"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB50" label="HITUNG JENIS SEL"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB51" label="RIVALTA"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB52" label="PROTEIN"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB53" label="GLUKOSA"/>
+		  </listitem>
+	  </listbox>
+</window>

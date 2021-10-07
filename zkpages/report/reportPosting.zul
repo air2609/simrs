@@ -1,0 +1,126 @@
+<window id="PostingHistory" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.accounting.PostingHistoryController;
+	PostingHistoryController ctr = new PostingHistoryController();
+	void init(){
+		ctr.init(PostingHistory);
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>POSTING LAPORAN</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="10px"/>
+	
+
+    <h:table width="100%" align="center">
+    	  <h:tr><h:td width="30%"/>
+		    	<h:td>	 	
+				      <vbox>
+							<groupbox width="900px">
+							  	<caption label="POSTING HISTORY"/>
+							  		<h:table width="100%" align="center">
+							  		  <h:tr><h:td height="10px"/></h:tr>
+							  		  <h:tr><h:td width="10%"/>
+									  		<h:td>
+											  	  <vbox>
+													<listbox id="postList" multiple="false" width="860px" height="378px">
+														<listhead>
+															<listheader label="ID" sort="auto" width="10%" style="font-weight:bold;font-size:8pt"/>
+															<listheader label="TANGGAL" sort="auto" width="12%" style="font-weight:bold;font-size:8pt"/>
+															<listheader label="USER" sort="auto" width="20%" style="font-weight:bold;font-size:8pt"/>
+															<listheader label="KETERANGAN" width="40%" style="font-weight:bold;font-size:8pt"/>
+															<listheader label="STATUS" width="14%" style="font-weight:bold;font-size:8pt"/>
+														</listhead>
+														<listitem>
+															<listcell label="1"/>
+															<listcell label="1"/>
+															<listcell label="1"/>
+															<listcell label="1"/>
+															<listcell label="1"/>
+														</listitem>
+													</listbox>
+												  </vbox>
+											</h:td>
+											<h:td width="10%"/>
+									  </h:tr>
+							  		</h:table>
+									<separator spacing="4px"/>
+						   </groupbox>
+					</vbox>
+			  </h:td>
+			  <h:td width="30%"/>
+	    </h:tr>
+	    <h:tr><h:td width="30%"/>
+		      <h:td><separator spacing="10px"/>
+  					<h:table width="100%" align="center">
+					  	 <h:tr><h:td width="5%"/>
+						   	   <h:td width="7%">
+						   	   		<h:p align="left">
+				    		   			 <button id="btnOk" label="POSTING PROCESS" style="width:130px;height:26px" image="/image/icons/managementreport.gif">
+					    		   			 <attribute name="onClick">
+				     							{
+				     								ctr.doPosting();
+												}
+											 </attribute>
+				    		   			 </button>
+				    			   	</h:p>
+				    			</h:td>
+				    			<h:td width="7%">
+						   	   		<h:p align="left">
+				    		   			 <button id="btnNeraca" label="NERACA" style="width:130px;height:26px" image="/image/icons/managementreport.gif">
+					    		   			 <attribute name="onClick">
+				     							{
+				     								ctr.openNeraca();
+												}
+											 </attribute>
+				    		   			 </button>
+				    			   	</h:p>
+				    			</h:td>
+				    		    <h:td width="7%">
+						   	   		<h:p align="left">
+				    		   			 <button id="btnLr" label="LABA RUGI" style="width:130px;height:26px" image="/image/icons/managementreport.gif">
+					    		   			 <attribute name="onClick">
+				     							{
+				     								ctr.openLabarugi();
+												}
+											 </attribute>
+				    		   			 </button>
+				    			   	</h:p>
+				    			</h:td>
+				    			<h:td width="7%">
+						   	   		<h:p align="left">
+				    		   			 <button id="btnGl" label="GENERAL LEDGER" style="width:130px;height:26px" image="/image/icons/managementreport.gif">
+					    		   			 <attribute name="onClick">
+				     							{
+				     								ctr.openGl();
+												}
+											 </attribute>
+				    		   			 </button>
+				    			   	</h:p>
+				    			</h:td>
+				    			
+				    			<h:td>
+						   	   		<h:p align="right">
+				    		   			 <button id="btnBack" label="ROLLBACK" style="width:120px;height:26px" image="/image/fresh.gif">
+				    		   			 <attribute name="onClick">
+				     						{
+				     							ctr.doPostingBack();
+											}
+										 </attribute>
+				    		   			 </button>
+				    			   	</h:p>
+				    			</h:td>
+				    			<h:td width="5%"/>
+				    	  </h:tr>
+					</h:table>
+        	  </h:td>
+			  <h:td width="30%"/>
+	    </h:tr>
+    </h:table>
+    <separator spacing="12px"/>
+</window>

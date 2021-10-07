@@ -1,0 +1,25 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%" height="600px">
+	<tabs>
+		<tab label="TRANSAKSI"/>
+		<tab label="RETUR OBAT"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/apotik/transaksiApotik.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/apotik/returApotik.zul"/>
+		</tabpanel>
+		
+	</tabpanels>
+	
+</tabbox>
+
+</window>

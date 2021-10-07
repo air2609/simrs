@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page id="RPT0018"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.purchasing.BufferController;
+	
+	BufferController ctr = new BufferController();
+	
+	void init(){
+		ctr.init(root);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(root);
+	}
+	
+	void doSave(){
+		ctr.doSave(root);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);
+	}
+	
+	void doModify(){
+		ctr.doModify(root);
+	}
+	
+	void doNew(){
+		//ctr.doNew(root);
+		list.getItems().clear();
+	}
+	
+	void doRevoke(){
+		ctr.doRevoke(root);
+	}
+	
+	void doClose(){
+		ctr.doClose(root);
+	}
+	
+	void doSearch(){
+		ctr.doSearch(root);
+	}	
+	
+	void doRedrawSearch(){
+		ctr.redrawSearch();
+	}
+</zscript>
+
+<h:table width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>BUFFER MONITORING</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="27%"/>
+		  <h:td><groupbox width="500px">
+  				<caption label="LOKASI BUFFER"/>
+  				<separator spacing="2px"/>
+			   		<h:table width="100%" align="center">
+						<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">LOKASI</h:font></h:b></h:td>
+				  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				  			  <h:td width="28%">
+				  			  		<listbox id="location" mold="select" width="82%" style="font-size:9pt">
+				  			  			<listitem value="purchasing" label="1. PURCHASING"/>
+				  			  		</listbox>
+				  			  </h:td>
+				  			  <h:td width="2%"/>
+				  		</h:tr>
+				  		
+					</h:table>
+				<separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+		  <h:td width="27%"/>
+	</h:tr>
+</h:table>
+<separator spacing="1px"/>
+<h:table width="100%">
+	<h:tr><h:td width="18%"/>
+		  <h:td>
+		  		<vbox>	
+		  				<h:table align="center" width="100%">	
+			  				<h:tr><h:td width="1%"/>
+			  			      <h:td align="left"> 
+			  			      		
+			  						
+			  				  </h:td> 
+			  	 			</h:tr>
+	         	        </h:table>
+			  			
+			  			<groupbox width="850px">
+			  				<caption label="DAFTAR STOK DIBAWAH BUFFER"/>
+			  					<h:table width="100%" align="center">
+			  						<h:tr><h:td height="10px"></h:td></h:tr>
+			  						<h:tr><h:td width="2%"/>
+			  							  <h:td>
+			  			  				  	<vbox>
+							  					<listbox id="list" multiple="true" width="810px" height="229px">
+													<listhead>
+								  						<listheader label="KODE" width="11%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="KETERANGAN" width="35%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="JENIS" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+								  						<listheader label="STOK" width="5%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="BUFFER" width="8%" style="font-weight:bold;font-size:8pt"/>						  						
+								  						<listheader label="SATUAN" width="13%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="JLH ORDER" width="8%" style="font-weight:bold;font-size:8pt"/>
+								  						<listheader label="OPEN OPP" width="10%" style="font-weight:bold;font-size:8pt"/>
+								  					</listhead>
+												</listbox>
+						  					</vbox>
+										 </h:td>
+										 <h:td width="2%"/>
+									</h:tr>
+								 </h:table>
+								 
+								 <separator spacing="2px"/>
+								
+								 <h:table align="center" width="100%">
+      								 <h:tr><h:td height="2"></h:td></h:tr>
+      								 <h:tr><h:td width="3%"/>
+       									   <h:td align="left">
+	       									     	
+			       											       									
+		     							   </h:td>
+		     							   <h:td width="5%" align="left">
+       		 							   		 	
+					   								
+												
+			 							   </h:td>
+			 							   <h:td width="3%"></h:td>
+        							 </h:tr>
+    							</h:table>
+								
+			  					
+			   			</groupbox>
+			   		</vbox>
+			   		<separator spacing="5px"/>
+			  <h:table width="100%" align="center">
+				  <h:tr><h:td width="5%"/>
+				  		<h:td width="5%" align="right">
+				  			 
+	    					
+	    		  			
+	    		  		</h:td>
+	    		  		
+	    		  		<h:td width="5%" align="right">
+				  			 
+	    						
+	    		  			
+	    		  		</h:td>
+	    		  		
+		    		  	<h:td width="5%" align="right">
+	    		     		 
+	    				 		
+	    			 		
+	    		  		</h:td>    		  		
+	    		  
+	    		  		<h:td width="5%" align="right">
+				  			 
+	    						
+	    		  			
+	    		  		</h:td>
+	    		  				   
+	    		  		<h:td width="7%" align="right">
+				  			 
+	    						    						
+	    		  			
+	    		  		</h:td>
+	    		  
+	    		  		<h:td align="right">
+	    		     		 
+						 		
+	    			 		
+	    		  		</h:td>
+	    		  		<h:td width="5%"/>
+	    		 </h:tr>
+			 </h:table>
+		  </h:td>
+		  <h:td width="18%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+</window>

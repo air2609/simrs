@@ -1,0 +1,74 @@
+<window id="coaAdd" xmlns:h="http://www.w3.org/1999/xhtml" width="500px" onCreate="init()">
+
+<style src="/include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	CoaController ctr = new CoaController();
+	
+	void init(){
+	 	ctr.initAdd(coaAdd);
+	}
+	
+	void createFill(){
+		ctr.createFill();
+	}
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>PILIH TIPE ACCOUNT</h:td></h:tr>
+</h:table>
+
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="5%"/> 
+		  <h:td><separator spacing="4px"/>
+			    <h:table width="100%" align="center">
+			    	  <h:tr><h:td width="5%"/>
+					    	<h:td><vbox>
+						    		  <groupbox width="440px">
+							    	 	<caption label="INCOME AND EXPENSE ACCOUNTS -- BALANCE SHEET ACCOUNTS"/>
+							    	 	<separator spacing="4px"/>
+					   	    			   <h:table width="100%" align="center">
+									    	  <h:tr><h:td width="2%"/>
+											    	<h:td><radiogroup id="radio" orient="vertical"/></h:td>
+												    <h:td width="5%"/>
+											   </h:tr>
+										</h:table>
+							    		  <separator spacing="4px"/>	
+							    	   </groupbox>
+							    	</vbox>
+					    	 </h:td>
+						     <h:td width="5%"/>
+					   </h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+	<h:tr><h:td width="5%"/> 
+		  <h:td><separator spacing="4px"/> 	
+				<h:table align="center" width="100%">
+				   <h:tr><h:td width="1%"/>
+						 <h:td>
+							<h:p align="left">
+								<button label="OK" image="/image/check.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="createFill();"/>
+							</h:p>
+						 </h:td>
+						 <h:td>
+							<h:p align="right">
+								<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="coaAdd.detach();"/>
+							</h:p>
+						 </h:td>
+						 <h:td width="1%"/>
+					</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+	
+</h:table> 
+<separator spacing="10px"/>
+</window>

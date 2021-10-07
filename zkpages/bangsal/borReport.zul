@@ -1,0 +1,47 @@
+<window id="borInfo" xmlns:h="http://www.w3.org/1999/xhtml" width="99%"  onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.ward.BorController;
+	ctr = new BorController();
+	void init(){
+	 ctr.init(borInfo);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+
+<h:table align="center" border="0" width="960px">
+    <h:tr>
+    	<h:th width="25%"><h:img src="../image/images/rsud_mandau.png" style="width:200px;height:100px;"/></h:th>
+        <h:th align="center"><h:h1><label style="font-weight:bold;font-size:25px" value="LAPORAN BOR "/> <label style="font-weight:bold;font-size:25px" id="hospitalName"/></h:h1></h:th>
+    </h:tr>
+    
+    <h:tr>
+    	<h:td colspan="2" align="center">
+    		<hbox>
+    			<label value="DARI : "/>
+    			<datebox format="dd-MM-yyyy" id="dateStart"/>
+    			<label value="SAMPAI : "/>
+    			<datebox format="dd-MM-yyyy" id="endDate"/>
+    			<button label="LIHAT BOR" onClick="ctr.getReport()"/>
+    			<button label="EXPORT XLS" onClick="ctr.exportToXls()"/>
+    		</hbox>
+    	</h:td>
+    </h:tr>
+	<h:tr >
+		<h:td colspan="2">
+				<listbox id="borList" height="430px" width="950px" mold="paging" pageSize="15">
+					 <listhead visible="false">
+						<listheader width="25%">KELAS</listheader>
+						<listheader width="40%">RUANGAN</listheader>
+						<listheader width="10%">TOTAL BED</listheader>
+						<listheader width="10%">TOTAL TERISI</listheader>
+						<listheader width="15%">BOR</listheader>
+					</listhead>
+				</listbox>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="15px"/>
+
+<separator spacing="20px"/>
+	
+</window>

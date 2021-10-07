@@ -1,0 +1,24 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" title="CETAK NOTA" border="normal" width="300px" onShow="self.detach()">
+
+<style src="../../include/medisafe.css"/>
+<h:body>
+<separator spacing="5px"/>
+	<h:table width="100%" align="center">
+		<h:tr><h:td width="19%"><h:p align="right">USERNAME</h:p></h:td>
+		      <h:td width="5%"><h:p align="center">:</h:p></h:td>
+    		  <h:td width="26%"><h:p align="left"><textbox id="username" width="78%" height="14px"/></h:p></h:td>
+    	</h:tr>
+       				
+        <h:tr><h:td width="19%"><h:p align="right">PASSWORD</h:p></h:td>
+			  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+        	  <h:td width="26%"><textbox id="password" width="78%" height="14px"/></h:td>
+       	</h:tr>
+    </h:table>
+    <separator spacing="5px"/>
+    <h:table width="100%" align="center">
+    <h:tr><h:td><h:p align="right"><button label="OK" onClick="" style="width:70px;height:25px"/></h:p></h:td>
+		  <h:td><button label="BATAL" href="javascript:history.go(0)" style="width:70px;height:25px"/></h:td>
+	</h:tr>
+	</h:table>
+</h:body>
+</window>

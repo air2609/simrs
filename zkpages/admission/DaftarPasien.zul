@@ -1,0 +1,419 @@
+<window id="daftarRajal" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<!--  -->
+
+<style src="../../include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.admission.RegistrationController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	
+	ctr = new RegistrationController();
+	void init(){
+		ctr.init(daftarRajal);
+		namaPasien.focus();
+		noMR.focus();
+		
+	}
+	void doSave(){
+		ctr.save(daftarRajal);	
+	}
+	
+		
+	void getPatientDetail(int type){
+		ctr.getPatientDetail(type);
+	}
+	
+	void createNewRegistration(daftarRajal,int type){
+		ctr.createNewRegistration(daftarRajal,type);
+	}
+	
+	void cetakKartu(){
+		ctr.cetakKartu();
+	}
+</zscript>
+
+	
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM PENDAFTARAN PASIEN RAWAT JALAN</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="4px"/>
+
+	<h:table align="center" width="100%">
+		<h:tr><h:td width="10%"/>
+			  <h:td>
+				  <vbox>
+				      <groupbox width="900px">
+				     		<separator spacing="2px"/>
+				      		<caption label="DATA PASIEN"/>
+				      		
+				      		<h:table align="center" width="100%" valign="center" border="0">
+				      			<h:tr><h:td width="2%"/>
+				      				  <h:td width="19%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<bandbox id="noMR" onOpen="crNoMR.focus();" width="72%" height="14px" onChange="getPatientDetail(MedisafeConstants.INPUT_BY_MANUAL);" onOK="getPatientDetail(MedisafeConstants.INPUT_BY_MANUAL);" style="font-size:8pt">
+												<bandpopup id="popUp">
+													<vbox>	
+														<h:table align="center" width="100%" sclass="BasicBlueTitle">
+															<h:tr><h:td>CARI DATA PASIEN	
+																		<h:font color="white" weight="bold" size="4pt">*</h:font>
+																  </h:td>
+															</h:tr>
+														</h:table>
+														<separator spacing="5px"/>
+														<h:table width="100%" align="center">
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left">
+																  		<textbox id="crNoMR" width="94%" height="14px" style="font-size:8pt"/>
+																  </h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><textbox id="crNama" width="94%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><datebox id="crTgl" width="90%" height="14px" format="dd/MM/yyyy" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/>
+																  </h:td>
+																  
+																  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatient(crNoMR,crNama,crTgl, crNoAlamat,patientSearchList);crNoMR.focus();"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+														</h:table>
+														<separator spacing="3px"/>
+														<label value="*) KHUSUS PASIEN YANG MEMILIKI NO. MR" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
+														<listbox id="patientSearchList" width="700px" onSelect="getPatientDetail(MedisafeConstants.INPUT_BY_SEARCH); noMR.closeDropdown();" mold="paging" pageSize="15">
+															<listhead>
+																<listheader label="NO. MR" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																<listheader label="NAMA" width="25%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																<listheader label="TGL. LAHIR" width="20%" style="font-weight:bold;font-size:8pt"/> 
+																<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+															</listhead>
+														</listbox>
+												  </vbox>
+											  </bandpopup>
+											</bandbox>
+	 								  </h:td>
+			                		  
+			                		  <h:td width="18%" align="right"><h:b><h:font size="1">NO. REGISTRASI</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td><textbox id="noRegistrasi" width="80%" height="14px" style="font-size:8pt;font-weight:bold" readonly="true"/></h:td>
+			         			</h:tr>
+				      			
+				      			<h:tr><h:td width="2%"/>
+				      				  <h:td width="19%" align="right"><h:b><h:font size="1">NAMA</h:font><h:font color="red">*</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%"><textbox id="namaPasien" width="80%" height="14px" maxlength="50" style="font-size:8pt;background-color:FFFF33"/></h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">JENIS KELAMIN</h:font><h:font color="red">*</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td>
+			               			  		<radiogroup id="jenisKelamin">
+										    	<radio id="M" value="M" label="PRIA" style="font-weight:bold;font-size:8pt"/>
+												<radio id="F" value="F" label="WANITA" style="font-weight:bold;font-size:8pt"/>
+											</radiogroup>
+									  </h:td>
+			         			</h:tr>
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         				  <h:td width="19%" align="right"><h:b><h:font size="1">TANGGAL LAHIR</h:font><h:font color="red">*</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%"><datebox id="tglLahir" width="74%" height="14px" style="font-size:8pt" format="dd/MM/yyyy" onChange="com.vone.medisafe.ui.admission.RegistrationController.generateAge(umur,tglLahir);"/></h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">UMUR</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td><textbox id="umur" width="80%" height="14px" style="font-size:8pt" onChange="com.vone.medisafe.ui.admission.RegistrationController.generateAge(umur,tglLahir);"/></h:td>
+			         			</h:tr>
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         				  <h:td width="18%" align="right"><h:b><h:font size="1">ALAMAT UTAMA</h:font><h:font color="red">*</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td>
+			               			  		<textbox id="alamat" width="198px" height="15px" maxlength="255" style="font-size:8pt" rows="3"/>
+			               			  </h:td>
+			         			
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">AGAMA</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<!-- <textbox id="namaIbu" width="80%" height="14px" maxlength="20" style="font-size:8pt"/> -->
+			               			  		<listbox mold="select" id="religionList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="ISLAM" label="1. ISLAM"/>
+			               			  			<listitem value="PROTESTAN" label="2. PROTESTAN"/>
+			               			  			<listitem value="KATOLIK" label="3. KATOLIK"/>
+			               			  			<listitem value="HINDU" label="4. HINDU"/>
+			               			  			<listitem value="BUDHA" label="5. BUDHA"/>
+			               			  			<listitem value="KONGHUCU" label="6. KONGHUCU"/>
+			               			  		</listbox>
+			               			
+									  </h:td>
+			              
+			              			  
+			         			</h:tr>
+			         			<h:tr>
+			         				<h:td width="2%"/>
+			         				<h:td width="18%" align="right"><h:b><h:font size="1">ETNIS/SUKU</h:font></h:b></h:td>
+			         				<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			<h:td>
+			               			  		<listbox mold="select" id="etnisList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="BATAK" label="BATAK"/>
+			               			  			<listitem value="BASEMAH" label="BASEMAH"/>
+			               			  			<listitem value="CINA" label="CINA"/>
+			               			  			<listitem value="JAWA" label="JAWA"/>
+			               			  			<listitem value="LEMBAK" label="LEMBAK"/>
+			               			  			<listitem value="MADURA" label="MADURA"/>
+			               			  			<listitem value="MELAYU" label="MELAYU"/>
+			               			  			<listitem value="MINANG" label="MINANG"/>
+			               			  			<listitem value="PEKAL" label="PEKAL"/>
+			               			  			<listitem value="REJANG" label="REJANG"/>
+			               			  			<listitem value="SERAWAI" label="SERAWAI"/>
+			               			  			<listitem value="SUNDA" label="SUNDA"/>
+			               			  		</listbox>
+			               			</h:td>
+			         			
+			         			    <h:td width="19%" align="right"><h:b><h:font size="1">BAHASA</h:font></h:b></h:td>
+						  			<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			<h:td width="28%">
+			               			  		<listbox mold="select" id="languageList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="BAHASA INDONESIA" label="BAHASA INDONESIA"/>
+			               			  			<listitem value="BAHASA DAERAH" label="BAHASA DAERAH"/>
+			               			  			<listitem value="BAHASA INGGRIS" label="BAHASA INGGRIS"/>
+			               			  			<listitem value="BAHASA CHINA" label="BAHASA CHINA"/>
+			               			  		</listbox>
+									</h:td>
+			         			</h:tr>
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">STATUS KAWIN</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="statusKawinList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="Belum Menikah" label="1. BELUM MENIKAH"/>
+			               			  			<listitem value="Menikah" label="2. MENIKAH"/>
+			               			  			<listitem value="Duda" label="3. DUDA"/>
+			               			  			<listitem value="Janda" label="4. JANDA"/>
+			               			  		</listbox>
+									   </h:td>
+									   
+									   <h:td width="19%" align="right"><h:b><h:font size="1">NO. TELP / NO. HP</h:font></h:b></h:td>
+						  			   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			   <h:td width="28%"><textbox id="noTelp" width="80%" height="14px" maxlength="20" style="font-size:8pt"/></h:td>
+									   <!-- 
+									   <h:td width="18%" align="right"><h:b><h:font size="1">NAMA SUAMI/ISTRI</h:font></h:b></h:td>
+						   			   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			   <h:td>
+			               			  		<textbox id="namaPasangan" width="80%" height="14px" maxlength="50" style="font-size:8pt"/>
+			               			   </h:td> -->
+								</h:tr>
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">WARGA NEGARA</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="wargaNegaraList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="WNI" label="1. WNI"/>
+			               			  			<listitem value="WNA" label="2. WNA"/>
+			               			  		</listbox>
+			               			  </h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">RT / RW</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td><textbox id="rt" width="10%" height="14px" style="font-size:8pt"/>&amp;nbsp/&amp;nbsp<textbox id="rw" width="10%" height="14px" style="font-size:8pt"/></h:td>
+			         			</h:tr>
+			         			<h:tr><h:td width="2%"/>
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">PROPINSI</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="propinsiList" onSelect="ctr.getRegencey();" width="83%" style="font-size:9pt"/>
+			               			  </h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">KABUPATEN</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td>
+			               			  		<listbox mold="select" id="kabupatenList" onSelect="ctr.getSubdistrict();" width="83%" style="font-size:9pt"/>
+			               			  </h:td>
+			         			</h:tr>
+			         			
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">KECAMATAN</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="26%">
+			               			  		<listbox mold="select" id="kecamatanList" onSelect="ctr.getVillage();" width="83%" style="font-size:9pt"/>
+			               			  </h:td>
+			              
+			              			 <h:td width="18%" align="right"><h:b><h:font size="1">KELURAHAN / DESA</h:font></h:b></h:td>
+						   			 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			 <h:td>	
+			               			 	    <listbox mold="select" id="kelurahanList" width="83%" style="font-size:9pt"/>
+			               			 </h:td>
+			         		  	</h:tr>
+			               		
+			               		<h:tr><h:td width="2%"/>
+			               		      <h:td width="19%" align="right"><h:b><h:font size="1">ALAMAT ALTERNATIF</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%"><textbox id="alamatAlternatif" width="197px" height="14px" style="font-size:8pt" rows="3"/></h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">RT / RW</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td><textbox id="rt1" width="10%" height="14px" style="font-size:8pt"/>&amp;nbsp/&amp;nbsp<textbox id="rw1" width="10%" height="14px" style="font-size:8pt"/></h:td>
+			         			</h:tr>
+			         			
+			               		<h:tr><h:td width="2%"/>
+			               		      <h:td width="19%" align="right"><h:b><h:font size="1">NO. TELP / NO. HP</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%"><textbox id="noTelpAlt" width="80%" height="14px" maxlength="20" style="font-size:8pt"/></h:td>
+			               		</h:tr>
+			               		
+			         			<h:tr><h:td width="2%"/>
+			         			      <h:td width="19%" align="right"><h:b><h:font size="1">PENDIDIKAN</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="pendidikanList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="TIDAK SEKOLAH" label="TIDAK SEKOLAH"/>
+			               			  			<listitem value="BELUM SEKOLAH" label="BELUM SEKOLAH"/>
+			               			  			<listitem value="SD/Sederajat" label="SD/SEDERAJAT"/>
+			               			  			<listitem value="SMP/Sederajat" label="SMP/SEDERAJAT"/>
+			               			  			<listitem value="SMA/Sederajat" label="SMA/SEDERAJAT"/>
+			               			  			<listitem value="D1" label="D1"/>
+			               			  			<listitem value="D2" label="D2"/>
+			               			  			<listitem value="D3" label="D3"/>
+			               			  			<listitem value="S1" label="S1"/>
+			               			  			<listitem value="S2" label="S2"/>
+			               			  			<listitem value="S3" label="S3"/>
+			               			  		</listbox>
+			               			  </h:td>
+			              
+			              			  <h:td width="18%" align="right"><h:b><h:font size="1">JENIS PEKERJAAN</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td>
+			               			  		<listbox mold="select" id="jenisPekerjaanList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="Pegawai Negri" label="1. PEGAWAI NEGRI"/>
+			               			  			<listitem value="Swasta" label="2. SWASTA"/>
+			               			  			<listitem value="Pensiunan" label="3. PENSIUNAN"/>
+			               			  			<listitem value="Ibu Rumah Tangga" label="4. IBU RUMAH TANGGA"/>
+			               			  		</listbox>
+			               			  </h:td>
+			         			</h:tr>
+			         			
+			         			<h:tr><h:td width="2%"/>
+			         				  <h:td width="19%" align="right"><h:b><h:font size="1">TIPE PASIEN</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="tipePasienList" width="83%" style="font-size:9pt"/>
+			               			  </h:td>
+			         				  
+			         				  <h:td width="18%" align="right"><h:b><h:font size="1">PRIORITAS PASIEN</h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td><listbox mold="select" id="prioritasPasienList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="High" label="1. HIGH"/>
+			               			  			<listitem value="Med" label="2. MED"/>
+			               			  			<listitem value="Low" label="3. LOW"/>
+			               			  		</listbox>
+			               			 </h:td>
+			               		</h:tr>
+			                </h:table>
+			         	<separator spacing="3px"/>
+				      </groupbox>
+			      </vbox>
+			  </h:td>
+			  <h:td width="10%"/>
+		</h:tr>
+		
+		<h:tr><h:td width="10%"/>
+			  <h:td>
+				  <vbox>
+					  <groupbox width="900px">
+				      		<caption label="DATA PEMERIKSAAN"/>
+				      		<separator spacing="3px"/>
+				      		<h:table align="center" width="100%">
+					      		<h:tr><h:td width="2%"/>
+					      		      <h:td width="19%" align="right"><h:b><h:font size="1">DIVISI</h:font><h:font color="red">*</h:font></h:b></h:td>
+							  		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				               		  <h:td width="28%">
+				               		  		<listbox mold="select" id="unitList" width="83%" style="font-size:9pt" onSelect="com.vone.medisafe.ui.master.DoctorController.getDoctorBaseOnUnit(unitList,dokterPemeriksaList);"/>
+				               		  </h:td>
+				              
+				              		  <h:td width="18%" align="right"><h:b><h:font size="1">DOKTER PEMERIKSA</h:font><h:font color="red">*</h:font></h:b></h:td>
+							  		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				               		  <h:td>
+				               		  		<listbox mold="select" id="dokterPemeriksaList" width="83%" style="font-size:9pt"/>
+				               	      </h:td>
+				         	    </h:tr>
+			         	   </h:table>		
+			          	   <separator spacing="3px"/>
+				      </groupbox>
+			      </vbox>
+		      </h:td>
+			  <h:td width="10%"/>
+		</h:tr>
+		
+		<h:tr><h:td width="10%"/>
+			  <h:td>
+					<h:table align="center" width="100%" border="0">
+	       				<separator spacing="1px"/>
+	       				<h:tr><h:td width="7%" align="left">
+		       						<button label="SIMPAN" id="btnSave" image="/image/save1.gif" style="width:95px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+								  </h:td>
+	    		 			  <h:td width="11%" align="left">
+		    		 			  	<button label="PASIEN BARU" id="btnNew" image="/image/patient.jpg" style="width:125px;height:26px;font-weight:bold;font-size:7pt" onClick="createNewRegistration(daftarRajal,MedisafeConstants.PASIEN_BARU);"/>
+									</h:td>
+				 			  <h:td width="11%" align="left">
+		    		 			  	<button label="PASIEN LAMA" id="btnOld" image="/image/patient.jpg" style="width:125px;height:26px;font-weight:bold;font-size:7pt" onClick="createNewRegistration(daftarRajal,MedisafeConstants.PASIEN_LAMA);"/>
+							  </h:td>
+				 			  <h:td width="15%" align="left">
+		    		 			  	<button label="BATAL REGISTRASI" id="btnCancel" image="/image/batal.gif" style="width:155px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cancelRegistration();"/>
+		    		  	 	  </h:td>
+	    		 			  <h:td align="left">
+		    		 			    <button label="MINTA MR" image="/image/icons/recordmedic.gif"  style="width:100px;height:26px;font-weight:bold;font-size:7pt"/>
+		    		  	  	  </h:td>
+		    		  	  	  <h:td width="11%" align="left">
+		    		  	  	  		<button label="CETAK STICKER" image="/image/icons/barcode.png"  style="width:130px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.printStciker()"/>
+		    		  	  	  </h:td>
+	    		 			  <h:td width="9%" align="right">
+		    		 			  		
+							   			<button label="CETAK" image="/image/print.gif" id ="btnPrint" style="width:90px;height:26px;font-weight:bold;font-size:7pt">
+							   				<attribute name="onClick">
+							   					{
+							   						cetakKartu();
+													//final Window win = (Window) Executions.createComponents(
+																	//	"/zkpages/common/kartuPasien.pdf", null, null);
+												   // win.doModal();
+				
+												}
+											</attribute>
+										</button>
+								  </h:td><!--
+			     			  <h:td width="9%" align="left">
+			     			  		<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px" onClick="daftarRajal.detach()"/>
+			       			</h:td>
+			     	    --></h:tr>
+			      </h:table>
+		
+			</h:td>
+			<h:td width="10%"/>
+		</h:tr>
+	</h:table>
+	<separator spacing="1px"/> 
+</window>

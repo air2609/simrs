@@ -1,0 +1,35 @@
+<window id="microbiologyItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(microbiologyItem, "microBiologyList", "007");
+	}
+</zscript>
+	  <listbox id="microBiologyList" multiple="true" width="180px" rows="7" checkmark="true">
+		  <listhead>
+			 <listheader id="mikrobiology" label="MIKROBIOLOGI" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+		  </listhead>
+		  <listitem>
+			<listcell id="LAB54" label="GRAM"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB55" label="NEISSER"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB56" label="BTA"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB57" label="CANDIDA"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB58" label="TRICHOMONAS"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB59" label="KULTUR"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB60" label="SENSITIVITAS TEST"/>
+		  </listitem>
+	</listbox>
+</window>

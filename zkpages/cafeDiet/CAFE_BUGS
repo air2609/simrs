@@ -1,0 +1,11 @@
+27-1-2007
+=========
+
+1. tombol BATAL dihilangin
+
+=====================================================================================================================
+1. pencarian via nota. null pointer dan kog pasien rujukan
+   bisa dpt no. registrasi?? (sistem tetap keep no. registrasi pasien
+   sebelumnya).
+   -- ok
+   

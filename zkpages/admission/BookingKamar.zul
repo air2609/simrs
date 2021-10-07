@@ -1,0 +1,439 @@
+<window id="pesanKamar" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();" sclass="Float">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	void init(){
+		com.vone.medisafe.ui.admission.PemesananKamarController.init(pesanKamar);
+		tglPemesanan.focus();
+	}
+</zscript>
+
+	
+	<h:table align="center" width="100%" sclass="BasicBlue">
+	<h:tr><h:td>FORM PEMESANAN KAMAR</h:td>
+	</h:tr>
+	</h:table>
+	
+	<separator spacing="10px"/>
+	
+<h:table align="center" width="100%" sclass="Bancgroundlogo">
+	<h:tr><h:td width="14%"/>
+		  <h:td>		
+	<h:table align="center" width="100%">
+	 	   <h:tr><h:td width="18%"><h:p align="right">TANGGAL PEMESANAN</h:p></h:td>
+			    <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td width="27%"><datebox id="tglPemesanan" width="73%"/></h:td>
+           </h:tr>
+	 	  
+	 	  <h:tr><h:td width="18%"><h:p align="right">NAMA</h:p></h:td>
+			    <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td width="27%"><textbox id="namaPasien" width="80%" height="14px"/></h:td>
+              
+              	<h:td width="18%"><h:p align="right">KELAS TARIF</h:p></h:td>
+			   	<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td><listbox mold="select" id="kelasTarifList" width="83%" style="font-size:8pt" onSelect="com.vone.medisafe.ui.admission.RanapController.getHallList(kelasTarifList,availableBedList);">
+               				<listitem label="--PILIH--"/>
+               				<listitem label="1. Kelas 1"/>
+							<listitem label="2. Kelas 2"/>
+							<listitem label="3. Kelas 3"/>
+							<listitem label="0. VIP"/>
+							<listitem label="9. VVIP"/>
+					  </listbox>
+               	</h:td>
+          </h:tr>
+         		
+          <h:tr><h:td width="18%"><h:p align="right">JENIS KELAMIN</h:p></h:td>
+			   	<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td width="27%">
+               			<radiogroup id="jenisKelamin">
+							<radio label="PRIA"/>
+							<radio label="WANITA"/>
+						</radiogroup>
+				</h:td>
+				
+				<h:td width="18%"><h:p align="right">RUANGAN</h:p></h:td>
+			  	<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td>
+				     <bandbox id="ruangan" width="71%" autodrop="true">
+					 <bandpopup>
+					 <vbox>		
+							<h:table align="center" width="96%" sclass="BasicBlue">
+								<h:tr><h:td>PENCARIAN DATA KAMAR</h:td>
+								</h:tr>
+							</h:table>
+									
+							<h:table width="90%" align="center">
+								<h:tr><h:td width="20px"/>
+								      <h:td width="80px"><h:p align="right">KELAS TARIF</h:p></h:td>
+									  <h:td width="15px"><h:p align="center">:</h:p></h:td>
+									  <h:td width="170px">
+									  		<listbox mold="select" id="crKelasTarifList" width="83%" style="font-size:8pt">
+               									<listitem label="--PILIH--"/>
+               									<listitem label="1. Kelas 1"/>
+												<listitem label="2. Kelas 2"/>
+												<listitem label="3. Kelas 3"/>
+												<listitem label="0. VIP"/>
+												<listitem label="9. VVIP"/>
+					  						</listbox>
+									  </h:td>
+								 	  <h:td><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:25px"/></h:p></h:td>
+								</h:tr>
+							</h:table>
+
+							<listbox id="availableBedList" width="350px" onSelect="ruangan.value=self.selectedItem.label; ruangan.closeDropdown();" onClick="win.doPopup();">
+								<listhead>
+									<listheader label="RUANGAN" width="30%" sort="auto"/>
+									<listheader label="BED YANG TERSISA" width="20%" sort="auto"/>
+								</listhead>
+					
+								<listitem>
+									<listcell label="Seruni A"/>
+									<listcell label="5"/>
+								</listitem>
+					
+								<listitem>
+									<listcell label="Seruni B"/>
+									<listcell label="4"/>
+								</listitem>
+									
+								<listitem>
+									<listcell label="Seruni C"/>
+									<listcell label="3"/>
+								</listitem>
+									
+								<listitem>
+									<listcell label="Seruni D"/>
+									<listcell label="2"/>
+								</listitem>
+									
+							</listbox>
+					  </vbox>	
+					  </bandpopup>
+					  </bandbox>
+				</h:td>
+          </h:tr>
+          			
+          <h:tr><h:td width="18%"><h:p align="right">ALAMAT</h:p></h:td>
+			   	<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td width="27%"><textbox id="alamat" width="80%" height="14px"/></h:td>
+               	
+				<h:td width="18%"><h:p align="right">BED</h:p></h:td>
+			   	<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               	<h:td><bandbox id="bed" width="71%">
+               		  <bandpopup>
+               		  
+               		  <vbox>		
+					  <h:table align="center" width="96%" sclass="BasicBlue">
+						  <h:tr><h:td>PENEMPATAN BED</h:td>
+						  </h:tr>
+					  </h:table>
+						
+					  <groupbox width="450px" height="250px">
+							<separator spacing="5px"/>
+								<caption label="BED"/>
+								<h:center>
+								<h:table width="100%" align="center">
+								<h:tr><h:td width="30%">
+										<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+											<listitem>
+												<listcell label="01">
+												<h:center>
+													<h:table width="100%" align="center">
+														<h:tr><h:td width="300px" height="70px">
+											 			 		<h:table width="100%">
+																	<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																	<h:tr><h:td>11-11-11</h:td></h:tr>
+																	<h:tr><h:td>Anastasia</h:td></h:tr>
+																	<h:tr><h:td>03/08/2006</h:td></h:tr>
+																</h:table>
+									  	  					  </h:td>
+							 							 </h:tr>
+													</h:table>
+												</h:center>
+												</listcell>
+											</listitem>
+									   	</listbox>
+									 </h:td>
+									
+									 <h:td width="30%">
+										<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+											<listitem>
+									 			<listcell label="02">
+												<h:center>
+													<h:table width="100%" align="center">
+														<h:tr><h:td width="300px" height="70px">
+												  				<h:table width="100%">
+																	<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																	<h:tr><h:td>11-11-24</h:td></h:tr>
+																	<h:tr><h:td>Zul</h:td></h:tr>
+																	<h:tr><h:td>31/07/2006</h:td></h:tr>																			
+																</h:table>
+										 			  		  </h:td>
+											    	    </h:tr>
+													</h:table>
+											    </h:center>
+											   </listcell>
+										   </listitem>
+										</listbox>
+									 </h:td>
+										
+									 <h:td width="30%">
+										<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+											<listitem>
+												<listcell label="03">
+												<h:center>
+													<h:table width="100%" align="center">
+														<h:tr><h:td width="300px" height="70px">
+													  			<h:table width="100%">
+																	<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																</h:table>
+										  			 		  </h:td>
+											    		</h:tr>
+													</h:table>
+												 </h:center>
+												 </listcell>
+												 </listitem>
+												 </listbox>
+										</h:td>
+								  </h:tr>
+										
+								  <h:tr><h:td width="30%" height="20">
+											 <h:center><h:a href="">Jumlah Antrian : 1</h:a></h:center>
+									    </h:td>
+								  </h:tr>
+										
+								  <h:tr><h:td width="30%">
+											<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+												<listitem>
+													<listcell label="04">
+													<h:center>
+														<h:table width="100%" align="center">
+														<h:tr><h:td width="300px">
+														  		<h:table width="100%">
+																	<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																	<h:tr><h:td>11-11-13</h:td></h:tr>
+																	<h:tr><h:td>Christoforus</h:td></h:tr>
+																	<h:tr><h:td>01/08/2006</h:td></h:tr>
+																</h:table>
+										  			 		  </h:td>
+											    	    </h:tr>
+														</h:table>
+													</h:center>
+													</listcell>
+												</listitem>
+											</listbox>
+										 </h:td>
+									
+										 <h:td width="30%">
+											<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+												<listitem>
+													<listcell label="05">
+													<h:center>
+													<h:table width="100%" align="center">
+														<h:tr><h:td width="300px">
+													  			<h:table width="100%" height="70px">
+																	<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																</h:table>
+										  			 		  </h:td>
+											   			</h:tr>
+													</h:table>
+													</h:center>
+													</listcell>
+												</listitem>
+											</listbox>
+										 </h:td>
+										
+										 <h:td width="30%">
+											<listbox width="130px" onSelect="bed.value=self.selectedItem.label; bed.closeDropdown();">
+												<listitem>
+													<listcell label="06">
+													<h:center>
+														<h:table width="100%" align="center">
+															<h:tr><h:td width="300px" height="70px">
+															  		<h:table width="100%">
+																		<h:tr><h:td><h:image src="../../image/orang2.gif"/></h:td></h:tr>
+																	</h:table>
+										  			  			  </h:td>
+											   				</h:tr>
+														</h:table>
+													</h:center>
+													</listcell>
+												</listitem>
+											</listbox>
+										  </h:td>
+									</h:tr>
+							
+						  </h:table>
+						  </h:center>
+
+<separator spacing="5px"/>
+
+					   </groupbox>
+					   </vbox>	
+					   </bandpopup>
+               		   </bandbox> 
+                 </h:td>
+          </h:tr>
+	</h:table>
+	</h:td>	
+	<h:td width="14%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="10px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="21%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="12%"/>
+						  <h:td width="5%">
+			  				<h:p align="right">
+    							<button label="SIMPAN" image="/image/save1.gif" style="width:70px;height:25px"/>
+    		  				</h:p>
+    		  			  </h:td>
+    		  
+    					  <h:td width="5%">
+			 			 	<h:p align="right">
+    							<button label="UBAH" image="/image/edit.gif" style="width:70px;height:25px"/>
+    		  				</h:p>
+    		 			  </h:td>		
+    		  			 
+    		  			  <h:td width="5%">
+			  				<h:p align="right">
+    							<button label="BARU" image="/image/new.gif" style="width:70px;height:25px"/>
+    		  				</h:p>
+    		  			  </h:td>		   
+    		  			  
+    		  			  <h:td width="12%"/>
+    			    </h:tr>
+				</h:table>
+     	  </h:td>
+     	  <h:td width="21%"/>
+    </h:tr>
+</h:table>
+
+<separator spacing="10px"/>
+
+<h:table align="center" width="100%" sclass="Bancgroundlogo">
+	<h:tr><h:td width="14%"/>
+		  <h:td>	
+	<h:table width="100%" align="center">
+    	<h:tr><h:td width="5%"/>
+    	<h:td>	 	
+    	<hbox>
+			  <groupbox width="750px" height="125px">
+			  	<caption label="DAFTAR PEMESAN KAMAR"/>
+			  		<h:table width="100%" align="center">
+			  		<h:tr><h:td height="7"></h:td></h:tr>
+			  		<h:tr><h:td width="5%"/>
+			  			  <h:td>
+			  			  <vbox>
+						  <listbox multiple="true" width="720px" height="130px">
+					
+						  <listhead>
+						  <listheader label="NAMA PASIEN" width="25%" sort="auto"/>
+						  <listheader label="KELAS TARIF" width="13%" sort="auto"/>
+						  <listheader label="RUANGAN" width="20%" sort="auto"/>
+						  <listheader label="N0. BED" width="10%" sort="auto"/>
+						  <listheader label="TGL PEMESANAN" width="15%" sort="auto"/>
+						  <listheader label="ANTRIAN #" width="10%" sort="auto"/>
+						  </listhead>
+					
+						  <listitem>
+						  <listcell label="Budi"/>
+						  <listcell label="Kelas 2"/>
+						  <listcell label="Seruni A"/>
+						  <listcell label="02"/>
+						  <listcell label="07/08/2006"/>
+						  <listcell label="1"/>
+						  </listitem>
+					
+						  <listitem>
+						  <listcell label="Badu"/>
+						  <listcell label="Kelas 3"/>
+						  <listcell label="Soka A"/>
+						  <listcell label="06"/>
+  					      <listcell label="06/08/2006"/>
+						  <listcell label="3"/>
+						  </listitem>
+									
+						  <listitem>
+						  <listcell label="Doni"/>
+						  <listcell label="Kelas 3"/>
+						  <listcell label="Soka A"/>
+						  <listcell label="06"/>
+						  <listcell label="05/08/2006"/>
+						  <listcell label="2"/>
+						  </listitem>
+									
+						  <listitem>
+						  <listcell label="Dona"/>
+						  <listcell label="Kelas 2"/>
+						  <listcell label="Cempaka A"/>
+						  <listcell label="05"/>
+						  <listcell label="04/08/2006"/>
+						  <listcell label="1"/>
+						  </listitem>
+								
+						  </listbox>
+						  </vbox>
+					      </h:td>
+						  <h:td width="5%"/>
+					</h:tr>
+					
+					<h:tr><h:td width="5%"/><h:td>
+						  <h:center>
+			  		     	   <image id="first" src="/image/moveFirst_dis.gif" width="10px"/>
+			  			       <image id="imgspace1" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="prev" src="/image/movePrev_dis.gif" width="6px"/>
+					 	 	   <image id="imgspace3" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="next" src="/image/moveNext_dis.gif" width="6px"/>
+					 	 	   <image id="imgspace2" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="last" src="/image/moveLast_dis.gif" width="10px"/>
+					 	  </h:center>
+					 	  </h:td><h:td width="5%"/>
+					</h:tr>
+			  		</h:table>
+					
+			  		<separator spacing="1px"/>
+			   </groupbox>
+			   	
+			  		
+	  	</hbox>
+	  
+	  	</h:td>
+	  	<h:td width="1%"/>
+		</h:tr>
+	</h:table>
+	<separator spacing="10px"/>
+	<h:table width="100%" align="center">
+		<h:tr><h:td width="5%"/>
+			  <h:td width="10%">
+    		  	<h:p align="left">
+    			    <button label="BATAL PEMESANAN" image="/image/batal.gif" style="width:140px;height:25px"/>
+    			</h:p>
+    		  </h:td>
+    			
+    		  <h:td width="10%">
+    		  	<h:p align="left">
+    			    <button label="PENDATAAN PASIEN" image="/image/new.gif" style="width:140px;height:25px" href="Pendaftaran.zul"/>
+    			</h:p>
+    		  </h:td>
+    		  				   
+    		  <h:td>
+    		     <h:p align="right">
+    				 <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:25px" href="index.zul"/>
+    			 </h:p>
+    		  </h:td>
+    		  <h:td width="6%"/>
+    	</h:tr>
+	</h:table>
+<h:td width="14%"/>
+</h:td>
+    	</h:tr>
+	</h:table>
+<separator spacing="10px"/>
+
+
+
+</window>

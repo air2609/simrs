@@ -1,0 +1,30 @@
+<window id="bedAvailablity" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.report.BedConditionController;
+	ctr = new BedConditionController();
+	void init(){
+	 ctr.init(bedAvailablity);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center" border="10">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle2">KONDISI BED AKTUAL</h:th>
+    </h:tr>
+ 
+ 	<h:tr>
+		<h:td>
+			<window  width="950px" id="bedWindows">
+				<listbox id="listBed" height="400px" width="950px" mold="paging" pageSize="12">
+					<listhead>
+						<listheader width="50%"><label  style="font-weight:bold;font-size:20pt" value="KELAS TARIF"/></listheader>
+						<listheader width="25%"><label  style="font-weight:bold;font-size:20pt" value="JUMLAH BED"/></listheader>
+						<listheader width="25%"><label  style="font-weight:bold;font-size:20pt" value="BED TERISI"/></listheader>	
+					</listhead>
+				</listbox>
+			</window>
+		</h:td>
+	</h:tr>
+</h:table>
+</window>

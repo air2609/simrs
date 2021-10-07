@@ -1,0 +1,140 @@
+<window id="detail" xmlns:h="http://www.w3.org/1999/xhtml" width="800px" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.ui.master.treatment.TreatmentLabDetailController;
+	ctr = new TreatmentLabDetailController();
+	void init(){
+		ctr.init(detail);
+	}
+</zscript> 
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM INPUT DETAIL TREATMENT</h:td></h:tr>
+	</h:table>
+
+	<separator spacing="7px"/>
+	
+	<h:table width="100%" align="center">
+		<h:tr><h:td width="20%"/>
+			  <h:td>	
+				    <h:table width="100%" align="center">
+				    	<h:tr><h:td width="14%"/>
+				    		  <h:td>
+									<h:table width="100%" align="center">
+										<h:tr><h:td width="12%" align="right"><h:b><h:font size="1">JENIS PEMERIKSAAN</h:font></h:b></h:td>
+										      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					              			  <h:td width="25%"><textbox id="jenisTextbox" width="80%" height="14px" style="font-size:8pt"/></h:td>
+					       				</h:tr>
+					       				
+					        			<h:tr><h:td width="12%" align="right"><h:b><h:font size="1">SATUAN</h:font></h:b></h:td>
+								  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					             			  <h:td width="25%" style="font-weight:bold;font-size:8pt">
+					             			  		<textbox id="quantifyTextbox" width="80%" height="14px" style="font-size:8pt"/>
+					             			  </h:td>
+												
+					        			</h:tr>
+					        			
+					        			<h:tr><h:td width="12%" align="right"><h:b><h:font size="1">NORMAL RANGE</h:font></h:b></h:td>
+								  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					             			  <h:td width="25%" style="font-weight:bold;font-size:8pt">
+					             			  		<textbox id="rangeTextbox" width="80%" height="14px" style="font-size:8pt"/>
+					             			  </h:td>
+					        			</h:tr>
+					    			</h:table>
+				  			</h:td>
+				  			<h:td width="14%"/>
+				  	   </h:tr>
+			  	   </h:table>
+		  	 </h:td>
+			 <h:td width="20%"/>
+	   </h:tr>		
+	   <h:tr><h:td width="20%"/> 
+			 <h:td><separator spacing="4px"/> 	
+				   <h:table width="100%" align="center">
+				    	<h:tr><h:td width="34%"/>
+				    		  <h:td>
+				  					<h:table width="100%" align="center">
+					    				<h:tr><h:td width="14%"/>
+					    					  <h:td align="right"> 
+					    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.simpanClick();"/>
+					    					  		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    		  			  		 
+					    					   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.ubahClick()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    		  			  		 
+					    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.clearForm()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td align="left">
+					    		  			  		 
+					    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr. hapusClick();"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="14%"/>
+					    				</h:tr>
+				    				</h:table>
+				    		</h:td>
+				  			<h:td width="34%"/>
+				  	   </h:tr>
+				    </h:table>
+		       </h:td>
+			   <h:td width="20%"/>
+		 </h:tr>		
+		 <h:tr><h:td width="20%"/> 
+			   <h:td><separator spacing="4px"/> 	    
+				     <h:table width="100%" align="center">
+				    	  <h:tr><h:td width="30%"/>
+						    	<h:td><vbox>	 	
+						    		  <groupbox width="740px">
+									  	<caption label="DETAIL TREATMENT"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td  height="10px"/></h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td><vbox>
+														  		  <listbox id="detailListbox" multiple="true" width="700px" height="237px" mold="paging" pageSize="17">
+																		<listhead>
+																			<listheader label="JENIS PEMERIKSAAN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="SATUAN" width="20%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NORMAL RANGE" width="20%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																		<listitem>
+																		<listcell label="fasdfa"/>
+																		<listcell label="fasdfa"/>
+																		<listcell label="fasdfa"/>
+																		</listitem>
+																  </listbox>		
+															  </vbox>
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+											
+											<separator spacing="3px"/>
+									  		
+									  		<h:table width="100%" align="center">
+										  		   <h:tr><h:td/>
+										  		   		 <h:td width="7%" align="right">
+										  		   		 	    
+										  		   		 			<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="detail.detach();"/>
+										  		   		 	   
+										  		   		 </h:td>
+							    		 		 		 <h:td width="3%"/>
+												   </h:tr>
+									  		</h:table>
+									  		
+								  			<separator spacing="5px"/>
+									   </groupbox>
+									   </vbox>
+							 		</h:td>
+									<h:td width="30%"/>
+						      </h:tr>
+					    </h:table>
+			    </h:td>
+		  </h:tr>
+	</h:table> 
+	<separator spacing="14px"/>
+</window>

@@ -1,0 +1,59 @@
+<window id="persiapanMR" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.mr.PersiapanMR;
+	ctr = new PersiapanMR();
+	void init(){
+		ctr.init(persiapanMR);
+	}
+
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>PERSIAPAN DOKUMEN REKAM MEDIS</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="15px"/>
+	
+	<h:table align="center">
+		<h:tr>
+			<h:td></h:td>
+			<h:td width="95%">
+				<hbox align="center">
+					<vbox>
+					<h:table align="center" width="100%" sclass="BasicBlueTitle">
+						<h:tr><h:td>DAFTAR BERKAS REKAM MEDIS BELUM SIAP</h:td></h:tr>
+					</h:table>
+					<listbox height="500px" width="500px" id="mrList">
+						<listhead>
+							<listheader label="NO. MR"/>
+							<listheader label="NAMA"/>
+							<listheader label="UNIT"/>
+						</listhead>
+					</listbox>
+					</vbox>
+					<button label="DOKUMEN SIAP" onClick="ctr.moveMR();"/>
+					<vbox>
+					<h:table align="center" width="100%" sclass="BasicBlueTitle">
+						<h:tr><h:td>DAFTAR BERKAS REKAM MEDIS SUDAH SIAP</h:td></h:tr>
+					</h:table>
+					<listbox height="500px" width="500px" id="mrReadyList">
+						<listhead>
+							<listheader label="NO. MR"/>
+							<listheader label="NAMA"/>
+							<listheader label="UNIT"/>
+						</listhead>
+					</listbox>
+					</vbox>
+				</hbox>		
+			</h:td>
+			<h:td></h:td>
+		</h:tr>
+	</h:table>
+	
+	
+	
+    <separator spacing="17px"/>
+</window>

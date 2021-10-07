@@ -1,0 +1,144 @@
+<window id="bpjsDaftar" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.antrian.bpjs.DaftarController;
+	DaftarController ctr = new DaftarController();
+	
+	void init(){
+		ctr.init(bpjsDaftar);
+	}
+</zscript>
+<style>
+.z-button {
+    color:blue;
+    border: 1px solid powderblue;
+    padding: 5px;
+    background-color: #eeeeee;
+    font-weight:bold;
+    font-size: 30px;
+    width : 150px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.myText{
+	color:blue;
+	border: 1px solid powderblue;
+	background-color: #eeeeee;
+	width : 300px;
+	height : 38px;
+	font-size: 30px;
+}
+
+.myGrid{
+	padding: 20px;
+}
+</style>
+
+<h:table width="80%" align="center">
+	<h:tr>
+		<h:td align="center">
+			<h:h1>Selamat datang di sistem antrian pasien BPJS RSUD Mandau</h:h1>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td align="center">
+			<!-- <h:img src="../../../image/images/TS.png" style="width:250px;height:125px;"/> -->
+			<image src="../../../image/image001.png" style="width:250px;height:125px;" onClick="ctr.reset()"/>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td align="center" style="padding: 5px;">
+			<!-- <h:h3>Pilih Poliklinik yang ingin dikunjungi</h:h3> -->
+			<label id="lblPoli" value="Pilih Poliklinik yang ingin dikunjungi" style="font-weight:bold; font-size:16px"/>
+			<vbox align="center" id="vboxLbDoctor">
+				<hbox>
+					<label id="lblDoctor" value="Anda memilih" style="font-weight:bold;font-size:15px"/>
+					<label id="lblPilihPoli" value="Poliklinik Kandungan" style="font-weight:bold; font-size:16px"/>
+				</hbox>
+				<label value="Silahkan Pilih Dokter Yang akan dikunjungi" style="font-weight:bold;font-size:15px"/>
+			</vbox>
+			<vbox align="center" id="vboxQueueFull">
+				<hbox>
+					<label value="Mohon maaf, antrian dokter " style="font-weight:bold;font-size:15px"/>
+					<label id="lblDoctorName" style="font-weight:bold;font-size:15px"/>	
+					<label value=" telah penuh." style="font-weight:bold;font-size:15px"/>					
+				</hbox>
+				<separator spacing="10px"/>
+				<label value="Apakah anda ingin melanjutkan mendaftar untuk mendapatkan Jadwal konsultasi pada tanggal:" style="font-weight:bold;font-size:15px"/>
+				<separator spacing="10px"/>
+				<!--  <label id="nextDate" value="30 May 2018" style="font-weight:bold;font-size:25px"/> -->
+				<listbox id="nextDate" width="320px" height="250px" rows="4" multiple="false" checkmark="true" />
+				<separator spacing="40px"/>
+				<hbox>
+					<button class="z-button" label="Ya" onClick="ctr.inputBpjs()"/>
+					<space/>
+					<button class="z-button" label="Tidak" onClick="ctr.reset()"/>
+				</hbox>
+			</vbox>
+			<vbox align="center" id="vboxInputBpjs">
+				<label value="Masukkan no kartu BPJS dan No HP, lalu klik Lanjutkan" style="font-weight:bold;font-size:16px"/>
+				<separator spacing="15px"/>
+				<hbox>
+					<vbox>
+						<label value="No BPJS" style="font-weight:bold;font-size:12px"/>
+						<textbox class="myText" id="bpjsNo"/>
+					</vbox>
+					<space/>
+					<vbox>
+						<label value="a" style="font-weight:bold;font-size:9px;color:white"/>
+						<label value="a" style="font-weight:bold;font-size:10px;color:white"/>
+						<label value="Atau" style="font-weight:bold;font-size:12px;color:white"/>
+					</vbox>
+					<space/>
+					<vbox>
+						<label value="No HP" style="font-weight:bold;font-size:12px"/>
+						<textbox class="myText" id="hpNo"/>
+					</vbox>
+				</hbox>
+				<separator spacing="10px"/>
+				
+				<separator spacing="30px"/>
+				<button label="Lanjutkan" class="z-button" width="250px" onClick="ctr.saveQueue()"/>
+			</vbox>
+		</h:td>
+	</h:tr>
+</h:table>
+<h:table style="width:70%;padding:10px;border:0px solid DodgerBlue" align="center">
+<h:tr>
+	<h:td align="center">
+	
+		<grid class="myGrid" id="poliGrid">
+			<rows class="myGrid" id="rowsPoli">
+				<row style="padding-left:15px;padding-top:15px; padding-bottom: 15px;background-color: #ffffff;">
+					<button class="z-button" label="POLIKLINIK UMUM"/>
+					<button class="z-button" label="POLIKLINIK GIGI"/>
+				</row>
+				<row style="padding-left:15px;padding-top:15px; padding-bottom: 15px;background-color: #ffffff;">
+					<button class="z-button" label="POLIKLINIK ANAK"/>
+					<button class="z-button" label="POLIKLINIK MATA"/>
+				</row>
+			</rows>
+		</grid>
+		
+		<grid class="myGrid" id="doctorGrid">
+			<rows class="myGrid" id="rowsDoctor">
+				<row style="padding-left:15px;padding-top:15px; padding-bottom: 15px;background-color: #ffffff;">
+					<button class="z-button" label="POLIKLINIK UMUM"/>
+					<button class="z-button" label="POLIKLINIK GIGI"/>
+				</row>
+				<row style="padding-left:15px;padding-top:15px; padding-bottom: 15px;background-color: #ffffff;">
+					<button class="z-button" label="POLIKLINIK ANAK"/>
+					<button class="z-button" label="POLIKLINIK MATA"/>
+				</row>
+			</rows>
+		</grid>
+		
+		<grid class="myGrid" id="queueGrid">
+			<rows class="myGrid" id="rowsQueueFull">
+			</rows>
+		</grid>
+	</h:td>
+</h:tr>
+
+</h:table>
+
+</window>

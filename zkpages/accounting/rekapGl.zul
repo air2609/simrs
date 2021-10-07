@@ -1,0 +1,88 @@
+<?component name="VONEButton" macro-uri="/zkpages/macros/VONEButton.zul"?>
+
+<window id="rekapGl" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+
+<style src="/include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.accounting.RekapGlController;
+	
+	ctr = new RekapGlController();
+	
+	void init(){
+		ctr.init(rekapGl);
+	}
+	
+</zscript>
+
+ 	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>REKAP GL</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="5px"/>
+
+
+<h:table width="100%" align="center" border="0">
+	<h:tr><h:td width="20%"/>
+		  <h:td>		
+				<h:table width="100%" align="center" border="0">
+			    	<h:tr><h:td>
+			    				<h:table width="100%" align="center" border="0">
+			    				<h:tr>
+			    					<h:td align="center">
+			    						<h:b><h:font size="1">DARI</h:font></h:b> 
+			    						<space spacing="10px"/>
+			    						<datebox id="dfrom" format="dd/MM/yyyy"/>
+			    						<space spacing="10px"/>
+			    						<h:b><h:font size="1">SAMPAI</h:font></h:b>
+			    						<space spacing="10px"/>
+			    						<datebox id="dto" format="dd/MM/yyyy"/>
+			    						<space spacing="10px"/>
+			    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:85px;height:22px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>
+			    					
+			    					</h:td>
+			    				</h:tr>
+			    				</h:table>
+			  			</h:td>
+			  	   </h:tr>
+			   </h:table>
+	  	 </h:td>
+	     <h:td width="20%"/>
+	</h:tr>		    
+					    
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="1px"/>	  
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td>	 	
+						    	<vbox>
+									  <groupbox width="850px">
+									  	<caption label="LIST REKAP GL"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td>
+												  		  		<listbox id="listGl" width="810px" height="400px" mold="paging" pageSize="10">
+																	<listhead>
+																		<listheader label="DARI" style="font-weight:bold;font-size:8pt" width="30%" />
+																		<listheader label="SAMPAI" style="font-weight:bold;font-size:8pt" width="30%" />
+																		<listheader label="FILE" style="font-weight:bold;font-size:8pt" width="40%" />						
+																	</listhead>
+																</listbox>		
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+										
+									  		<separator spacing="5px"/>
+									   </groupbox>
+							  </vbox>
+				  		</h:td>
+				  </h:tr>
+			 </h:table>
+	    
+		</h:td>
+		<h:td width="20%"/>
+	</h:tr>
+</h:table> 
+
+<separator spacing="10px"/>
+</window>

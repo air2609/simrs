@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()"><!--
+ xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.zkoss.org/2005/zul ../../../medisafe/zul.xsd "
+--><style src="../../include/medisafe.css"/>
+
+<zscript>  
+	import com.vone.medisafe.ui.purchasing.ReturController;
+
+	ctr = new ReturController();
+	
+	void init(){
+		ctr.init(root);
+	}
+	
+	void doSearch(){
+		ctr.doSearch();	
+	}
+</zscript>
+
+
+<h:table width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>RETUR BARANG</h:td></h:tr>
+</h:table>
+
+<separator spacing="8px"/>
+
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="8%"/>
+		  <h:td>
+		  		<hbox>
+					  <groupbox width="460px">
+						<separator spacing="4px"/>
+						<caption label="PENERIMAAN BARANG"/>
+							<h:table width="100%">
+							   <h:tr><h:td width="12%"><h:p align="right" style="font-size:8pt"><h:b>NO. BPP</h:b></h:p></h:td>
+								     <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			 <h:td width="20%">
+						  			 		<bandbox id="doNo" width="72%" style="font-size:8pt" onOpen="doNoSearch.focus();" height="15px">
+						  			 			<bandpopup>
+													<vbox>	
+														  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA BPP</h:td></h:tr>
+														  </h:table>
+															
+														  <separator spacing="5px"/>
+															
+														  <h:table width="100%" align="center">
+																<h:tr><h:td width="1%"/>
+																      <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. BPP</h:b></h:p></h:td>
+																	  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+																	  <h:td width="35%"><h:p align="left"><textbox id="doNoSearch" style="font-size:8pt" width="90%" height="14px"/></h:p></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+																<h:tr><h:td width="1%"/>
+																      <h:td width="1%"><h:p align="right" style="font-size:8pt"><h:b>BATCH NO.</h:b></h:p></h:td>
+																	  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+																	  <h:td width="35%"><h:p align="left"><textbox id="batchNoSearch" style="font-size:8pt" width="90%" height="14px"/></h:p></h:td>
+																	  <h:td width="15%"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px" onClick="doSearch()"/></h:p></h:td>
+																	  <h:td width="2%"/>
+																</h:tr>
+														  </h:table>
+															
+														  <separator spacing="3px"/>
+														  <listbox id="doList" width="480px" onSelect="doNo.value=self.selectedItem.label; doNo.closeDropdown(); ctr.redraw();" mold="paging" pageSize="10">
+																<listhead>
+																	<listheader label="NO. DO" width="18%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="SUPPLIER" width="30%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														  </listbox>
+											    	</vbox>
+											    </bandpopup>
+						  			 		</bandbox>
+						  			 </h:td>
+						  	   </h:tr>
+						  	   
+				  		
+							   <h:tr><h:td width="12%"><h:p align="right" style="font-size:8pt"><h:b>NO. OP</h:b></h:p></h:td>
+						  		     <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			 <h:td width="20%"><textbox id="poNo" style="font-size:8pt" width="79%" readonly="true" height="14px"/></h:td>
+						  	   </h:tr>
+						  	   
+							   <h:tr><h:td width="12%"><h:p align="right" style="font-size:8pt"><h:b>TANGGAL TERIMA</h:b></h:p></h:td>
+						  		     <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			 <h:td width="20%"><textbox id="recDate" style="font-size:8pt" width="79%" readonly="true" height="14px"/></h:td>
+						  	   </h:tr>
+						  		
+							   <h:tr><h:td width="12%"><h:p align="right" style="font-size:8pt"><h:b>DITERIMA OLEH</h:b></h:p></h:td>
+						  		     <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			 <h:td width="20%"><textbox id="recBy" style="font-size:8pt;font-weight:bold" readonly="true" width="79%" height="14px"/></h:td>
+						       </h:tr>
+							   
+				
+							   <h:tr><h:td width="12%"><h:p align="right" style="font-size:8pt"><h:b>DISETUJUI OLEH</h:b></h:p></h:td>
+						  		     <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			 <h:td width="20%"><textbox id="approvedBy" style="font-size:8pt;font-weight:bold" width="79%" readonly="true" height="14px"/></h:td>
+						  	   </h:tr>
+							</h:table>
+							
+							<separator spacing="4px"/>
+					</groupbox>
+					<separator spacing="10px"/>
+					<separator spacing="10px"/>
+					<groupbox width="448px">
+						<caption label="SUPPLIER"/> 
+					    <separator spacing="2px"/>
+							<h:table width="100%" align="center">
+						  		<h:tr><h:td width="11%"><h:p align="right" style="font-size:8pt"><h:b>KODE SUPPLIER</h:b></h:p></h:td>
+						  			  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						 			  <h:td width="20%"><textbox id="supCode" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%"><h:p align="right" style="font-size:8pt"><h:b>NAMA SUPPLIER</h:b></h:p></h:td>
+						  			  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			  <h:td width="20%"><textbox id="supName" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%"><h:p align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:p></h:td>
+						  			  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						 			  <h:td width="20%"><textbox id="supAddress" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" rows="4"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="11%"><h:p align="right" style="font-size:8pt"><h:b>NO. TELP</h:b></h:p></h:td>
+						  			  <h:td width="2%"><h:p align="center">:</h:p></h:td>
+						  			  <h:td width="20%"><textbox id="supTelp" style="font-size:8pt;font-weight:bold" width="85%" readonly="true" height="14px"/></h:td>
+						  		</h:tr>
+						  </h:table>
+						<separator spacing="2px"/>
+					 </groupbox>
+				 </hbox>
+		   </h:td>
+		  <h:td width="7%"/>
+	</h:tr>
+	<h:tr><h:td width="5%"/>
+		  <h:td><separator spacing="5px"/>	
+		  		<vbox>
+			  			<groupbox width="950px">
+			  				<caption label="DATA ORDER PEMBELIAN"/>
+			  					<h:table width="100%" align="center">
+			  						<h:tr><h:td height="10px"></h:td></h:tr>
+			  						<h:tr><h:td width="2%"/>
+			  							  <h:td>
+				  			  				  	<vbox>
+								  					<listbox id="list" multiple="true" width="910px" height="198px" checkmark="true">
+									  					<listhead>
+									  						<listheader label="KODE" width="8%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+									  						<listheader label="KETERANGAN" width="18%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+									  						<listheader label="BATCH NO." width="9%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="SATUAN" width="9%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="HRG SAT" width="8%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="ORD" width="5%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="DISKON" width="7%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="TAX %" width="6%" style="font-weight:bold;font-size:8pt"/>									  					
+									  						<listheader label="HRG AKHIR" width="8%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="LOKASI" width="7%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="STOK GDG" width="7%" style="font-weight:bold;font-size:8pt"/>
+									  						<listheader label="JLH RETUR" width="9%" style="font-weight:bold;font-size:8pt"/>
+									  					</listhead>
+									  					<listitem>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="1000000 Rp"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  						<listcell label="ab"/>
+									  					</listitem>
+									  			   </listbox>
+						  					</vbox>
+										 </h:td>
+										 <h:td width="2%"/>
+									</h:tr>
+								 </h:table>
+								 <separator spacing="3px"/>
+			   		   </groupbox>
+			   	</vbox>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+	<h:tr><h:td width="5%"/>
+		  <h:td><separator spacing="5px"/>
+			    <h:table width="100%" align="center">
+					  <h:tr><h:td width="3%"/>
+					  		<h:td width="10%">
+					  			<h:p align="right">
+		    						<button id="btnRetur1" label="RETUR - CASH BACK" image="/image/icons/kasir.gif" style="width:170px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.doClickBtn1()"/>
+		    		  			</h:p>
+		    		  		</h:td>
+		    		  		<h:td width="10%">
+					  			<h:p align="left">
+		    						<button id="btnRetur2" label="RETUR - ITEM REPLACEMENT" image="/image/icons/gizi.gif" style="width:175px;height:26px;font-weight:bold;font-size:7pt">
+			    						<attribute name="onClick">
+					    					{
+					    						final Window win = (Window) Executions.createComponents(
+																	"/zkpages/purchasing/returReplaceItem.zul", null, null);
+											    win.doModal();
+											}
+					    				</attribute>
+		    						</button>
+		    		  			</h:p>
+		    		  		</h:td>
+		    		  		<h:td width="3%"/>
+		    		 </h:tr>
+			   </h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+<separator spacing="15px"/>
+</window>

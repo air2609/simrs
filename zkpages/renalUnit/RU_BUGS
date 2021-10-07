@@ -1,0 +1,86 @@
+7-februari-2007
+===============
+1. di form tambah tindakan, data terapis kog gak ada..??
+--OK
+
+26-januari-2007
+
+1. untuk nota yang mempunyai transaksi obat, ketika nota akan divalidasi (melalui proses searching nota), 
+   selalu muncul :
+	Jan 26, 2007 2:11:22 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>org.zkoss.zk.ui.UiException: com.vone.medisafe.common.exception.VONEAppException: could not initialize proxy - the owning Session was closed
+	>>com.vone.medisafe.common.exception.VONEAppException: could not initialize proxy - the owning Session was closed
+	>>	at com.vone.medisafe.mapping.dao.NoteDAO.save(NoteDAO.java:319)
+	>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.save(NoteManagerImpl.java:55)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+
+
+
+2. untuk nota yang mempunyai transaksi obat, ketika nota akan dibatalkan (melalui proses searching nota), 
+   selalu muncul  :
+   Jan 26, 2007 2:19:39 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>org.zkoss.zk.ui.UiException: com.vone.medisafe.common.exception.VONEAppException: failed to lazily initialize a collection of role: com.vone.medisafe.mapping.TbItemTrx.tbPatientInventories - no session or session was closed
+	>>com.vone.medisafe.common.exception.VONEAppException: failed to lazily initialize a collection of role: com.vone.medisafe.mapping.TbItemTrx.tbPatientInventories - no session or session was closed
+	>>	at com.vone.medisafe.mapping.dao.NoteDAO.cancelNote(NoteDAO.java:572)
+	>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.cancelNote(NoteManagerImpl.java:202)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+
+
+
+3. tulisan di list (dalam bandbox NO. NOTA) digedein.
+
+
+
+
+
+
+============================================================================================================
+
+070107
+1. ketika melakukan pencarian via nota dan data nota
+   ditampilkan ke dalam list, kenapa keterangannya bisa berubah ya??
+   waktu input, format keterangan = NAMA TREATMENT - NAMA TERAPIS
+   tetapi ketika data diperoleh dari pencarian nota
+   kog format keterangannya jadi = NAMA TREATMENT - GROUP TINDAKAN
+	-- ok
+
+======================================================
+1. ketika klik baru, data pasien di history juga dibersihkan.
+	-- ok
+2. ketika pencarian via nota, kog tampilan di 
+   list Data Tindakan Renal Unit-nya beda ya..?
+   -- ok
+3. tampilan value harga dan subtotal bisa di buat
+   xxx,xxx..??
+   -- ok
+4. pencarian via nota. null pointer dan kog pasien rujukan
+   bisa dpt no. registrasi?? (sistem tetap keep no. registrasi pasien
+   sebelumnya).-->>> no. registrasi masih muncul.
+   kejadian : melakukan pengisian pasien ranap atau rajal
+              baru kemudian mengisi untuk data rujukan.
+              selanjutnya : melakukan pencarian via nota
+              maka, data pasien rujukan bisa punya no. registrasi.
+   -- CLUE: NYIMPEN DI TB_EXAM        
+   -- ok (salah waktu save)   
+              
+              
+   
+=======================================================
+1. Total tidak dibuat otomatis??
+	-- ok (dari zk bisa)
+2. history transaksi-nya kog gak ada data pasiennya??
+	-- ok (PatientHistoryController.java)
+3. pencarian via nota. null pointer dan kog pasien rujukan
+   bisa dpt no. registrasi?? (sistem tetap keep no. registrasi pasien
+   sebelumnya).
+    -- ok

@@ -1,0 +1,562 @@
+FORMAT NOMOR :
+	NO. MR : XX-XX-XX
+ 	NO. REGISTRASI : J-UGD-YYYYMMDD-XXXXX
+ 	NO. NOTA : J-UGD-YYMM-XXXXXX
+ 	
+BY DEFAULT :
+   - RAJAL/RUJUKAN --> KELAS TARIFNYA = KELAS 2
+
+A. ONLOAD
+   1. SEMUA FIELD ENABLED, KECUALI NO. NOTA DAN NO. REGISTRASI.
+   2. BUTTON YANG ENABLED : SELESAI
+      BUTTON2 YANG LAIN DI-DISABLED
+
+i.  PASIEN BARU
+	1. INITIAL
+	   1.1 USER MEMASUKKAN DATA PASIEN 
+	   	   - NAMA 
+	   	   - JENIS KELAMIN 
+	   	   - TANGGAL LAHIR
+	   	   - UMUR 
+	   	   - ALAMAT
+	   	   - TIPE PASIEN
+	   1.2 TOMBOL YANG DI ENABLED :
+	   	   - BARU
+	   	   - TAMBAH TINDAKAN
+	   	   - TAMBAH OBAT
+	    	   
+	   1.3 USER MEMASUKKAN DOKTER UTAMA
+	   1.4 USER MEMASUKKAN TIPE PEMBAWA (JIKA ADA)	  
+	   1.5 USER TAMBAH DATA TINDAKAN REFER TO B
+	   1.6 USER TAMBAH DATA OBAT / BAHAN MEDIS REFER TO C
+       1.7 TOMBOL HITUNG DIENABLED
+	   1.8 USER MENGISI DISKON UNTUK TIAP ITEM (JIKA ADA DISKON)
+		   1.8.1 DISKON BISA DALAM BENTUK RUPIAH ATAU %.
+		   1.8.2 SUBTOTAL AKAN BERUBAH SESUAI DENGAN HARGA - DISKON.
+		   1.8.3 USER MENEKAN TOMBOL HITUNG
+		   1.8.4 HARGA TOTAL DITAMPILKAN.
+		   
+	2. USER MENEKAN TOMBOL SIMPAN 
+	     
+ii. PASIEN LAMA
+	1. INITIAL
+	   1.1. USER INPUT NO. MR
+  			1.1.1 PENCARIAN VIA BANDBOX
+  			      1.1.1. USER INPUT NO.MR ATAU NAMA ATAU ALAMAT PASIEN
+  			  	  1.1.2. JIKA :
+	  			  		   - DATA TIDAK DITEMUKAN : 	
+	  			  			     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+	  			  	 	   - DATA DITEMUKAN
+	  			  	    	     --> TAMPILKAN KEDALAM LIST DATA PASIEN
+	  			  	    	     --> USER MEMILIH DATA PASIEN
+	  			  	    		 --> DISPLAY DATA PASIEN DI FORM TRANSAKSI UTAMA
+	  			  	    		 --> TAMPILKAN SEMUA DATA HISTORY TRANSAKSI PASIEN DI TAB HISTORY TRANSAKSI
+		  			  	    		     CHECK KETERANGANNYA DI FILE "EMERGENCY/HISTORY"
+	  			  	    		     		     
+  			1.1.2 INPUT NO. MR MANUALLY
+	  			  1.2.1 JIKA :
+	  			  	  	  - DATA TIDAK DITEMUKAN : 	
+	  			  	    	     --> MUNCUL KONFIRMASI BAHWA DATA TIDAK DITEMUKAN.
+	  			  	      - DATA DITEMUKAN
+		  			  	    	 --> DISPLAY DATA PASIEN DI FORM TRANSAKSI UTAMA
+		  			  	    	 --> TAMPILKAN SEMUA DATA HISTORY TRANSAKSI PASIEN DI TAB HISTORY TRANSAKSI
+		  			  	    		     CHECK KETERANGANNYA DI FILE "EMERGENCY/HISTORY"
+  	   1.2 TOMBOL SIMPAN DI ENABLED	  	    
+	   1.3 USER MEMASUKKAN DOKTER UTAMA
+	   1.4 USER MEMASUKKAN TIPE PEMBAWA (JIKA ADA)	  
+	   1.5 USER TAMBAH DATA TINDAKAN REFER TO B
+	   1.6 USER TAMBAH DATA OBAT / BAHAN MEDIS REFER TO C
+	   1.7 TOMBOL HITUNG DIENABLED
+	   1.8 USER MENGISI DISKON UNTUK TIAP ITEM (JIKA ADA DISKON)
+		   1.8.1 DISKON BISA DALAM BENTUK RUPIAH ATAU %.
+		   1.8.2 SUBTOTAL AKAN BERUBAH SESUAI DENGAN HARGA - DISKON.
+		   1.8.3 USER MENEKAN TOMBOL HITUNG
+		   1.8.4 HARGA TOTAL DITAMPILKAN.
+   
+   2. USER MENEKAN TOMBOL SIMPAN 
+   
+B. TAMBAH TINDAKAN
+   1. REFER KE B.1
+   2. KETIKA USER MENEKAN TOMBOL TAMBAH
+	  2.1 CHECK APAKAH USER TELAH MEMILIH NAMA DOKTER PEMERIKSA.
+	      2.1.1 JIKA TIDAK ADA, MUNCUL KONFIRMASI UNTUK MEMILIH DOKTER
+	      2.1.2 JIKA ADA, SEMUA DATA TINDAKAN YANG TELAH DIPILIH,
+          		DITAMPILKAN KE DALAM LIST DI FORM UTAMA
+          2.1.3 TOMBOL SIMPAN (DI FORM UTAMA) DI-ENABLED
+   ----------------
+   
+   BAGIAN INI DI SKIP DULU, TAKUT ADA SALAH PERSEPSI DENGAN ORANG RS.
+   KMRN WAKTU DI TANYA SIH, BILANGNYA BANYAK OBAT/BAHAN MEDIS BISA
+   TERIKAT DALAM SATU TINDAKAN (KAYAK KASUS PAKET).
+   TAPI SETELAH DIPIKIR-PIKIR..ANEH JUGA SIH..^_^
+   NTAR BSK DITANYA LAGI..OK KANG..
+   
+   3. KETIKA USER MENEKAN TOMBOL TAMBAH O-BM
+	  3.1 INITIAL 
+	   	  3.1.1 USER MEMILIH DATA TINDAKAN YANG AKAN MENGGUNAKAN DATA ITEM
+	      3.1.2 USER MENEKAN TOMBOL O-BM
+	      3.1.3 REFER TO C.1
+	      3.1.4 KEMBALI KE FORM TAMBAH TINDAKAN, DAN MUNCUL FLAG, YANG MENANDAKAN BAHWA 
+	            DATA TINDAKAN TERSEBUT MENGGUNAKAN BEBERAPA ITEM.
+	      3.1.5 USER MENEKAN TOMBOL SIMPAN
+	      3.1.6 KEMBALI KE FORM UTAMA
+	      3.1.7 DATA YANG DITAMPILKAN ADALAH NAMA TINDAKAN.
+		        HARGA YANG DITAMPILKAN ADALAH HARGA TINDAKAN.
+		                   
+	 3.2 POST CONDITION
+	     3.2.1 DATA BERHASIL DITAMPILKAN
+		 3.2.2 INVENTORY ITEM BERHASIL DIKURANGI SESUAI DENGAN JUMLAH PEMAKAIAN
+		  	   TABLE YANG DIGUNAKAN : TB ITEM INVENTORY
+			   		SISTEM MENGURANGI INVENTORY ITEM, BATCH NO. YANG DIPILIH BERDASARKAN FIFO (FIRST IN FIRST OUT)
+			  		JUMLAH STOK = JUMLAH STOK - JUMLAH YANG DIPAKAI
+			  			 		= n_item_inv_qty - n_qty
+			  			  		 (TB_INVENTORY)   (TB_ITEM_TRX)
+			  	    			  
+	--------------------	                    	  	 
+	4. USER MENEKAN TOMBOL SELESAI
+	   4.1 FORM TAMBAH TINDAKAN DITUTUP DAN KEMBALI KE FORM UTAMA
+	
+	TABLE2 YANG DIGUNAKAN :
+	   - MS_TREATMENT
+	        FIELD YANG DIGUNAKAN : 
+	           - NAMA TINDAKAN : v_treatment_name
+		       - MS_TREATMENT_FEE (UNTUK DI LIST FORM UTAMA)
+		            - HARGA :  f_trtfee_fee      		  
+	 		  
+	B.1
+	B.1.1 SEMUA DATA TINDAKAN YANG TERDAPAT DI UNIT TERSEBUT
+	      AKAN DITAMPILKAN DIDALAM LIST BERDASARKAN KELAS TARIF DAN UNIT.
+	B.1.2 USER MEMILIH NAMA DOKTER PEMERIKSA YANG ADA DI UNIT TERSEBUT
+	B.1.3 USER MEMILIH DATA TINDAKAN YANG DIGUNAKAN 
+		  B.1.3.1 USER MENGGUNAKAN FASILITAS SEARCHING 
+		  	      B.1.3.1.a  USER MENGINPUT KODE DAN ATAU NAMA TINDAKAN
+		  	      B.1.3.1.b  USER MENEKAN TOMBOL TAMBAH
+		  	      B.1.3.1.c  JIKA :
+		          			 B.1.3.1.c.1 DATA YANG DITEMUKAN HANYA SATU
+		          			     		 B.1.3.1.c.1.a   SISTEM MEN-CHECKLIST AUTOMATICALY ROW YANG SESUAI DENGAN KODE ATAU NAMA YANG DIINPUTKAN.
+		          			             			   				   
+		          			 B.1.3.1.c.2 DATA YANG DITEMUKAN LEBIH DARI SATU
+		          			        	 B.1.3.1.c.2.a   SISTEM MENG-HIGHLIGHT ROW PALING ATAS YANG SESUAI DENGAN 
+		          			               				 KODE ATAU NAMA YANG DIINPUTKAN. (TANPA DI CHECKLIST)
+		          			        	
+		  	       						 B.1.3.1.c.2.b  USER MEN-CHECK DATA TINDAKAN YANG DIINGINKAN
+		  	       						 
+		  B.1.3.2 JIKA USER KEMBALI MENGGUNAKAN FASILITAS SEARCHING, MAKA 
+		          DATA TINDAKAN YANG SUDAH DI CHECKLIST, AKAN DITEMPATKAN DI ROW PALING ATAS
+		      
+	
+C. TAMBAH OBAT / BAHAN MEDIS
+   1. REFER KE C.1
+   2. KETIKA USER MENEKAN TOMBOL SIMPAN
+	  2.1 DITAMPILKAN KE DALAM LIST DI FORM UTAMA
+	  2.2 TOMBOL SIMPAN (DI FORM UTAMA) DI-ENABLED
+	  2.3 TOMBOL BARU (DI FORM UTAMA) DI-DISABLED
+   3. SISTEM MENGURANGI DATA ITEM DI INVENTORY 
+	  -->TABLE YANG DIGUNAKAN : TB ITEM INVENTORY
+		 SISTEM MENGURANGI INVENTORY ITEM, BATCH NO. YANG DIPILIH BERDASARKAN FIFO (FIRST IN FIRST OUT)
+			    JUMLAH STOK = JUMLAH STOK - JUMLAH YANG DIPAKAI
+		  	    			= n_item_inv_qty - n_qty
+		  	    			  (TB_INVENTORY)   (TB_ITEM_TRX)
+			  	    			  
+   4. USER MENEKAN TOMBOL SELESAI      	        
+	  4.1 FORM TAMBAH OBAT/BAHAN MEDIS DITUTUP DAN KEMBALI KE FORM UTAMA
+	 		
+	 			  
+   C.1
+	  C.1.1 SEMUA DATA ITEM YANG TERDAPAT DI UNIT TERSEBUT
+		    AKAN DITAMPILKAN DIDALAM LIST BERDASARKAN KELAS TARIF DAN UNIT.
+	  C.1.2 USER MEMILIH DATA ITEM YANG DIGUNAKAN 
+			C.1.2.1 USER MENGGUNAKAN FASILITAS SEARCHING 
+				    C.1.2.1.a  USER MENGINPUT KODE DAN ATAU NAMA ITEM
+				    C.1.2.1.b  USER MENGISI JUMLAH
+				    C.1.2.1.c  USER MENEKAN TOMBOL TAMBAH
+				    C.1.2.1.d  JIKA :
+				          		C.1.2.1.d.1 DATA YANG DITEMUKAN HANYA SATU
+				          			     	C.1.2.1.d.1.a   SISTEM MEN-CHECK ROW SESUAI DENGAN KODE ATAU NAMA YANG DIINPUTKAN.
+				          			        C.1.2.1.d.1.b   JUMLAH DILIST DISET = JUMLAH YANG DIMASUKKAN SAAT C.1.2.1.b		   
+				          			               			(JUMLAH MASIH BISA DIEDIT)
+				          			               			   				   
+				          			               			 CONTOH :
+				          			     		  			 - USER INPUT NAMA KODE OBAT = XXX, DAN JUMLAH = 10
+				          			     		  			 - USER MENEKAN TOMBOL TAMBAH
+				          			     		  			 - DI LIST MUNCUL 
+				          			     		  			   	MISAL :
+					          			     		  			   	KODE OBAT		NAMA OBAT 		JUMLAH
+					          			     		  			   	XXX			    COMBANTRIN 	  	 10
+				          			     		  			   				
+				          			     		  			 - SISTEM SECARA OTOMATIS MEN-CHECKLIST ROW YANG BERISI 
+				          			               			  		XXX			    COMBANTRIN 	  	 10
+				          			               			  				  	    
+				          			               			 - USER MEMILIH OBAT YANG DIINGINKAN.
+				          			               			 - BATCH NO. YANG DIPILIH, DI ACAK OLEH SISTEM,
+							          			               MENGGUNAKAN FIFO.  				   
+							          			               
+				          		 C.1.2.1.d.2 DATA YANG DITEMUKAN LEBIH DARI SATU
+				          			         C.1.2.1.d.2.a   SISTEM MENG-HIGHLIGHT ROW PALING ATAS YANG SESUAI DENGAN 
+				          			               			 KODE ATAU NAMA YANG DIINPUTKAN.
+				          			         C.1.2.1.d.2.b   JUMLAH DILIST DISET = JUMLAH YANG DIMASUKKAN SAAT C.1.2.1.b		   
+				          			               			 (JUMLAH MASIH BISA DIEDIT)
+				          			     	 C.1.2.1.d.2.c   USER MEN-CHECK DATA ITEM YANG DIINGINKAN
+				          			     		  			   				   
+				          			     		  			  CONTOH :
+				          			     		  			    - USER INPUT NAMA OBAT = PANADOL, DAN JUMLAH = 10
+				          			     		  			   	- USER MENEKAN TOMBOL TAMBAH
+				          			     		  			   	- DI LIST MUNCUL SEMUA OBAT PANADOL
+				          			     		  			   		MISAL :
+				          			     		  			   			KODE OBAT		NAMA OBAT 	    	JUMLAH
+				          			     		  			   			AB1				PANADOL MERAH		  10
+				          			     		  			   			AB2 			PANADOL	HIJAU		  10
+				          			     		  			   			AB3				PANADOL	BIRU		  10
+				          			     		  			   						
+				          			               			  	- SISTEM MENG-HIGHLIGHT ROW YANG PALING ATAS YAITU 
+				          			               			  			AB1				PANADOL MERAH			  10
+				          			               			  				  	    
+				          			               			  	- USER MEMILIH OBAT YANG DIINGINKAN.
+				          			               			  	- BATCH NO. YANG DIPILIH, DI ACAK OLEH SISTEM,
+							          			               	  MENGGUNAKAN FIFO.  				   
+							          			               
+				          			               			  				   
+				     C.1.3.1.e  JIKA USER KEMBALI MENGGUNAKAN FASILITAS SEARCHING,
+				          		MAKA DATA ITEM YANG SUDAH DI CHECKLIST, AKAN DITEMPATKAN DI ROW PALING ATAS
+		  
+		  C.1.2.2 USER LANGSUNG MEN-CHECK DATA ITEM YANG DIGUNAKAN DAN MENGISI JUMLAH YANG DIINGINKAN
+		       
+		  * TABLE2 YANG DIGUNAKAN :
+			 - MS_ITEM
+			     FIELD YANG DIGUNAKAN : 
+			      	- KODE : v_item_code
+			      	- NAMA : v_item_name
+			 - MS_ITEM_SELLING_PRICE
+			 	 FIELD YANG DIGUNAKAN : 
+			 	   - HARGA : n_selling_price
+			 - TB_ITEM_INVENTORY
+			     FIELD YANG DIGUNAKAN : 
+			       - JUMLAH STOK : n_item_inv_qty
+
+D. SIMPAN
+   D.1	TERDAPAT KESALAHAN PENGISIAN DATA, MUNCULKAN KONFIRMASI.
+	    GAGALKAN PROSES PENYIMPANAN DATA.
+   D.2  JIKA TIDAK ADA KESALAHAN PENGISIAN DATA
+   		D.2.1  JIKA PASIEN BARU
+   				D.2.1.1  CREATE NO. MR
+   						  D.2.1.1.1 SIMPAN MR BARU KE TABEL TB MEDICAL RECORD
+									  FIELD-FIELD :
+								       NO. MR			: v_mr_code
+								       
+					      D.2.1.1.2 SIMPAN DATA PATIENT KE TABEL MS PATIENT   
+					       			 FIELD-FIELD :
+								       NAMA				: v_patient_name
+								       JENIS KELAMIN	: v_patient_gender
+								       TANGGAL LAHIR	: d_patient_dob
+								       UMUR				: v_patient_age 
+								       ALAMAT 			: v_patient_main_addr
+								       TIPE PASIEN		: n_patient_type_id
+   				
+   				D.2.2.2  CREATE NO. NOTA
+					      D.2.2.2.1 SIMPAN DATA NOTA KE TB_EXAMINATION
+							        	  NO. NOTA          : v_note_no
+							          	  TIPE PEMBAWA      : n_escort_id (jika ada)
+							              TOTAL			    : n_total_amount
+							               		
+						  D.2.2.2.2 SIMPAN DATA TINDAKAN YANG DIPAKAI KE TABLE TB_TREATMENT_TRX
+								     	  FIELD-FIELD :
+								     	  NO. NOTA			: n_note_id
+								     	  DOKTER PEMERIKSA  : n_doctor_id 
+							     	      JUMLAH            : n_qty
+								     	  HARGA				: n_amount_trx 
+									      DISKON		    : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+									      SUBTOTAL          : n_amount_after_disc
+									      	  
+								  	  	  NOTE : HARGA TREATMENT = HARGA SATUAN TREATMENT * JUMLAH
+									     	  	       
+									             TABEL YANG BERKAITAN DENGAN HARGA SATUAN TREATMENT : 
+									     	  	      		HARGA SATUAN = f_trtfee_fee  --> LINK ANTARA ms_treatment_group,
+									     	  	      									      ms_treatment, ms_treatment_fee
+						  D.2.2.2.3 SIMPAN DATA ITEM YANG DIPAKAI KE TABLE TB_ITEM_TRX
+									      	  NO. NOTA          : n_note_id
+									      	  NAMA ITEM			: v_item_name
+									      	  JUMLAH            : n_qty
+									      	  HARGA				: n_amount_trx
+									      	  DISKON		    : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+									          SUBTOTAL          : n_amount_after_disc
+									    
+									      	    NOTE : HARGA = HARGA SATUAN OBAT * JUMLAH
+									     	  	       
+									     	  	       TABEL YANG BERKAITAN DENGAN HARGA SATUAN OBAT : 
+									     	  	      		HARGA SATUAN = n_selling_price  --> LINK ANTARA MS_ITEM, TB_BATCH_ITEM DAN MS_SELLING_PRICE
+								     	  	      		
+   		D.2.2  JIKA PASIEN LAMA
+			  	D.2.2.1  CREATE NO. NOTA
+					      D.2.2.1.1 SIMPAN DATA NOTA KE TB_EXAMINATION
+							        	  NO. NOTA          : v_note_no
+							          	  TIPE PEMBAWA      : n_escort_id (khusus untuk RUJUKAN)
+							              TOTAL			    : n_total_amount
+							               		
+						  D.2.2.1.2	SIMPAN DATA TINDAKAN YANG DIPAKAI KE TABLE TB_TREATMENT_TRX
+								     	  FIELD-FIELD :
+								     	  NO. NOTA			: n_note_id
+								     	  DOKTER PEMERIKSA  : n_doctor_id 
+							     	      JUMLAH            : n_qty
+								     	  HARGA             : n_amount_trx 
+									      DISKON		    : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+									      SUBTOTAL          : n_amount_after_disc
+									     	  
+								  	  	  NOTE : HARGA = HARGA SATUAN TREATMENT * JUMLAH
+									     	  	       
+									             TABEL YANG BERKAITAN DENGAN HARGA SATUAN TREATMENT : 
+									     	  	      		HARGA SATUAN = f_trtfee_fee  --> LINK ANTARA ms_treatment_group,
+									     	  	      									      ms_treatment, ms_treatment_fee
+												       	     	  
+						  D.2.2.1.3 SIMPAN DATA ITEM YANG DIPAKAI KE TABLE TB_ITEM_TRX
+									      	  NO. NOTA          : n_note_id
+									      	  NAMA ITEM			: v_item_name
+									      	  JUMLAH            : n_qty
+									      	  HARGA	OBAT		: n_amount_trx
+									      	  DISKON		    : v_disc_type (TIPE DISKON), n_disc_amount (JUMLAH DISKON)
+									      	  SUBTOTAL          : n_amount_after_disc
+									     
+									      	    NOTE : HARGA OBAT = HARGA SATUAN OBAT * JUMLAH
+									     	  	       
+									     	  	       TABEL YANG BERKAITAN DENGAN HARGA SATUAN OBAT : 
+									     	  	      		HARGA SATUAN = n_selling_price  --> LINK ANTARA MS_ITEM, TB_BATCH_ITEM DAN MS_SELLING_PRICE
+								     	  	      									      ms_treatment, ms_treatment_fee
+		D.2.2 KONFIRMASI DATA SUDAH BERHASIL DI INPUT
+		D.2.3 SEMUA FIELD DI-DISABLED
+		D.2.4 REFER TO E	
+			    
+	   POST CONDITION :
+		 1. DATA BERHASIL DISIMPAN
+	 	 2. SEMUA FIELD DI-DISABLED
+	 	 3. NO. NOTA SUDAH DIGENERATE
+	  	 4. TOMBOL YANG ENABLED : 
+			   - UBAH
+			   - PEMBATALAN NOTA
+			   - VALIDASI
+			   - CETAK
+			       
+			TOMBOL YANG DISABLED :
+			   - BARU
+			   - BATAL
+			   - HAPUS
+			   - TAMBAH TINDAKAN
+			   - TAMBAH O-BM
+			   - SIMPAN
+			   - SELESAI
+
+
+E. VALIDASI
+   E.1 INITIAL
+	   1. SEMUA FIELD DI-DISABLED
+	   2. USER MENEKAN TOMBOL VALIDASI
+	   3. USER MENGISI :
+		  - TANGGAL 
+		  - SHIFT
+		  - USERNAME
+		  - PASSWORD
+				       
+		  3.1 JIKA OK
+			  3.1.a DI FORM MUNCUL LABEL "NOTA SUDAH DIVALIDASI"
+			  3.1.B ISI DATA KE TABLE YANG :
+		 			 -	TB_EXAMINATION 
+						 FIELD :
+						   - v_validate_status
+					       - USERNAME & PASSWORD  : v_who_create 
+			  			   - TANGGAL		      : d_whn_create 
+						
+		  3.2 JIKA BATAL
+			  3.2.a KEMBALI KE FORM UTAMA
+			  
+		4. TOMBOL YANG ENABLED :
+		   - CETAK
+		   - BARU
+		   
+	E.2 POST CONDITION
+		1. TRANSAKSI BERHASIL DIVALIDASI	
+		
+			    
+F. BARU
+   F.1. INITIAL
+		1. 1.1 SEMUA FIELD DI-DISABLED.
+		   1.2 TOMBOL BARU = ENABLED
+		2. USER MENEKAN TOMBOL BARU
+		3. FORM DIKEMBALIKAN KE KONDISI AWAL (REFER TO A)
+			    
+   F.2. POST CONDITION
+	    1. FORM BERHASIL DIKOSONGKAN	
+
+
+H. SAAT PEMBATALAN NOTA (UNTUK NOTA YANG BELUM DIVALIDASI)
+   H.1 NOTA YANG BELUM DIVALIDASI (BISA DIBATALKAN OLEH STAFF)	
+		1. INITIAL
+		   1.1 SEMUA FIELD DI-DISABLED
+		2. USER MENEKAN TOMBOL PEMBATALAN NOTA
+			2.1 USER MENEKAN TOMBOL PEMBATALAN NOTA
+			2.2 USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+				2.2.1  JIKA :
+			           2.2.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+			           2.2.1.b NO, KEMBALI KE FORM UTAMA
+		   	2.2 KONFIRMASI BAHWA NOTA SUDAH DIBATALKAN
+		   	2.3 FORM DIKOSONGKAN DAN SEMUA DATA YANG DISIMPAN SESUAI DG NO. NOTA TSB
+		   	    DIHAPUS DARI DATABASE.
+		   	    
+		NOTE : - DATA YANG AKAN DIHAPUS DARI DATABASE
+				 SEMUA DATA PASIEN YANG MEMPUNYAI PATIENT ID = n_patient_id, DENGAN NO NOTA = v_note_no AKAN DIHAPUS.
+					 TABLE YANG BERKAITAN :
+					    - MS PATIENT
+					    - TB ITEM TRX 	
+						- TB TREATMENT TRX
+					    - TB EXAMINATION
+				 SEMUA ITEM YANG DIINPUTKAN AKAN DIKEMBALIKAN KE INVENTORY
+				     TABLE YANG BERKAITAN :
+					   	 - TB BATCH ITEM
+						 - TB INVENTORY (UNTUK MENGEMBALIKAN STOK)
+						 
+	   3. POST CONDITION :  
+		   - NOTA BERHASIL DIBATALKAN.	       	  
+		    
+    H.2 JIKA NOTA SUDAH DIVALIDASI (HANYA BOLEH DIBATALKAN OLEH SUPERVISOR/KABAG UNIT TSB)
+		1. INITIAL
+		   1.1 SUPERVISOR/KABAG LOGIN
+		   1.2 USER MENCARI NO. NOTA YANG AKAN DIBATALKAN
+		   1.3 DISPLAY ISI DARI NOTA YANG AKAN DIBATALKAN
+		   1.4 TOMBOL YANG ENABLED :
+		       - PEMBATALAN NOTA
+		       
+		2. USER MENEKAN TOMBOL PEMBATALAN NOTA
+		   2.2.a USER MENEKAN TOMBOL PEMBATALAN NOTA
+		   2.2.b USER MENGISI USERNAME, PASSWORD DAN ALASAN PEMBATALAN
+			     2.2.b.1 JIKA :
+			             2.2.b.1.a YES, KEMBALI KE FORM UTAMA, DAN MUNCUL LABEL "STATUS NOTA : DIBATALKAN"
+			          	 2.2.b.1.b NO, KEMBALI KE FORM UTAMA
+			   
+		         NOTE :	 DATA AKAN DIBERI FLAG YANG MENANDAKAN STATUS NOTA = BATAL
+					   		TABEL YANG DIGUNAKAN : 
+						      - TB_EXAMINATION 
+						   	    FIELD :
+						   	    -  STATUS NOTA			  : v_cancelation_status 
+								-  ALASAN PEMBATALAN NOTA : v_cancelation_note
+						        -  USERNAME & PASSWORD    : v_who_change varchar 
+							            
+		3. POST CONDITION :  
+		   - NOTA BERHASIL DIBATALKAN.
+		   
+I. SAAT UBAH
+	I.1 INITIAL CONDITION : 
+	     1. INITIAL
+	        1.1 DATA SUDAH DI SAVE DAN BELUM DI VALIDASI
+	        1.2 SEMUA FIELD DISABLED
+	     2. USER MENEKAN TOMBOL UBAH 
+	        2.1 TOMBOL YANG ENABLED :
+		          - BATAL
+		          - HAPUS
+		          - TAMBAH TINDAKAN
+		          - TAMBAH O-BM
+		          - SIMPAN
+		          - HITUNG
+	            TOMBOL YANG DISABLED :
+				  - UBAH
+				  - CETAK 
+				  - SELESAI
+				  - BARU
+				  - PEMBATALAN NOTA
+				  - VALIDASI
+				  
+	        2.2 FIELD YANG ENABLED HANYA LIST DATA TINDAKAN POLIKLINIK (TINDAKAN/OBAT/BAHAN MEDIS YANG DIGUNAKAN PASIEN)
+			2.3 USER MEMILIH ROW YANG INGIN DIUBAH
+			    2.3.1 JIKA PERUBAHAN JADI DILAKUKAN :
+				       2.3.1.a EDIT ROW  
+						   	   2.3.1.a.1 USER MELAKUKAN PERUBAHAN
+						   	   2.3.1.a.2 USER MENEKAN TOMBOL HITUNG DAN SISTEM MENG-UPDATE HARGA TOTAL
+						   	   2.3.1.a.3 USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+						       2.3.1.a.4 KONFIRMASI UPDATE BERHASIL
+						       2.3.1.a.5 SEMUA FIELD DI-DISABLED
+						                  
+			           2.3.1.b HAPUS ROW  
+			                   2.3.1.b.1 REFER TO J
+			                  			  
+			    2.3.2 JIKA PERUBAHAN TIDAK JADI DILAKUKAN
+			    	  2.3.2.1 USER MENEKAN TOMBOL BATAL (REFER TO L)
+			    	  2.3.2.2 SEMUA FIELD KEMBALI DI-DISABLED   
+				    			  
+	I.2  POST CONDITION :
+		 1. DATA BERHASIL DIUPDATE
+		 2. TOMBOL YANG ENABLED :
+		    - SEMUA FIELD DI-DISABLED
+		    - TOMBOL YANG ENABLED : 
+				- UBAH
+				- PEMBATALAN NOTA
+				- VALIDASI
+				- CETAK
+				
+			TOMBOL YANG DISABLED :
+				- BARU
+				- BATAL
+				- HAPUS
+				- HITUNG
+				- TAMBAH TINDAKAN
+				- TAMBAH O-BM
+				- SIMPAN
+				- SELESAI  
+				     
+		 TABLE YANG TERLIBAT SETELAH PERUBAHAN DATA :
+			- TB ITEM TRX
+			- TB_ITEM_INVENTORY (ITEM DIKEMBALIKAN/DIKURANGI SESUAI DENGAN NO. BATCH)
+			      FIELD YANG DIGUNAKAN : 
+			      - BATCH NO.   : n_batch_id (LINK TO TB BATCH ITEM)
+			      - JUMLAH STOK : n_item_inv_qty 
+					 NOTE : JIKA QUANTITY YANG DIPAKAI PASIEN BER(+), MAKA JUMLAH STOK DI INVENTORY AKAN BERKURANG
+					        JIKA QUANTITY YANG DIPAKAI PASIEN DI(-)I, MAKA JUMLAH STOK DI INVENTORY AKAN BERTAMBAH
+		 	- TB TREATMENT TRX
+		 	- TB EXAMINATION
+		 	  	  FIELD YANG DIGUNAKAN :
+		 	  	  -  TOTAL		: n_total_amount
+				 
+J. SAAT HAPUS     
+	J.1 INITIAL
+		1. USER MEMILIH ROW YANG MAU DIHAPUS DARI DALAM LIST.
+		2. USER MENEKAN TOMBOL HAPUS. TOMBOL SIMPAN DI-ENABLED.
+		3. MUNCUL KONFIRMASI MENGHAPUS
+		    3.1. JIKA YA, DATA DIHILANGKAN DARI DALAM LIST
+		    3.2. JIKA TIDAK, KEMBALI KE FORM UTAMA
+		4. USER MENEKAN TOMBOL SIMPAN (SEBAGAI UPDATE DATA)
+		5. KONFIRMASI UPDATE BERHASIL
+		6. SEMUA FIELD DI-DISABLED
+				
+		JIKA YANG DIHAPUS ADALAH :
+		- TINDAKAN
+			TABLE YANG DIGUNAKAN ADALAH :  tb_treatment_trx
+
+		- OBAT-BAHAN MEDIS
+		    TABLE YANG DIGUNAKAN ADALAH : 
+			- tb_item_trx
+			- ms_item, tb_batch_item (untuk mengembalikan stok inventory item)      
+			       
+	J.2 POST CONDITION
+		1. DATA BERHASIL DIHILANGKAN DARI DALAM LIST
+		2. DATA BERHASIL DIUPDATE.    
+
+K. SAAT BATAL
+	1. INITIAL
+	   1.1 USER TELAH MENEKAN TOMBOL UBAH.
+	2. USER MENEKAN TOMBOL BATAL
+	3. FORM DIKEMBALIKAN KE KEADAAN SEBELUM USER MENEKAN TOMBOL UBAH. FORM DIDISABLED.
+
+
+L. SAAT CETAK
+   1. INITIAL
+	  1.1 SEMUA FIELD DI-DISABLED
+	  1.2 NOTA SUDAH DIVALIDASI
+   2. USER MENEKAN TOMBOL CETAK
+   3. MUNCUL KONFIRMASI
+	  3.1 JIKA :
+	      3.2.1 YES, KEMBALI KE FORM UTAMA, DAN NOTA DI CETAK
+	      3.2.2 NO, KEMBALI KE FORM UTAMA
+   4. POST CONDITION
+      - NOTA BERHASIL DI CETAK.
+      
+M. SAAT SELESAI     
+    1. INITIAL
+       1.1 SEMUA FORM HARUS DIBERSIHKAN.
+    2. USER MENEKAN TOMBOL SELESAI
+    3. FORM DITUTUP			        
+	    

@@ -1,0 +1,46 @@
+<window id="editItem" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.antrian.BatchItemController;
+	ctr = new BatchItemController();
+	void init(){
+		ctr.init(editItem);
+	}
+</zscript>
+
+<!--  <style src="/include/medisafe.css"/>-->
+<separator spacing="5px"/>
+<h:table align="center"  width="100%">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle">UPDATE BATCH ITEM</h:th>
+    </h:tr>
+</h:table>
+
+<h:table width="100%" border="0" align="center">
+	<h:tr>
+		<h:td align="right">
+			<button label="SIMPAN" id="btnSave" image="/image/save1.gif" style="width:95px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>
+			<button label="DOWNLOAD" id="btnEdit" image="/image/edit.gif" style="width:110px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.createFile();"/>
+			<button label="UPLOAD" id="btnUpload" image="/image/icons/recordmedic.gif"  style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.upload()"/>
+		</h:td>
+	</h:tr>
+</h:table>
+
+<separator spacing="10px"/>
+<h:table align="center" width="100%">
+<h:tr>
+	<h:td>
+		<listbox id="itemList" height="410px" mold="paging" pageSize="25" width="100%">
+			<listhead>
+				<listheader width="16%">KODE</listheader>
+				<listheader>NAMA ITEM</listheader>
+				<listheader width="12%" sort="auto">BUFFER</listheader>
+				<listheader width="12%">MAX ORDER</listheader>
+				<listheader width="12%">HRG BELI</listheader>
+				<listheader width="12%">HRG JUAL</listheader>
+			</listhead>
+		</listbox>
+	</h:td>
+</h:tr>
+</h:table>
+</window>

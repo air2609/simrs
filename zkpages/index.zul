@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page id="main" title="SIRSAK APPLICATION"?>
+
+<zk>
+
+
+<style src="../include/medisafe.css"/>
+
+	<window id = "root" xmlns:h="http://www.w3.org/1999/xhtml" onClientInfo="getInfo(event);">
+<zscript>
+	int clientWidth = 0;
+	int clientHeight = 0;
+
+	void doExtend(){	
+	
+		if (split.isOpen()){
+			int widthOpen = clientWidth - 150;
+		
+			contents.setWidth(""+widthOpen+"px");
+			//contents.setWidth("100%");		
+		}				
+		else
+			contents.setWidth(""+clientWidth+"px");
+	}
+	
+	void getInfo(ClientInfoEvent evt){
+	
+		clientWidth = evt.getScreenWidth() - 25;
+		clientHeight = evt.getScreenHeight();
+	}
+
+</zscript>
+	
+	<h:table width="100%" height="20px" border="0" cellpadding="0" cellspacing="0">
+	  <h:tr bgcolor="#00BFFF">
+	      <h:td width="188">&amp;nbsp;</h:td>
+	      <h:td width="802" align="center"> 
+				<!--<h:img src="../image/syncore.png" width="600px" height="40px" align="right"/>-->
+				<h:span style="color: #FFFFFF;font-size: 20px;text-align: right;line-height: 20px">Hospital Information System RS. Tiara Sella</h:span> 
+				</h:td> 
+		  <h:td width="188">
+		  		<h:div align="right">
+		  			<!-- <h:span class="Medi">Hospital Information System</h:span> -->
+		  			<!--  <h:span class="Safe">RSUD MANDAU</h:span> -->
+		  			<h:img src="../image/images/TS.png" align="right" height="40px"/>
+		  		</h:div>
+		  </h:td>
+		  <h:td width="20">&amp;nbsp;<h:br/><!--<h:img src="../image/syncore.png" width="200px" height="50px" align="right"/>--></h:td>			    
+	   </h:tr>
+	</h:table>
+	<!-- <vbox spacing="0" height="700px" width="100%"> -->
+	<vbox spacing="0" height="100%" width="100%">
+	<hbox>
+		
+		<!--<window border="0" height="100%" width="" style="overflow:auto"> -->
+		<window border="0" height="610px" width="" style="overflow:auto">
+		<include id = "accordion" src="accordion.zul" style="width:154px"/>			
+		</window>
+
+		<splitter id="split" collapse="before" onOpen="doExtend()"/>
+			<window id="contents" border="0" width="880px" height="610px" style="overflow:auto"> 
+			<!-- <window id="contents" border="0" width="100%" height="100%" style="overflow:auto"> -->
+				<separator spacing="0.5px"/>
+		       <include id = "xcontent" src="/zkpages/welcome.zul"/>	
+		    </window>
+				
+	</hbox>
+	<!-- 
+	<window id="dojoWIN" border="0" width="99%" height="120px" style="overflow:auto" >	
+		<include id="dojo" src="dojo.zul"/>
+	</window>  -->
+	</vbox>
+</window>	
+</zk>

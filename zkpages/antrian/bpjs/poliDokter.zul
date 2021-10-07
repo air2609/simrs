@@ -1,0 +1,309 @@
+<window id="bpjsPoliDokter"
+	xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();"
+	sclass="Float">
+	<zscript>
+		import com.vone.medisafe.antrian.bpjs.PoliDokterController;
+		PoliDokterController ctr = new PoliDokterController();
+
+		void init(){
+			ctr.init(bpjsPoliDokter);
+		}
+	</zscript>
+	<h:table width="99%">
+		<h:tr>
+			<h:td width="50%"></h:td>
+			<h:td>
+				<popup id="mailPop" width="350px" height="200px">
+       			<vbox>
+       			<label id="lblBulan"/>
+       			<listbox id="calList">
+       				<listhead>
+						<listheader label="SEN" />
+						<listheader label="SEL" />
+						<listheader label="RAB" />
+						<listheader label="KAM" />
+						<listheader label="JUM" />	
+						<listheader label="SAB" />
+						<listheader label="MIN" />							
+					</listhead>
+       			</listbox>
+ 			</vbox>
+    		</popup>
+			</h:td>
+		</h:tr>
+	</h:table>
+	
+	<h:table width="100%">
+		<h:tr>
+			<h:td width="50%"></h:td>
+			<h:td width="50%" align="center">
+			   <popup id="crPopup" width="300px" height="250px" >
+			     <vbox>
+			     	<hbox><button label="Prev" style="border: 1px solid powderblue" onClick="ctr.prev()"/>
+			     		<label value="ketengah" style="color:white"/>
+			     		<label id="gridBulan"/><label value="ketengah" style="color:white"/>
+			     		<button label="Next" style="border: 1px solid powderblue" onClick="ctr.next()"/>
+			     	</hbox>
+			   		<grid>
+			   			<columns>
+			   				<column>SEN</column>
+			   				<column>SEL</column>
+			   				<column>RAB</column>
+			   				<column>KAM</column>
+			   				<column>JUM</column>
+			   				<column>SAB</column>
+			   				<column>MIN</column>
+			   			</columns>
+			   			<rows id="calCreate">
+			   				<row align="center">
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   					<button label="1"/>
+			   				</row>
+			   			</rows>
+			   		</grid>
+			   		<hbox>
+			   			<button label="Simpan" id="btnSaveSchedule" style="border: 1px solid powderblue" onClick="ctr.saveSchedule()"/>
+			   		</hbox>
+			   	  </vbox>	
+			   </popup>
+				
+			</h:td>
+		</h:tr>
+	</h:table>
+
+	<separator spacing="10px" />
+	<h:table align="center" border="0" width="90%">
+		<h:tr>
+			<h:th colspan="3" align="center" sclass="BasicBlueTitle">POLI DOKTER</h:th>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" align="center">
+				<bandbox id="mainDoctor" onOpen="doctorCode.focus();" width="93%"
+					style="font-size:8pt" onChange="dokter.getExamDoctor(mainDoctor)">
+					<bandpopup>
+						<vbox>
+							<h:table align="center" width="100%"
+								sclass="BasicBlueTitle">
+								<h:tr>
+									<h:td>CARI DATA DOKTER</h:td>
+								</h:tr>
+							</h:table>
+							<separator spacing="5px" />
+
+							<h:table width="100%" align="center">
+								<h:tr>
+									<h:td width="20%" align="right">
+										<h:b>
+											<h:font size="1">KODE</h:font>
+										</h:b>
+									</h:td>
+									<h:td width="4%" align="center">
+										<h:b>
+											<h:font size="1">:</h:font>
+										</h:b>
+									</h:td>
+									<h:td width="35%" align="left">
+										<textbox id="doctorCode" width="90%" height="14px"
+											style="font-size:8pt" />
+									</h:td>
+								</h:tr>
+								<h:tr>
+									<h:td width="20%" align="right">
+										<h:b>
+											<h:font size="1">NAMA</h:font>
+										</h:b>
+									</h:td>
+									<h:td width="4%" align="center">
+										<h:b>
+											<h:font size="1">:</h:font>
+										</h:b>
+									</h:td>
+									<h:td width="35%" align="left">
+										<textbox id="doctorName" width="90%" height="14px"
+											style="font-size:8pt" />
+									</h:td>
+									<h:td width="20%" align="left">
+										<button label="CARI" image="/image/cari.gif"
+											style="width:90px;height:26px;font-weight:bold;font-size:7pt"
+											onClick="ctr.searchDoctor();" />
+									</h:td>
+								</h:tr>
+							</h:table>
+
+							<separator spacing="5px" />
+
+							<listbox id="doctorList" width="500px" mold="paging"
+								pageSize="15"
+								onSelect="ctr.getMsStaff();mainDoctor.closeDropdown();">
+								<listhead>
+									<listheader label="KODE" width="15%" sort="auto"
+										style="font-weight:bold;font-size:8pt" />
+									<listheader label="NAMA" width="40%" sort="auto"
+										style="font-weight:bold;font-size:8pt" />
+								</listhead>
+								
+							</listbox>
+						</vbox>
+					</bandpopup>
+				</bandbox>
+			</h:td>
+			<h:td width="33%" align="center">
+				<h:table>
+					<h:tr>
+						<!-- <h:td><button label="LIHAT" style="color:blue" onClick="ctr.open()"/></h:td> -->
+						<h:td><button label="CALENDAR PRAKTEK" style="color:blue;border: 1px solid powderblue" onClick="ctr.createSchedule()"/></h:td>
+					</h:tr>
+				</h:table>
+				
+				<!-- <a id="cal" label="LIHAT CALENDAR PRAKTEK" style="color:blue"/> -->
+			</h:td>
+			<h:td align="center">
+				<button label="Upload Image" id="btnUplaod" style="color:blue;border: 1px solid powderblue" onClick="ctr.uploadImage()"/>
+				<image id="img" width="120px" height="120px" visible="false"/>
+			</h:td>
+		</h:tr>
+	</h:table>
+	<separator spacing="8px" />
+	 
+	<h:table align="center" border="0" width="90%">
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Status Poli</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<listbox mold="select" width="150px" id="statusPoli">
+					<listitem label="Active" selected="true"/>
+					<listitem label="Inactive" />
+				</listbox>
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jumlah Max Pasien perhari</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<intbox width="150px" id="maxPatient"/>
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Antrian</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<hbox>
+					<label value="Dari" />
+					<separator spacing="5px" />
+					<textbox id="antrianDari" width="80px" height="14px" />
+					(0:00-23:59)
+					<separator spacing="5px" />
+					<label value="Sampai" />
+					<separator spacing="5px" />
+					<textbox id="antrianSampai" width="80px" height="14px" />
+					(0:00-23:59)
+				</hbox>
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Bisa di Booking di selain jadwal praktek?</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<listbox mold="select" id="bookingList">
+					<listitem value="Y" label="YA" selected="true"/>
+					<listitem value="T" label="TIDAK" />
+				</listbox>
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Unit</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<label id="lblUnit"/>
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Deskripsi Dokter</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="deskripsiDokter" multiline="true" height="50px"
+					width="95%" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Senin</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalSenin" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Selasa</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalSelasa" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Rabu</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalRabu" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Kamis</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalKamis" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Jumat</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalJumat" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Sabtu</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalSabtu" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td width="33%" style="border: 1px solid powderblue">Jadwal Praktek Minggu</h:td>
+			<h:td style="border: 1px solid powderblue">
+				<textbox id="jadwalMinggu" width="300px" />
+			</h:td>
+		</h:tr>
+		<h:tr>
+			<h:td colspan="3" align="center">
+				<separator spacing="8px" />
+				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:95px;height:26px" onClick="ctr.save()"/>
+				<space/>
+				<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:80px;height:26px" onClick="ctr.modify()"/>
+				<space/>
+				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;" onClick="ctr.reset()"/>
+				<space/>
+				<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;" onClick="ctr.doDelete(bpjsPoliDokter)"/>
+				<separator spacing="8px" />
+			</h:td>
+		</h:tr>
+	</h:table>
+	<separator spacing="10px" />
+	<h:table align="center" border="0" width="90%">
+		<h:tr>
+			<h:td align="right" width="90%">
+				<textbox width="300px" id="textCariDokter" onOK="ctr.loadData()"/>
+			</h:td>	 
+			<h:td width="10%">
+				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:70px;height:20px;font-weight:bold;font-size:7pt" onClick="ctr.loadData()"/>	
+			</h:td>
+		</h:tr>
+	</h:table>
+	<h:table align="center" border="0" width="90%">
+	<h:tr>
+		<h:td>
+		 <listbox id="poliDoctorList" width="100%" onSelect="ctr.getDoctorData()" style="overflow:auto">
+		 	<listhead>
+		 		<listheader label="Nama Dokter" width="35%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+		 		<listheader label="Status" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+		 		<listheader label="Max Pasien" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+		 		<listheader label="Unit" width="35%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+		 	</listhead>
+		 </listbox>
+		</h:td>
+	</h:tr>
+	</h:table>
+ 
+</window>

@@ -1,0 +1,137 @@
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="/include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.master.GimController;
+
+	GimController ctr = new GimController();
+
+	void init(){
+
+		ctr.init(root);
+	}
+	
+	void doSave(){
+			
+		ctr.doSave(root);	
+	}
+	
+	void doDelete(){
+			
+		ctr.doDelete(root);			
+	}
+	
+	void doModify(){
+	
+		ctr.doModify(root);	
+	}
+	
+	void doCancel(){
+	
+		ctr.doCancel(root);	
+	}
+	
+	void doClose(){
+		
+		ctr.doClose(root);
+	}
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>GENERAL INFORMATION MASTER</h:td></h:tr>
+</h:table>
+
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td><h:table width="100%" align="center">
+				<h:tr><h:td width="10%"/>
+					  <h:td>
+					  		<h:table width="100%" align="center">
+								<h:tr><h:td width="10%" align="right" style="font-weight:bold;font-size:8pt"><h:b>KEY</h:b></h:td>
+									  <h:td width="3%" align="center">:</h:td>
+									  <h:td width="25%"><textbox id="key" width="80%" height="14px" style="font-size:8pt"/></h:td>
+						  		</h:tr>
+						  		<h:tr><h:td width="10%" align="right" style="font-weight:bold;font-size:8pt"><h:b>VALUE</h:b></h:td>
+									  <h:td width="3%" align="center">:</h:td>
+									  <h:td width="25%"><textbox id="value" width="80%" height="14px" style="font-size:8pt"/></h:td>
+								</h:tr>
+						  	</h:table>
+					  </h:td>
+					  <h:td width="13%"/>
+				</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="5px"/>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="32%"/>
+						  <h:td width="5%" align="right">
+			    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+			    		  	 
+			    		  </h:td>
+			    		  
+			    		  <h:td width="5%" align="right">
+			    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+			    		  	  
+			    		  </h:td>
+			    		 		
+			    		  <h:td width="5%" align="right">
+			    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+			    		  	  
+			    		  </h:td>
+			    		  				   
+			    		  <h:td align="left">	
+								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+							  
+						  </h:td>
+			    		  <h:td width="32%"/>
+			    	</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="5px"/>		
+				<h:table width="100%" align="center">
+	    			<h:tr><h:td width="20%"/>
+	    				  <h:td>	 	
+			    				<vbox>
+						  			<groupbox width="500px">
+						  				<caption label="DATA GENERAL INFORMATION"/>
+						  					<h:table width="100%" align="center">
+						  						<h:tr><h:td height="10px"/></h:tr>
+						  						<h:tr><h:td width="12%"/>
+						  							  <h:td>
+							  			  				  	<vbox>
+											  					<listbox id="list" multiple="true" width="460px" height="237px" mold="paging" pageSize="17">
+												  					<listhead>
+												  						<listheader label="KEY" width="40%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+												  						<listheader label="VALUE" width="20%" style="font-weight:bold;font-size:8pt"/>
+												  					</listhead>
+												  				</listbox>
+										  					</vbox>
+													 </h:td>
+													 <h:td width="12%"/>
+												</h:tr>
+											 </h:table>
+											 
+										<separator spacing="4px"/>
+						   			</groupbox>
+						   	  </vbox>
+		 				</h:td>
+		  				<h:td width="20%"/>
+				  </h:tr>
+			  </h:table>
+		 </h:td>
+		 <h:td width="20%"/>
+	</h:tr>
+</h:table>
+<separator spacing="28px"/>
+</window>

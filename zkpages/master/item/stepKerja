@@ -1,0 +1,50 @@
+Kerjakan itemGroup.zul
+	table yang dipake --> ms_item_group
+	
+Kerjakan vendor.zul
+	table yang dipake --> ms_vendor
+	
+Kerjakan msItemMeasurement.zul
+	table yang dipake --> ms_item_measurement
+	
+Contoh : 
+1.  terima barang dari vendor A, jumlahnya 1 dus. trus 1 itu ada 100 pieces.
+	Rumah Sakit mau ngejual barang itu, 10 pieces dalam 1x transaksi penjualan.
+	Jadi quantity yang dipny = 10 (100/10).
+	trus nanti di form master satuan item-nya :
+		satuan awalnya = dus
+		satuan akhirnya = pieces
+		jumlah pembagi = 10
+
+2. terima barang 1 lusin. ngejual barangnya 1 transaksi = 1 pieces. jadi,
+   quantity yang dipunya = 12 (12/1)
+   trus nanti di form master satuan item-nya :
+		satuan awalnya = lusin
+		satuan akhirnya = pieces
+		jumlah pembagi = 1
+	
+Kerjakan msItem.zul
+	table yang dipake --> ms_Item
+	--> untuk listbox SATUAN, itu diambil dari "SATUAN TERAKHIR", yang ada di ms_measurement_item
+	
+Kerjakan msItemSellingPrice.zul
+	table yang dipake --> ms_selling_price
+	
+	1 obat bisa punya banyak harga, tergantung kelas tarifnya.
+	CTH :
+	obat A, untuk kelas tarif 1 = 20000, kelas tarif 2 = 15000, dll
+	input kode, input nama.
+	trus pilih kelas tarif, input hargane.
+	kalo uda, disimpan dunk.
+	nah..kalo klik SIMPAN, kode dan nama gak hilang (display doank)..hanya bisa pilih kelas tarif
+	dan isi harga jual sesuai dengan kelas tarif tersebut.
+	kalo mau mengembalikan form pada kondisi awal, tekan tombol BARU..pasti langsung bersih layarnya.
+	
+Baru deh..kerjain Transaksi Poliklinik...
+Selamat Bekerja ya Rif......(^_^)
+SEMANGAT...
+
+btw, kalo ada yang salah..harap dimaklumi ya...soale pake ngebut sih..
+jadi kalo ada kecelakaan ya maap..(AWAS KALO GAK DIMAAPIN..!!!!)
+
+yang msTreatment + msTreatmentGroup, jgn dikerjakan dulu. masih mau direview...

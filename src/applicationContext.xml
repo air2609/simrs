@@ -1,0 +1,1257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>org.postgresql.Driver</value>
+		</property>
+		<property name="url">
+
+<!--   		<value>jdbc:postgresql://192.168.1.225:5432/medisafe4</value>  -->
+		<!-- <value>jdbc:postgresql://192.168.1.2:5432/medisafe3</value> -->
+
+  		<!-- <value>jdbc:postgresql://192.168.0.78:5432/medisafe3</value> -->
+ 		<!-- <value>jdbc:postgresql://192.168.0.78:5432/medisafe_testing</value> -->
+
+ 		<!--  <value>jdbc:postgresql://192.168.0.77:5432/medisafe</value>-->
+		<value>jdbc:postgresql://localhost:5432/medisafe</value>
+
+ 		<!--<value>jdbc:postgresql://192.168.1.225:5432/medisafe4</value>  -->
+		<!--  <value>jdbc:postgresql://192.168.0.77:5432/medisafe</value>-->
+
+		
+
+		</property>
+		<property name="username">
+			<value>postgres</value>
+		</property>
+		
+		<property name="password">
+			<value>ibnrusyd</value>
+		</property>
+		
+		<!-- 
+		<property name="initialSize">
+   			<value>2</value>
+ 		</property>
+ 		
+ 	 	<property name="maxActive">
+    		<value>10</value>
+  		</property>
+  	
+  		<property name="maxIdle">
+   			<value>2</value>
+  		</property>
+  		
+  		-->
+		
+		
+	</bean>
+	
+	
+	<bean id="SessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="DataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">false</prop>
+				<!-- <prop key="hibernate.connection.pool_size">10</prop> -->
+				
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/vone/medisafe/mapping/MsUser.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsScreen.hbm.xml</value>			
+				<value>com/vone/medisafe/mapping/TbUserPrivilege.hbm.xml</value>	
+				<value>com/vone/medisafe/mapping/TbGroupPrivilege.hbm.xml</value>	
+				<value>com/vone/medisafe/mapping/MsGroup.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsBranch.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsStaff.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsSubsystem.hbm.xml</value>			
+				
+					
+				<value>com/vone/medisafe/mapping/MsPatientType.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsProvince.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsPatient.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsVillage.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsRegency.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsSubDistrict.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTreatmentClass.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbMedicalRecord.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbRoomReservation.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsHall.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsBed.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbRegistration.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/MsRoom.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbBedOccupancy.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsDoctor.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsStaffInUnit.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsWard.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTreatment.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsDivision.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsMedicStaffGroup.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsUnit.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsScreenInUnit.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsGim.hbm.xml</value>				
+				
+				<value>com/vone/medisafe/mapping/hbm/item/MsBlood.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/TbBatchItem.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/TbBloodBank.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/TbBloodExpired.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/MsItem.hbm.xml</value> 
+				<value>com/vone/medisafe/mapping/hbm/item/MsItemGroup.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/MsItemMeasurement.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/MsItemSellingPrice.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/MsVendor.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/item/MsItemSupplied.hbm.xml</value>
+				
+				<!-- <value>com/vone/medisafe/mapping/hbm/diagnose/MsCauseOfDeath.hbm.xml</value> -->
+				<value>com/vone/medisafe/mapping/hbm/diagnose/MsIcd.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/diagnose/MsIcd9cm.hbm.xml</value>
+				<!-- 
+				<value>com/vone/medisafe/mapping/hbm/diagnose/TbDiagnose.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/diagnose/TbIllness.hbm.xml</value>
+				-->
+				
+				<value>com/vone/medisafe/mapping/MsCreditCardType.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsInsurance.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/MsBank.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsBankPaymentType.hbm.xml</value>
+				
+				
+				<value>com/vone/medisafe/mapping/hbm/MsLabTestDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/hbm/MsMiscFee.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsPatientEscort.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTreatmentFee.hbm.xml</value>
+				 
+				<value>com/vone/medisafe/mapping/MsTreatmentGroup.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTreatmentRoom.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTreatmentRoomFee.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsTypeOfViolent.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/MsShift.hbm.xml</value>					
+				
+				<value>com/vone/medisafe/mapping/MsWarehouse.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/TbBundledTreatment.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbDeliveryOrder.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbDeliveryOrderDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbDrugIngredients.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbDrugIngredientsDetail.hbm.xml</value>
+				<!--  <value>com/vone/medisafe/mapping/TbExamDetail.hbm.xml</value> -->
+				<value>com/vone/medisafe/mapping/TbExamination.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbGakinNote.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbItemInventory.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbItemMutation.hbm.xml</value>
+				<!-- <value>com/vone/medisafe/mapping/TbItemUsed.hbm.xml</value> -->
+				<value>com/vone/medisafe/mapping/TbLaboratoryResult.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbLaboratoryResultDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbOperation.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientBill.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientBillDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientSettlement.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPersonReserved.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPregnancy.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPurchaseOrder.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPurchaseOrderDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPurchaseRequest.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPurchaseRequestDetail.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbReturItem.hbm.xml</value>				
+				<value>com/vone/medisafe/mapping/TbReturnTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbReturnTrxDet.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbStillbirth.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbTreatmentRoomReservation.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbViolent.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/MsCoa.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbBedTrx.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/TbBundledTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbItemTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbMiscTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbOperationTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientDeposit.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbTreatmentTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientInventory.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbPatientEscortTrx.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/TbBundledItemUsedTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbBundledTreatUsedTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbTreatmentItemUsedTrx.hbm.xml</value>		
+				
+				<value>com/vone/medisafe/mapping/TbReturPharmacyTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbReturPharmacyDetailTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbJournalTrx.hbm.xml</value>
+						
+				<value>com/vone/medisafe/mapping/hbm/TbItemRequest.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbAccountPayable.hbm.xml</value>
+
+				<value>com/vone/medisafe/mapping/TbAccountPayableDetail.hbm.xml</value>
+				<value> com/vone/medisafe/mapping/MsCoaType.hbm.xml</value>
+				<value>	com/vone/medisafe/mapping/TbIcdDiagnose.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbIllness.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbDiagnose.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbIcd9Diagnose.hbm.xml</value>
+
+				<value>com/vone/medisafe/mapping/TbHistoryPosting.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsLabTreatmentDetil.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/MsDoctorRule.hbm.xml</value>
+				<value>com/vone/medisafe/antrian/MsAntrian.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/pojo/TbGl.hbm.xml</value>
+				<value>com/vone/medisafe/antrian/bpjs/MsPolyDoctor.hbm.xml</value>
+				<value>com/vone/medisafe/antrian/bpjs/TbDoctorSchedule.hbm.xml</value>
+				<value>com/vone/medisafe/antrian/bpjs/TbAntrian.hbm.xml</value>
+				
+				<value>com/vone/medisafe/mapping/TbBor.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/pojo/TbKwitansi.hbm.xml</value>
+				</list>
+
+		</property>
+	</bean>
+	
+	<bean id="txProxyTemplate" abstract="true"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="txManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="save*">PROPAGATION_REQUIRED,+Exception</prop>
+                <prop key="remove*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+	  abstract="false" singleton="true" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory" ref="SessionFactory"/>
+	</bean>
+	
+	<!-- DAO MAPPING-->
+	
+	<bean id="MsUserDAO" class="com.vone.medisafe.mapping.MsUserDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="MsGroupDAO" class="com.vone.medisafe.mapping.MsGroupDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>	
+
+	<bean id="MsScreenDAO" class="com.vone.medisafe.mapping.MsScreenDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>	
+	
+	<bean id="MsSubsystemDAO" class="com.vone.medisafe.mapping.MsSubsystemDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>			
+	
+	<bean id="TbUserPrivilegeDAO" class="com.vone.medisafe.mapping.TbUserPrivilegeDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>	
+	
+	<bean id="TbGroupPrivilegeDAO" class="com.vone.medisafe.mapping.TbGroupPrivilegeDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>		
+
+
+
+
+	<bean id="MsVillageDAO" class="com.vone.medisafe.mapping.MsVillageDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsProvinceDAO" class="com.vone.medisafe.mapping.MsProvinceDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsPatientDAO" class="com.vone.medisafe.mapping.MsPatientDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsPatientTypeDAO" class="com.vone.medisafe.mapping.MsPatientTypeDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsSubDistrictDAO" class="com.vone.medisafe.mapping.MsSubDistrictDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsRegencyDAO" class="com.vone.medisafe.mapping.MsRegencyDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsTreatmentGroupDAO" class="com.vone.medisafe.mapping.dao.treatment.MsTreatmentGroupDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>
+	<bean id="MsDoctorDAO" class="com.vone.medisafe.mapping.MsDoctorDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>
+	<bean id="MsBedDAO" class="com.vone.medisafe.mapping.MsBedDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsDivisionDAO" class="com.vone.medisafe.mapping.MsDivisionDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+		
+	</bean>
+	<bean id="MsUnitDAO" class="com.vone.medisafe.mapping.MsUnitDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsWardDAO" class="com.vone.medisafe.mapping.MsWardDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsTreatmentClassDAO" class="com.vone.medisafe.mapping.MsTreatmentClassDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsHallDAO" class="com.vone.medisafe.mapping.MsHallDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory"/>
+		</property>
+	</bean>
+	<bean id="MsRoomDAO" class="com.vone.medisafe.mapping.MsRoomDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="MsStaffDAO" class="com.vone.medisafe.mapping.MsStaffDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="MsStaffInUnitDAO" class="com.vone.medisafe.mapping.MsStaffInUnitDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="MsMedicStaffGroupDAO" class="com.vone.medisafe.mapping.MsMedicStaffGroupDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="MedicalRecordDAO" class="com.vone.medisafe.mapping.TbMedicalRecordDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="RegistrationDAO" class="com.vone.medisafe.mapping.TbRegistrationDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="IdsDAO" class="com.vone.medisafe.common.util.IdsDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="BedOccupanyDAO" class="com.vone.medisafe.mapping.TbBedOccupancyDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="BranchDAO" class="com.vone.medisafe.mapping.MsBranchDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="ItemGroupDAO" class="com.vone.medisafe.mapping.dao.item.ItemGroupDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="VendorDAO" class="com.vone.medisafe.mapping.dao.item.VendorDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="ItemMeasurementDAO" class="com.vone.medisafe.mapping.dao.item.ItemMeasurementDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="ItemDAO" class="com.vone.medisafe.mapping.dao.item.ItemDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="CoaDAO" class="com.vone.medisafe.mapping.dao.acct.CoaDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="BankDAO" class="com.vone.medisafe.mapping.MsBankDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="GimDAO" class="com.vone.medisafe.mapping.MsGimDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="InsuranceDAO" class="com.vone.medisafe.mapping.MsInsuranceDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="ItemSellingPriceDAO" class="com.vone.medisafe.mapping.dao.item.ItemSellingPriceDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="WarehouseDAO" class="com.vone.medisafe.mapping.dao.MsWarehouseDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+	
+	<bean id="PatientEscortDAO" class="com.vone.medisafe.mapping.dao.MsPatientEscortDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="TreatmenDAO" class="com.vone.medisafe.mapping.dao.treatment.MsTreatmentDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="TreatmentRoomDAO" class="com.vone.medisafe.mapping.dao.treatment.TreatmentRoomDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="ShiftDAO" class="com.vone.medisafe.mapping.dao.MsShiftDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+	
+	<bean id="IcdDAO" class="com.vone.medisafe.mapping.dao.diagnose.MsIcdDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="Icd9DAO" class="com.vone.medisafe.mapping.dao.diagnose.MsIcd9cmDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="DiagnoseDAO" class="com.vone.medisafe.mapping.dao.diagnose.TbDiagnoseDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="CodDAO" class="com.vone.medisafe.mapping.dao.diagnose.MsCauseOfDeathDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="MiscFeeDAO" class="com.vone.medisafe.mapping.dao.MiscfeeDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="BloodDAO" class="com.vone.medisafe.mapping.dao.item.BloodDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="LabTestDetailDAO" class="com.vone.medisafe.mapping.dao.MsLabTestDetailDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+		
+	<bean id="ScreenInUnitDAO" class="com.vone.medisafe.mapping.MsScreenInUnitDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="PORDAO" class="com.vone.medisafe.mapping.TbPurchaseRequestDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="InventoryDAO" class="com.vone.medisafe.mapping.dao.ItemInventoryDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+	
+	<bean id="PolyclinicDAO" class="com.vone.medisafe.mapping.dao.PolyclinicDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="PurchaseOrderDAO" class="com.vone.medisafe.ui.purchasing.TbPurchaseOrderDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+	
+	<bean id="DeliveryOrderDAO" class="com.vone.medisafe.ui.purchasing.TbDeliveryOrderDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="ReturDAO" class="com.vone.medisafe.ui.purchasing.ReturDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="PatientHistoryDAO" class="com.vone.medisafe.mapping.dao.CommonHistoryDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="NoteDAO" class="com.vone.medisafe.mapping.dao.NoteDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>		
+	
+	<bean id="NavigationDAO" class="com.vone.medisafe.mapping.dao.common.NavigationDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>	
+	
+	<bean id="EmergencyDAO" class="com.vone.medisafe.emergency.EmergencyDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="WardTransactionDAO" class="com.vone.medisafe.ward.WardTransactionDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="BedTransactionDAO" class="com.vone.medisafe.ward.BedTransactionDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	
+	<bean id="ApotikDAO" class="com.vone.medisafe.apotik.ApotikDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="PatientInventoryDAO" class="com.vone.medisafe.ward.PatientInventoryDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+			
+	<bean id="JournalManagerDAO" class="com.vone.medisafe.mapping.JournalTrxDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="CreditCardTypeDAO" class="com.vone.medisafe.mapping.dao.CreditCardTypeDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="LaboratDAO" class="com.vone.medisafe.laborat.LaboratDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="CashierDAO" class="com.vone.medisafe.cashier.CashierDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+
+	<bean id="RadiologyManagerDAO" class="com.vone.medisafe.radiology.RadiologyDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="TbAccountPayableDetailDAO"
+		class="com.vone.medisafe.mapping.TbAccountPayableDetailDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="AntrianKamarDAO" class="com.vone.medisafe.mapping.dao.AntrianKamarDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="TbGlDAO" class="com.vone.medisafe.mapping.dao.TbGlDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	<bean id="PoliDoctorDAO" class="com.vone.medisafe.antrian.bpjs.MsPolyDoctorDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	<bean id="KwitansiDAO" class="com.vone.medisafe.mapping.dao.TbKwitansiDAO">
+		<property name="sessionFactory"><ref bean="SessionFactory"/></property>
+	</bean>
+	
+	
+	
+<!--  SERVICES -->
+
+	
+	<bean id="UserManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class ="com.vone.medisafe.service.ifaceimpl.admin.UserManagerImpl">
+				<property name="dao" ref="MsUserDAO"></property>
+				<property name="privdao" ref="TbUserPrivilegeDAO"></property>				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="GroupManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.GroupManagerImpl">
+				<property name="dao"><ref bean="MsGroupDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+		
+	<bean id="ScreenManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.ScreenManagerImpl">
+				<property name="dao"><ref bean="MsScreenDAO"/></property>
+				<property name="unitdao"><ref bean="MsUnitDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="SubsystemManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.SubsystemManagerImpl">
+				<property name="dao"><ref bean="MsSubsystemDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+		
+	<bean id="UserPrivilegeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.UserPrivilegeManagerImpl">
+				<property name="dao"><ref bean="TbUserPrivilegeDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="GroupPrivilegeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.GroupPrivilegeManagerImpl">
+				<property name="dao"><ref bean="TbGroupPrivilegeDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+
+	<bean id="BranchManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.BranchManagerImpl">
+				<property name="dao"><ref bean="BranchDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+		
+	<bean id="VillageManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.VillageManagerImpl">
+				<property name="dao"><ref bean="MsVillageDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="ProvinceManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.ProvinceManagerImpl">
+				<property name="dao" ref="MsProvinceDAO"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="PatientManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.PatientManagerImpl">
+				<property name="dao" ref="MsPatientDAO"></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+			</bean>
+		</property>
+		
+	</bean>
+
+	
+	<bean id="PatientTypeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.PatientTypeManagerImpl">
+				<property name="dao" ref="MsPatientTypeDAO"></property>
+			</bean>
+		</property>
+	</bean>
+	
+
+	<bean id="SubDistrictManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.SubDistrictManagerImpl">
+				<property name="dao">
+					<ref bean="MsSubDistrictDAO"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="RegencyManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.RegencyManagerImpl">
+				<property name="dao" ref="MsRegencyDAO"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="DivisionManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.DivisionManagerImpl">
+				<property name="dao" ref="MsDivisionDAO">
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="UnitManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.UnitManagerImpl">
+				<property name="dao" ref="MsUnitDAO"></property>
+			</bean>
+		</property>
+	</bean>
+		
+	<bean id="WardManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.WardManagerImpl">
+				<property name="dao"><ref bean="MsWardDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+	
+		
+	<bean id="TreatmentClassManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.TreatmentClassManagerImpl">
+				<property name="dao">
+					<ref bean="MsTreatmentClassDAO"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+			
+	<bean id="HallManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.HallManagerImpl">
+				<property name="dao"><ref bean="MsHallDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="RoomManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.RoomManagerImpl">
+				<property name="dao"><ref bean="MsRoomDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="StaffManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.StaffManagerImpl">
+				<property name="dao"><ref bean="MsStaffDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+
+	<bean id="StaffInUnitManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.StaffInUnitManagerImpl">
+				<property name="dao"><ref bean="MsStaffInUnitDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+
+	<bean id="MedicStaffGroupManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.MedicStaffGroupManagerImpl">
+				<property name="dao"><ref bean="MsMedicStaffGroupDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="DoctorManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.DoctorManagerImpl">
+				<property name="dao" ref="MsDoctorDAO"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="MedicalRecordManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.MedicalRecordManagerImpl">
+				<property name="dao"><ref bean="MedicalRecordDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="RegistrationManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.RegistrationManagerImpl">
+				<property name="dao"><ref bean="RegistrationDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>				
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="hallDao" ref="MsHallDAO"/>
+				<property name="bedDao" ref="MsBedDAO"/>
+				<property name="roomDao" ref="MsRoomDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="IdsManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.common.util.IdsManagerImpl">
+				<property name="dao"><ref bean="IdsDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+		
+	<bean id="BedManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.BedManagerImpl">
+				<property name="dao"><ref bean="MsBedDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="BedOccupanyManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.BedOccupanyManagerImpl">
+				<property name="dao"><ref bean="BedOccupanyDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="ItemGroupManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.ItemGroupManagerImpl">
+				<property name="dao"><ref bean="ItemGroupDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="VendorManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.VendorManagerImpl">
+				<property name="dao"><ref bean="VendorDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="ItemMeasurementManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.ItemMeasurementManagerImpl">
+				<property name="dao"><ref bean="ItemMeasurementDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="ItemManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.ItemManangerImpl">
+				<property name="dao"><ref bean="ItemDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="CoaManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.acct.COAManagerImpl">
+				<property name="dao"><ref bean="CoaDAO"/></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="BankManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.BankManagerImpl">
+				<property name="dao"><ref bean="BankDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="GimManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.GimManagerImpl">
+				<property name="dao"><ref bean="GimDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="InsuranceManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.InsuranceManagerImpl">
+				<property name="dao"><ref bean="InsuranceDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="ItemSellingPriceManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.ItemSellingPriceManagerImpl">
+				<property name="dao"><ref bean="ItemSellingPriceDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="TreatmentGroupManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.treatment.TreatmentGroupManagerImpl">
+				<property name="dao"><ref bean="MsTreatmentGroupDAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+
+	<bean id="WarehouseManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.WarehouseManagerImpl">
+				<property name="dao"><ref bean="WarehouseDAO"/></property>
+				<property name="userDao"><ref bean="MsUserDAO"/></property>
+			</bean>
+		</property>	
+	</bean>	
+	
+	<bean id="TreatmentManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.treatment.TreatmentManagerImpl">
+				<property name="dao"><ref bean="TreatmenDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="PatientEscortManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.PatientEscortManagerImpl">
+				<property name="dao"><ref bean="PatientEscortDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="TreatmentRoomManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.treatment.TreatmentRoomManagerImpl">
+				<property name="dao"><ref bean="TreatmentRoomDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="ShiftManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.ShiftManagerImpl">
+				<property name="dao"><ref bean="ShiftDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="IcdManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.diagnose.IcdManagerImpl">
+				<property name="dao"><ref bean="IcdDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+		
+	<bean id="Icd9Manager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.diagnose.Icd9ManagerImpl">
+				<property name="dao"><ref bean="Icd9DAO"/></property>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="CodManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.diagnose.CodManagerImpl">
+				<property name="dao"><ref bean="CodDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="MiscFeeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.MiscFeeManagerImpl">
+				<property name="dao"><ref bean="MiscFeeDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="BloodManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.item.BloodManagerImpl">
+				<property name="dao"><ref bean="BloodDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="LabTestDetailManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.LabTestDetailManagerImpl">
+				<property name="dao"><ref bean="LabTestDetailDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="ScreenInUnitManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admin.ScreenInUnitManagerImpl">
+				<property name="dao"><ref bean="ScreenInUnitDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="PORManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.purchasing.PORManagerImpl">
+				<property name="dao"><ref bean="PORDAO"/></property>
+				<property name="whousedao"><ref bean="WarehouseDAO"/></property>
+				<property name="itemdao"><ref bean="ItemDAO"/></property>				
+				<property name="userdao"><ref bean="MsUserDAO"/></property>								
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="ItemInventoryManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.ItemInventoryManagerImpl">
+				<property name="dao"><ref bean="InventoryDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="PolyclinicManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.polyclinic.PolyclinicManagerImpl">
+				<property name="dao" ref="PolyclinicDAO"/>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="POManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.purchasing.POManagerImpl">
+				<property name="dao"><ref bean="PurchaseOrderDAO"/></property>
+				<property name="supdao"><ref bean="VendorDAO"/></property>
+				<property name="pordao"><ref bean="PORDAO"/></property>				
+				<property name="itemdao"><ref bean="ItemDAO"/></property>
+				<property name="measuredao"><ref bean="ItemMeasurementDAO"/></property>				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="DOManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.purchasing.DOManagerImpl">
+				<property name="dao"><ref bean="DeliveryOrderDAO"/></property>
+				<property name="podao"><ref bean="PurchaseOrderDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+
+	<bean id="ReturManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.purchasing.ReturManagerImpl">
+				<property name="dao"><ref bean="ReturDAO"/></property>
+				<property name="dodao"><ref bean="DeliveryOrderDAO"/></property>				
+				<property name="inventorydao"><ref bean="InventoryDAO"/></property>				
+				<property name="journaldao"><ref bean="JournalManagerDAO"/></property>									
+			</bean>
+		</property>
+	</bean>		
+		
+	<bean id="PatientHistoryManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.CommonPatientHistoryManagerImpl">
+				<property name="dao"><ref bean="PatientHistoryDAO"/></property>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="NoteManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.NoteManagerImpl">
+				<property name="dao"><ref bean="NoteDAO"/></property>
+				<property name="polyDao" ref="PolyclinicDAO"/>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="NavigationManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.common.NavigationManagerImpl">
+				<property name="dao"><ref bean="NavigationDAO"/></property>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="EmergencyManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.emergency.EmergencyManagerImpl">
+				<property name="dao"><ref bean="EmergencyDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="WardTransactionManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.ward.WardTransactionManagerImpl">
+				<property name="dao"><ref bean="WardTransactionDAO"/></property>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="mrDoo" ref="MedicalRecordDAO"/>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="BedTransactionManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.ward.BedTransactionManagerImpl">
+				<property name="dao"><ref bean="BedTransactionDAO"/></property>
+				<property name="wardao" ref="WardTransactionDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="ApotikManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.apotik.ApotikManagerImpl">
+				<property name="dao"><ref bean="ApotikDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="patinvDao" ref="PatientInventoryDAO"/>
+			</bean>
+		</property>
+	</bean>			
+		
+	<bean id="PatientInventoryManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.ward.PatientInventoryManagerImpl">
+				<property name="dao"><ref bean="PatientInventoryDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="JournalManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.acct.JournalManagerImpl">
+				<property name="dao"><ref bean="JournalManagerDAO"/></property>
+				<property name="glDao" ref="TbGlDAO"/>
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean id="CreditCardTypeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.master.CreditCardTypeManagerImpl">
+				<property name="dao"><ref bean="CreditCardTypeDAO"/></property>
+			</bean>
+		</property>
+	</bean>			
+	
+	<bean id="LaboratManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.laborat.LaboratManagerImpl">
+				<property name="labDao"><ref bean="LaboratDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="treatDao" ref="TreatmenDAO"/>
+				<property name="polyDao" ref="PolyclinicDAO"/>
+				<property name="apotikDao" ref="ApotikDAO"/>
+			</bean>
+		</property>
+	</bean>		
+		
+	<bean id="CashierManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.cashier.CashierManagerImpl">
+				<property name="dao"><ref bean="CashierDAO"/></property>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="kwitansiDao" ref="KwitansiDAO"/>
+			</bean>
+		</property>
+	</bean>		
+
+	<bean id="RadiologyManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.radiology.RadiologyManagerImpl">
+				<property name="radDao"><ref bean="RadiologyManagerDAO"/></property>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="treatDao" ref="TreatmenDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+			</bean>
+		</property>
+	</bean>				
+	
+	<bean id="AntrianKamarManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.AntrianKamarManagerImpl">
+				<property name="dao"><ref bean="AntrianKamarDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="DiagnoseManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.DiagnoseManagerImpl">
+				<property name="mrDao"><ref bean="MedicalRecordDAO"/></property>
+				<property name="regDao"><ref bean="RegistrationDAO"/></property>
+				<property name="dao"><ref bean="DiagnoseDAO"/></property> 
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<bean id="RajalManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.RajalManagerImpl">
+				<property name="dao"><ref bean="RegistrationDAO"/></property>
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="MutasiKamarManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.service.ifaceimpl.admission.MutasiKamarManagerImpl">
+				<property name="mrDao" ref="MedicalRecordDAO"/>
+				<property name="regDao" ref="RegistrationDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+				<property name="bedDao" ref="MsBedDAO"/>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="VkManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.vk.VkManagerImpl">
+				<property name="warDao" ref="WardTransactionDAO"/>
+				<property name="noteDao" ref="NoteDAO"/>
+				<property name="bocDao" ref="BedOccupanyDAO"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="AntrianManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.antrian.bpjs.AntrianManagerImpl">
+				<property name="dao" ref="PoliDoctorDAO"/>
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

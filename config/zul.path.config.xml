@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--definition of ZUL path reference-->
+<!--zk name= subsystem-name.module if subsystem-name does not-exist/root then name= module-->
+
+<zk-path>
+
+	<zk name="login">
+		<path url="login.zul" />
+	</zk>
+
+	<zk name="SC0001">
+		<path url="/zkpages/admission/Pendaftaran.zul" />
+	</zk>
+
+	<zk name="SC0002">
+		<path url="/zkpages/admission/MutasiKamar.zul" />
+	</zk>
+
+	<zk name="SC0003">
+		<path url="/zkpages/admission/AntrianKamar.zul" />
+	</zk>
+
+	<zk name="SC0004">
+		<path url="/zkpages/bangsal/bedTransaction.zul" />
+	</zk>
+
+	<zk name="SC0005">
+		<path url="/zkpages/admission/CariPasien.zul" />
+	</zk>
+	
+	<zk name="SC0006">
+		<path url="/zkpages/rekamMedis/persiapanMR.zul" />
+	</zk>
+
+	<zk name="SC0011">
+		<path url="/zkpages/apotik/apotik.zul" />
+
+	</zk>
+
+	<zk name="SC0012">
+		<path url="/zkpages/apotik/tambahObat.zul" />
+	</zk>
+
+	<zk name="SC0021">
+		<path url="/zkpages/cashier/kasir.zul" />
+	</zk>
+
+	<zk name="SC0022">
+		<path url="/zkpages/cashier/returKwitansi.zul" />
+	</zk>
+
+	<zk name="SC0023">
+		<path url="/zkpages/cashier/print.zul" />
+	</zk>
+
+	<zk name="SC0031">
+		<path url="/zkpages/bangsal/ward.zul" />
+	</zk>
+
+	<zk name="SC0041">
+		<path url="/zkpages/laboratory/laboratorium.zul" />
+	</zk>
+
+	<zk name="SC0042">
+		<path url="/zkpages/laboratory/tambahTindakan.zul" />
+	</zk>
+
+	<zk name="SC0043">
+		<path url="/zkpages/laboratory/HasilLaboratorium.zul" />
+	</zk>
+
+	<zk name="SC0051">
+		<path url="/zkpages/radiology/radiology.zul" />
+	</zk>
+
+	<zk name="SC0052">
+		<path url="/zkpages/radiology/tambahTindakan.zul" />
+	</zk>
+
+	<zk name="SC0061">
+		<path url="/zkpages/emergency/emergency.zul" />
+	</zk>
+
+	<zk name="SC0071">
+		<path url="/zkpages/surgery/surgery.zul" />
+	</zk>
+	<zk name="SC0072">
+		<path url="/zkpages/bangsal/bedInfo.zul" />
+	</zk>
+	<zk name="SC0073">
+		<path url="/zkpages/bangsal/borReport.zul" />
+	</zk>
+
+	<!--<zk name = "SC0076">
+		<path url = "/zkpages/polyclinic/poliklinik.zul"/>
+		</zk>
+		
+	-->
+	<zk name="SC0081">
+		<path url="/zkpages/rekamMedis/berkasRekamMedis.zul" />
+	</zk>
+
+	<zk name="SC0082">
+		<path url="/zkpages/rekamMedis/daftarPeminjaman.zul" />
+	</zk>
+
+	<zk name="SC0083">
+		<path url="/zkpages/rekamMedis/diagnosa.zul" />
+	</zk>
+
+	<zk name="SC0084">
+		<path url="/zkpages/rekamMedis/tambahICD.zul" />
+	</zk>
+
+	<zk name="SC0085">
+		<path url="/zkpages/rekamMedis/tambahICD-9-CM.zul" />
+	</zk>
+
+	<zk name="SC0091">
+		<path url="/zkpages/polyclinic/poliklinik.zul" />
+	</zk>
+
+	<zk name="SC0101">
+		<path url="/zkpages/klinikGizi/klinikGizi.zul" />
+	</zk>
+
+	<zk name="SC0102">
+		<path url="/zkpages/klinikGizi/tambahItem.zul" />
+	</zk>
+
+	<zk name="SC0111">
+		<path url="/zkpages/cafeDiet/cafeDiet.zul" />
+	</zk>
+
+	<zk name="SC0121">
+		<path url="/zkpages/warehouse/itemMutation.zul" />
+	</zk>
+
+	<zk name="SC0122">
+		<path url="/zkpages/warehouse/historyMutasi.zul" />
+	</zk>
+
+	<zk name="SC0131">
+		<path url="/zkpages/debitur/debitur.zul" />
+	</zk>
+
+	<zk name="SC0141">
+		<path url="/zkpages/physiotherapy/physiotherapy.zul" />
+	</zk>
+
+	<zk name="SC0142">
+		<path url="/zkpages/physiotherapy/tambahTindakan.zul" />
+	</zk>
+
+	<zk name="SC0151">
+		<path url="/zkpages/renalUnit/renalUnit.zul" />
+	</zk>
+
+	<zk name="SC0161">
+		<path url="/zkpages/vk/vk.zul" />
+	</zk>
+
+	<zk name="SC0171">
+		<path url="/zkpages/common/history.zul" />
+	</zk>
+
+	<zk name="SC0172">
+		<path url="/zkpages/common/tambahItem.zul" />
+	</zk>
+
+	<zk name="SC0173">
+		<path url="/zkpages/common/tambahTindakan.zul"/>
+	</zk>
+
+	<zk name="SC0174">
+		<path url="/zkpages/common/itemRequest.zul" />
+	</zk>
+
+	<zk name="SC0175">
+		<path url="/zkpages/common/pinjamRM.zul" />
+	</zk>
+	
+	<zk name="SC0176">
+		<path url="/zkpages/accounting/rekapGl.zul" />
+	</zk>
+	
+	<zk name="SC0177">
+		<path url="/zkpages/cashier/kwitansi.zul" />
+	</zk>
+	
+	
+	<zk name="SC0190">
+		<path url="/zkpages/purchasing/expiredItem.zul" />
+	</zk>
+
+	<zk name="SC0191">
+		<path url="/zkpages/purchasing/purchaseRequest.zul" />
+	</zk>
+
+	<zk name="SC0192">
+		<path url="/zkpages/purchasing/prApproval.zul" />
+	</zk>
+
+	<zk name="SC0193">
+		<path url="/zkpages/purchasing/purchaseOrder.zul" />
+	</zk>
+
+	<zk name="SC0194">
+		<path url="/zkpages/purchasing/poApproval.zul" />
+	</zk>
+
+	<zk name="SC0195">
+		<path url="/zkpages/purchasing/doHead.zul" />
+	</zk>
+
+	<zk name="SC0196">
+		<path url="/zkpages/accounting/apScreen.zul" />
+	</zk>
+
+	<zk name="SC0197">
+		<path url="/zkpages/purchasing/retur.zul" />
+	</zk>
+
+	<zk name="SC0198">
+		<path url="/zkpages/accounting/generalLedger.zul" />
+	</zk>
+
+	<zk name="SC0199">
+		<path url="/zkpages/accounting/journalEntry.zul" />
+	</zk>
+
+	<zk name="SC0200">
+		<path url="/zkpages/report/reportPosting.zul" />
+	</zk>
+
+	<zk name="SC0201">
+		<path url="/zkpages/accounting/openJournal.zul" />
+	</zk>
+
+	<zk name="SC0202">
+		<path url="/zkpages/accounting/neraca.zul" />
+	</zk>
+
+	<zk name="SC0203">
+		<path url="/zkpages/accounting/labaRugi.zul" />
+	</zk>
+
+	<zk name="SC0204">
+		<path url="/zkpages/purchasing/returItem.zul" />
+	</zk>
+	
+	<zk name="SC0205">
+		<path url="/zkpages/purchasing/buktiRetur.zul" />
+	</zk>
+	
+	<zk name="SC0206">
+		<path url="/zkpages/rekamMedis/diagnose.zul" />
+	</zk>
+	
+	<zk name="SC0207">
+		<path url="/zkpages/accounting/trialBalance.zul"/>
+	</zk>
+	
+	<zk name="SC0208">
+		<path url="/zkpages/cashier/rekapObat.zul"/>
+	</zk>
+	
+	<zk name="SC0209">
+		<path url="/zkpages/antrian/bpjs/konter.zul"/>
+	</zk>
+
+	<zk name="SCM0001">
+		<path url="/zkpages/admin/user/user.zul" />
+	</zk>
+
+	<zk name="SCM0002">
+		<path url="/zkpages/admin/group/group.zul" />
+	</zk>
+
+	<zk name="SCM0003">
+		<path url="/zkpages/admin/screen.zul" />
+	</zk>
+
+	<zk name="SCM0004">
+		<path url="/zkpages/admin/subsystem.zul" />
+	</zk>
+
+	<zk name="SCM0005">
+		<path url="/zkpages/admin/user/userPrivilege.zul" />
+	</zk>
+
+	<zk name="SCM0006">
+		<path url="" /><!-- GROUP PRIVILEGE?? /zkpages/admin/group/groupPrivilege.zul
+		-->
+	</zk>
+
+	<zk name="SCM0007">
+		<path url="/zkpages/admin/branch.zul" />
+	</zk>
+
+	<zk name="SCM0011">
+		<path url="/zkpages/master/ms_patient.zul" />
+	</zk>
+
+	<zk name="SCM0012">
+		<path url="/zkpages/master/patient_type.zul" />
+	</zk>
+
+	<zk name="SCM0013">
+		<path url="/zkpages/master/province.zul" />
+	</zk>
+
+	<zk name="SCM0014">
+		<path url="/zkpages/master/regency.zul" />
+	</zk>
+
+	<zk name="SCM0015">
+		<path url="/zkpages/master/subdistrict.zul" />
+	</zk>
+
+	<zk name="SCM0016">
+		<path url="/zkpages/master/village.zul" />
+	</zk>
+
+	<zk name="SCM0017">
+		<path url="/zkpages/master/ward.zul" />
+	</zk>
+
+	<zk name="SCM0018">
+		<path url="/zkpages/master/hall.zul" />
+	</zk>
+
+	<zk name="SCM0019">
+		<path url="/zkpages/master/room.zul" />
+	</zk>
+
+	<zk name="SCM0020">
+		<path url="/zkpages/master/bed.zul" />
+	</zk>
+
+	<zk name="SCM0021">
+		<path url="/zkpages/master/treatmentclass.zul" />
+	</zk>
+
+	<zk name="SCM0022">
+		<path url="/zkpages/master/divisi.zul" />
+	</zk>
+
+	<zk name="SCM0023">
+		<path url="/zkpages/master/treatment/msTreatmentGroup.zul" />
+	</zk>
+
+	<zk name="SCM0024">
+		<path url="/zkpages/master/unit.zul" />
+	</zk>
+
+	<zk name="SCM0025">
+		<path url="/zkpages/master/msLabTestDetail.zul" />
+	</zk>
+
+	<zk name="SCM0026">
+		<path url="/zkpages/master/treatment/msTreatment.zul" />
+	</zk>
+
+	<zk name="SCM0027">
+		<path url="/zkpages/master/diagnose/ICD.zul" />
+	</zk>
+
+	<zk name="SCM0028">
+		<path url="/zkpages/master/diagnose/ICD9CM.zul" />
+	</zk>
+
+	<zk name="SCM0029">
+		<path url="/zkpages/master/diagnose/msDead.zul" />
+	</zk>
+
+	<zk name="SCM0030">
+		<path url="/zkpages/master/staff/msDokter.zul" />
+	</zk>
+
+	<zk name="SCM0031">
+		<path url="/zkpages/master/staff/msStaff.zul" />
+	</zk>
+
+	<zk name="SCM0032">
+		<path url="/zkpages/master/item/unitInventory.zul" />
+	</zk>
+
+	<zk name="SCM0033">
+		<path url="/zkpages/master/bank/msbank.zul" />
+	</zk>
+
+	<zk name="SCM0034">
+		<path url="/zkpages/master/bank/msInsurance.zul" />
+	</zk>
+
+	<zk name="SCM0035">
+		<path url="/zkpages/master/msWarehouse.zul" />
+	</zk>
+
+	<zk name="SCM0036">
+		<path url="/zkpages/master/patient_escort.zul" />
+	</zk>
+
+	<zk name="SCM0037">
+		<path url="/zkpages/master/ms_shift.zul" />
+	</zk>
+
+	<zk name="SCM0038">
+		<path url="/zkpages/master/item/msItem.zul" />
+	</zk>
+
+	<zk name="SCM0039">
+		<path url="/zkpages/master/item/msItemGroup.zul" />
+	</zk>
+
+	<zk name="SCM0040">
+		<path url="/zkpages/master/item/msItemMeasurement.zul" />
+	</zk>
+
+	<zk name="SCM0041">
+		<path url="/zkpages/master/item/msItemSellingPrice.zul" />
+	</zk>
+
+	<zk name="SCM0042">
+		<path url="/zkpages/master/item/msBlood.zul" />
+	</zk>
+
+	<zk name="SCM0043">
+		<path url="/zkpages/master/item/vendor.zul" />
+	</zk>
+
+	<zk name="SCM0044">
+		<path url="/zkpages/master/treatment/msTreatmentRoom.zul" />
+	</zk>
+
+	<zk name="SCM0045">
+		<path url="/zkpages/master/fee/msMiscFee.zul" />
+	</zk>
+
+	<zk name="SCM0046">
+		<path url="/zkpages/accounting/coa/coaMaster.zul" />
+	</zk>
+
+	<zk name="SCM0047">
+		<path url="/zkpages/master/msgim.zul" />
+	</zk>
+
+	<zk name="SCM0048">
+		<path url="/zkpages/master/bank/msCardType.zul" />
+	</zk>
+
+	<zk name="SCM0049">
+		<path url="/zkpages/master/medicstaffgroup.zul" />
+	</zk>
+
+	<zk name="SCM0050">
+		<path url="/zkpages/accounting/acctDefaultDataInput.zul" />
+	</zk>
+
+	<zk name="SCM0051">
+		<path url="/zkpages/master/msLabTreatmentDetail.zul" />
+	</zk>
+
+	<zk name="SCM0052">
+		<path url="/zkpages/master/staff/msDoctorRule.zul" />
+	</zk>
+	
+	<zk name="SCM0053">
+		<path url="/zkpages/antrian/delayAntrian.zul" />
+	</zk>
+	
+	<zk name="SCM0054">
+		<path url="/zkpages/antrian/kontrolAntrianApotik.zul" />
+	</zk>
+	
+	<zk name="SCM0055">
+		<path url="/zkpages/antrian/editItem.zul" />
+	</zk>
+	
+	<zk name="SCM0056">
+		<path url="/zkpages/master/treatment/updateTreatmentBatch.zul" />
+	</zk>
+	
+	<zk name="SCM0057">
+		<path url="/zkpages/master/item/updateInventory.zul" />
+	</zk>
+	
+	<zk name="SCM0058">
+		<path url="/zkpages/bangsal/bedDisplay.zul" />
+	</zk>
+	<zk name="SCM0059">
+		<path url="/zkpages/antrian/bpjs/poliDokter.zul" />
+	</zk>
+
+	<zk name="RPT0001">
+		<path url="/zkpages/report/laporanRajal.zul" />
+	</zk>
+
+	<zk name="RPT0002">
+		<path url="/zkpages/report/laporanReturObat.zul" />
+	</zk>
+	
+	<zk name="RPT0004">
+		<path url="/zkpages/report/laporanPasienPoliUgd.zul" />
+	</zk>
+	
+	<zk name="RPT0005">
+		<path url="/zkpages/report/laporanPasienBangsal.zul" />
+	</zk>
+	
+	<zk name="RPT0006">
+		<path url="/zkpages/report/laporanHarianBangsal.zul" />
+	</zk>
+	
+	<zk name="RPT0007">
+		<path url="/zkpages/report/rekapTransaksi.zul" />
+	</zk>
+	
+	
+	<zk name="RPT0008">
+		<path url="/zkpages/report/laporanPersediaanOBM.zul" />
+	</zk>
+	
+	<zk name="RPT0009">
+		<path url="/zkpages/report/penerimaanRajal.zul" />
+	</zk>
+	
+	<zk name="RPT0010">
+		<path url="/zkpages/report/laporanPendaftaran.zul" />
+	</zk>
+	
+	<zk name="RPT0011">
+		<path url="/zkpages/report/rekapTindakan.zul" />
+	</zk>
+	
+	<zk name="RPT0012">
+		<path url="/zkpages/report/laporanKasir.zul" />
+	</zk>
+	
+	<zk name="RPT0013">
+		<path url="/zkpages/report/laporanPendapatanDokter.zul" />
+	</zk>
+
+	<zk name="RPT0014">
+		<path url="/zkpages/report/laporanR.zul" />
+	</zk>
+	
+	<zk name="RPT0015">
+		<path url="/zkpages/report/laporanRawatInapJalan.zul" />
+	</zk>
+	
+	<zk name="RPT0016">
+		<path url="/zkpages/report/rekapObat.zul" />
+	</zk>
+	
+	<zk name="RPT0017">
+		<path url="/zkpages/report/doctorReport.zul" />
+	</zk>
+	
+	<zk name="RPT0018">
+		<path url="/zkpages/purchasing/buffer.zul" />
+	</zk>
+	
+	<zk name="RPT0019">
+		<path url="/zkpages/antrian/antrianDokter.zul" />
+	</zk>
+	
+	<zk name="RPT0020">
+		<path url="/zkpages/antrian/antrianApotik.zul" />
+	</zk>
+	
+	<zk name="RPT0021">
+		<path url="/zkpages/antrian/antrianPerDokter.zul" />
+	</zk>
+	<zk name="RPT0022">
+		<path url="/zkpages/cashier/rekapAllKasir.zul" />
+	</zk>
+	<zk name="RPT0023">
+		<path url="/zkpages/report/bedReport.zul" />
+	</zk>
+	<zk name="RPT0024">
+		<path url="/zkpages/report/bor.zul" />
+	</zk>
+</zk-path>
+

@@ -1,0 +1,26 @@
+<?page id="SCM0002"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%" height="530px">
+	<tabs id="tabRoot">
+		<tab label="GROUP MASTER" id="tabGroup"/>
+		<tab label="GROUP PRIVILEGE" id="tabGroupPriv"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include id="groupMaster" src="/zkpages/admin/group/groupMaster.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include id="groupPrivilege" src="/zkpages/admin/group/groupPrivilege.zul"/>	
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+
+</window>

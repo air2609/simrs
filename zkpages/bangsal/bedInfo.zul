@@ -1,0 +1,39 @@
+<window id="bedInfo" xmlns:h="http://www.w3.org/1999/xhtml" width="99%"  onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.ward.BedInfo;
+	ctr = new BedInfo();
+	void init(){
+	 ctr.init(bedInfo);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+
+<h:table align="center" border="0" width="960px">
+    <h:tr>
+    	<h:th width="25%"><h:img src="../image/images/TS.png" style="width:200px;height:100px;"/></h:th>
+        <h:th align="center"><h:h1><label style="font-weight:bold;font-size:25px" value="INFORMASI KAMAR RANAP "/><label style="font-weight:bold;font-size:25px" id="hospitalName"/></h:h1></h:th>
+    </h:tr>
+    
+    
+	<h:tr >
+		<h:td colspan="2">
+				<listbox id="bedInfoList" height="430px" width="950px" mold="paging" pageSize="15">
+					 <listhead visible="false">
+						<listheader width="22%" >KELAS</listheader>
+						<listheader width="30%">RUANGAN</listheader>
+						<listheader width="10%">TOTAL BED</listheader>
+						<listheader width="10%">BED TERISI</listheader>
+						<listheader width="8%">BED DIPESAN</listheader>
+						<listheader width="9%">BED PERBAIKAN</listheader>
+						<listheader width="10%">BED KOSONG</listheader>
+					</listhead>
+				</listbox>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="15px"/>
+
+<separator spacing="20px"/>
+<timer id="timer" repeats="true" onTimer="ctr.onTimer()"/> 	
+	
+</window>

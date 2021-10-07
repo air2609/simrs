@@ -1,0 +1,92 @@
+<window id="bpjsDisplay" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.antrian.bpjs.DisplayAntrianController;
+	DisplayAntrianController ctr = new DisplayAntrianController();
+	
+	void init(){
+		ctr.init(bpjsDisplay);
+	}
+</zscript>
+<style>
+.z-button {
+    color:blue;
+    border: 1px solid powderblue;
+    padding: 5px;
+    background-color: #eeeeee;
+    font-weight:bold;
+    font-size: 100px;
+    width : 200px;
+    height: 200px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.doctor {
+    border: 1px solid powderblue;
+    padding: 5px;
+    background-color: #eeeeee;
+    font-weight:bold;
+    font-size: 15px;
+    width : 200px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.myText{
+	color:blue;
+	border: 1px solid powderblue;
+	background-color: #eeeeee;
+	width : 300px;
+	height : 300px;
+	font-size: 20px;
+}
+
+.myGrid{
+	padding: 20px;
+}
+</style>
+
+<h:table width="80%" align="center" border="0">
+	<h:tr>
+		<h:td align="center">
+			<h:h1>Antrian BPJS RS Tiara Sella</h:h1>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td align="center">
+			<h:img src="../../../image/images/TS.png" style="width:250px;height:125px;"/>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td align="center" style="padding: 5px;">
+		<hbox id="hboxDisplay">
+			<vbox>
+				<button label="DR. ZAYADI LANANG JAGAT" class="doctor"/>
+				<button label="40" class="z-button"/>
+				<button label="Di Counter 1" class="doctor"/>
+			</vbox>
+			
+			<vbox>
+				<button label="DR. SALID" class="doctor"/>
+				<button label="15" class="z-button"/>
+				<button label="Di Counter 2" class="doctor"/>
+			</vbox>
+			
+			<vbox>
+				<button label="DR. SALIM" class="doctor"/>
+				<button label="23" class="z-button"/>
+				<button label="Di Counter 3" class="doctor"/>
+			</vbox>
+			
+			<vbox>
+				<button label="DR. SULAM" class="doctor"/>
+				<button label="18" class="z-button"/>
+				<button label="Di Counter 4" class="doctor"/>
+			</vbox>
+		</hbox>
+			
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="20px"/>
+<timer id="timer" repeats="true" onTimer="ctr.onTimer()"/>
+
+</window>

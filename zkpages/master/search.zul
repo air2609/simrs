@@ -1,0 +1,101 @@
+<div id="search" xmlns:h="http://www.w3.org/1999/xhtml">
+<h:body bgcolor="#FFFFFF">
+			<h:table align="center" width="96%">
+				<h:tr><h:td><h:font style="font-size:11t">
+		        	  <h:center><h:b>PENCARIAN DATA PASIEN</h:b></h:center></h:font>
+	      			  </h:td>
+				</h:tr>
+					
+			</h:table>
+				
+			<separator spacing="8px"/>
+		</h:body>
+		
+			<h:table align="center" width="65%">
+			  	<h:tr><h:td width="14%"><h:p align="right">No. MR</h:p></h:td>
+			  		  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		  <h:td width="27%"><textbox id="crNoMr" width="90%"/></h:td>
+              	</h:tr>
+              	<h:tr><h:td width="14%"><h:p align="right">Nama Pasien</h:p></h:td>
+			  		  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		  <h:td width="27%"><textbox id="crNmPasien" width="90%"/></h:td>
+              	</h:tr>
+              	<h:tr><h:td width="14%"><h:p align="right">Alamat Pasien</h:p></h:td>
+			  			  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               			  <h:td width="27%"><textbox id="crAlmtPasien" width="90%"/></h:td>
+              			  <h:td width="5%"><button label="Cari" style="width:85px"/></h:td>
+              	</h:tr>
+			</h:table>
+			  	
+			<h:table width="90%" align="center">
+				<separator spacing="6px"/>
+			 	<h:tr><h:td width="10%"></h:td></h:tr>
+			 	<h:tr><h:td>
+			  		  <hbox>
+			  				<groupbox width="650px" height="224px">
+			  				<caption label="Hasil Pencarian Data Pasien"/>
+			  					<h:table width="90%" align="center">
+			  						<h:tr height="7"><h:td></h:td></h:tr>
+			  						<h:tr><h:td>
+			  						<listbox id="list" multiple="true" width="630px" height="160px">
+									<listhead>
+										<listheader label="No. MR" width="15%" sort="auto"/>
+										<listheader label="Nama Pasien" width="40%" sort="auto"/>
+										<listheader label="Alamat"/>
+									</listhead>
+					
+									<listitem>
+										<listcell label="11-11-11"/>
+										<listcell label="Anastasia"/>
+										<listcell label="Jl. Adisucipto no. 103"/>
+									</listitem>
+					
+									<listitem>
+										<listcell label="11-11-12"/>
+										<listcell label="Andrea"/>
+										<listcell label="Jl. Gejayan no. 8"/>
+									</listitem>
+									
+									<listitem>
+										<listcell label="11-11-13"/>
+										<listcell label="Christoforus"/>
+										<listcell label="Jl. RingRoad Utara no. 44"/>
+									</listitem>
+									
+									<listitem>
+										<listcell label="11-11-14"/>
+										<listcell label="Johanes"/>
+										<listcell label="Jl. Ahmad Yani no. 06"/>
+									</listitem>
+									
+									</listbox>		
+									</h:td></h:tr>
+								
+			  				  </h:table>
+					
+					<separator spacing="5px"/>
+			  		
+			  		<h:table width="98%" align="center">
+			  		   <h:tr><h:td width="43%"><h:p align="left"><button label="Pilih" style="width:80px"/></h:p></h:td>
+    		 		 		 <h:td>
+			  		     	   <image id="first" src="/image/moveFirst_dis.gif" width="10px"/>
+			  			       <image id="imgspace1" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="prev" src="/image/movePrev_dis.gif" width="6px"/>
+					 	 	   <image id="imgspace3" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="next" src="/image/moveNext_dis.gif" width="6px"/>
+					 	 	   <image id="imgspace2" src="/image/space.gif" width="14px"/>
+					 	 	   <image id="last" src="/image/moveLast_dis.gif" width="10px"/>
+					 	  	 </h:td>
+					 	</h:tr>
+			  		</h:table>
+		  			 	<separator spacing="5px"/>
+		  			 	</groupbox>
+			  	 </hbox>
+			    			 <separator spacing="7px"/>
+			
+		     		 	</h:td>
+		     	 </h:tr>
+		 	</h:table>
+		 
+
+</div>

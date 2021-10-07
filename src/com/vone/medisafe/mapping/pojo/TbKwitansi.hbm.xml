@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.vone.medisafe.mapping.pojo.TbKwitansi" table="tb_kwitansi" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">tb_kwitansi_id_seq</param>
+            </generator>
+        </id>
+        <property name="fileLocation" type="string">
+            <column name="lokasi_file" length="300" />
+        </property>
+        
+        <property name="tanggal" type="date">
+            <column name="tanggal" />
+        </property>
+        <property name="tipe" type="string">
+            <column name="tipe" length="10"/>
+        </property>
+        
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

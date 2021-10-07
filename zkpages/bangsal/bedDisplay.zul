@@ -1,0 +1,76 @@
+<window id="bedDisplay" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init()">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.ward.BedDisplayController;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	
+	ctr = new BedDisplayController();
+	
+	void init(){
+		ctr.init(bedDisplay);	
+	}
+	
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>MASTER KAMAR RANAP</h:td></h:tr>
+</h:table>
+	
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center" border="0">
+	<h:tr><h:td width="2%"/>
+		  <h:td align="center">	 	
+				<vbox>
+					  <groupbox width="980px">
+	  					  <caption label="DAFTAR BED YANG AKAN DITAMPILKAN"/>
+					  			<h:table width="100%" align="center" border="0">
+					  	
+					  				<h:tr><h:td width="1%"/>
+					  					  <h:td>
+				  								<listbox id="bedList" height="400px" width="99%">
+				  									<listhead>
+				  										<listheader label="NO" width="5%"/>
+				  										<listheader label="KELAS TARIF" width="12%" sort="auto"/>
+				  										<listheader label="RUANGAN" width="20%" sort="auto"/>
+				  										<listheader label="NO KAMAR" width="8%"/>
+				  										<listheader label="NO BED" width="10%"/>
+				  										<listheader label="DESKRIPSI" width="22%"/>
+				  										<listheader label="KONDISI" width="7%"/>
+				  										<listheader width="8%">
+				  											<checkbox label="TAMPIL" id="cbAll" onCheck="ctr.check()"/> 
+				  										</listheader>
+				  										<listheader label="STATUS" width="8%"/>
+				  									</listhead>
+				  								</listbox>
+										  </h:td>
+										  <h:td width="1%"/>
+									</h:tr>
+					  			</h:table>
+								<separator spacing="8px"/>
+					  </groupbox>
+			    </vbox>
+	 	  </h:td>
+	 	  <h:td width="2%"/>
+	</h:tr>
+	<h:tr><h:td width="2%"/>
+          <h:td><separator spacing="6px"/>
+			    <h:table width="100%" align="center">
+					  <h:tr><h:td width="5%"/>
+					  		<h:td align="right">
+					  			 
+		    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>    						
+		    					
+		    		  		</h:td>
+		    		  		
+	<h:td width="2%"/>
+		    		   </h:tr>
+				 </h:table>
+    	   </h:td>
+	 	   <h:td width="2%"/>
+	</h:tr>
+</h:table>
+  
+<separator spacing="5px"/>
+</window>

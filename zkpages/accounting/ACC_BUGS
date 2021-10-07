@@ -1,0 +1,77 @@
+10-01-2007
+ACCOUNT PAYABLE
+===============
+1. DI FORM PEMBAYARAN AP, ketika user input TOTAL > HUTANG, muncul msgbox. (sudah ok), tetapi ketika KLIK OK, form 
+   dikembalikan ke FORM PEMBAYARAN AP.
+   ketika data kosong, dan klik OK, form juga dikembalikan ke FORM PEMBAYARAN AP.
+   -- OK 
+   
+2. DI FORM PEMBAYARAN AP, nilai TOTAL TIDAK BOLEH MINUS ATAU NOL.
+	-- OK
+	
+3. tulisan di dalam list, dibuat berukuran "8pt"
+	-- ok
+4. di FORM JURNAL HISTORY, tulisan di dalam list, dibuat berukuran "8pt"
+	-- ok
+5. di FORM JURNAL DETAIL, tulisan di dalam list, dibuat berukuran "8pt"
+	-- ok
+6. di FORM PEMBAYARAN AP, tulisan di FIELD MEMO, dibuat UPPERCASE
+	-- ok
+
+
+MANUAL JOURNAL ENTRY
+====================	
+1. jika SIMPAN, form sudah dalam keadaan clear, maka tidak perlu button BARU lagi.
+   atau ketika klik SIMPAN, semua field di-disabled saja.
+   -- button BARU dipakai jika user telah mengisi, namun mau mengulang 
+   		journal yg sdh diisi tdk jadi disimpan
+2. tulisan di dalam list, dibuat berukuran "8pt"
+	-- ok
+
+
+
+GENERAL LEDGER
+==============
+1. tulisan di dalam list, dibuat berukuran "8pt"
+	-- ok
+
+
+
+================================================================================================================================
+
+ACCOUNT PAYABLE
+================
+1. ketika klik LIHAT JOURNAL, PEMBAYARAN, LIHAT HISTORY PEMBAYARAN
+   tanpa memilih salah satu data di list, akan muncul null pointer.
+   harap di handle
+   -- ok
+   
+GENERAL LEDGER
+================
+1. ketika klik LIHAT JOURNAL ENTRY tanpa memilih salah satu data di list,
+   akan muncul 
+   fellow not found : Label Caption. (ACCOUNT : PIUTANG PASIEN MONDOK)
+   Not Unique in the ID space of [Page_pp097] (ACCOUNT YANG LAINNYA)
+   harap di handle
+   -- ok
+   
+MANUAL JOURNAL ENTRY
+====================
+1. muncul : java.lang.String
+   kejadiannya : jika user telah memilih data account, kemudian dikosongkan lagi
+   				 nilai debet dan kredit diisi, kemudian tekan TAMBAH..
+	-- ok   			
+2. jika field ACCOUNT tidak diisi tetapi nilai debet dan kredit diisi, kemudian
+   tekan TAMBAH..
+   muncul : null pointer
+   -- ok
+3. description dibuat UPPERCASE
+	-- ok
+4. ketika klik TAMBAH, kenapa field CREDIT terisi 1?
+	-- ok
+5. DEBET dan KREDIT di dalam list, sebaiknya jangan diberi textbox
+	-- ok
+6. jika data masih kosong, Ketika klik SIMPAN, data bisa tersimpan.
+   handle supaya data tidak bisa disimpan.
+   -- ok
+   

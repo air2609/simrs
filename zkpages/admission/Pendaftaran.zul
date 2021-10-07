@@ -1,0 +1,23 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+<tabbox width="100%">
+	<tabs>
+		<tab label="PASIEN RAWAT JALAN"/>
+		<tab label="PASIEN RAWAT INAP"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include id="pasienRajal" src="/zkpages/admission/DaftarPasien.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include id="pasienRanap" src="/zkpages/admission/PasienRanap.zul"/>
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+</window>

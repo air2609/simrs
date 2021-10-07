@@ -1,0 +1,109 @@
+<window id="checkOut" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init()" sclass="Float">
+<zscript>
+			import com.vone.medisafe.report.LaporanPendaftaran;
+			import org.zkoss.zul.Filedownload; 
+			import org.apache.poi.hssf.usermodel.*;
+			import java.io.*;
+			
+			ctr = new LaporanPendaftaran();
+			void init(){
+				ctr.bind(checkOut);	
+			}
+			
+			public static void download()
+	 		{
+	 			try
+				{
+					String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+					String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+					FileInputStream in = new FileInputStream(path);
+					Filedownload.save(in, "application/vnd.ms-excel", "laporan_pendaftaran.xls");
+			
+				}
+				catch(IOException ioe)
+				{
+					ioe.printStackTrace();
+				}
+	 		}
+</zscript>
+
+<style src="/include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>LAPORAN PENDAFTARAN</h:td></h:tr>
+</h:table>
+
+<separator spacing="6px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/> 
+		  <h:td>
+		  		<h:table width="100%" align="center" border="0">
+			    	  <h:tr><h:td width="30%"/>
+			    	  		
+					    	<h:td>	 	
+					    		   <h:table width="100%" align="center" border="0">
+									   <h:tr>
+									   		 <h:td width="20%"><h:p align="right" style="font-weight:bold;font-size:8pt">DARI</h:p> </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									  		 <h:td width="10%">
+											 	<datebox id="dfrom" format="dd/MM/yyyy"/>
+											 </h:td>
+											 <h:td width="10%"><h:p align="right" style="font-weight:bold;font-size:8pt">SAMPAI</h:p> </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									  		 <h:td width="10%">
+											 	<datebox id="dto" format="dd/MM/yyyy"/>
+											 </h:td>
+											 <h:td width="20%" align="center" style="font-weight:bold;font-size:8pt">UNIT</h:td>
+											 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+											 <h:td><listbox id="unitList" mold="select" width="180px"/></h:td>
+											 <h:td><button style="width:90px;height:26px;font-weight:bold;font-size:7pt" label="LIHAT DATA" onClick="ctr.getLaporanPendaftaran();"/></h:td> 
+										</h:tr>
+									</h:table>
+									<separator spacing="2px"/>
+									
+									<vbox>
+										<listbox id="registrationList" width="840px" height="322px">
+											<listhead>
+												<listheader label="TANGGAL"  style="font-weight:bold;font-size:8pt" width="10%" />
+												<listheader label="UNIT"  style="font-weight:bold;font-size:8pt" width="25%" />
+												<listheader label="LAKI-LAKI"  style="font-weight:bold;font-size:8pt" width="15%" />
+												<listheader label="PEREMPUAN" style="font-weight:bold;font-size:8pt" width="15%" />
+												<listheader label="LAMA" style="font-weight:bold;font-size:8pt" width="10%" />
+												<listheader label="BARU" style="font-weight:bold;font-size:8pt" width="10%" />
+												<listheader label="TOTAL" style="font-weight:bold;font-size:8pt" width="15%" />
+												
+											</listhead>
+										</listbox>
+									</vbox>
+										
+									<separator spacing="5px"/>
+										  
+									<h:table align="center" width="100%" border="0">
+									   <h:tr><h:td width="5%">
+										   	  </h:td>
+										   	  <h:td width="5%">
+										   	  </h:td>
+											  <h:td width="15%">
+											  </h:td>
+											  <h:td>
+													<h:p align="right">
+														<button label="Export To XLS" image="/image/detail.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cetak();download()"/>
+													</h:p>
+											  </h:td>
+											  <h:td width="5%">
+
+											  </h:td>
+										</h:tr>
+									</h:table>
+						  </h:td>
+						  <h:td width="30%"/>
+				    </h:tr>
+		   		</h:table>
+		  </h:td>
+	 	  <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="7px"/>
+</window>

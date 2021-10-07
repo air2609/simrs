@@ -1,0 +1,81 @@
+<window id="cariIcd" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.master.diagnose.IcdController;
+	ctr = new IcdController();
+	
+	void init(){
+		ctr.initSearch(cariIcd);
+	}
+	
+	void search(){
+		ctr.searchIcd();
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PENCARIAN ICD</h:td></h:tr>
+</h:table>
+
+<separator spacing="6px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>	
+				 <h:table width="100%" align="center">
+			    	 <h:tr><h:td width="2%"/>
+			    		   <h:td>
+								 <h:table width="100%" align="center">
+									<h:tr><h:td width="15%" align="right"><h:b><h:font size="1">KODE ICD</h:font></h:b></h:td>
+										  <h:td width="3%" align="right"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			              				  <h:td width="28%"><textbox id="ICDCode" width="50%" height="14px" style="font-size:8pt"/></h:td>
+			       					</h:tr>
+			       					<h:tr><h:td width="15%" align="right"><h:b><h:font size="1">NAMA PENYAKIT</h:font></h:b></h:td>
+						  				  <h:td width="3%" align="right"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			             		 		  <h:td width="28%"><textbox id="diseaseName" width="360px" height="14px" style="font-size:8pt" rows="3"/></h:td>
+			             		 		  <h:td width="8%" align="right"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="search();"/></h:td>
+			        				</h:tr>
+			    				</h:table>
+			  				</h:td>
+			  				<h:td width="4%"/>
+			  		  </h:tr>
+			  	 </h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><separator spacing="1px"/> 		 	   	 
+			    <h:table width="100%" align="center">
+			    	  <h:tr><h:td width="30%"/>
+					    	<h:td>	 	
+					    		  <groupbox width="680px">
+								  	<caption label="DATA ICD"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="1px"></h:td></h:tr>
+									  		  <h:tr><h:td width="13%"/>
+											  		<h:td>
+													  	  <vbox>
+																<listbox id="listICD" multiple="true" width="640px" height="333px" mold="paging" pageSize="21">
+																	<listhead>
+																		<listheader label="KODE ICD" sort="auto" width="20%" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="NAMA PENYAKIT" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	</listhead>
+																</listbox>
+														  </vbox>
+													</h:td>
+													<h:td width="13%"/>
+											  </h:tr>
+								  		</h:table>
+										<separator spacing="4px"/>
+								   </groupbox>
+						  </h:td>
+						  <h:td width="30%"/>
+					</h:tr>
+			    </h:table>
+	      </h:td>
+	</h:tr>
+</h:table> 
+<separator spacing="8px"/>
+</window>

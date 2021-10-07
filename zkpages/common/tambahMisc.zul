@@ -1,0 +1,71 @@
+<window id="misc" xmlns:h="http://www.w3.org/1999/xhtml" width="500px" closable="true" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.common.CommonMiscController;
+	ctr = new CommonMiscController();
+	void init(){
+		ctr.init(misc);
+	}
+
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TRANSAKSI LAIN-LAIN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="8px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td width="10%"/>
+		  <h:td><groupbox width="450px">
+		  		<caption label="BIAYA LAIN-LAIN"/>
+		  	    <separator spacing="5px"/>
+				<h:table width="100%" align="center">
+			    	<h:tr><h:td width="1%"/>
+			    	      <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="9%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+										  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						              	  <h:td width="20%"><textbox id="name" width="98%" height="14px" style="font-size:8pt" rows="3"/></h:td>
+						            </h:tr>
+						       		<h:tr><h:td width="9%" align="right"><h:b><h:font size="1">JUMLAH</h:font></h:b></h:td>
+										  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						            	  <h:td width="20%"><intbox id="qty" width="40%" height="14px" style="font-size:8pt"/></h:td>
+						            </h:tr>
+						        	<h:tr><h:td width="9%" align="right"><h:b><h:font size="1">HARGA SATUAN</h:font></h:b></h:td>
+									      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+						            	  <h:td width="20%"><decimalbox id="price" width="40%" height="14px" format="#,###" style="font-size:8pt"/></h:td>
+						            </h:tr>
+				    			</h:table>
+			  			  </h:td>
+			  			  <h:td width="5%"/>
+			  	   </h:tr>
+			   </h:table>
+				
+				 
+				 <separator spacing="5px"/>
+										  		
+				 <h:table width="100%" align="center">
+				   	 <h:tr><h:td width="10%"/>
+					   	   <h:td align="right"> 
+						   		 	<button label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.getMisc();"/>
+						   		 
+						   </h:td>
+					 	   <h:td align="left"> 
+						   		 	<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="misc.detach();"/>
+						   		 
+						   </h:td>
+						   <h:td width="10%"/>
+					 </h:tr>
+				</h:table>
+								
+			    <separator spacing="5px"/>
+			    </groupbox>	
+		</h:td>
+		<h:td width="10%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="8px"/>
+</window>

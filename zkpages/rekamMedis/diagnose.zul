@@ -1,0 +1,32 @@
+<?page id="diagnosePage"?>
+
+<window id="diagnoseRoot" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%" height="600px">
+	<tabs id="tabsRoot">
+		<tab id="diagnosePasienTab" label="DIAGNOSA PASIEN"/>
+		<tab id="diagnosaHistoryTab" label="HISTORY DIAGNOSA"/>
+		<tab id="labTab" label="HASIL LABORATORIUM"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/rekamMedis/newDiagnosa.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/rekamMedis/diagnosaHistory.zul"/>
+		</tabpanel>
+		
+		<tabpanel>
+			<include src="/zkpages/laboratory/HasilLaboratorium.zul"/>	
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+
+</window>

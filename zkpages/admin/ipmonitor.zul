@@ -1,0 +1,69 @@
+<zk>
+<style src="../../include/medisafe.css"/>
+	<zscript>
+	
+		import com.vone.medisafe.ui.admin.IPController;
+		
+		IPController ip = new IPController();
+		
+		void init(){
+			ip.redrawList(root);
+		}
+		
+		void invalidate(){
+			ip.invalidate(root);
+		}
+	</zscript>
+
+	<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+
+    <h:table width="100%" align="center">
+    	<h:tr><h:td width="33%"/>
+    	<h:td>	 	
+    	<vbox>
+			  <groupbox width="420px" height="135px">
+			  	<caption label="IP LIST"/>
+			  		<h:table width="100%" align="center">
+			  		<h:tr><h:td  height="10px"></h:td></h:tr>
+			  		<h:tr><h:td width="10%"/>
+			  		<h:td>
+			  		
+					<listbox id="listIp" mold="paging" pageSize="10" multiple="true" width="390px">
+						<listhead>
+							<listheader label="IP" width="200px" sort="auto" style="font-weight:bold;font-size=8pt"/>
+					
+						</listhead>
+						
+						<listitem>
+							<listcell label="1"/>
+						</listitem>					
+					
+					</listbox>		
+
+					</h:td>
+					<h:td width="10%"/>
+					</h:tr>
+			  		</h:table>
+					
+		  			<separator spacing="5px"/>
+		  			<h:table width="100%" align="center">
+			  		   	 <h:tr><h:td width="2%"/>
+			  		   	 	   <h:td><h:p align="right">
+    						   		 <button id="btnRefresh" label="Refresh" image="/image/hapus.gif" style="width:70px;height:26px" onClick="init()"/>
+    						   		 <button id="btnInvalidate" label="Invalidate" image="/image/hapus.gif" style="width:70px;height:26px" onClick="invalidate()"/>    						   		 
+    						   		 </h:p>
+    						   </h:td>
+    						   
+    						   <h:td width="2%"/>
+    		  			 </h:tr>
+			  		</h:table>
+			  		<separator spacing="5px"/>
+			   </groupbox>
+	  </vbox>
+	  </h:td>
+	  <h:td width="30%"/>
+	  </h:tr>
+			
+    </h:table>
+    	</window>
+</zk>

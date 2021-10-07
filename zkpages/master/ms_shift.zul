@@ -1,0 +1,131 @@
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" sclass="Float" width="99%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.ui.master.ShiftController;
+	ShiftController ctr = new ShiftController();
+	
+	void init(){
+		ctr.init(root);
+	}
+	
+	void doSave(){
+		ctr.doSave(root);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(root);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(root);
+	}
+	
+	void doModify(){
+		ctr.doModify(root);
+	}
+</zscript> 
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM SHIFT MASTER</h:td></h:tr>
+	</h:table>
+
+	<separator spacing="7px"/>
+	
+	<h:table width="100%" align="center">
+		<h:tr><h:td width="20%"/>
+			  <h:td>	
+				    <h:table width="100%" align="center">
+				    	<h:tr><h:td width="14%"/>
+				    		  <h:td>
+									<h:table width="100%" align="center">
+										<h:tr><h:td width="12%" align="right" style="font-weight:bold;font-size:8pt">KODE</h:td>
+										      <h:td width="3%" align="center">:</h:td>
+					              			  <h:td width="25%"><textbox id="code" width="80%" height="14px" style="font-size:8pt"/></h:td>
+					       				</h:tr>
+					       				
+					        			<h:tr><h:td width="12%" align="right" style="font-weight:bold;font-size:8pt">DARI JAM</h:td>
+								  			  <h:td width="3%" align="center">:</h:td>
+					             			  <h:td width="25%" style="font-weight:bold;font-size:8pt "><textbox id="from" width="45%" height="14px" style="font-size:8pt"/>&amp;nbsp(0:00-23:59)</h:td>
+												
+					        			</h:tr>
+					        			
+					        			<h:tr><h:td width="12%" align="right" style="font-weight:bold;font-size:8pt">SAMPAI JAM</h:td>
+								  			  <h:td width="3%" align="center">:</h:td>
+					             			  <h:td width="25%" style="font-weight:bold;font-size:8pt"><textbox id="to" width="45%" height="14px" style="font-size:8pt"/>&amp;nbsp(0:00-23:59)</h:td>
+					        			</h:tr>
+					    			</h:table>
+				  			</h:td>
+				  			<h:td width="13%"/>
+				  	   </h:tr>
+			  	   </h:table>
+		  	 </h:td>
+			 <h:td width="20%"/>
+	   </h:tr>		
+	   <h:tr><h:td width="20%"/> 
+			 <h:td><separator spacing="4px"/> 	
+				   <h:table width="100%" align="center">
+				    	<h:tr><h:td width="34%"/>
+				    		  <h:td>
+				  					<h:table width="100%" align="center">
+					    				<h:tr><h:td width="10%"/>
+					    					  <h:td align="right">
+					    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="doSave()"/>
+					    					  		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px" onClick="doModify()"/>
+					    		  		 	   		
+					    		  		 	  </h:td>
+					    		  			  <h:td width="5%" align="left">
+					    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:26px;" onClick="doCancel()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="5%" align="left">
+					    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;" onClick="doDelete()"/>
+					    					   		
+					    					  </h:td>
+					    					  <h:td width="10%"/>
+					    				</h:tr>
+				    				</h:table>
+				    		</h:td>
+				  			<h:td width="34%"/>
+				  	   </h:tr>
+				    </h:table>
+		       </h:td>
+			   <h:td width="20%"/>
+		 </h:tr>		
+		 <h:tr><h:td width="20%"/> 
+			   <h:td><separator spacing="4px"/> 	    
+				     <h:table width="100%" align="center">
+				    	  <h:tr><h:td width="30%"/>
+						    	<h:td><vbox>	 	
+						    		  <groupbox width="550px">
+									  	<caption label="SHIFT LIST"/>
+									  		<h:table width="100%" align="center">
+										  		  <h:tr><h:td  height="10px"/></h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td><vbox>
+														  		  <listbox id="list" multiple="true" width="510px" height="237px" mold="paging" pageSize="17">
+																		<listhead>
+																			<listheader label="KODE" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="DARI JAM" width="30%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="SAMPAI JAM" width="30%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																  </listbox>		
+															  </vbox>
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+											<separator spacing="5px"/>
+									   </groupbox>
+									   </vbox>
+							 		</h:td>
+									<h:td width="30%"/>
+						      </h:tr>
+					    </h:table>
+			    </h:td>
+		  </h:tr>
+	</h:table> 
+	<separator spacing="14px"/>
+</window>

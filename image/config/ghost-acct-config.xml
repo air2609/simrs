@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--this account_no is concatenation division+account_no -->
+
+<ghost_acct_config>
+
+    <subsystem name="AR">
+        <account id="PATIENT_AR" division="1" acct_no="1-1444" />
+        <account id="BANK_AR" division="1" acct_no="1-1445" />
+    </subsystem>
+
+    <subsystem name="AP">
+        <account id="PO_MEDIC_AP" division="1" acct_no="2-1002" />
+        <account id="PO_MEDIC_AP" division="2" acct_no="1-1444" />
+    </subsystem>
+
+    <subsystem name="INCOME">
+        <account id="MEDIC_INCOME" division="1" acct_no="2-1002" />
+    </subsystem>
+
+    <subsystem name="INVENTORY">
+        <account id="MEDIC_INVENTORY" division="1" acct_no="1-5100" />
+    </subsystem>
+
+    <subsystem name="TAX">
+        <account id="MEDIC_PO_TAX" division="1" acct_no="2-1006" />
+    </subsystem>
+
+    <subsystem name="CASH">
+        <account id="CASH" division="1" acct_no="1-1110" />
+        <account id="PETTY" division="1" acct_no="1-1110" />
+    </subsystem>
+
+</ghost_acct_config>

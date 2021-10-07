@@ -1,0 +1,80 @@
+22-2-07
+======
+1. di form tambah tindakan di tambah kelas
+2. di transaksi ada tambahan antrian kelas
+
+
+7-februari-2007
+===============
+1. jika searching nota, kemudian klik UBAH (dan tidak melakukan perubahan apa2 dan tidak menekan tombol SIMPAN), 
+   kemudian klik BARU. Setelah itu mengisi data transaksi baru. KEtika klik SIMPAN, msgbox yang muncul adalah 
+   "Pengubahan Data Berhasil".. tlg msgbox di ganti, karena bukan yang dilakukan bukan perubahan data tetapi
+   pembuatan transaksi baru.
+
+
+19-JANUARI-2007
+===============
+1. untuk nota yang mempunyai transaksi obat, ketika nota akan divalidasi (melalui proses searching nota), 
+   selalu muncul :
+	Jan 26, 2007 2:44:07 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>org.zkoss.zk.ui.UiException: com.vone.medisafe.common.exception.VONEAppException: could not initialize proxy - the owning Session was closed
+	>>com.vone.medisafe.common.exception.VONEAppException: could not initialize proxy - the owning Session was closed
+	>>	at com.vone.medisafe.mapping.dao.NoteDAO.save(NoteDAO.java:319)
+	>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.save(NoteManagerImpl.java:55)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+
+2. untuk nota yang mempunyai transaksi obat, ketika nota akan dibatalkan (melalui proses searching nota), 
+   selalu muncul  :
+	Jan 26, 2007 2:45:16 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>org.zkoss.zk.ui.UiException: com.vone.medisafe.common.exception.VONEAppException: failed to lazily initialize a collection of role: com.vone.medisafe.mapping.TbItemTrx.tbPatientInventories - no session or session was closed
+	>>com.vone.medisafe.common.exception.VONEAppException: failed to lazily initialize a collection of role: com.vone.medisafe.mapping.TbItemTrx.tbPatientInventories - no session or session was closed
+	>>	at com.vone.medisafe.mapping.dao.NoteDAO.cancelNote(NoteDAO.java:572)
+	>>	at com.vone.medisafe.service.ifaceimpl.NoteManagerImpl.cancelNote(NoteManagerImpl.java:202)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+
+
+
+
+
+========================================================================================================================
+
+1. ketika onload, label "STATUS NOTA", dihilangkan
+	-- ok
+2. nama anastesi-nya ditampilkan di keterangan
+	-- ok
+3. jika total mau dibuat otomatis (tanpa menekan tombol hitung),
+   a. ketika data obat diinputkan, maka total harga harusnya otomatis
+	  berubah.
+	  kasus :
+	  - tambah tindakan 
+	     operasi thorax    		subtotal 330000    total 330000 (benar)
+	     operasi amputasi kaki  subtotal 330000	   total 660000 (benar)
+	  - tambah obat
+	     vitamin a	jlh=2	    subtotal 6000	   total 660000 (salah)
+	     										   seharusnya total = 666000
+   
+   b. ketika user mengisi diskon, maka total harga akan berubah secara otomatis
+   -- gak bisa, berikaitan dgn diskon listener
+4. pencarian nota, ketika klik nota yang dipilih, muncul pesan
+   unresolved compilation problem : Unhandled exception type VONEAppException
+   -- tak coba gak ada error ??
+5. ketika klik baru, dokter utama, no. registrasi dan no. nota di-disabled
+	-- ok
+6. ketika klik baru, di form history transaksi, masih menampilkan
+   data pasien
+   -- ok
+
+
+
+     										   
+     										   

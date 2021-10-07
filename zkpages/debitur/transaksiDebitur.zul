@@ -1,0 +1,430 @@
+<window id="DebiturTransaction" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	void init(){
+		MRNumber.focus();
+		<!-- com.vone.medisafe.ui.SurgeryController.onLoad(SurgeryTransaction);-->
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM TRANSAKSI PEMBAYARAN PASIEN</h:td>
+	</h:tr>
+</h:table>
+	
+<separator spacing="8px"/>
+	
+<h:table align="center" width="100%" >
+	<h:tr><h:td width="14%"/>
+		  <h:td><h:table align="center" width="100%">
+	 				<h:tr><h:td width="18%"><h:p align="right">LOKASI TRANSAKSI</h:p></h:td>
+			   	    	  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               			  <h:td width="27%">
+               			  	<listbox mold="select" id="locationList" width="83%" height="14px" style="font-size:8pt">
+               		 			<listitem value="POLI IBU DAN ANAK" label="1. POLI IBU DAN ANAK"/>
+               			  		<listitem value="SURGERY" label="2. SURGERY"/>
+               			  		<listitem value="POLI GIGI" label="3. POLI GIGI"/>
+               			  	</listbox>
+               			  </h:td>
+			  		
+			  			  <h:td width="18%"/>
+			   			  <h:td width="5%"/>
+              			  <h:td><h:p align="center"><checkbox id="referencePatient" label="RUJUKAN / BEBAS" height="14px"/></h:p></h:td>
+	      	        </h:tr>
+	      	        
+	      	        <h:tr><h:td width="18%"><h:p align="right">NO. MR</h:p></h:td>
+						  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+        				  <h:td width="27%">
+        					<bandbox id="MRNumber" width="71%">
+							<bandpopup>
+							<vbox>		
+							<h:table align="center" width="100%" sclass="BasicBlueTitle">
+							 	<h:tr><h:td>PENCARIAN DATA PASIEN</h:td></h:tr>
+							</h:table>
+						
+							<separator spacing="5px"/>
+									
+							<h:table width="100%" align="center">
+								<h:tr><h:td width="70px"/>
+							  		  <h:td width="80px"><h:p align="right">NO. MR</h:p></h:td>
+								  	  <h:td width="22px"><h:p align="center">:</h:p></h:td>
+									  <h:td width="150px"><h:p align="left"><textbox id="crNoMR" width="150px" height="14px"/></h:p></h:td>
+								  	  <h:td width="70px"/>
+								</h:tr>
+								<h:tr><h:td width="70px"/>
+							    	  <h:td width="80px"><h:p align="right">NAMA</h:p></h:td>
+								  	  <h:td width="22px"><h:p align="center">:</h:p></h:td>
+								  	  <h:td width="150px"><h:p align="left"><textbox id="crNama" width="150px" height="14px"/></h:p></h:td>
+								  	  <h:td width="70px"/>
+								</h:tr>
+								<h:tr><h:td width="70px"/>
+							    	  <h:td width="80px"><h:p align="right">ALAMAT</h:p></h:td>
+								  	  <h:td width="22px"><h:p align="center">:</h:p></h:td>
+								  	  <h:td width="150px"><h:p align="left"><textbox id="crNoAlamat" width="150px" height="14px"/></h:p></h:td>
+								  	  <h:td width="80px"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:25px"/></h:p></h:td>
+								  	  <h:td width="70px"/>
+								</h:tr>
+							</h:table>
+						
+							<separator spacing="5px"/>
+						
+							<listbox id="MRList" width="550px" onSelect="MRNumber.value=self.selectedItem.label; MRNumber.closeDropdown();">
+								<listhead>
+									<listheader label="NO. MR" width="18%" sort="auto"/>
+									<listheader label="NAMA" width="30%" sort="auto"/>
+									<listheader label="ALAMAT"/>
+								</listhead>
+					
+								<listitem>
+									<listcell label="11-11-11"/>
+									<listcell label="Anastasia"/>
+									<listcell label="Jl. Adisucipto no. 103"/>
+								</listitem>
+					
+								<listitem>
+									<listcell label="11-11-12"/>
+									<listcell label="Andrea"/>
+									<listcell label="Jl. Gejayan no. 8"/>
+								</listitem>
+									
+								<listitem>
+									<listcell label="11-11-13"/>
+									<listcell label="Christoforus"/>
+									<listcell label="Jl. RingRoad Utara no. 44"/>
+								</listitem>
+							
+					   		</listbox>
+							</vbox>
+							</bandpopup>
+							</bandbox>
+         			  </h:td>
+         			  
+         			  <h:td width="18%"><h:p align="right">NO. KWITANSI</h:p></h:td>
+			   		  <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		  <h:td><textbox id="transactionsNumber" disabled="true" style="background-color: #e7e5de" width="81%" height="14px"/></h:td>
+               </h:tr>
+	      	   
+	      	   <h:tr><h:td width="18%"><h:p align="right">NO. REGISTRASI</h:p></h:td>
+			   		 <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		 <h:td width="27%"><textbox id="registrationNumber" disabled="true" style="background-color: #e7e5de" width="81%" height="14px"/></h:td>
+               
+	      	   		 <h:td width="18%"><h:p align="right">NO. NOTA</h:p></h:td>
+			   		 <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		 <h:td><bandbox id="transactionNumber" width="71%">
+               		 	   <bandpopup>
+						   <vbox>		
+						    <h:table align="center" width="100%" sclass="BasicBlueTitle">
+						 	 	<h:tr><h:td>PENCARIAN NO. NOTA</h:td></h:tr>
+						    </h:table>
+						
+						    <separator spacing="5px"/>
+						   	<h:table width="100%" align="center">
+							  <h:tr><h:td width="70px"/>
+							        <h:td width="80px"><h:p align="right">NO. NOTA</h:p></h:td>
+								    <h:td width="22px"><h:p align="center">:</h:p></h:td>
+								    <h:td width="150px"><h:p align="left"><textbox id="crNoNota" width="150px" height="14px"/></h:p></h:td>
+								    <h:td width="80px"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:25px"/></h:p></h:td>
+								    <h:td width="70px"/>
+							  </h:tr>
+						    </h:table>
+						
+						    <separator spacing="4px"/>
+							<h:table align="center" width="100%">
+							 	<h:tr><h:td><checkbox label="PILIH SEMUA TRANSAKSI"/></h:td></h:tr>
+						    </h:table>
+						   		
+						  	<separator spacing="1px"/>
+							<listbox id="transactionNumberList" width="550px" onSelect="transactionNumber.value=self.selectedItem.label; transactionNumber.closeDropdown();" multiple="true" checkmark="true">
+							<listhead>
+								<listheader label="NO. NOTA" width="35%" sort="auto"/>
+								<listheader label="NAMA" width="30%" sort="auto"/>
+								<listheader label="ALAMAT"/>
+							</listhead>
+					
+							<listitem>
+								<listcell label="J-UGD-0609-000001"/>
+								<listcell label="Anastasia"/>
+								<listcell label="Jl. Adisucipto no. 103"/>
+							</listitem>
+					
+							<listitem>
+								<listcell label="J-UGD-0609-000002"/>
+								<listcell label="Andrea"/>
+								<listcell label="Jl. Gejayan no. 8"/>
+							</listitem>
+									
+							<listitem>
+								<listcell label="J-UGD-0609-000003"/>
+								<listcell label="Christoforus"/>
+								<listcell label="Jl. RingRoad Utara no. 44"/>
+							</listitem>
+									
+							</listbox>
+						  </vbox>
+						</bandpopup>
+               		 	</bandbox>
+               		 </h:td>
+	      	   </h:tr>
+	      	   
+	      	  
+         	  <h:tr><h:td width="18%"><h:p align="right">NAMA</h:p></h:td>
+			   	    <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		<h:td width="27%"><textbox id="patientName" disabled="true" width="80%" height="14px"/></h:td>
+			  		
+			  		<h:td width="18%"><h:p align="right">ALAMAT</h:p></h:td>
+			   		<h:td width="5%"><h:p align="center">:</h:p></h:td>
+              		<h:td><textbox id="address" disabled="true" width="81%" height="14px"/></h:td>
+	      	  </h:tr>
+	      	   
+	      	  <h:tr><h:td width="18%"><h:p align="right">TIPE PASIEN</h:p></h:td>
+			   	    <h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		<h:td width="27%"><textbox id="patientType" disabled="true" width="80%" height="14px"/></h:td>
+			  			      	  
+	      	  		<h:td width="18%"><h:p align="right">JENIS PEMBAYARAN</h:p></h:td>
+			   		<h:td width="5%"><h:p align="center">:</h:p></h:td>
+               		<h:td><listbox mold="select" id="typeOfPayList" width="84%" style="font-size:8pt">
+               		 		  <listitem value="kosong" label=""/>
+               		 		  <listitem value="deposit" label="DEPOSIT"/>
+               		 		  <listitem value="pelunasan" label="PELUNASAN"/>
+               		 		  <listitem value="pengembalian" label="PENGEMBALIAN"/>
+               		 	   </listbox>
+               		</h:td>
+              </h:tr>
+           </h:table>
+        <h:td width="14%"/>
+		</h:td>
+    </h:tr>
+</h:table>    
+<separator spacing="4px"/>
+<h:table align="center" width="100%" sclass="Bancgroundlogo">
+	<h:tr><h:td width="14%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+    			<h:tr><h:td width="11%"/>
+    				  <h:td><h:p align="left">	 	
+    				  <hbox>
+			  			<groupbox width="925px">
+			  				<caption label="DATA TRANSAKSI PASIEN"/>
+			  					<h:table width="100%" align="center">
+			  						<h:tr><h:td height="10px"></h:td></h:tr>
+			  						<h:tr><h:td width="2%"/>
+			  							  <h:td>
+			  			  				  	<vbox>
+						  					<listbox id="debtList" multiple="true" width="885px" height="122px">
+					
+						  					<listhead>
+						  						<listheader label="KETERANGAN" width="33%" sort="auto"/>
+						  						<listheader label="JLH" width="6%"/>
+						  						<listheader label="HARGA SATUAN" width="11%"/>
+						  						<listheader label="JASA DOKTER" width="10%"/>
+						  						<listheader label="JASA RS" width="10%"/>
+						  						<listheader label="DISKON" width="15%"/>
+						  						<listheader label="SUBTOTAL STLH DISC" width="32%"/>
+						  					</listhead>
+					
+						  					<listitem>
+						  						<listcell label="PERBAN"/>
+						  						<listcell label="2"/>
+						  						<listcell label="10000"/>
+						  						<listcell label="10000"/>
+						  						<listcell label="10000"/>
+						  						<listcell>
+						  							<decimalbox width="60%" height="14px" format="#,##0.##" ></decimalbox>
+						  						 		<listbox mold="select" width="32%" style="font-size:8pt">
+			  						 						 <listitem label="Rp"/>
+			  						 						 <listitem label="%"/>
+			  						  					</listbox>
+			  						  			</listcell>
+			  						  			<listcell label="40000"/>
+						  						</listitem>
+						 					
+						 					<listitem>
+						  						<listcell label="JARUM SUNTIK"/>
+						  						<listcell label="1"/>
+						  						<listcell label="20000"/>
+						  						<listcell label="10000"/>
+						  						<listcell label="10000"/>
+						  						<listcell>
+						  							<decimalbox width="60%" height="14px" format="#,##0.##" ></decimalbox>
+						  						 		<listbox mold="select" width="32%" style="font-size:8pt">
+			  						 						 <listitem label="Rp"/>
+			  						 						 <listitem label="%"/>
+			  						  					</listbox>
+			  						  			</listcell>
+			  						  			<listcell label="40000"/>
+			  						  			</listitem>
+						 					
+						 					<listitem>
+						  						<listcell label="ANTIBIOTIK"/>
+						  						<listcell label="1"/>
+						  						<listcell label="10000"/>
+						  						<listcell label="20000"/>
+						  						<listcell label="10000"/>
+						  						<listcell>
+						  							<decimalbox width="60%" height="14px" format="#,##0.##" ></decimalbox>
+						  						 		<listbox mold="select" width="32%" style="font-size:8pt">
+			  						 						 <listitem label="Rp"/>
+			  						 						 <listitem label="%"/>
+			  						  					</listbox>
+			  						  			</listcell>
+			  						  			<listcell label="40000"/>
+			  						  		</listitem>
+						 					
+						 					<listitem>
+						  						<listcell label="RIVANOL"/>
+						  						<listcell label="1"/>
+						  						<listcell label="10000"/>
+						  						<listcell label="20000"/>
+						  						<listcell label="10000"/>
+						  						<listcell>
+						  							<decimalbox width="60%" height="14px" format="#,##0.##" ></decimalbox>
+						  						 		<listbox mold="select" width="32%" style="font-size:8pt">
+			  						 						 <listitem label="Rp"/>
+			  						 						 <listitem label="%"/>
+			  						  					</listbox>
+			  						  			</listcell>
+			  						  			<listcell label="40000"/>
+			  						  		</listitem>
+					
+						  					</listbox>
+						  					</vbox>
+										 </h:td>
+										 <h:td width="2%"/>
+									</h:tr>
+								 </h:table>
+							
+							<separator spacing="1px"/>
+							<h:table width="100%" align="center">
+			  				    <h:tr><h:td width="2%"/>
+			  				    	  <h:td width="17%"><h:p align="right">JUMLAH DEPOSIT</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td><decimalbox id="DP" disabled="true" format="#,##0.##" height="14px" width="60%"/></h:td>
+									  <h:td width="12%"/>
+									  
+									  <h:td width="18%"><h:p align="right">TOTAL </h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td><decimalbox id="total" value="160000" disabled="true" format="#,##0.##" height="14px" width="96%"/></h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+			  				    <h:tr><h:td width="2%"/>
+			  				    	  <h:td width="16%"><h:p align="right">JUMLAH BAYAR</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td width="24%"><decimalbox id="mountPaid" format="#,##0.##" height="14px" width="60%"/></h:td>
+			  						  <h:td width="14%"/>
+									
+			  						  <h:td width="18%"><h:p align="right">DISKON</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td><h:p align="left">
+				  						  		<decimalbox id="discount" format="#,##0.##" height="14px" width="55%"/>
+			  						  			<listbox mold="select" width="37%" height="14px" style="font-size:8pt">
+			  						  				<listitem label="Rp"/>
+			  						  				<listitem label="%"/>
+			  						 			</listbox>
+			  						 		</h:p>
+			  						  </h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+								<h:tr><h:td width="2%"/>
+			  						  <h:td width="16%"><h:p align="right">KELEBIHAN / KEKURANGAN</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td width="24%"><decimalbox id="mountMin" disabled="true" format="#,##0.##" height="14px" width="60%"/></h:td>
+									  <h:td width="12%"/>
+								
+			  						  <h:td width="18%"><h:p align="right">PPN</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td><decimalbox id="ppn" format="#,##0.##" height="14px" width="40%"/>%</h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+								<h:tr><h:td width="2%"/>
+			  						  <h:td width="16%"><h:p align="right">KEMBALIAN</h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td width="24%"><decimalbox id="mountOfReturn" format="#,##0.##" height="14px" width="60%"/></h:td>
+									  <h:td width="12%"/>
+									  
+			  						  <h:td width="18%"><h:p align="right">JUMLAH TAGIHAN </h:p></h:td>
+			  						  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+			  						  <h:td><decimalbox id="totalAmount" value="160000" disabled="true" format="#,##0.##" height="14px" width="96%"/></h:td>
+									  <h:td width="2%"/>
+									  								 
+			  					</h:tr>
+								</h:table>
+							<separator spacing="2px"/> 
+			   			</groupbox>
+			   		</hbox>
+			   		</h:p>
+	 				</h:td>
+	  				<h:td width="10%"/>
+			  </h:tr>
+			  </h:table>
+				
+<separator spacing="5px"/>
+	  			
+			  <h:table width="100%" align="center">
+			  <h:tr><h:td width="5%"/>
+			  		<h:td width="7%">
+			  			<h:p align="right">
+    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:25px" onClick="com.vone.medisafe.ui.SurgeryController.Save(SurgeryTransaction);"/>
+    		  			</h:p>
+    		  		</h:td>
+    		  
+    		  		<h:td width="7%">
+			  			<h:p align="right">
+    						<button label="BARU" image="/image/new.gif" style="width:70px;height:25px" onClick="com.vone.medisafe.ui.SurgeryController.NewPages(SurgeryTransaction);"/>
+    		  			</h:p>
+    		  		</h:td>
+    		  				   
+    		  		<h:td width="7%">
+			  			<h:p align="right">
+    						<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:25px" onClick="com.vone.medisafe.ui.SurgeryController.NewPages(SurgeryTransaction);"/>
+    		  			</h:p>
+    		  		</h:td>
+    		  		
+    		  		<!--<h:td width="7%">
+			  			<h:p align="right">
+    						<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:70px;height:25px"/>    						
+    					</h:p>
+    		  		</h:td>
+    		  
+    		  	    --><h:td width="12%">
+    		  			<h:p align="left">
+    			    		<button label="VALIDASI" id="SUDAH DI VALIDASI" image="/image/check.gif" style="width:80px;height:25px" onClick="validLabel.value = self.id"/>
+    					</h:p>
+    		  		</h:td>
+    		  		
+    				<h:td>
+			 	   		<h:p align="left">
+			 	   			<h:font color="RED">
+			 	   				<label id="validLabel"/>
+			 	   			</h:font>
+			 	   		</h:p>
+			 	   	</h:td>
+			 	   
+			 	    <h:td width="5%">
+			  			<h:p align="right">
+    						<button label="CETAK" image="/image/print.gif" style="width:70px;height:25px">
+							<attribute name="onClick">
+							{
+								final Window win = (Window) Executions.createComponents(
+													"/zkpages/polyclinic/cetak.zul", null, null);
+							    win.doModal();
+							}
+							</attribute>
+    						</button>
+    					</h:p>
+    		  		</h:td>
+    						   
+    		  		<h:td width="10%">
+    		     		<h:p align="left">
+    				 		<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:25px" href="index.zul"/>
+    			 		</h:p>
+    		  		</h:td>
+    		  		<h:td width="5%"/>
+    		 </h:tr>
+			 </h:table>
+			 <separator spacing ="4px"/>
+		<h:td width="14%"/>
+		</h:td>
+    </h:tr>
+</h:table>
+
+</window>

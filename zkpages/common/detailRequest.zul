@@ -1,0 +1,196 @@
+<window id="RequestDetail" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<style src="/include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.warehouse.ItemRequestApproveController;
+	ctr = new ItemRequestApproveController();
+	
+	void init(){
+		ctr.init(RequestDetail);
+	}
+	void setujuClick(){
+		ctr.setujuClick();
+	}
+	void refreshClick(){
+		ctr.refreshClick();
+	}
+</zscript> 
+
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PERSETUJUAN PERMINTAAN OBAT-BAHAN MEDIS</h:td></h:tr>
+</h:table>
+
+<separator spacing="6px"/>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="30%"/>
+    	  <h:td><groupbox width="850px">
+			  		<caption label="LIST PERMINTAAN OBAT-BAHAN MEDIS"/>
+			  			<h:table width="100%" align="center">
+			  				<h:tr><h:td height="10px"/></h:tr>
+			  				<h:tr><h:td width="12%"/>
+			  					  <h:td>
+			  			  			  	<vbox>
+				  			  				  <tree id="requestTree" width="810px" height="134px" multiple="true" checkmark="true">
+													<treecols>
+														<treecol label="NO. PERMINTAAN" width="35%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH TERIMA" width="10%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SISA" width="10%" style="font-weight:bold;font-size:8pt"/>
+													</treecols>
+													<treechildren id="requestTreechildren">
+														<treeitem>
+															<treerow>
+																<treecell label="1234567"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label="PANADOL"/>
+																		<treecell label="10"/>
+																		<treecell label="STRIP"/>
+																		<treecell label="10"/>
+																		<treecell label="0"/>
+																	</treerow>
+							 					 				</treeitem>
+																<treeitem>
+																	<treerow>
+																		<treecell label="ANTIBIOTIK"/>
+																		<treecell label="5"/>
+																		<treecell label="STRIP"/>
+																		<treecell label="10"/>
+																		<treecell label="5"/>
+																	</treerow>
+																</treeitem>
+															</treechildren>
+														</treeitem>
+												  </treechildren>
+											</tree>
+			  			  			  </vbox>
+						  		</h:td>
+								<h:td width="12%"/>
+						   </h:tr>
+					   </h:table>
+					   <separator spacing="2px"/>
+					   <h:table width="100%" align="center">
+						   <h:tr><h:td width="2%"/>
+						   		 <h:td align="left">
+									    
+						    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.btnCancelClick()"/>
+						    		   
+						    	 </h:td>
+								 <h:td width="2%"/>
+	        			    </h:tr>
+						</h:table>
+						<separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+	  	  <h:td width="30%"/>
+	</h:tr>
+	<h:tr><h:td width="30%"/>
+    	  <h:td><separator spacing="3px"/>
+    	  		<groupbox width="850px">
+			  		<caption label="LIST PERSETUJUAN OBAT-BAHAN MEDIS"/>
+			  			<h:table width="100%" align="center">
+			  				<h:tr><h:td height="10px"/></h:tr>
+			  				<h:tr><h:td width="12%"/>
+			  					  <h:td>
+			  			  			  	<vbox>
+				  			  				  <tree id="setujuTree" width="810px" height="153px" multiple="true" checkmark="true">
+													<treecols>
+														<treecol label="NO. PERMINTAAN" width="35%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH TERIMA" width="10%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SISA" width="10%" style="font-weight:bold;font-size:8pt"/>
+													</treecols>
+													<treechildren id="setujuTreechildren">
+														<treeitem>
+															<treerow>
+																<treecell label="1234567"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label="PANADOL"/>
+																		<treecell label="10"/>
+																		<treecell label="STRIP"/>
+																		<treecell label="10"/>
+																		<treecell label="0"/>
+																	</treerow>
+							 					 				</treeitem>
+																<treeitem>
+																	<treerow>
+																		<treecell label="ANTIBIOTIK"/>
+																		<treecell label="5"/>
+																		<treecell label="STRIP"/>
+																		<treecell label="10"/>
+																		<treecell label="5"/>
+																	</treerow>
+																</treeitem>
+															</treechildren>
+														</treeitem>
+														<!--<treeitem>
+															<treerow>
+																<treecell label="UGD"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label="OBAT BIUS"/>
+																		<treecell label="AMPUL"/>
+																		<treecell label="10"/>
+																		<treecell label="10"/>
+																	</treerow>
+							 					 				</treeitem>
+																<treeitem>
+																	<treerow>
+																		<treecell label="FORMALIN"/>
+																		<treecell label="BIJI"/>
+																		<treecell label="5"/>
+																		<treecell label="0"/>
+																	</treerow>
+																</treeitem>
+															</treechildren>
+														</treeitem>
+												--></treechildren>
+											</tree>
+			  			  			  </vbox>
+						  		</h:td>
+								<h:td width="12%"/>
+						   </h:tr>
+					   </h:table>
+					   <separator spacing="2px"/>
+					   <h:table width="100%" align="center">
+						   <h:tr><h:td width="3%"/>
+						   		 <h:td width="5%">
+									   <h:p align="left">
+						    				<button id="btnApproved" label="DI SETUJUI" image="/image/check.gif" style="width:105px;height:26px;font-weight:bold;font-size:7pt" onClick="setujuClick();"/>
+						    		   </h:p>
+						    	 </h:td>
+						   		 <h:td width="5%">
+									   <h:p align="left">
+						    				<button id="btnRefresh" label="REFRESH" image="/image/fresh.gif" style="width:105px;height:26px;font-weight:bold;font-size:7pt" onClick="refreshClick();"/>
+						    		   </h:p>
+						    	 </h:td>
+						   		 <h:td width="5%">
+									   <h:p align="left">
+						    				<button id="btnCancelRequest"  label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.btnCancelRequestClick()"/>
+						    		   </h:p>
+						    	 </h:td>
+						   		 <h:td>
+	    		     				   <h:p align="right">
+	    				 					<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt"/>
+	    				 				</h:p>
+	    		  				  </h:td>
+			     				  <h:td width="3%"/>
+	        			    </h:tr>
+						</h:table>
+						<separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+	  	  <h:td width="30%"/>
+	</h:tr>
+</h:table>
+<separator spacing="5px"/>
+</window>

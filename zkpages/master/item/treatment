@@ -1,0 +1,18 @@
+Kerjakan msTreatment.zul
+	table yang dipake --> ms_treatment
+	
+	1 treatment bisa punya banyak harga, tergantung kelas tarifnya.
+	CTH :
+	treatment A, untuk kelas tarif 1 = 20000, kelas tarif 2 = 15000, dll
+	input unit, kode, display nama.
+	trus pilih kelas tarif, input hargane.
+	kalo uda, disimpan dunk.
+	nah..kalo klik SIMPAN, unit, kode dan nama gak hilang (disabled)..hanya bisa pilih kelas tarif
+	dan isi harga sesuai dengan kelas tarif tersebut.
+	kalo mau mengembalikan form pada kondisi awal, tekan tombol BARU..pasti langsung bersih layarnya.
+	 
+	               
+untuk msTreatmentGroup
+	table yang dipake --> ms_treatment_group
+	
+	keterangan sama dengan yang msTreatment.zul (line 7)

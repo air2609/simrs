@@ -1,0 +1,346 @@
+#COMMON MESSAGES - PUT ALL NON-SUBSYSTEM HERE
+
+persen.untung.obat1=30
+persen.untung.obat2=25
+jasa.apotik=900
+
+common.add.success=Penambahan Data Berhasil!
+common.add.fail=Gagal Menambah Data..!
+common.add.dataexist=Data Sudah Ada..!
+common.add.confirm=Anda Yakin akan Menambahkan Data..?
+common.modify.success=Pengubahan Data Berhasil..!
+common.modify.fail=Gagal Merubah Data..!
+common.modify.confirm=Anda Yakin akan Mengubah Data yang Dipilih..?
+common.delete.success=Data Terhapus dengan Sukses..!
+common.delete.fail=Gagal Menghapus Data..!
+common.delete.confirm=Anda Yakin akan Mengubah Data yang Dipilih..?
+common.constraint.noempty = Field yang Ditandai Tidak Boleh Kosong..!
+common.constraint.time = Field Tidak Memenuhi Kriteria Time, Mohon Diubah..!
+common.modify.list.notselected = Pilih Data dari List Terlebih Dahulu..!
+common.data.notfound=Data Tidak Ditemukan..!
+common.internal.error = INTERNAL ERROR! HUBUNGI SUPERVISOR ANDA!
+common.search.result=Hasil Pencarian :
+common.save.success=Data Sukses Disimpan..!
+common.save.fail=Data Gagal Disimpan..!
+common.input.negatif.notallowed=Jumlah Tidak Boleh Negatif atau Nol..!
+common.save.not.allowed=Data Belum Lengkap!
+common.transaction.total.not.counted=Hitung Jumlah Transaksi Terlebih Dahulu..!
+common.validate.success=Validasi Sukses..!
+common.validate.fail=Validasi Gagal..!
+salah.satu.field.harus.diisi=Salah Satu Field Pencarian Harus Diisi..!
+doctor.not.exist= Tidak Ada Data Dokter yang Sesuai..!
+coa.not.exist = Tidak Ada No. Coa yang Sesuai..!
+
+#Listener
+discount.listener.negatif.notallowed = Diskon Tidak Boleh Negatif..!
+discount.listener.jumlah.negatif.notallowed = Jumlah Tidak Boleh Negatif Atau Nol..!
+
+#ERROR CODE
+
+error.saveadd = DATA TIDAK berhasil disimpan, mohon data inputan dicek ulang.
+error.savemodify = DATA TIDAK berhasil dirubah, mohon data inputan dicek ulang.
+error.savemodify.nodata = TIDAK ada DATA yang dirubah, mohon ulangi operasi atau hubungi atasan.
+error.delete = DATA TIDAK berhasil dihapus, mohon ditinjau ulang data yang dihapus masih terpakai oleh bagian lain.
+error.nodata = DATA TIDAK berhasil diambil, mohon ulangi operasi atau hubungi atasan.
+error.internal = Internal Error. Mohon Hubungi Supervisor Anda..!
+
+#BIAYA PENDAFTARAN
+biaya.pendaftaran=15000
+biaya.kartu=10000
+
+
+#LOGIN
+login.invalid=User atau Password Salah, Mohon Dimasukkan Ulang!
+
+#ADMIN
+admin.user.changepassword.mismatch = "New Password dan Re-type Password Tidak Sama"
+admin.user.changepassword.success = "Password Telah Berubah"
+admin.user.changepassword.fail = "Password Lama Salah"
+admin.user.staff.wrongcode=Kode Staff tidak diketemukan!
+admin.user.staff.internalerror=Terjadi Kesalahan Internal Pada Kode Staff, Hubungi Supervisor!
+admin.userpriv.noaction=Kode User Kosong, Tidak ada Operasi Yang Dapat Dilakukan.
+admin.userpriv.screen.wrongcode=Kode Screen tidak diketemukan!
+
+
+#MASTER
+master.common.name=Nama,
+master.common.code=Kode,
+master.unit.division=Divisi,
+master.common.code.exist=Kode sudah ada di database, ganti dengan yang lain!
+master.division.divisionlist.notselected=Pilih Data Divisi Terlebih Dahulu..!
+master.unit.unitlist.notselected=Pilih Data Unit Terlebih Dahulu..!
+master.subdistrict.subdistrictlist.notselected=Pilih Data Kecamatan Terlebih Dahulu..!
+master.regency.regencylist.notselected=Pilih Data Kabupaten Terlebih Dahulu..!
+master.province.provincelist.notselected=Pilih Data Propinsi Terlebih Dahulu..!
+master.ptype.ptypelist.notselected=Pilih Data Tipe Pasien Terlebih Dahulu..!
+master.msg.msglist.notselected=Pilih Data Grup Staff Medis Terlebih Dahulu..!
+master.tclass.tclasslist.notselected=Pilih Data Kelas Tarif Terlebih Dahulu..!
+master.hall.halllist.notselected=Pilih Data Ruangan Terlebih Dahulu..!
+master.hall.name.notfound=Nama Ruangan Tidak Ditemukan..! \nMohon Diganti Dengan yang Lain..!
+master.room.roomlist.notselected=Pilih Data Kamar Terlebih Dahulu!..
+master.common.search.notfound=Tidak Ada Data yang Sesuai dengan Kategori Pencarian..!
+master.hall.name.notfound=Nama Kamar Tidak Ditemukan..! \nMohon Diganti Dengan yang Lain..!
+master.bed.bedlist.notselected=Pilih Data Bed Terlebih Dahulu..!
+master.ward.wardlist.notselected=Pilih Data Bangsal Terlebih Dahulu..!
+master.doctor.doctorlist.notselected=Pilih Data Dokter Terlebih Dahulu..!
+master.staff.stafflist.notselected=Pilih Data Staff Terlebih Dahulu..!
+master.groupitem.groupitemlist.notselected=Pilih Data Grup Item Terlebih Dahulu..!
+master.vendor.vendorlist.notselected=Pilih Data Supplier Terlebih Dahulu..!
+master.itemmeasurement.list.notselected=Pilih Data Satuan Item Terlebih Dahulu..!
+master.itemmeasurement.code.not.found=Internal Error! Kode Satuan Barang Tidak Ditemukan.
+master.itemmeasurement.code.convert.not.valid=Satuan Barang Tidak Dapat Diubah ke Satuan yang Diminta,\nUpdate Tabel Master Terlebih Dahulu..!
+master.item.list.notselected=Pilih Data Item Terlebih Dahulu..!
+item.notfound =Tidak Ada Item Yang Sesuai Dengan Kode..!
+master.itemsellingprice.list.notselected=Pilih Data Harga Jual Item Terlebih Dahulu..!
+master.bed.notfound=Kode Bed Tidak Ditemukan..!
+master.bed.used=Bed Sudah Terpakai, Mohon Diganti Dengan Yang Lain..!
+master.treatment.treatmentgroup.notselected= Pilih Grup Treatment Terlebih Dahulu..!
+master.treatment.list.notselected=Pilih Data Treatment Terlebih Dahulu..!
+master.treatmentroom.list.notselected=Pilih Data Treatment Room Terlebih Dahulu..!
+master.diagnosa.icd.notselected=Pilih Data ICD Terlebih Dahulu..!
+master.diagnosa.icd9cm.notselected=Pilih Data ICD-9-CM Terlebih Dahulu..!
+master.diagnosa.cod.notselected=Pilih Data Penyebab Kematian Terlebih Dahulu..!
+master.iteminventory.manipulate.warning=Semua Transaksi Dalam Screen Ini Akan Di-Log!
+master.iteminventory.save.confirm=Konfirm Untuk Menyimpan Data Item : 
+master.iteminventory.save.confirm.qty=Dengan Jumlah Sebanyak : 
+master.iteminventory.save.duplicate1=Kode Item :
+master.iteminventory.save.duplicate2=,Yang Anda Masukkan Sudah Ada Dalam Sistem! Gunakan Fasilitas Ubah.
+master.coa.delete=Anda Yakin Akan Menghapus COA ini..? \nJika Mempunyai Sub-Account, Maka Data Akan Terhapus Juga!
+master.coa.delete.fail=Penghapusan Gagal! Data Mungkin Sudah Dipakai Di Tabel Transaksi.
+master.coa.select.invalid=Tidak Dapat Memilih Account Superior Yang Sama!
+master.coa.journal.discrepancy.internal=INTERNAL ERROR! Journal Tidak Balance! Harap Hubungi Atasan Anda!
+master.coa.journal.discrepancy=Journal Tidak Balance! Harap Input-an Dicek Lagi.
+
+#ADMISSION
+admission.registration.success = Registrasi Pasien SUKSES ..!
+admission.registration.fail = Registrasi Pasien GAGAL..!
+admisssion.bed.mutation.list.notselected=Mohon Pilih Data Mutasi Bed Terlebih Dahulu..!
+admission.mr.notfound=No.MR tidak ditemukan, Mohon Diganti Dengan yang Lain..!
+admission.ranap.patient.notregistered=Anda Tidak Terdaftar Sebagai Pasien Rawat Inap..!\nMutasi Bed Tidak Dapat Dilakukan..!
+admission.ranap.cannot.modify.bed=Maaf..Data Bed Tidak Bisa Diubah..!
+admission.ranap.not.allowed=Pasien Masih Terdaftar Rawat Inap..!\nRegistrasi Tidak Bisa Dilakukan..!
+patient.not.registered=Pasien Tidak Terdaftar..!
+antrian.not.valid=Masih ada Bed yang Kosong di Ruangan Ini..!
+sudah.ngantri=Data Pasien Sudah Ada Dalam Antrian..!
+antrianlist.not.selected=Pilih List Antrian Terlebih Dahulu..!
+konfirmasi.batal.rajal=Apakah Anda Yakin Akan Membatalkan Registrasi..?
+batal.registrasi.sukses=Batal Registrasi Sukses..!
+batal.registrasi.gagal=Batal Registrasi Gagal..!
+
+
+#MEDICAL RECORD
+mr.noselected =Pilih Data Rekam Medis Terlebih Dahulu..!
+mr.cannot.go.out=Berkas Sedang Dipinjam..!
+mr.cannot.be.back=Pasien Belum Keluar..!
+mr.cannot.be.cancel=Berkas Sedang Dipinjam..! Pembatalan Tidak Bisa Dilakukan..!
+mr.update.status.success=Status Berhasil Di-Update..!
+mr.not.found=No.MR tidak ditemukan, Mohon Ganti Dengan yang Lain..!
+diagnose.type.not.selected=Lengkapi Data Diagnosa Terlebih Dahulu..!
+diagnosa.utama.harus.icd=Diagnosa Utama Harus ICD..!
+pilih.diagnosa.utama=Pilih Diagnosa Utama..!
+pilih.data.diagnosa.dari.list=Pilih Data Yang Akan Dihapus..!
+
+
+
+#COMMON
+treatment.not.selected=Pilih Data Treatment Terlebih Dahulu..!
+common.item.jumlah.empty=Jumlah Harus Diisi..!
+common.nota.has.been.validated=Pembatalan Tidak Dapat Dilakukan! Mohon Cek Status Nota..!
+common.nota.cancelatioan.success=Pembatalan Nota SUKSES..!
+common.nota.cancelatioan.fail=Pembatalan Nota GAGAL..!
+common.password.not.match=Username atau Password Anda Salah..!
+common.input.greater.than.stok=Jumlah Tidak Boleh Lebih Besar\nDari Stok Yang Tersedia..!
+common.packet.not.selected=Pilih Data Paket Terlebih Dahulu..!
+common.discount.not.allowed=Diskon Tidak Boleh Lebih Besar Dari Harga Pokok..!
+input.bukan.angka=Input Harus Angka..!
+unit.or.global.not.selected=Pilih Data Transaksi PER DIVISI atau GLOBAL..!
+mr.not.found=Data Histori Pasien Tidak Dapat Ditampilkan!\nPilih Data Pasien Terlebih Dahulu..!
+tanggal.mulai.tidak.boleh.kosong=Tanggal Mulai Pencarian Tidak Boleh Kosong..!
+tidak.berhak.batal=Anda Tidak Diizinkan untuk Membatalkan Nota\nyang Sudah Di-Validasi..!Hubungi Supervisor Anda..!
+
+
+
+#POLY
+rujukan.not.selecetd=Check List Pasien Rujukan Terlebih Dahulu..!
+
+#BANGSAL
+ranap.patinet.not.fill=Lengkapi Data Pasien Ranap Terlebih Dahulu..!
+patient.inventory.input.not.valid=Input Tidak Valid..!
+patient.inventory.history.not.selected=Pilih Data History yang Akan Dihapus..!
+bed.transaction.closed.confirmation=Anda Yakin Akan Menutup Transaksi Bed..?
+registration.is.null=Data Registrasi Kosong..!
+bangsal.bed.sudah.dibuat.nota=Data Yang Dipilih Sudah Dibuat Notanya..!
+pilih.transaksi.bed.yang.akan.dibuat.notanya=Pilih Transaksi Bed yang Akan Dibuatkan Nota..! 
+pasien.tidak.terdaftar.dibangsal.ini=Pasien Tidak Terdaftar Dibangsal Ini..!
+
+
+
+
+doctor.selectlist.notselected=Pilih Data Dokter Terlebih Dahulu..!
+listnener.diskon=Isi Jumlah Diskon Yang Ingin Diberikan..!
+
+#ITEM
+drugs.type.not.selected=Pilih Tipe Obat Terlebih Dahulu..!
+
+#APOTIK
+drugs.not.selected=Isi Data Obat Terlebih Dahulu..!
+retur.lebih.besar.dari.yang.diizinkan=Jumlah Retur Melebihi Jumlah Maksimum..!
+input.negatif.not.allowed=Jumlah Tidak Boleh Negatif!
+
+#CASHIER
+coa.is.empty=Unit Kasir ini Belum Memiliki No. COA,\nHubungi Supervisor Anda untuk Membuatkan No. COA..!
+mr.tidak.terdaftar=Nomor MR Tidak Terdaftar..!
+deposit.save.success=Deposit Pasien Sukses Disimpan..!
+return.deposit.save.success=Retur Deposit Pasien SUKSES Disimpan..!
+no.ranap.patient=Lengkapi Data Pasien Ranap..!
+card.type.not.selected=Pilih Cara Pembayaran Terlebih Dahulu..!
+account.empty.not.allowed=No. Account Tidak Boleh Kosong..!
+amount.is.empty=Jumlah Pembayaran Dengan Kartu Kredit/Debet Tidak Boleh Kosong..!
+insurance.amount.is.empty=Jumlah Pembayaran Asuransi Tidak Boleh Kosong..!
+paymentterm.not.selected=Pilih Cara Bayar Terlebih Dahulu..!
+bed.transaction.not.closed=Transaksi Bed Belum Ditutup..!\nHubungi Staff Bangsal untuk Menutup Transaksi Bed..!
+jumlah.pembayaran.deposit.melebihi.deposit=Pembayaran Deposit Tidak Boleh Lebih Dari Jumlah Deposit!
+payment.not.enough=Jumlah Pembayaran Tidak Mencukupi,\nProses Pembayaran Tidak Dapat Dilakukan..!
+payment.cannot.be.procced=Lengkapi Data Pembayaran..!
+confirmation.locked=Data Registrasi Pasien Akan Dikunci, Anda Yakin?
+registration.is.locked=Data Registrasi Pasien Telah Dikunci..!
+confirmation.check.out=Registrasi Pasien Akan Tidak Aktif, Anda Yakin?
+registration.is.not.active=Registrasi Pasien Sudah Tidak Aktif!
+bill.cancelation.success=Pembatalan Kwitansi Sukses..!
+bill.cancelation.fail=Pembatalan Kwitansi Gagal..!
+konfirmasi.bayar.nota=Anda Yakin Akan Melakukan Pembayaran..?
+confirmation.unlock=Registrasi Akan Diaktifkan Kembali, Anda Yakin..?
+registration.active=Registrasi Telah Aktif Kembali..!
+bukan.pasient.ranap=Bukan Pasien Ranap Tidak Bisa Melakukan Deposit..!
+diskon.melebihi.jumlah.pembayaran=Diskon Tidak Boleh Melebihi Jumlah Pembayaran..!
+pasien.belum.melakukan.retur=Pasien Belum Melakukan Retur, Proses Pembayaran Tidak Bisa Dilakukan!
+
+
+#ITEM PICKER
+picker.item.duplicate=Terdapat Data Item Yang Duplikat, Mohon Dicek Ulang..!
+
+#PURCHASE ORDER REQUEST
+pch.order.request.confirm=OPP Akan Dibuat, Lanjutkan?
+pch.order.request.add.success=PEMBUATAN ORDER PERMINTAAN PEMBELIAN \nBERHASIL, NO OPP :
+pch.order.request.no.opp=Internal Error! OPP No Tidak Ada!
+pch.order.request.modify.status.invalid=Tidak Dapat Melakukan Modifikasi. OP Sudah Dibuat!
+pch.order.request.invalid.input=Input Qty Tidak Valid!
+pch.order.request.revoke.question=OPP akan di Batalkan, Anda Yakin?
+pch.order.request.revoke.success=OPP Telah Dibatalkan!
+pch.order.request.noitem=List Item Kosong, Tidak Dapat diSimpan!
+pch.order.request.approve.question=Anda Menyetujui OPP Ini?
+pch.order.request.approve.success=Berhasil! OPP Telah Disetujui
+
+#PURCHASE ORDER
+pch.order.invalid.input=Input Data Tidak Valid! Mohon Di-Cek Ulang
+pch.order.supplier.invalid=Data Supplier Tidak Valid! Mohon Di-Cek Ulang
+pch.order.por.invalid=Data Purchase Request Tidak Valid! Mohon Di-Cek Ulang
+pch.order.add.success=PEMBUATAN ORDER PEMBELIAN BERHASIL..!\n NO OP :
+pch.order.no.op.notfound=Internal Error! OP No Tidak Ada!
+pch.order.modify.status.invalid=Tidak Dapat Melakukan Modifikasi. OP Sudah DiValidasi!
+pch.order.revoke.question=OP akan di Batalkan, Anda Yakin?
+pch.order.revoke.success=OP Telah Dibatalkan!
+pch.order.close.por=Anda Yakin Akan Menutup OPP Ini?
+pch.order.close.success=OPP Telah Ditutup!
+
+#DELIVERY ORDER
+pch.do.invalid.input=Input Qty Tidak Valid!
+pch.do.duplicate.bpp=BPP Tidak Valid! Sudah Terdapat Nomor Yang Sama di Database!
+pch.do.add.success=PEMBUATAN BPP BERHASIL! NO BPP :
+pch.do.modify.success=PERUBAHAN BPP BERHASIL! NO BPP : 
+pch.do.bpp.error=BPP Tidak Terdapat Di Database! 
+pch.do.approve.confirm=Anda Yakin Untuk Validasi BPP Ini?
+pch.do.approve.sukses=Approval Sukses! Inventory Sudah Ter-Update!
+pch.do.revoke.question=BPP akan di Batalkan, Anda Yakin?
+pch.do.revoke.invalid.status=Status BPP Tidak Valid Untuk Dibatalkan! 
+pch.do.revoke.success=BPP Telah Dibatalkan!
+pch.do.qty.order.over=Nilai Qty Yang Dipesan Tidak Boleh Melebihi Qty Sisa!
+pch.do.qty.bonus.over=Nilai Qty Bonus Tidak Boleh Melebihi Bonus Awal!
+pch.do.batch.qty.less=Quantity Barang Tidak Boleh Kurang Dari 1!
+pch.do.batch.qty.over=Quantity Barang Melebihi Jumlah Quantity Dalam DO!
+pch.do.batch.duplicate.local=Batch No. Yang Anda Masukkan Sudah Ada Di Screen!
+pch.do.batch.duplicate.db=Batch No. Yang Anda Masukkan Sudah Ada Di Dalam System! 
+pch.do.batchitem.registration.incomplete=Data Batch Belum Dimasukkan Semua Atau Tidak Sama Dengan Data Order/Bonus Diterima. Mohon Diperiksa Lagi!
+#RETUR
+pch.retur.cashback.success=Proses Retur Berlangsung Dengan Sempurna, Inventory Sudah Ter-Update!
+
+
+#TRANSACTION
+trx.bed.coa.null = Transaksi Tidak Dapat Diproses! COA No. Untuk Bed Tidak Ada!
+trx.bundled.coa.null = Transaksi Tidak Dapat Diproses! COA No. Untuk Paket Tidak Ada!
+trx.misc.coa.null = Transaksi Tidak Dapat Diproses! COA No. Untuk Lain-lain Tidak Ada!
+trx.treatment.coa.null = Transaksi Tidak Dapat Diproses! COA No. Untuk Operasi Tidak Ada!
+trx.item.sell.coa.null = Transaksi Tidak Dapat Diproses! COA No. Penjualan Tidak Ada!
+trx.item.cogs.coa.null = Transaksi Tidak Dapat Diproses! COA No. COGS Tidak Ada!
+trx.coa.null = Transaksi Tidak Dapat Diproses! Account Recievable Account Belum Di-Set! (set di GIM)
+trx.coa.not.found = Transaksi Tidak Dapat Diproses! COA Account Tidak Ada Dalam Master COA : 
+trx.coa.inventory.warehouse.not.found = Transaksi Tidak Dapat Diproses! COA Account Untuk Gudang Unit Tidak Ada Dalam Master COA : 
+
+
+
+
+
+
+
+
+
+
+
+
+Uniqueconstraintviolated.= Required Unique Data is Found Duplicated.
+
+system.refresh.delay=System currently on Refresh Mode, and cannot process your transaction, please re-post in 5 seconds.
+
+generate.medic.error=Sequence Generation Error! Please Contact Administrator.
+
+update.validation.error=Validate UPDATE ERROR : Internal SYSTEM ERROR
+update.validation.denied=Selected DATA You MODIFIED has been MODIFIED by ANOTHER USER, Please REFRESH The Screen
+
+accounting.journalentry.discrepancy=Discrepancy is found!. Please re-match the balance.
+accounting.util.balancenotfound=Normal Balance is not Found, or has not been Set-Up yet!
+accounting.util.balanceerror=Normal Balance ERROR! Please Contact The Administrator.
+accounting.util.internalerror=Accounting Util Internal ERROR! Please Contact The Administrator.
+
+login.invalid_userid_or_pass=Invalid UserID or Password
+
+license.missing_license_file=Unable to find license file
+license.fatal_error=Fatal error during loading license file
+license.invalid_license=Invalid License, please contact VisiONE
+license.expired=License expired, please contact VisiONE
+license.invalid_ip=Invalid IP for license, please contact VisiONE
+license.invalid_expired_date=Invalid expired dat, please contact VisiONE
+license.ip_address_error=Unable to get Server IP Address
+
+screenurl.missing_file=Unable to find screen url file
+screenurl.fatal_error=Fatal error during loading screen url file
+
+master.patient.addsuccess=Patient has been Succesfully Added.
+master.patient.modifysuccess=Patient has been Succesfully Modified.
+
+purchasing.po.postingsuccess=P.O has been Posted succesfully.
+purchasing.po.postingfailed=Posting Operation has Failed. Contact Your Superior!
+purchasing.podetail.posterror=P.O has been Posted, no Action is permitted
+purchasing.podetail.nopono=Internal P.O ERROR. Please Contact Administrator
+purchasing.po.deleteconstraint=P.O with status of "Back-Order" and "Posted" CANNOT be Deleted.
+purchasing.podetail.groupnotdefined=Internal System Error! Group outside Logistic and Accounting is prohibited.
+purchasing.podetail.qtyexceed=Quantity Inserted Exceed Original PO Quantity. Please re-Check The Data
+purchasing.po.unittype.error=System Cannot Find any Conversion of the Selected Unit Type. Or Unit Type is Different From Item Master. Check for This Item No : 
+purchasing.po.nodatapost=There is NO Data To be Posted!
+
+inventory.trans.division.mutation=System cannot Proceed Your Transaction. Division Mutation from This Screen is Improper.
+inventory.transfer.error=Internal Inventory ERROR. Please Contact Your Administrator
+inventory.transfer.qtyless=Quantity at Inventory cannot supply the Requested Mutation. Please refresh the Screen to find out Current Qty.
+inventory.transfer.transerror=Internal Accounting ERROR. Please set COA_Trans table for Accounting Automation Transformation.
+inventory.transfer.success=Inventory Mutation is SUCCESS! All Transaction has been logged. Journal was SUCCESFULLY created. Please re-condition Inventory Data on Target Inventory before starting any Transaction.
+inventory.transfer.discrepancyfound=Normal Balance Error! Found a Discrepancy in System. Please Contact Administrator.
+
+patientregister.patientloss=Internal System Error, Please Contact Administrator.
+patientregister.duplicatepatient=Patient has been registered, please re-check patient list.
+transaction.itemlist.notavailable=Following Item NO. is not available in quantity as requested : 
+transaction.itemsubmit.success=Item(s) has been succesfully registered.
+patientregister.invoice.patientAR.error=Please complete Pre-Defined Patient AR.
+patientregister.invoice.cashAR.error=Please complete Pre-Defined Cash AR.
+patientregister.invoice.discrepancy=Discrepancy Balance is Found. Please Cancel The Registered Item and Fix COA in Inventory.
+patientregister.cancelRegister.InvoiceFound=Please Check Again Your Selection. No Invoice Allowed!
+
+accounting.discrepancy.found=Discrepancy Balance is Found. Please re-check Normal Account.

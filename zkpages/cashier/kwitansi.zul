@@ -1,0 +1,104 @@
+<?component name="VONEButton" macro-uri="/zkpages/macros/VONEButton.zul"?>
+
+<window id="kwitansi" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+
+<style src="/include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.cashier.KwitansiController;
+	
+	ctr = new KwitansiController();
+	
+	void init(){
+		ctr.init(kwitansi);
+	}
+	
+</zscript>
+
+ 	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>KWITANSI HARIAN</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="5px"/>
+
+
+<h:table width="100%" align="center" border="0">
+	<h:tr><h:td width="20%"/>
+		  <h:td>		
+				<h:table width="100%" align="center" border="0">
+			    	<h:tr><h:td>
+			    				<h:table width="100%" align="center" border="0">
+			    				<h:tr>
+			    					<h:td align="center">
+			    						<h:b><h:font size="1">TANGGAL</h:font></h:b> 
+			    						<space spacing="10px"/>
+			    						<datebox id="tanggal" format="dd/MM/yyyy"/>
+			    						<space spacing="10px"/>
+			    						<h:b><h:font size="1">TIPE</h:font></h:b>
+			    						<space spacing="10px"/>
+			    						<listbox mold="select" id="tipeList">
+									  		<listitem label="BPJS" value="BPJS"/>
+									  		<listitem label="NON BPJS" value="NONBPJS"/>
+									  	</listbox>
+			    						<space spacing="10px"/>
+			    						<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:85px;height:22px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>
+			    					
+			    					</h:td>
+			    				</h:tr>
+			    				</h:table>
+			  			</h:td>
+			  	   </h:tr>
+			   </h:table>
+	  	 </h:td>
+	     <h:td width="20%"/>
+	</h:tr>		    
+					    
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="1px"/>	  
+			    <h:table width="100%" align="center">
+			    	<h:tr><h:td>	 	
+						    	<vbox>
+									  <groupbox width="850px">
+									  	<caption label="DAFTAR KWITANSI HARIAN"/>
+									  		<h:table width="100%" align="center" border="0">
+									  			  <h:tr>
+									  			  	<h:td width="10%"/>
+									  			  	<h:td align="right">
+									  			  	  <datebox format="dd/MM/yyyy" id="crTanggal"/>
+									  			  	  <listbox mold="select" id="crTipeList">
+									  			  	  	<listitem label="BPJS" value="BPJS"/>
+									  			  	  	<listitem label="NON BPJS" value="NONBPJS"/>
+									  			  	  </listbox>
+									  			  	  <space spacing="10px"/>
+									  			  	  <button label="CARI" image="/image/cari.gif" onClick="ctr.search()"/>
+									  			  	</h:td>	
+									  			  	<h:td width="10%"/>
+									  			  </h:tr>
+										  		  <h:tr><h:td width="10%"/>
+												  		<h:td>
+												  		  		<listbox id="listKwitansi" width="810px" height="400px" mold="paging" pageSize="20">
+																	<listhead>
+																		<listheader label="TANGGAL" style="font-weight:bold;font-size:8pt" width="20%" />
+																		<listheader label="TIPE" style="font-weight:bold;font-size:8pt" width="20%" />
+																		<listheader label="FILE" style="font-weight:bold;font-size:8pt" width="60%" />						
+																	</listhead>
+																</listbox>		
+														</h:td>
+														<h:td width="10%"/>
+												  </h:tr>
+									  		</h:table>
+										
+									  		<separator spacing="5px"/>
+									   </groupbox>
+							  </vbox>
+				  		</h:td>
+				  </h:tr>
+			 </h:table>
+	    
+		</h:td>
+		<h:td width="20%"/>
+	</h:tr>
+</h:table> 
+
+<separator spacing="10px"/>
+</window>

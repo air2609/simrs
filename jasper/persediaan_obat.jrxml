@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Laporan_Persediaan_Obat" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.Margins" value="true"/>
+	<property name="com.jasperassistant.designer.Rulers" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGuides" value="true"/>
+	<property name="com.jasperassistant.designer.DataSource" value="driverClassName"/>
+	<parameter name="lokasi" class="java.lang.String"/>
+	<parameter name="bulan" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from report.laporan_persediaan_obat('8')]]>
+	</queryString>
+	<field name="harga_standar" class="java.lang.Double"/>
+	<field name="jumlah" class="java.lang.Float"/>
+	<field name="kode_obat" class="java.lang.String"/>
+	<field name="nama_obat" class="java.lang.String"/>
+	<field name="nomor" class="java.lang.Short"/>
+	<field name="satuan" class="java.lang.String"/>
+	<pageHeader>
+		<band height="114">
+			<staticText>
+				<reportElement x="0" y="13" width="555" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUMAH SAKIT TIARA SELLA
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="29" width="555" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PERSEDIAAN OBAT dan BAHAN MEDIS
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="46" width="80" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BAGIAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="46" width="15" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="46" width="153" height="17"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{lokasi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="148" y="62" width="80" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BULAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="62" width="15" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="62" width="65" height="17"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{bulan}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="86" width="555" height="1"/>
+				<graphicElement pen="Thin"/>
+			</line>
+			<line>
+				<reportElement x="0" y="89" width="555" height="1"/>
+				<graphicElement pen="Thin"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="97" width="26" height="17"/>
+				<box padding="0" topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="97" width="66" height="17"/>
+				<box padding="0" topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[KODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="91" y="97" width="259" height="17"/>
+				<box padding="0" topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="97" width="78" height="17"/>
+				<box padding="0" topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HRG STANDAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="97" width="44" height="17"/>
+				<box padding="0" topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JLH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="97" width="87" height="17"/>
+				<box border="Thin" padding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SATUAN]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="17">
+			<textField>
+				<reportElement x="26" y="0" width="66" height="17"/>
+				<box topBorder="None" topPadding="0" leftBorder="Thin" leftPadding="4" bottomBorder="Thin" bottomPadding="0" rightBorder="None" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kode_obat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="0" width="259" height="17"/>
+				<box topBorder="None" topPadding="0" leftBorder="Thin" leftPadding="4" bottomBorder="Thin" bottomPadding="0" rightBorder="None" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_obat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="0" width="87" height="17"/>
+				<box topBorder="None" topPadding="0" leftBorder="Thin" leftPadding="4" bottomBorder="Thin" bottomPadding="0" rightBorder="Thin" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="26" height="17"/>
+				<box padding="0" topBorder="None" leftBorder="Thin" bottomBorder="Thin" rightBorder="None"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Short"><![CDATA[$F{nomor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#">
+				<reportElement x="349" y="0" width="78" height="17"/>
+				<box topBorder="None" topPadding="3" leftBorder="Thin" leftPadding="0" bottomBorder="Thin" bottomPadding="0" rightBorder="None" rightPadding="2"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{harga_standar}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#">
+				<reportElement x="426" y="0" width="44" height="17"/>
+				<box topBorder="None" topPadding="3" leftBorder="Thin" leftPadding="0" bottomBorder="Thin" bottomPadding="0" rightBorder="None" rightPadding="2"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="37"/>
+	</summary>
+</jasperReport>

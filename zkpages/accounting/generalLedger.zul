@@ -1,0 +1,150 @@
+<window id="generalLedger" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init()" sclass="Float">
+
+<zscript>
+	import com.vone.medisafe.accounting.GeneralLedgerController;
+	import org.zkoss.zul.Filedownload; 
+	import org.apache.poi.hssf.usermodel.*;
+	import java.io.*;
+		
+	GeneralLedgerController ctr = new GeneralLedgerController();
+	void init(){
+		ctr.init(generalLedger);
+	}
+	void coaClick(){
+		ctr.coaClick();
+	}		 
+	void cetakClick(){
+		ctr.cetakClick();
+	}		 
+	void journalEntryClick(){
+		ctr.journalEntryClick();
+	}
+	
+	public static void download()
+	 {
+	 	try
+		{
+			String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+			String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+			FileInputStream in = new FileInputStream(path);
+			Filedownload.save(in, "application/vnd.ms-excel", "gl.xls");
+			
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	 }
+	
+</zscript>
+
+<style src="/include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>GENERAL LEDGER</h:td></h:tr>
+</h:table>
+
+<separator spacing="6px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/> 
+		  <h:td>
+		  		<h:table width="100%" align="center">
+			    	  <h:tr><h:td width="30%"/>
+			    	  		
+					    	<h:td>	 	
+					    		   <h:table width="100%" align="center" border="0">
+									   <h:tr><h:td width="10%">
+									   			<h:p align="center" style="font-weight:bold;font-size:8pt">DARI</h:p>
+									   		 </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									   		 <h:td><datebox id="dfrom" format="dd/MM/yyyy"/></h:td>
+									   		 <h:td width="10%">
+									   			<h:p align="center" style="font-weight:bold;font-size:8pt">SAMPAI</h:p>
+									   		 </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									   		 <h:td><datebox id="dto" format="dd/MM/yyyy"/></h:td>
+									   		 <h:td><button style="width:90px;height:26px;font-weight:bold;font-size:7pt" label="VEIW ALL" onClick="ctr.getGLAll();"/></h:td>
+									   		 
+									   		 <h:td width="15%"><h:p align="right" style="font-weight:bold;font-size:8pt">ACCOUNT</h:p> </h:td>
+									   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+									  		 <h:td width="32%">
+											 	<h:p align="left">
+											 	<listbox id="coaList" width="100%" mold="select" style="font-size:9pt" onSelect="coaClick();">
+													<listitem value="1" label="1. AKTIF" />
+													<listitem value="2" label="2. TIDAK AKTIF" />
+													<listitem value="0" label="3. SEMUA" />
+													</listbox>
+											  	</h:p>
+											  </h:td>
+											  
+										</h:tr>
+									</h:table>
+									<separator spacing="2px"/>
+									
+									<vbox>
+										<listbox id="detailList" width="940px" height="422px" multiple="true" mold="paging" pageSize="28">
+											<listhead>
+												<listheader label="ACT NO"  style="font-weight:bold;font-size:8pt" width="15%"/>
+												<listheader label="ACT NAME"  style="font-weight:bold;font-size:8pt" width="15%"/>
+												<listheader label="VOUCHER NO." style="font-weight:bold;font-size:8pt" width="15%" sort="auto"/>
+												<listheader label="KETERANGAN" style="font-weight:bold;font-size:8pt" width="28%"/>
+												<listheader label="APL DATE" style="font-weight:bold;font-size:8pt" width="11%" sort="auto"/>
+												<listheader label="DEBET" style="font-weight:bold;font-size:8pt" width="10%" sort="auto"/>
+												<listheader label="KREDIT" style="font-weight:bold;font-size:8pt" width="10%" sort="auto"/>
+												<listheader label="BALANCE" style="font-weight:bold;font-size:8pt" width="13%" sort="auto"/>
+											</listhead>
+											
+											<listitem>
+												<listcell label="AP000000000000175"/>
+												<listcell label="AAABBCC"/>
+												<listcell label="VENDOR:SPR01TOTAL INVOICE:10890.0"/>
+												<listcell label="21/10/2006"/>												
+												<listcell label="10890"/>
+												<listcell label="0"/>
+												<listcell label="10890"/>
+											</listitem>
+										</listbox>
+									</vbox>
+										
+									<separator spacing="5px"/>
+										  
+									<h:table align="center" width="100%" border="0">
+									   <h:tr><h:td width="5%">
+													<h:p align="right">
+										  				<button label="PRINT" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="cetakClick();"/>
+										   			</h:p>
+										   	  </h:td>
+										   	  <h:td width="5%">
+													<h:p align="left">
+										  				<button label="PRINT ALL" image="/image/print.gif" style="width:120px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cetakAllClick();"/>
+										   			</h:p>
+										   	  </h:td>
+											  <h:td width="15%">
+													<h:p align="left">
+														<button label="LIHAT JOURNAL ENTRY" image="/image/detail.gif" style="width:170px;height:26px;font-weight:bold;font-size:7pt" onClick="journalEntryClick();"/>
+													</h:p>
+											  </h:td>
+											  <h:td>
+													<h:p align="left">
+														<button label="EXPORT TO XLS" image="/image/detail.gif" style="width:170px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.exportToXls();download();"/>
+													</h:p>
+											  </h:td>
+											  <h:td width="5%">
+													<h:p align="right">
+														<button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="generalLedger.detach()"/>
+													</h:p>
+											  </h:td>
+										</h:tr>
+									</h:table>
+						  </h:td>
+						  <h:td width="30%"/>
+				    </h:tr>
+		   		</h:table>
+		  </h:td>
+	 	  <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="7px"/>
+</window>

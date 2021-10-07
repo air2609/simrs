@@ -1,0 +1,261 @@
+23-2-207
+========
+1. JIKA BAYAR NON TUNAINYA TERISI, MAKA NILAI KELEBIHAN/KEKURANGANNYA IKUT BERKURANG...
+
+
+
+20-FEBRUARI-2007
+================
+1. Setelah retur, tombol retur, lock dan unlock di-disabled.
+	nama penanggung dan alamat penangggung di-readonly
+	no. nota dan no. mr di-disabled
+		
+
+==============================================================================================================================
+
+
+7-FEB-2007
+==========
+
+1. jika field BAYAR TUNAI dikosongkan, ketika klik tab muncul null pointer.
+	Feb 7, 2007 12:07:54 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:591
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.cashier.CashierTransactionController.calculateSettlement(CashierTransactionController.java:846)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+    -ok
+2.  jika ada data pasien kemudian di field BAYAR DEPOSIT, ketika tekan delete, kemudian tekan tab, muncul null pointer
+	Feb 7, 2007 12:09:58 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:591
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.cashier.CashierTransactionController.calculateSettlement(CashierTransactionController.java:846)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    -ok
+3. jika cari via nota, mustinya ketika nota sudah di pilih, detail pasien yang sesuai dengan nama pasien
+   yang ada di nota tersebut ditampilkan.
+   --OK
+4. diskon total biaya tidak boleh lebih besar dari jumlah total biaya.
+5. tidak ada PPN.
+   -OK
+6. retur transaksi, muncul session was closed
+   -OK
+
+
+==============================================================================================================================
+1-FEB-2007
+==========
+
+TRANSAKSI = PELUNASAN
+=====================
+	1. tidak bisa get patient via searching.
+		--> cth data : tessa
+		
+		ARIF : SUDAH
+		
+		Feb 1, 2007 11:38:34 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+		SEVERE: >>org.hibernate.LazyInitializationException: could not initialize proxy - the owning Session was closed
+		>>	at org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:53)
+		>>	at org.hibernate.proxy.AbstractLazyInitializer.getImplementation(AbstractLazyInitializer.java:84)
+		>>	at org.hibernate.proxy.CGLIBLazyInitializer.intercept(CGLIBLazyInitializer.java:134)
+		>>	at com.vone.medisafe.mapping.MsPatientType$$EnhancerByCGLIB$$c929da8a.getVTpatientDesc(<generated>)
+		>>	at com.vone.medisafe.cashier.CashierManagerImpl.getRegistration(CashierManagerImpl.java:812)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+		>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	
+		juga muncul null pointer, ketika get data..(-->terjadi jika tidak ada value di PPN)
+		Feb 1, 2007 11:48:26 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+		SEVERE: >>java.lang.NullPointerException
+		>>	at com.vone.medisafe.cashier.CashierManagerImpl.getNoteDetil(CashierManagerImpl.java:454)
+		>>	at com.vone.medisafe.cashier.CashierManagerImpl.getRegistration(CashierManagerImpl.java:894)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+		>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+		>>	at java.lang.reflect.Method.invoke(Method.java:585)
+		>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+		>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+	
+		ARIF : SUDAH
+		
+	2. get data dari searching nota, malah muncul 
+		Feb 1, 2007 11:41:08 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+		SEVERE: >>org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.vone.medisafe.mapping.TbExamination.tbDrugIngredients - no session or session was closed
+		>>	at org.hibernate.collection.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:191)
+		>>	at org.hibernate.collection.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:183)
+		>>	at org.hibernate.collection.AbstractPersistentCollection.read(AbstractPersistentCollection.java:48)
+		>>	at org.hibernate.collection.PersistentSet.iterator(PersistentSet.java:134)
+		>>	at com.vone.medisafe.cashier.CashierManagerImpl.getListDetil(CashierManagerImpl.java:587)
+		>>	at com.vone.medisafe.cashier.CashierManagerImpl.getNoteDetil(CashierManagerImpl.java:374)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+		
+		ARIF : SUDAH
+	
+	3. ketika klik BARU, nilai PPN diset = 10% lagi dan radio button di kembalikan ke PELUNASAN, dan
+	   list yang ada di TAB juga di-clear.
+	   
+	   ARIF : SUDAH
+	
+	4. ketika nilai diskon dan atau PPN di ubah, TOTAL BIAYA di buat hitung otomatis.
+		
+		ARIF : SUDAH
+	
+	5. ketika klik BAYAR, kog muncul null pointer..
+		Feb 1, 2007 11:57:17 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+		SEVERE: >>java.lang.NullPointerException
+		>>	at com.vone.medisafe.laborat.LaboratManagerImpl.CreateReport(LaboratManagerImpl.java:1700)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+		>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+		>>	at java.lang.reflect.Method.invoke(Method.java:585)
+		>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+		>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+		>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:148)
+	
+	6. jika BAYAR DEPOSIT dikosongkan, klik tab, muncul null pointer
+		
+		ARIF : SUDAH
+
+
+DI FORM CARA PEMBAYARAN
+=======================
+	1. ketika load, nama2 bank tidak ditampilkan.
+	   tetapi nama bank mempunyai keterikatan dengan cara pembayaran.
+	   ketika user memilih cara pembayaran = "KARTU KREDIT"
+	   maka di field NAMA BANK, hanya akan muncul bank2 yang
+	   
+ARIF : SUDAH
+
+
+untuk transaksi= DEPOSIT
+========================
+1. ketika get pasien, muncul null pointer.
+	Feb 1, 2007 12:06:28 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.cashier.CashierManagerImpl.getNoteDetil(CashierManagerImpl.java:454)
+	>>	at com.vone.medisafe.cashier.CashierManagerImpl.getRegistration(CashierManagerImpl.java:894)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+	
+	ARIF : SUDAH
+
+2. jika hanya untuk deposit saja, mungkin sebaiknya data detail transaksinya tidak perlu ditampilkan.
+   karena disini pasien hanya mau melakukan deposit uang saja.
+   
+   ARIF : SUDAH
+   
+3. deposit bisa menggunakan kartu kredit. 
+
+   ARIF : SUDAH
+
+4. ketika RADIO di DEPOSIT, NO. NOTA di-disabled.
+
+	ARIF : SUDAH
+
+   
+============================================================================================================================================
+15012007
+========
+untuk transaksi = pelunasan
+============================
+1. jika pilih RADIO PELUNASAN atau DEPOSIT atau RETUR-DEPOSIT, kursor diarahkan ke NO. MR
+1. jika pencarian via no.nota, tampilkan data pasien sesuai dengan nota yang telah dipilih (untuk semua jenis pasien)
+2. jika ketika klik baru, nilai PPN diset = 10% dan radio button di kembalikan ke PELUNASAN
+3. jika bayar tunai dikosongkan, klik tab, muncul null pointer
+4. nilai diskon tidak boleh negatif
+5. ketika klik bayar, muncul msgbox.."YAKIN MAU MELAKUKAN PEMBAYARAN"..ok..malah muncul null pointer.
+6. jika klik BARU, data di dalam list "KETERANGAN BAYAR" (tab 2), masih ada..(belum di clear screen)
+7. untuk data "TRANSAKSI BIAYA LAIN-LAIN",kenapa jumlahnya selalu 1?? padahal data jumlah yang diinput bukan 1.
+8. bandbox NO. KWITANSI selalu disabled..kalo mau cari no. kwitansi gmn caranya??
+9. jika PPN diubah, ketika klik tab, nilai TTL BIAYA tidak berubah.
+10. jika pasien ranap sudah di lock, gimana cara mencarinya?? karena kalo via MR, selalu tidak ketemu.
+11. nilai BAYAR TUNAI tidak boleh negatif atau kosong.
+
+
+DI FORM CARA PEMBAYARAN
+=======================
+1. ketika load, nama2 bank tidak ditampilkan.
+   tetapi nama bank mempunyai keterikatan dengan cara pembayaran.
+   ketika user memilih cara pembayaran = "KARTU KREDIT"
+   maka di field NAMA BANK, hanya akan muncul bank2 yang 
+   mempunyai fasilitas kartu kredit.
+
+
+untuk transaksi= deposit
+========================
+1. ketika get pasien, muncul null pointer.
+	Feb 1, 2007 12:06:28 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.cashier.CashierManagerImpl.getNoteDetil(CashierManagerImpl.java:454)
+	>>	at com.vone.medisafe.cashier.CashierManagerImpl.getRegistration(CashierManagerImpl.java:894)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:287)
+	>>	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:181)
+
+1. jika hanya untuk deposit saja, mungkin sebaiknya data detail transaksinya tidak perlu ditampilkan.
+   karena disini pasien hanya mau melakukan deposit uang saja.
+2. deposit bisa menggunakan kartu kredit.
+3. jika nilai BAYAR TUNAI dikosongkan, dan klik SIMPAN, muncul null pointer. tlg di handle!!
+4. ketika RADIO di DEPOSIT, NO. NOTA di-disabled.
+
+   
+   
+untuk transaksi = retur deposit
+===============================
+1. nama penanggung dan alamat penanggung, di-disabled saja..
+2. kenapa di retur deposit, nilai bayar tunai bisa negatif?? cegat supaya data tidak boleh null atau negatif
+3. jika nilai BAYAR TUNAI dikosongkan, dan klik SIMPAN, muncul null pointer. tlg di handle!!
+
+   
+
+
+
+========================================================================================================================================================================
+untuk jenis transaksi = pelunasan
+===================================
+1. jika bayar deposit dikosongkan, muncul null pointer
+2. jika diskon diisi nol, muncul null pointer
+   (kejadian hanya bila form dalam keadaan kosong, kemudian
+    nilai diskon diisi null dan tab ditekan)
+3. jika bayar tunai dikosongkan, muncul null pointer
+4. jika ketika klik baru, nilai PPN diset = 10% dan radio button di kembalikan ke PELUNASAN
+5. jika diskon berupa rupiah, ketika di tab, 
+   nilai TTL DISC. knp tidak berubah?
+6. msgbox checkout diperbaiki.
+   isinya registration.is.not.active
+7. jika pilih nota via bandbox, maka ketika data nota
+   telah dipilih, tampilkan data pasien sesuai dengan
+   nota tsb. (untuk semua jenis pasien)
+8. nilai BAYAR TUNAI tidak boleh negatif
+9. nilai diskon tidak boleh negatif
+10. ketika klik bayar, status notanya kemana???
+11. ketika cari kwitansi via nama, kenapa namanya merupakan nama penanggung??
+    harusnya nama = nama si pasien.
+12. kenapa untuk pasien ranap, untuk melakukan proses pembayaran
+    harus selalu tutup transaksi bed??
+    bagaimana jika pasien mau melakukan pembayaran secara parsial??
+
+
+DI FORM CARA PEMBAYARAN
+=======================
+1. ketika load, nama2 bank tidak ditampilkan.
+   tetapi nama bank mempunyai keterikatan dengan cara pembayaran.
+   ketika user memilih cara pembayaran = "KARTU KREDIT"
+   maka di field NAMA BANK, hanya akan muncul bank2 yang 
+   mempunyai fasilitas kartu kredit.
+   
+   
+==================================================================================================
+FORM PENGEMBALIAN KWITANSI
+
+1. jika pilih nota via bandbox, maka ketika data nota
+   telah dipilih, tampilkan data pasien sesuai dengan
+   nota tsb. (untuk semua jenis pasien)
+
+2. 

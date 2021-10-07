@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" language="java" name="orderPembelian" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="PO_CODE" class="java.lang.String"/>
+	<parameter name="PO_REQUESTOR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+	o.v_po_code as kode,
+	v.v_vendor_name as supplier,
+        i.v_item_code || ' ' || i.v_item_name as item,
+	rd.n_pr_det_qty_requested as quantity_request,
+	m.v_mitem_early_quantify as satuan_request,
+	d.n_po_det_qty_ordered as quantity_realisasi,
+	m.v_mitem_early_quantify as satuan_realisasi,
+	d.n_po_det_cost as harga_satuan,
+	d.n_subtotal
+
+from
+	tb_purchase_order o,
+	tb_purchase_request r,
+	tb_purchase_request_detail rd,
+        ms_vendor v,
+	ms_item i,
+        tb_purchase_order_detail d,
+        ms_item_measurement m
+ where
+	o.v_po_code='OP-APTK-0912189'
+	and o.n_pr_id=r.n_pr_id
+	and r.n_pr_id=rd.n_pr_id
+	and rd.n_mitem_id=m.n_mitem_id
+	and o.n_vendor_id=v.n_vendor_id
+        and o.n_po_id=d.n_po_id
+        and d.n_item_id=i.n_item_id
+	and rd.n_item_id=i.n_item_id
+        and d.n_measurement_id=m.n_mitem_id]]>
+	</queryString>
+	<field name="kode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="supplier" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantity_request" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="satuan_request" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantity_realisasi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="satuan_realisasi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga_satuan" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_subtotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band />
+	</background>
+	<title>
+		<band height="60" >
+			<staticText>
+				<reportElement x="0" y="24" width="802" height="28"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[PURCHASE ORDER]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39">
+			<staticText>
+				<reportElement x="10" y="15" width="67" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO PO : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="541" y="15" width="78" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPPLIER :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="632" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{supplier}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" >
+			<staticText>
+				<reportElement x="10" y="1" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA ITEM/OBAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="1" width="78" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SATUAN REQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="1" width="78" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH REQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="1" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HARGA SATUAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="669" y="0" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="25" width="748" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="344" y="1" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SATUAN BELI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH BELI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" >
+			<textField>
+				<reportElement x="10" y="3" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="3" width="93" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{satuan_request}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="3" width="50" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{quantity_request}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="20" width="748" height="1"/>
+			</line>
+			<textField pattern="#,##0.00">
+				<reportElement x="669" y="3" width="50" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="3" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{satuan_realisasi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="3" width="48" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity_realisasi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="546" y="3" width="100" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{harga_satuan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="68" >
+			<staticText>
+				<reportElement x="632" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REQUESTOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="632" y="48" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{PO_REQUESTOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" />
+	</pageFooter>
+	<summary>
+		<band height="42" />
+	</summary>
+</jasperReport>

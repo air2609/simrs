@@ -1,0 +1,59 @@
+<window id="masterAntrian" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.antrian.MsAntrianController;
+	ctr = new MsAntrianController();
+	void init(){
+	 	ctr.init(masterAntrian);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center" width="50%" border="0" bgcolor="eeeeee">
+    <h:tr>
+    	<h:th colspan="3" align="center" sclass="BasicBlueTitle">MASTER ANTRIAN DOKTER</h:th>
+    </h:tr>
+	<h:tr>
+		<h:td width="30%" align="right">
+			<h:b><h:font size="1">DELAY ANTRIAN</h:font></h:b> 
+		</h:td>
+		<h:td width="2%"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		<h:td width="68%">
+			<h:b><h:font size="1"><intbox id="delayAntrian"/> (DETIK)</h:font></h:b>
+		</h:td>
+	</h:tr>
+	
+	<h:tr>
+		<h:td align="right">
+			<h:b><h:font size="1">TEXT ANTRIAN</h:font></h:b> 
+		</h:td>
+		<h:td><h:b><h:font size="1">:</h:font></h:b></h:td>
+		<h:td>
+			<h:b><h:font size="1"><textbox id="textAntrian" width="400px" multiline="true" height="80px"/></h:font></h:b>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td colspan="3" align="center">
+			<button label="SIMPAN" id="btnSimpan" image="/image/save1.gif" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>
+			<button label="UBAH" id="btnEdit" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.edit();"/>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="20px"/>	
+
+<h:table align="center" width="50%" border="0">
+	<h:tr>
+		<h:td>
+			<listbox id="doctorList" mold="select" onSelect="ctr.changeListPasien()">
+			</listbox>
+			<space bar="false"/>
+			<button label="KELUARKAN DARI ANTRIAN" onClick="ctr.takeOutAntrian()"/>
+		</h:td>
+	</h:tr>
+	<h:tr>
+		<h:td>
+			<listbox id="pasienList" mold="paging" pageSize="10" height="350px"/>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="20px"/>
+</window>

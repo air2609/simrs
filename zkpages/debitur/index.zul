@@ -1,0 +1,10 @@
+<window title="Menu DEBITUR" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="TRANSAKSI DEBITUR" href="/zkpages/debitur/debitur.zul"/>
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

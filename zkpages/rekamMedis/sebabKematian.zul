@@ -1,0 +1,331 @@
+<?page id="codDiagnosePage"?>
+<window id="sebabKematian" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.mr.CodController;
+	
+	ctr = new CodController();
+
+	void init(){
+		ctr.init(sebabKematian);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM SEBAB KEMATIAN</h:td></h:tr>
+</h:table>
+	
+<separator spacing="4px"/>
+	
+<h:table align="center" width="100%">
+	<h:tr><h:td width="6%"/>
+		  <h:td>	
+			    <h:table align="center" width="100%">
+		 			<h:tr><h:td width="18%"/>
+		 				  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>SEBAB KEMATIAN</h:b></h:p></h:td>
+				   		  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	               		  <h:td width="25%">
+	               		  		<listbox id="codList" mold="select" onSelect="ctr.getCodDetil();" width="80%" style="font-size:9pt">
+	               		 			<listitem value="kosong" label="" selected="true"/>
+									<listitem value="Karena Penyakit" label="1. KARENA PENYAKIT"/>
+	               			  		<listitem value="Karena Rudapaksa" label="2. KARENA RUDAPAKSA"/>
+	               			  		<listitem value="Kelahiran Mati" label="3. KELAHIRAN MATI"/>
+	               			  		<listitem value="Persalinan, Kehamilan" label="4. PERSALINAN, KEHAMILAN"/>
+	               			  		<listitem value="Operasi" label="5. OPERASI"/>
+	               			   </listbox>
+	               		 </h:td>
+	               		 <h:td width="20%"/>
+	               </h:tr>
+               </h:table>
+		 <h:td width="6%"/>
+		 </h:td>
+    </h:tr>
+<!--</h:table>		
+	 
+<separator spacing="1px"/>
+<h:table align="center" width="100%">
+	--><h:tr><h:td width="6%"/>
+		  <h:td>	
+		  		 <groupbox width="900px" id="dataPenyakitGBox">
+				  <caption label="MATI KARENA PENYAKIT"/>
+				  	<h:table width="100%" align="center">
+				  		<h:tr><h:td height="8px"></h:td></h:tr>
+				  		<h:tr><h:td width="2%"/>
+				  		      <h:td>
+				  				  	<vbox>
+							  			<listbox id="diseaseList" multiple="false" width="860px" height="119px">
+										<listhead>
+											<listheader label="KODE" width="15%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+											<listheader label="TIPE DIAGNOSA" width="20%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+											<listheader label="KETERANGAN" width="40%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+										</listhead>
+						
+							  			<listitem>
+											<listcell label="A30"/>
+											<listcell label="ICD"/>
+											<listcell label="LEPRA"/>
+										</listitem>
+						
+										<listitem>
+											<listcell label="A33"/>
+											<listcell label="ICD"/>
+											<listcell label="LEPRA"/>
+										</listitem>
+						
+										<listitem>
+											<listcell label="A36"/>
+											<listcell label="ICD"/>
+											<listcell label="LEPRA"/>
+										</listitem>
+						
+									</listbox>
+							  	</vbox>
+							</h:td>
+							<h:td width="2%"/>
+					  </h:tr>
+				  </h:table>
+									
+				  <separator spacing="2px"/>
+				  <h:table align="center" width="100%">
+					  <h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>DURASI KEMATIAN</h:b></h:p></h:td>
+				   		    <h:td width="2%"><h:p align="center">:</h:p></h:td>
+	               		    <h:td width="18%"><intbox width="92%" id="duration" height="14px" style="font-size:8pt"/></h:td>
+	               		    <h:td><h:p align="left" style="font-size:8pt"><h:b>JAM SETELAH SAKIT</h:b></h:p></h:td>
+	               		  	<h:td width="5%">
+	       						<h:p align="right">
+	    		  	   				<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px" onClick="ctr.deleteList();"/>
+	    		  	   			</h:p>
+	    		 			</h:td>
+	       		 		    <h:td width="7%">
+	       		 		   		<h:p align="right">
+			       				<button id="btnIcdAdd" label="TAMBAH ICD" style="width:100px;height:26px">
+			       					<attribute name="onClick">
+			     						{
+											final Window win = (Window) Executions.createComponents(
+																"/zkpages/rekamMedis/tambahICD.zul", null, null);
+										    win.doModal();
+										}
+									</attribute>
+								</button>
+								</h:p>
+						   </h:td><!--
+			     		   <h:td width="7%">
+			     		   <h:p align="right">
+			     				<button id="btnIcd9Add" label="TAMBAH ICD-9-CM" style="width:110px;height:26px">
+			     					<attribute name="onClick">
+			     						{
+											final Window win = (Window) Executions.createComponents(
+																"/zkpages/rekamMedis/tambahICD-9-CM.zul", null, null);
+										    win.doModal();
+										}
+									</attribute>
+								</button>
+							</h:p>
+			     			</h:td>
+			     			
+			     			--><h:td width="3%"/>
+		  			  </h:tr>
+				  </h:table><!--
+				 
+				  <separator spacing="2px"/>
+				  <h:table align="center" width="100%">
+	      			 <h:tr><h:td width="4%"/>
+	       				   <h:td width="7%">
+	       						<h:p align="right">
+	    		  	   				<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px"/>
+	    		  	   			</h:p>
+	    		 			</h:td>
+	       		 		    <h:td align="right">
+			       				<button id="btnIcdAdd" label="TAMBAH ICD" style="width:100px;height:26px">
+			       					<attribute name="onClick">
+			     						{
+											final Window win = (Window) Executions.createComponents(
+																"/zkpages/rekamMedis/tambahICD.zul", null, null);
+										    win.doModal();
+										}
+									</attribute>
+								</button>
+						   </h:td>
+			     		   <h:td width="8%" align="right">
+			     				<button id="btnIcd9Add" label="TAMBAH ICD-9-CM" style="width:110px;height:26px">
+			     					<attribute name="onClick">
+			     						{
+											final Window win = (Window) Executions.createComponents(
+																"/zkpages/rekamMedis/tambahICD-9-CM.zul", null, null);
+										    win.doModal();
+										}
+									</attribute>
+								</button>
+			     			</h:td>
+			     			<h:td width="4%"/>
+	        		  </h:tr>
+	    		  </h:table>
+				--><separator spacing="1px"/>
+			    </groupbox>
+		  </h:td>
+		  <h:td width="6%"/>
+	</h:tr>
+</h:table>
+<h:table align="center" width="100%">
+	<h:tr><h:td width="6%"/>
+	      <h:td>	
+				<h:table width="100%" align="center">
+	    			<h:tr><h:td>	 	
+		    				  <hbox>
+			    				  	<hbox>
+				    				  	<vbox>
+							  			<separator spacing="1px"/>
+							  				<groupbox id="rudapaksaGBox" width="450px">
+					 				    		<separator spacing="2px"/>
+					 				    		<caption label="MATI KARENA RUDAPAKSA"/>
+						 				    		<h:table width="100%" align="center">
+														<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>MACAM RUDAPAKSA</h:b></h:p></h:td>
+											    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						              						  <h:td width="25%">
+						              						  		<h:p align="left">
+						              			 					<listbox mold="select" id="violentList" width="93%" style="font-size:9pt">
+						               			  						<listitem value="kosong" label="" selected="true"/>
+						               			  						<listitem value="1" label="BUNUH DIRI"/>
+						               			  						<listitem value="2" label="PEMBUNUHAN"/>
+						               			  						<listitem value="3" label="KECELAKAAN"/>
+						               			  					</listbox>
+						               			  					</h:p>
+						               			  			 </h:td>
+						               			  		</h:tr>
+														<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>CARA KEJADIAN</h:b></h:p></h:td>
+											    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						              						  <h:td width="25%"><h:p align="left"><textbox id="caraKejadian" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+						              					</h:tr>
+														<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>SIFAT JEJAS</h:b></h:p></h:td>
+											    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+						              						  <h:td width="25%"><h:p align="left"><textbox id="bodyDestroy" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+						              					</h:tr>
+						       					     </h:table>
+					       					     <separator spacing="2px"/>
+					 				    	</groupbox>
+					 				    	
+					 				    	<separator spacing="2px"/>
+								  			<groupbox id="pregnancyGBox" width="450px">
+				 				    		<separator spacing="2px"/>
+				 				    		<caption label="MATI KARENA KEHAMILAN/PERSALINAN"/>
+				 				    		<h:table width="100%" align="center">
+												<!--<h:tr><h:td width="2%"/>
+												      <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>PERISTIWA PERSALINAN</h:b></h:p></h:td>
+									    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              						  <h:td width="25%">
+				              						  		<h:p align="left">
+				              						  		<listbox mold="select" id="birthList" width="60%" style="font-size:9pt">
+				               			  						<listitem value="kosong" label="" selected="true"/>
+				               			  						<listitem value="6" label="YA"/>
+				               			  						<listitem value="7" label="TIDAK"/>
+				               			  					</listbox>
+				               			  					</h:p>
+				               			  			  </h:td>
+				               			  		</h:tr>
+												--><h:tr>
+												      <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>PERISTIWA KEMATIAN</h:b></h:p></h:td>
+									    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              						  <h:td width="25%">
+													  		<h:p align="left">
+				              						  		<listbox mold="select" id="pregnantList" width="90%" style="font-size:9pt">
+				               			  						<listitem value="kosong" label="" selected="true"/>
+				               			  						<listitem value="kehamilan" label="1. KARENA KEHAMILAN"/>
+				               			  						<listitem value="persalinan" label="2. KARENA PERSALINAN"/>
+				               			  					</listbox>
+				               			  					</h:p>
+													  </h:td>
+				              			 		</h:tr>
+				       					     </h:table>
+				       					     <separator spacing="2px"/>
+				 				    	</groupbox>
+				 				    	
+				 				    	</vbox>
+						   		  </hbox>
+						   			
+					   			  <separator spacing="52px"/>
+					   			  <vbox>
+		 				    	    	<separator spacing="2px"/>
+		 				    	    	<groupbox id="stillbirhtGBox" width="450px">
+					 				    	<separator spacing="2px"/>
+					 				    	<caption label="MATI KARENA KELAHIRAN MATI"/>
+					 				    		<h:table width="100%" align="center">
+													<!--<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>JANIN LAHIR MATI</h:b></h:p></h:td>
+										    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+					              						  <h:td width="25%">
+					              						  		<h:p align="left">
+					              						  		<listbox mold="select" id="dieList" width="60%" style="font-size:9pt">
+					               			  						<listitem value="kosong" label="" selected="true"/>
+					               			  						<listitem value="4" label="YA"/>
+					               			  						<listitem value="5" label="TIDAK"/>
+					               			  					</listbox>
+					               			  					</h:p>
+					               			  			  </h:td>
+					               			  		</h:tr>
+													--><h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>SEBAB KELAHIRAN MATI</h:b></h:p></h:td>
+										    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+					              						  <h:td width="25%"><h:p align="left"><textbox id="causeOfStillbirth" width="90%" style="font-size:8pt" rows="4"/></h:p></h:td>
+					              			 		</h:tr>
+					       					     </h:table>
+					    					     <separator spacing="2px"/>
+				 				    	</groupbox>
+				 				    	
+				 				    	<separator spacing="2px"/>
+				 				    	
+				 				    	<groupbox id="operationGBox" width="450px">
+				 				    		<separator spacing="2px"/>
+				 				    		<caption label="MATI KARENA OPERASI"/>
+				 				    		<h:table width="100%" align="center">
+												<!--<h:tr><h:td width="2%"/>
+												      <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>DILAKUKAN OPERASI</h:b></h:p></h:td>
+									    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              						  <h:td width="25%">
+				              						  		<h:p align="left">
+				              						  		<listbox id="operationList" mold="select" width="60%" style="font-size:9pt">
+				               			  						<listitem value="kosong" label="" selected="true"/>
+				               			  						<listitem value="10" label="YA"/>
+				               			  						<listitem value="11" label="TIDAK"/>
+				               			  					</listbox>
+				               			  					</h:p>
+				               			  			  </h:td>
+				               			  		</h:tr>
+												--><h:tr>
+												      <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>JENIS OPERASI</h:b></h:p></h:td>
+									    			  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				              						  <h:td width="25%"><h:p align="left"><textbox id="operationType" width="90%" style="font-size:8pt" rows="2"/></h:p></h:td>
+				              			 		</h:tr>
+				       					     </h:table>
+				       					     <separator spacing="3px"/>
+				 				    	</groupbox>
+				 				    	<separator spacing="2px"/>
+				 				    	
+				 				    	<h:table width="100%" align="center">
+							  			<h:tr><h:td>
+							  					<h:p align="right">
+				    				 				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px" onClick="ctr.save();"/>
+				    			 				</h:p>
+				    		  				  </h:td>
+				    		  				  <!-- 
+							  				  <h:td width="5%">
+							  					<h:p align="right">
+				    				 				<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px"/>
+				    			 				</h:p>
+				    		  				  </h:td>
+				    		  				  -->
+							  				  <h:td width="5%">
+							  					<h:p align="right">
+				    				 				<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px"/>
+				    			 				</h:p>
+				    		  				  </h:td>
+				    		  			</h:tr>
+							 			</h:table>
+							 	 </vbox>
+		 				 	 </hbox>
+				   		 </h:td>
+	 			  </h:tr>
+			  </h:table>
+		<h:td width="2%"/>
+		</h:td>
+    </h:tr>
+</h:table>	
+</window>

@@ -1,0 +1,114 @@
+<window id="laporanKasir" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.report.LaporanPenerimaanKasir;
+	
+	ctr = new LaporanPenerimaanKasir();
+	
+	void init()
+	{
+		ctr.init(laporanKasir);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>LAPORAN REKAP PENERIMAAN KASIR</h:td></h:tr>
+</h:table>
+	
+<separator spacing="20px"/>
+<h:table align="center" width="100%">
+	<h:tr><h:td width="28%"/>
+		  <h:td align="center"><vbox>
+					<groupbox width="400px">
+					<separator spacing="2px"/>
+					<h:table align="center" width="100%">
+						<h:tr><h:td width="5%"/>
+							  <h:td><h:table width="100%" align="center">
+										<h:tr><h:td width="7%" align="right"><h:b><h:font size="1">TANGGAL</h:font></h:b></h:td>
+											  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="25%" style="font-size:8pt;font-weight:bold">
+												 <datebox id="transDate" width="50%" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/>
+											  </h:td>
+										</h:tr>
+									
+										<h:tr><h:td width="7%" align="right"><h:b><h:font size="1">SHIFT</h:font></h:b></h:td>
+											  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="25%">
+												 <listbox id="shiftList" width="50%" mold="select" height="20px" style="font-size:9pt">
+												 	<listitem value="2" label="SHIFT PAGI" selected="true"/>
+												 	<listitem value="1" label="SHIFT SORE"/>
+												 	<listitem value="3" label="SHIFT MALAM"/>
+												 	<listitem value="A" label="ALL SHIFT"/>
+												 </listbox>
+											  </h:td>
+										</h:tr>
+										
+									</h:table>
+							  </h:td>
+						      <h:td width="5%"/>
+					    </h:tr>
+						<h:tr><h:td width="5%"/>
+					    	  <h:td><separator spacing="2px"/>
+					    	  		<h:table width="100%" align="center">
+										<h:tr><h:td width="25%"/>
+											  <h:td align="right">
+												  	
+									    				<button id="btnPrint" label="LIHAT LAPORAN" image="/image/print.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.createReport();"/>
+									    	  		
+									    	  </h:td>
+										   	  <h:td width="4%"/>
+									    </h:tr>
+									</h:table>
+					    	  
+							  </h:td>
+							  <h:td width="5%"/>
+						</h:tr>
+					</h:table>
+					<separator spacing="0px"/>
+					</groupbox>
+				</vbox>
+		  </h:td>
+		  <h:td width="28%">
+		  </h:td>
+	</h:tr>
+	<h:tr>
+		<h:td width="50%"></h:td>
+		<h:td><vbox>
+					<separator spacing="2px"/>
+					<groupbox width="800px">
+						<separator spacing="0px"/>
+					  	<caption label="LAPORAN PENERIMAAN KASIR" style="font-weight:bold;font-size:12pt"/>
+					  <!-- <separator spacing="3px"/>-->
+					  <h:table align="center" width="100%" border="0">
+					  	<h:tr>
+					  		<h:td colspan="4">
+					  			<listbox id="kwitansiList" width="800px" height="330px">
+						  			<listhead>
+							  			<listheader label="TGL TRANSAKSI" width="16%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="NO. KWITANSI" width="25%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="TUNAI" width="20%" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="NON TUNAI" width="20%" style="font-weight:bold;font-size:8pt"/>
+							  			<listheader label="KASIR" width="19%" style="font-weight:bold;font-size:8pt"/>
+						  			</listhead>
+					  			</listbox>
+					  			<separator spacing="2px"/>
+					  		</h:td>
+					  	</h:tr>
+					  	<h:tr>
+					  		<h:td width="30%" align="right"><h:b><h:font size="1">JUMLAH TUNAI :</h:font></h:b></h:td>
+					  		<h:td width="20%" align="left">
+					  			<decimalbox id="tunai" width="150px"/>
+					  		</h:td>
+					  		<h:td align="right" width="30%"><h:b><h:font size="1">JUMLAH NONTUNAI :</h:font></h:b></h:td>
+					  		<h:td align="left" width="20%">
+					  			<decimalbox id="nontunai" width="150px"/>
+					  		</h:td>
+					  	</h:tr>
+					  </h:table>
+					  </groupbox>
+			  </vbox>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="1px"/>
+</window>

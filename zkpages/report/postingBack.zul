@@ -1,0 +1,70 @@
+<window id="postingBack" xmlns:h="http://www.w3.org/1999/xhtml" border="normal" width="500px" onShow="self.detach()" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	void init(){
+		
+	}
+</zscript>
+
+<style src="../../include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>VALIDASI ROLLBACK</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="2%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="13%"><h:p align="right" style="font-size:8pt"><h:b>USERNAME</h:b></h:p></h:td>
+					      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	    				  <h:td width="32%"><h:p align="left"><textbox id="username" width="78%" height="14px" style="font-size:8pt"/></h:p></h:td>
+	    			</h:tr>
+	       				
+	       			<h:tr><h:td width="13%"><h:p align="right" style="font-size:8pt"><h:b>PASSWORD</h:b></h:p></h:td>
+						  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	       			   	  <h:td width="32%"><textbox id="password" type="password" width="78%" height="14px" style="font-size:8pt"/></h:td>
+	       		 	</h:tr>
+	       	
+	       	 	 	<h:tr><h:td width="13%"><h:p align="right" style="font-size:8pt"><h:b>KETERANGAN</h:b></h:p></h:td>
+						  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	        	 	   	  <h:td width="32%"><textbox id="desc" width="95%" style="font-size:8pt" rows="5"/></h:td>
+	       		 	</h:tr>
+	    		</h:table>
+	    		
+	    		<separator spacing="5px"/>
+	    		
+	    		<h:table width="100%" align="center">
+		    		<h:tr><h:td><h:p align="right">
+		    						<button id="btnOk" label="OK" image="/image/check.gif" style="width:70px;height:26px">
+		    							<attribute name="onClick">
+				     							{
+				     								postingBack.setAttribute("aksi", MedisafeConstants.OK_BUTTON);
+				     								postingBack.detach();
+												}
+										 </attribute>
+				    		   		</button>
+		    					</h:p>
+		    			  </h:td>
+				  		  <h:td>
+				  		  <button id="btnCancel" label="BATAL" image="/image/hapus.gif" style="width:70px;height:26px">
+		    							<attribute name="onClick">
+				     							{
+				     								postingBack.setAttribute("aksi", MedisafeConstants.CANCEL_BUTTON);
+				     								postingBack.detach();
+												}
+										 </attribute>
+				    		   		</button>
+				  		  
+				  		  </h:td>
+					</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+</window>

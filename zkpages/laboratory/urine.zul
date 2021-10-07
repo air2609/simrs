@@ -1,0 +1,30 @@
+<window id="urineItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(urineItem, "urineList", "015");
+	}
+</zscript>
+
+	  <listbox id="urineList" multiple="true" width="160px" height="140px" checkmark="true">
+		  <listhead>
+			 <listheader id="urine" label="URINE" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+		  </listhead>
+		  <listitem>
+			<listcell id="LAB91" label="RUTIN"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB92" label="PROTEIN"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB93" label="REDUKSI"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB94" label="KETON"/>
+		  </listitem>
+		  <listitem>
+			<listcell id="LAB95" label="SEDIMEN"/>
+		  </listitem>
+	  </listbox>
+</window>

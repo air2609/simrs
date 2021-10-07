@@ -1,0 +1,24 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%">
+	<tabs>
+		<tab id="payment" label="TRANSAKSI PEMBAYARAN"/>
+		<tab id="paidBy" label="CARA PEMBAYARAN"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/cashier/transaksiKasir.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/cashier/pembayaran.zul"/>
+		</tabpanel>
+	</tabpanels>
+	
+</tabbox>
+
+</window>

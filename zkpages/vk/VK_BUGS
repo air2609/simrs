@@ -1,0 +1,66 @@
+7-FEB-2007
+==========
+1. Setelah klik ubah, tombol baru diaktifkan.
+   -ok
+
+
+
+=========================================================================================================================
+1-FEB-2007
+===========
+1. ketika klik button TAMBAH O=BM, muncul null pointer..
+	Feb 1, 2007 4:12:58 PM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>java.lang.NullPointerException
+	>>	at com.vone.medisafe.ui.common.CommonItemController.init(CommonItemController.java:124)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at bsh.Reflect.invokeMethod(Unknown Source)
+	>>	at bsh.Reflect.invokeObjectMethod(Unknown Source)
+	>>	at bsh.Name.invokeMethod(Unknown Source)
+
+
+
+
+
+26-JANUARI-2007
+===============
+1. onload, button biaya lain2 di-disabled. kursor difokuskan ke NO. MR.
+
+2. ketika klik baru, NO. NOTA di-enabled.
+
+3. baru onclick, cursor difocuskan ke NO. MR
+
+4. mau nambahan transaksi lain2, ketika di FORM TRANSAKSI LAIN-LAIN kita klik SIMPAN, kog muncul null pointer ya..??
+	Jan 26, 2007 4:56:41 PM org.zkoss.zk.ui.impl.UiEngineImpl execUpdate:555
+	SEVERE: 
+	java.lang.NullPointerException
+		at org.zkoss.zk.ui.AbstractComponent.redraw(AbstractComponent.java:920)
+		at org.zkoss.zk.ui.impl.UiVisualizer.drawNew(UiVisualizer.java:854)
+		at org.zkoss.zk.ui.impl.UiVisualizer.addResponsesForCreatedPerSiblings(UiVisualizer.java:671)
+		at org.zkoss.zk.ui.impl.UiVisualizer.getResponses(UiVisualizer.java:554)
+		at org.zkoss.zk.ui.impl.UiEngineImpl.execUpdate(UiEngineImpl.java:550)
+		at org.zkoss.zk.au.http.DHtmlUpdateServlet.process(DHtmlUpdateServlet.java:219)
+		at org.zkoss.zk.au.http.DHtmlUpdateServlet.doGet(DHtmlUpdateServlet.java:122)
+		at org.zkoss.zk.au.http.DHtmlUpdateServlet.doPost(DHtmlUpdateServlet.java:130)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:709)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:252)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:213)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:178)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:126)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:105)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:107)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:148)
+		at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:856)
+		at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:744)
+		at org.apache.tomcat.util.net.PoolTcpEndpoint.processSocket(PoolTcpEndpoint.java:527)
+		at org.apache.tomcat.util.net.LeaderFollowerWorkerThread.runIt(LeaderFollowerWorkerThread.java:80)
+		at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:684)
+		at java.lang.Thread.run(Thread.java:595)
+
+
+
+

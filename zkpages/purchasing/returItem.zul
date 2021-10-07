@@ -1,0 +1,25 @@
+<window xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%">
+	<tabs>
+		<tab label="RETUR SUPPLIER"/>
+		<tab label="EXPIRED O-BM"/>
+	</tabs>
+	
+	<tabpanels>
+	
+		<tabpanel>
+			<include id="outItem" src="/zkpages/purchasing/itemKeluar.zul"/>
+		</tabpanel>
+	
+		<tabpanel>
+			<include id="expOBM" src="/zkpages/purchasing/expiredItem.zul"/>	
+		</tabpanel>
+	
+	</tabpanels>
+	
+</tabbox>
+
+</window>

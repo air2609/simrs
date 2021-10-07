@@ -1,0 +1,232 @@
+<window id="masterSellingPrice" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="/include/medisafe.css"/>
+
+<zscript> 
+	import com.vone.medisafe.ui.master.item.ItemSellingPriceController;
+	ctr = new ItemSellingPriceController();
+	
+	void init(){
+		ctr.init(masterSellingPrice);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterSellingPrice);
+	}
+	
+	void doModify(){
+		ctr.doModify(masterSellingPrice);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterSellingPrice);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterSellingPrice);
+	}
+	
+	void getItem(){
+		ctr.getItem(masterSellingPrice);
+	}
+	
+	void getItemByCode(){
+		ctr.getItemByCode(masterSellingPrice);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM MASTER HARGA JUAL</h:td></h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td><h:table width="100%" align="center">
+				    	<h:tr><h:td width="12%"/>
+				    		  <h:td>
+						    		<h:table width="100%" align="center">
+										<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">KODE</h:font></h:b></h:td>
+											  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="28%">
+											  		<bandbox id="itemCode" width="73%" onChange="getItemByCode();" onOpen="code.focus();" style="font-size:8pt" height="15px">
+											  			<bandpopup>
+															<vbox>	
+																<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																	<h:tr><h:td>PENCARIAN DATA ITEM</h:td></h:tr>
+																</h:table>
+																<separator spacing="5px"/>
+																<h:table width="100%" align="center">
+																	<h:tr><h:td width="2%"/>
+																	      <h:td width="20%" align="right"><h:b><h:font size="1">KODE</h:font></h:b></h:td>
+																		  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																		  <h:td width="35%" align="left"><textbox id="code" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																		  <h:td width="2%"/>
+																	</h:tr>
+																	<h:tr><h:td width="2%"/>
+																	      <h:td width="20%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																		  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																		  <h:td width="35%" align="left"><textbox id="names" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																		  <h:td width="20%" align="left">
+																		  		 
+																		  			<button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.item.ItemController.searchItem(itemSearchList,code,names);"/>
+																		  		
+																		  </h:td>
+																		  <h:td width="2%"/>
+																	</h:tr>
+																</h:table>
+																<separator spacing="3px"/>
+																<listbox width="500px" id="itemSearchList" onSelect="getItem();itemCode.closeDropdown();" mold="paging" pageSize="15">
+																	<listhead>
+																		<listheader label="KODE" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="NAMA" width="35%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	</listhead>
+																</listbox>
+														   </vbox>
+													   </bandpopup>
+											  	  </bandbox>
+											  </h:td>
+								  		</h:tr>
+										<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+											  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+											  <h:td width="28%"><textbox id="itemName" width="79%" height="14px" style="font-size:8pt"/></h:td>
+								  		</h:tr>
+								  		<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">KELAS TARIF</h:font></h:b></h:td>
+										 	  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										  	  <h:td width="28%">
+										  		<listbox id="treatmentClassList" mold="select" width="53%" style="font-size:9pt">
+											  		<listitem label="1. KELAS 1"/>
+											  		<listitem label="2. KELAS 2"/>
+											  		<listitem label="3. KELAS 3"/>
+											  		<listitem label="4. VIP"/>
+											  		<listitem label="5. VVIP"/>
+											  	</listbox>
+										 	 </h:td>
+										</h:tr>
+										<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">HARGA JUAL</h:font></h:b></h:td>
+										  	  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										  	  <h:td width="28%"><decimalbox id="sellingPrice" format="#,##0.##" width="51%" height="15px" style="font-size:8pt"/></h:td>
+								  		</h:tr>
+								   </h:table>
+			    			</h:td>
+				  			<h:td width="23%"/>
+				  	   </h:tr>
+			  	 </h:table>	
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="2px"/>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="34%"/>
+						  <h:td width="5%" align="right">
+						  	  
+			    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+			    		  	 
+			    		  </h:td>
+			    		  <h:td width="5%" align="right">
+			       			   
+			    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+			    		  	  
+			    		  </h:td>
+			    		  <h:td width="5%" align="right">
+						  	   
+			    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+			    		  	  
+			    		  </h:td>
+			    		  				   
+			    		  <h:td align="left">
+			       		 	   	
+								<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+							  
+						  </h:td>
+			    		  <h:td width="34%"/>
+			    	</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+	
+	<h:tr><h:td width="20%"/>
+		  <h:td><separator spacing="2px"/>	
+		  		<h:table width="100%" align="center">
+	    			<h:tr><h:td width="16%"/>
+	    				  <h:td>	 	
+		    				    <vbox>
+							  		  <groupbox width="800px">
+							  				<caption label="MASTER HARGA JUAL"/>
+							  					<h:table width="100%" align="center">
+							  						<h:tr><h:td width="3%"/>
+							  							  <h:td>
+								  			  				  	<vbox>
+								  			  				  		<h:table align="center" width="100%">
+													      				<h:tr><h:td align="right">
+														      				         
+																				  	 	<textbox id="cariTextbox" width="40%" height="15px" style="font-size:8pt;background-color:#82FFA8;font-weight:bold"/>
+																				  	
+																    		  </h:td>
+																    		  <h:td width="5%" align="right">
+																    			    
+								    								    				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt">
+																	    					<attribute name="onClick">
+																			     				{
+																								    ctr.cariClick();
+																								}
+																							</attribute>
+																	    				</button>
+																    				
+																    		  </h:td>
+																    	</h:tr>
+																	</h:table>
+																	<listbox id="sellingPriceList" width="760px" height="228px" mold="paging" pageSize="15">
+													  					<listhead>
+													  						<listheader label="KODE" width="13%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+													  						<listheader label="NAMA" width="40%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+													  						<listheader label="KELAS TARIF" width="15%" style="font-weight:bold;font-size:8pt"/> 
+													  						<listheader label="HARGA JUAL" width="15%" style="font-weight:bold;font-size:8pt"/> 
+													  					</listhead>
+																	</listbox>
+											  					</vbox>
+														 </h:td>
+														 <h:td width="3%"/>
+													</h:tr>
+											  </h:table>
+												 
+												 <separator spacing="3px"/>
+												 
+							  				     <h:table align="center" width="100%">
+								      				<h:tr><h:td width="4%"/>
+								      					  <h:td><!--
+														  	  align="left">
+														  	 <textbox id="cariTextbox" width="50%" height="16px" style="font-size:8pt"/>
+											    				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:70px;height:26px">
+											    					<attribute name="onClick">
+													     				{
+																		    ctr.cariClick();
+																		}
+																	</attribute>
+											    				</button>
+											    				
+											    			--></h:td>
+													 	    <!--<h:td width="5%">
+								    		     				 align="right">
+								    								<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick=""/>
+								    			 				
+								    		  			  </h:td>
+								    		  			  --><h:td width="3%"/>
+													</h:tr>
+												</h:table>
+												<separator spacing="3px"/>
+							   		 </groupbox>
+					   		   </vbox>
+		 				</h:td>
+		  				<h:td width="20%"/>
+				  </h:tr>
+				  </h:table>
+		  </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+</h:table>
+<separator spacing="5px"/>
+</window>

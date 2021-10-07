@@ -1,0 +1,27 @@
+<?page id="diagnosePage"?>
+
+<window id="diagnoseRoot" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float">
+
+<style src="../../include/medisafe.css"/>
+
+<tabbox width="100%" height="550px">
+	<tabs id="tabsRoot">
+		<tab id="diagnoseTab" label="REKAM MEDIS DIAGNOSA"/>
+		<tab id="codTab" label="SEBAB KEMATIAN"/>
+	</tabs>
+
+	<tabpanels>
+	
+		<tabpanel>
+			<include src="/zkpages/rekamMedis/rekamMedisDiagnosa.zul"/>	
+		</tabpanel>
+				
+		<tabpanel>
+			<include src="/zkpages/rekamMedis/sebabKematian.zul"/>
+		</tabpanel>
+
+	</tabpanels>
+	
+</tabbox>
+
+</window>

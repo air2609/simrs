@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vone.medisafe.antrian.MsAntrian" table="ms_antrian" schema="public" >
+        <id name="idAntrian" type="integer">
+            <column name="id_antrian" />
+            <generator class="sequence">
+            	<param name="sequence">ms_antrian_seq</param>
+            </generator>
+        </id>
+        <property name="delayAntrian" type="integer">
+            <column name="delay_antrian"/>
+        </property>
+        <property name="delayApotik" type="integer">
+            <column name="delay_apotik" />
+        </property>
+        <property name="antrianDokter" type="string">
+            <column name="rolling_text_doctor" length="200"/>
+        </property>
+        <property name="antrianApotik" type="string">
+            <column name="rolling_text_apotik" length="200"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<window id="antrianPerDokter" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.antrian.AntrianPerDokterController;
+	ctr = new AntrianPerDokterController();
+	void init(){
+	 ctr.init(antrianPerDokter);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle2">ANTRIAN DOKTER</h:th>
+    </h:tr>
+    
+	<h:tr>
+		<h:td>
+			
+				<listbox id="listPasien" height="550px" width="700px" mold="paging" pageSize="10">
+					<listhead>
+						<listheader><label id="dokter" style="font-weight:bold;font-size:20pt" value=""/></listheader>
+					</listhead>
+					<listitem label=""/>
+				</listbox>
+			
+		</h:td>
+		
+		
+	</h:tr>
+</h:table>
+<separator spacing="25px"/>
+
+
+	
+</window>

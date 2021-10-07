@@ -1,0 +1,235 @@
+<?page id="treatmentPage"?>
+<window id="masterTreatment" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="/include/medisafe.css"/>
+
+<zscript>  
+	import com.vone.medisafe.ui.master.treatment.TreatmentController;
+	import com.vone.medisafe.ui.accounting.CoaController;
+	
+	
+	ctr = new TreatmentController();
+	coaCtr = new CoaController();
+	
+	void init(){
+		ctr.init(masterTreatment);
+	}
+	
+	void doSave(){
+		ctr.doSave(masterTreatment);
+	}
+	
+	void doSaveAdd(){
+		ctr.cekTreatment();
+	}
+	
+	void doModify(){
+		ctr.doModify(masterTreatment);
+	}
+	
+	void doDelete(){
+		ctr.doDelete(masterTreatment);
+	}
+	
+	void doCancel(){
+		ctr.doCancel(masterTreatment);
+	}
+	
+	void calculateTotal(){
+		ctr.calculateTotal();
+	}
+</zscript>
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>FORM TREATMENT</h:td></h:tr>
+	</h:table>
+
+<separator spacing="2px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="8%"/>
+		  <h:td>
+		  		<h:table width="100%" align="center">
+			    	<h:tr><h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="18%" align="right">KODE</h:td>
+									      <h:td width="3%" align="center">:</h:td>
+				              			  <h:td width="29%"><textbox id="treatmentCode" width="81%" height="15px" onChange="doSaveAdd();" style="font-size:8pt"/></h:td>
+				              		
+				              			  <h:td width="15%" align="right">NAMA TINDAKAN</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td><textbox id="treatmentName" width="240px" height="15px" style="font-size:8pt" rows="3"/></h:td>
+				             		</h:tr>
+				       				
+				       				<h:tr><h:td width="18%" align="right">GROUP TINDAKAN</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="29%"><listbox id="treatmentGroup" width="83%" style="font-size:9pt" mold="select"/></h:td>
+				             			  
+				        				  <h:td width="15%" align="right">KELAS TARIF</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td>
+				             			  		<listbox mold="select" id="tclass" width="53%" style="font-size:9pt">
+				               			  			<listitem label=""/>
+				               			  			<listitem label="1. KELAS 1"/>
+													<listitem label="2. KELAS 2"/>
+													<listitem label="3. KELAS 3"/>
+													<listitem label="0. VIP"/>
+													<listitem label="9. VVIP"/>
+											 	</listbox>
+				             			  </h:td>
+				             		</h:tr>
+				        			
+				        			<h:tr><h:td width="18%" align="right">JASA RS</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="29%"><decimalbox id="hospitalFee" format="#,##0.##" width="50%" height="14px" onChange="calculateTotal();" style="font-size:8pt"/></h:td>
+				             			  
+				             			  <h:td width="15%" align="right">JASA DOKTER</h:td>
+									      <h:td width="3%" align="center">:</h:td>
+				              			  <h:td><decimalbox id="doctorFee" format="#,##0.##" width="50%" height="14px" onChange="calculateTotal();" style="font-size:8pt"/></h:td>
+				              		</h:tr>
+				        			
+				        			<h:tr><h:td width="18%" align="right">JASA MEDIK</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="29%"><decimalbox id="paramedicFee" format="#,##0.##" width="50%" height="14px" onChange="calculateTotal();" style="font-size:8pt"/></h:td>
+				             			  
+				             			  <h:td width="15%" align="right">TOTAL BIAYA</h:td>
+									      <h:td width="3%" align="center">:</h:td>
+				              			  <h:td><decimalbox id="treatmentFee" format="#,##0.##" readonly="true" width="50%" height="15px" style="font-size:8pt"/></h:td>
+				              		</h:tr>
+				        			
+				        			<h:tr><h:td width="18%" align="right">NO. COA</h:td>
+							  			  <h:td width="3%" align="center">:</h:td>
+				             			  <h:td width="29%">
+					             			   <bandbox id="coa" width="73%" style="font-size:8pt" onOpen="coaCode.focus();" height="15px" onChange="coaCtr.checkCoa(coa)">
+					             			  		<bandpopup>
+															<vbox>	
+																  <h:table align="center" width="100%" sclass="BasicBlueTitle">
+																		<h:tr><h:td>CARI COA</h:td></h:tr>
+																  </h:table>
+																  <separator spacing="3px"/>
+																  <h:table width="100%" align="center">
+																		<h:tr><h:td width="2%"/>
+																		      <h:td width="20%" align="right" style="font-weight:bold;font-size:8pt">NO. COA</h:td>
+																			  <h:td width="4%" align="center">:</h:td>
+																			  <h:td width="35%" align="left"><textbox id="coaCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																			  <h:td width="2%"/>
+																		</h:tr>
+																		<h:tr><h:td width="2%"/>
+																		      <h:td width="20%" align="right" style="font-weight:bold;font-size:8pt">NAMA</h:td>
+																			  <h:td width="4%" align="center">:</h:td>
+																			  <h:td width="35%" align="left"><textbox id="coaName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																		      <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="coaCtr.searchCoa(coaCode, coaName, coaList);"/></h:td>
+																		      <h:td width="2%"/>
+																		</h:tr>
+																	</h:table>
+																	<separator spacing="3px"/>
+																	<listbox id="coaList" width="550px"  mold="paging" pageSize="15" onSelect="coaCtr.getCoa(coaList, coa);coa.closeDropdown()">
+																		<listhead>
+																			<listheader label="NO. COA" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA" width="40%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																	</listbox>
+															   </vbox>
+														</bandpopup>
+					             			    </bandbox>
+				             			  </h:td>
+				             		</h:tr>
+			        		    </h:table>
+			  		       </h:td>
+			  	     </h:tr>
+			    </h:table>
+	  	  </h:td>
+		  <h:td width="8%"/>
+	</h:tr>		    
+						    
+	<h:tr><h:td width="8%"/>
+		  <h:td>
+		  		 <h:table width="100%" align="center">
+				    	<h:tr><h:td>
+					   		        <h:table width="100%" align="center">
+										<h:tr><h:td width="10%"/>
+											  <h:td align="right">
+											  	  
+								    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave();"/>
+								    		  	 
+								    		  </h:td>
+								    		  <h:td width="5%" align="right">
+								       			   
+								    		  	  	<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify();"/>
+								    		  	  
+								    		  </h:td>
+								    		  <h:td width="5%" align="right">
+											  	   
+								    				<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel();"/>
+								    		  	  
+								    		  </h:td>
+								    		  <h:td align="left">
+								       		 	   	
+													<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete();"/>
+												  
+											  </h:td>
+								    		  <h:td width="9%"/>
+								        </h:tr>
+								 </h:table>
+						   </h:td>
+				  	 </h:tr>
+			  	</h:table>
+	 	   </h:td>
+		   <h:td width="8%"/>
+	</h:tr>		    
+						    
+	<h:tr><h:td width="8%"/>
+		  <h:td><h:table width="100%" align="center">
+			    	<h:tr><h:td width="5%"/>
+				    	  <h:td>
+				    	        <vbox>	 	
+						            <groupbox width="940px">
+									  	<caption label="DATA TINDAKAN"/>
+									  		<h:table width="100%" align="center">
+										  		<h:tr><h:td width="5%"/>
+												  	  <h:td>
+												  	  		<h:table align="center" width="100%">
+													      			<h:tr><h:td align="right">
+														      			    
+																		  	 	<textbox id="cariTextbox" width="40%" height="15px" style="font-size:8pt;background-color:#82FFA8;font-weight:bold"/>
+																		  	
+																	  </h:td>
+																	  <h:td width="5%" align="right">
+																		    
+								    							   				<button id="btnCari" label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cariClick(treatmentList, cariTextbox);"/>
+																   			
+															   		  </h:td>
+															   	</h:tr>
+														    </h:table>
+												  	  
+												  	  		<separator spacing="1px"/>
+													  		<listbox id="treatmentList" multiple="true" width="900px" height="253px" mold="paging" pageSize="17">
+																<listhead>
+																	<listheader label="KODE" width="9%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="NAMA TINDAKAN" width="40%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="KELAS TARIF" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="JASA RS" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA DOKTER" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JASA MEDIK" width="10%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TOTAL BIAYA" width="18%" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														
+															</listbox>		
+													  </h:td>
+													  <h:td width="5%"/>
+												</h:tr>
+									  		</h:table>
+											
+									  		<separator spacing="3px"/>
+									   </groupbox>
+								  </vbox>
+						   </h:td>
+						   <h:td width="5%"/>
+				    </h:tr>
+				  </h:table>
+		   </h:td>
+		   <h:td width="8%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="6px"/>
+</window>

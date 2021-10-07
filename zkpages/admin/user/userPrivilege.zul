@@ -1,0 +1,208 @@
+<?page id="SCM0001B"?>
+<window id="root" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+
+<style src="../../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.admin.UserPrivController;
+
+	UserPrivController ctr = new UserPrivController();
+
+	void init(){
+
+		ctr.init(root);
+	}
+	
+	void doSave(){
+			
+		ctr.doSave(root);	
+	}
+	
+	void doDelete(){
+			
+		ctr.doDelete(root);			
+	}
+	
+	void doModify(){
+	
+		ctr.doModify(root);	
+	}
+	
+	void doCancel(){
+	
+		ctr.doCancel(root);	
+	}
+	
+	void doClose(){
+		
+		ctr.doClose(root);
+	}
+	
+	void doSearchScreen(){
+		ctr.updateScreenList(crScreenCode.getText(), crScreenName.getText());
+	}
+	
+	
+</zscript>
+	
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>USER PRIVILEGE</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="7px"/>
+
+
+<h:table width="100%" align="center">
+<h:tr><h:td width="20%"/>
+	  <h:td>	
+			<h:table width="100%" align="center">
+		    	<h:tr><h:td width="5%"/>
+		    		  <h:td>
+							<h:table width="100%" align="center">
+								<h:tr><h:td width="20%" align="right"><h:b><h:font size="1">USER ID</h:font></h:b></h:td>
+								      <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			              			  <h:td width="20%"><textbox id="userId" width="80%" height="14px" style="font-size:8pt"/></h:td>
+			              			  <h:td width="10%"/>
+			       				</h:tr>
+			       				
+			        			<h:tr><h:td width="20%" align="right"><h:b><h:font size="1">SCREEN CODE</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			             			  <h:td width="20%">
+			             			  		<bandbox id="screenCode" width="74%" onOpen="crScreenCode.focus();" height="15px" style="font-size:8pt">
+												<bandpopup>
+													<vbox>	
+														<h:table align="center" width="100%" sclass="BasicBlueTitle">
+															<h:tr><h:td>CARI SCREEN</h:td></h:tr>
+														</h:table>
+														<separator spacing="5px"/>
+														<h:table width="100%" align="center">
+															<h:tr><h:td width="3%"/>
+															      <h:td width="23%" align="right"><h:b><h:font size="1">SCREEN CODE</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="35%" align="left"><textbox id="crScreenCode" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr>
+																	<h:td width="3%"/>
+															    <h:td width="23%" align="right"><h:b><h:font size="1">SCREEN NAME</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="35%" align="left"><textbox id="crScreenName" width="90%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:90px;height:26px" onClick="doSearchScreen()"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+														</h:table>
+														<separator spacing="3px"/>
+														<listbox id="listCr" width="550px" mold="paging" pageSize="10" onSelect="screenCode.value=self.selectedItem.label; screenCode.closeDropdown();">
+															<listhead>
+																<listheader label="SCREEN CODE" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																<listheader label="SCREEN NAME" width="50%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+															</listhead>														
+														</listbox>
+												  </vbox>
+											  </bandpopup>
+										  </bandbox>
+			             			  </h:td> 
+			             			  <h:td width="10%"/>
+			        			</h:tr>
+			        			
+			        			<h:tr><h:td width="20%" align="right"><h:b><h:font size="1">ACCESS TYPE</h:font></h:b></h:td>
+						  			  <h:td width="2%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			             			  <h:td width="20%">
+											<listbox mold="select" id="accessType" width="45%" height="20px" style="font-size:9pt">
+												<listitem value="RW">
+													<listcell label="RW" value="RW"/>
+												</listitem>
+												<listitem value="R">
+													<listcell label="R" value="R"/>
+												</listitem>
+												<listitem value="SPV">
+													<listcell label="SPV" value="SPV"/>
+												</listitem>
+											</listbox>
+			             			  </h:td>
+			             			  <h:td width="10%"/>
+			        			</h:tr>        			
+						  </h:table>
+		  			</h:td>
+		  			<h:td width="5%"/>
+		  		</h:tr>
+		  </h:table>
+  	 </h:td>
+	 <h:td width="20%"/>
+</h:tr>		    
+				    
+<h:tr><h:td width="20%"/>
+	  <h:td>	
+		    <h:table width="100%" align="center">
+		    	<h:tr><h:td><separator spacing="3px"/>
+		  					<h:table width="100%" align="center">
+			    				<h:tr><h:td width="7%"/>
+			    					  <h:td align="right">
+			    					  		<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:95px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+			    					  </h:td>
+			    					  <h:td width="5%" align="left">
+			    					  		<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify()"/>
+			    		  		 	 </h:td>
+			    		  			  <h:td width="5%" align="left">
+			    		  			  	<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+			     					  </h:td>
+			    					  <h:td align="left">
+			    					  		<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+			    					  </h:td>
+			    					  <h:td width="9%"/>
+			    				</h:tr>
+		    				</h:table>
+		    		 </h:td>
+		  		 </h:tr>
+	 	    </h:table>
+      </h:td>
+	  <h:td width="20%"/>
+</h:tr>		    
+				    
+<h:tr><h:td width="20%"/>
+	  <h:td><separator spacing="5px"/>	
+		    <h:table width="100%" align="center">
+		    	  <h:tr><h:td>	 	
+					    	  <vbox>
+								  <groupbox width="800px">
+								  	<caption label="LIST SCREEN PRIVILEGE"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="10px"></h:td></h:tr>
+									  		  <h:tr><h:td width="10%"/>
+											  		<h:td>
+											  			  <listbox id="list" mold="paging" pageSize="16" multiple="true" width="760px" height="241px">
+																<listhead>
+																	<listheader label="SCREEN ID" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="SCREEN NAME" width="45%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="ACCESS TYPE" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>							
+																</listhead>
+														  </listbox>		
+													</h:td>
+													<h:td width="10%"/>
+											  </h:tr>
+								  		</h:table><!--
+										
+							  			<separator spacing="5px"/>
+							  			<h:table width="100%" align="center">
+								  		   	 <h:tr><h:td width="2%"/>			   
+								  		   	 	   <h:td><h:p align="right">
+					    						   			 <button id="btnClose" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="doClose()"/>
+					    						   		 </h:p>
+					    						   </h:td>
+					    						   <h:td width="2%"/>
+					    		  			 </h:tr>
+								  		</h:table>
+								  		--><separator spacing="5px"/>
+								   </groupbox>
+						    </vbox>
+					  </h:td>
+				</h:tr>
+			</h:table>
+      </h:td>
+	  <h:td width="20%"/>
+</h:tr>
+</h:table> 
+
+<separator spacing="13px"/>
+
+</window>

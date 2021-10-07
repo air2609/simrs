@@ -1,0 +1,49 @@
+<window id="lcsItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(lcsItem, "lcsList", "012");
+	}
+</zscript>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td>
+			    <vbox>
+				  <listbox id="lcsList" multiple="true" width="160px" rows="5" checkmark="true">
+					  <listhead>
+						 <listheader id="lcs" label="LCS" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+					  </listhead>
+					  <listitem>
+						<listcell id="LAB79" label="JUMLAH SEL"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB80" label="HITUNG JENIS SEL"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB81" label="NONNE"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB82" label="PANDY"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB83" label="PROTEIN"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB84" label="GLUKOSA"/>
+					  </listitem>
+				  </listbox>
+				  <separator spacing="1px"/>
+				  
+				  <include src="/zkpages/laboratory/bloodBank.zul"/>
+				  <separator spacing="1px"/>
+				  
+				  <include src="/zkpages/laboratory/narkoba.zul"/>
+				  <separator spacing="1px"/>
+				  
+				  <include src="/zkpages/laboratory/urine.zul"/>
+			    </vbox>
+		   </h:td>
+	</h:tr>
+</h:table>		
+</window>

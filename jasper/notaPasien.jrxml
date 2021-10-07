@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Nota_Penjualan" pageWidth="340" pageHeight="397" columnWidth="320" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" isTitleNewPage="true" isSummaryNewPage="true" isIgnorePagination="true">
+	<property name="com.jasperassistant.designer.DataSource" value="reportDB"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.Margins" value="true"/>
+	<property name="com.jasperassistant.designer.Rulers" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGuides" value="true"/>
+	<property name="com.jasperassistant.designer.Units" value="Centimeters"/>
+	<queryString>
+		<![CDATA[select v_patient_name, v_mr_code, v_patient_main_addr
+from  ms_patient, tb_medical_record
+where ms_patient.n_patient_id=tb_medical_record.n_patient_id;]]>
+	</queryString>
+	<field name="v_mr_code" class="java.lang.String"/>
+	<field name="v_note_no" class="java.lang.String"/>
+	<field name="v_patient_main_addr" class="java.lang.String"/>
+	<field name="v_patient_name" class="java.lang.String"/>
+	<field name="v_reg_secondary_id" class="java.lang.String"/>
+	<detail>
+		<band height="130">
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="6" y="10" width="318" height="27" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA PEMBAYARAN PASIEN
+RS. OEN SURAKARTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="2" y="48" width="37" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO. MR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="137" y="48" width="70" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO. NOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="2" y="59" width="37" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="137" y="71" width="70" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DOKTER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="137" y="60" width="70" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO. REGISTRASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="2" y="71" width="37" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[UNIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="2" y="82" width="37" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TGL]]></text>
+			</staticText>
+			<textField pattern="d/M/yy">
+				<reportElement isPrintRepeatedValues="false" x="53" y="81" width="80" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="137" y="82" width="70" height="12" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TIPE PASIEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="41" y="47" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="41" y="59" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="41" y="71" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="41" y="82" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="208" y="83" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="208" y="72" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="208" y="60" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="208" y="47" width="9" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="3" y="108" width="32" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="36" y="108" width="164" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="205" y="108" width="52" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="263" y="108" width="62" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[BIAYA]]></text>
+			</staticText>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="53" y="48" width="80" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_mr_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="53" y="60" width="80" height="13" isPrintInFirstWholeBand="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_patient_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

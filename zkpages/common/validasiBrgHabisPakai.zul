@@ -1,0 +1,64 @@
+<window id="validation" xmlns:h="http://www.w3.org/1999/xhtml" border="normal" width="400px" onShow="self.detach()" onCreate="init();">
+
+<zscript> 
+	import com.vone.medisafe.ui.common.ValidationController;
+	
+	ctr = new ValidationController();
+	
+	void init(){
+		ctr.init(validation);
+	}
+	
+	void validate(){
+		ctr.validate();
+	}
+</zscript>
+
+<style src="../../include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>VALIDASI NOTA</h:td></h:tr>
+</h:table>
+
+<separator spacing="7px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="1%"/>
+		  <h:td>
+				<h:table width="100%" align="center">
+					<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>TANGGAL</h:b></h:p></h:td>
+						  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	       			   	  <h:td width="29%"><datebox id="date" width="72%" format="dd/MM/yyyy" height="14px" style="font-size:8pt"/></h:td>
+	       		 	</h:tr>
+	       		 	<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>SHIFT</h:b></h:p></h:td>
+					      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	    				  <h:td width="29%"><h:p align="left"><listbox id="shiftList" mold="select" width="81%" style="font-size:9pt"/></h:p></h:td>
+	    			</h:tr>
+	    			<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>USERNAME</h:b></h:p></h:td>
+					      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	    				  <h:td width="29%"><h:p align="left"><textbox id="username" width="78%" height="14px" style="font-size:8pt"/></h:p></h:td>
+	    			</h:tr>
+	       				
+	       			<h:tr><h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>PASSWORD</h:b></h:p></h:td>
+						  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	       			   	  <h:td width="29%"><textbox id="password" type="password" width="78%" height="14px" style="font-size:8pt"/></h:td>
+	       		 	</h:tr>
+	       	    </h:table>
+	    		
+	    		<separator spacing="5px"/>
+	    		
+	    		<h:table width="100%" align="center">
+		    		<h:tr><h:td><h:p align="right">
+		    						<button label="OK" image="/image/save1.gif" onClick="validate();" style="width:70px;height:26px"/>
+		    					</h:p>
+		    			  </h:td>
+				  		  <h:td><button label="BATAL" image="/image/cancel.gif" onClick="validation.detach()" style="width:70px;height:26px"/></h:td>
+					</h:tr>
+				</h:table>
+		  </h:td>
+		  <h:td width="5%"/>
+	</h:tr>
+</h:table>
+
+<separator spacing="5px"/>
+</window>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vone.medisafe.antrian.bpjs.TbAntrian" table="tb_antrian" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">tb_antrian_id_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="staff" class="com.vone.medisafe.mapping.MsStaff" fetch="select">
+            <column name="doctor_id" />
+        </many-to-one>
+        <property name="queueDate" type="string">
+            <column name="queue_date" length="12"/>
+        </property>
+        <property name="queueNo" type="integer">
+            <column name="queue_no"/>
+        </property>
+        <property name="counterNo" type="integer">
+            <column name="counter_no"/>
+        </property>
+        <property name="bpjsNo" type="string">
+            <column name="bpjs_no" length="30"/>
+        </property>
+        <property name="phoneNo" type="string">
+            <column name="phone_no" length="20"/>
+        </property>
+        <property name="referralNo" type="string">
+            <column name="referral_no" length="50"/>
+        </property>
+        <property name="status" type="integer">
+            <column name="status" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" />
+        </property>
+        <property name="doneAt" type="timestamp">
+            <column name="done_at" />
+        </property>
+        <property name="doneBy" type="string">
+            <column name="done_by" />
+        </property>
+        <property name="poliklinik" type="string">
+            <column name="poliklinik" length="100"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

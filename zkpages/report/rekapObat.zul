@@ -1,0 +1,122 @@
+<window id="rekapObat" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.report.RekapObat;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	import org.zkoss.zul.Filedownload; 
+	import java.io.*;
+	
+	ctr = new RekapObat();
+	void init(){
+		ctr.init(rekapObat);
+	}
+	
+	public static void download()
+	 {
+	 	try
+		{
+			String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+			String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+						
+			FileInputStream in = new FileInputStream(path);
+			Filedownload.save(in, "application/vnd.ms-excel", "laporan.xls");
+			
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	 }
+</zscript>
+<style src="/include/medisafe.css"/>
+	
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>REKAP OBAT</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="3px"/>
+	<h:table align="center" width="100%" border="0">
+		<h:tr><h:td width="2%"/>
+			  <h:td><h:table align="center" width="100%" border="0">
+					    <h:tr><h:td width="0%"/>
+					    	  <h:td><separator spacing="10px"/>
+							     	    <h:table align="center" width="100%" border="0">
+							     	    	<h:tr><h:td width="70%"/>
+						               			  <h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">FROM</h:p></h:td>
+									  			  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="11%"><datebox id="dateFrom" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="11%"><h:p align="right" style="font-weight:bold;font-size:8pt">TO</h:p></h:td>
+									  			  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="11%"><datebox id="dateTo" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="5%"><h:p align="right">
+				    					  					<button id="btnOpen" label="VIEW" image="/image/detail.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.openClick();"/>
+				    					  				</h:p>
+				    					  		  </h:td>
+						              		</h:tr>
+							      		</h:table>
+						         	    <separator spacing="2px"/>
+						      </h:td>
+					  	      <h:td width="5%"/>
+					    </h:tr>
+				   </h:table>
+	            </h:td>
+	            <h:td width="2%"/>
+	      </h:tr>
+		  <h:tr><h:td width="2%"/>
+		      <h:td><h:table align="center" width="100%">
+					    <h:tr><h:td width="16%"/>
+							  <h:td><separator spacing="2px"/>
+							        <groupbox width="900px">
+							     		<caption id="captionId" label="REKAP OBAT"/>
+							   			<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="10px"/></h:tr>
+									  		  <h:tr><h:td width="10%"/>
+											  		<h:td>
+											  			  <listbox id="obatList" multiple="true" width="860px" height="350px" mold="paging" pageSize="20">
+																<listhead id="headObat">
+																	<listheader label="NO" width="5%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA OBAT" width="50%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="QTY" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NILAI PENJUALAN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														  </listbox>
+														   
+														  
+													</h:td>
+													<h:td width="10%"/>
+											  </h:tr>
+									  	</h:table>
+											
+										<separator spacing="2px"/>
+									  		
+									  	<h:table align="center" width="100%">
+											<h:tr>
+												  <h:td width="3%"/>
+												  <h:td><button label="Simpan ke XLS" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.saveToXls();download();"/>
+												  </h:td>
+													<h:td width="40%"/>
+												  <h:td align="right">
+														<h:b>NILAI PENJUALAN : </h:b><decimalbox id="nilaiPenjualan" format="#,###.##" width="160px"/>
+												  </h:td>
+												  <h:td width="3%">
+														<h:p align="right">
+										    				<button label="SELESAI" visible="false" image="/image/hapus.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="rekapObat.detach()"/>
+										    			</h:p>
+										    	  </h:td>
+										    	  <h:td width="3%"/>
+											</h:tr>
+										</h:table>
+							   			<separator spacing="2px"/>
+							   	   </groupbox>
+							  </h:td>
+					  	      <h:td width="16%"/>
+					     </h:tr>
+				   </h:table>
+			  </h:td>
+			  <h:td width="2%"/>
+		</h:tr>
+	</h:table>	
+<separator spacing="15px"/>
+</window>

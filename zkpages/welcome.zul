@@ -1,0 +1,20 @@
+<window id="daftarRanap" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" >
+
+<style src="../../include/medisafe.css"/>
+
+
+<h:body>
+
+
+
+<h:table width="100%" height="515px" border="0" cellpadding="0" cellspacing="0" >
+ <h:tr sclass="Float" valign="center">
+  <h:td/>
+  </h:tr> 	
+</h:table>
+
+<separator spacing="4px"/>
+
+</h:body>
+
+</window>

@@ -1,0 +1,90 @@
+<window id="counterBpjs" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.antrian.bpjs.CounterBpjsController;
+	CounterBpjsController ctr = new CounterBpjsController();
+	
+	void init(){
+		ctr.init(counterBpjs);
+	}
+</zscript>
+<style>
+.z-button {
+    color:blue;
+    border: 1px solid powderblue;
+    padding: 5px;
+    background-color: #eeeeee;
+    font-weight:bold;
+    font-size: 30px;
+    width : 150px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.myText{
+	border: 1px solid powderblue;
+	background-color: #eeeeee;
+	width : 450px;
+	font-size: 15px;
+}
+
+.z-column-content .z-label {
+  font-size: 30px;
+}
+
+.myGrid{
+	padding: 10px;
+}
+</style>
+
+<h:table width="80%" align="center" border="0">
+	<h:tr>
+		<h:th width="25%"><h:img src="../image/image001.png" style="width:150px;height:75px;"/></h:th>
+        <h:th align="center"><h:h3>CONTROLLER ANTRIAN BPJS RUMAH SAKIT UMUM DAERAH MANDAU</h:h3></h:th>
+	</h:tr>
+	<h:tr>
+		<h:td colspan="2" align="center">
+			<vbox align="center" id="vboxCounter">
+				<h:h3>PILIH COUNTER</h:h3>
+				<grid class="myGrid" id="poliGrid">
+				<rows class="myGrid" id="rowsPoli">
+				<row id="rowCounter" style="padding-left:15px;padding-top:5px; padding-bottom: 5px;background-color: #ffffff;">
+					<button class="z-button" label="Counter 1"/>
+					<button class="z-button" label="Counter 2"/>
+					<button class="z-button" label="Counter 3"/>
+					<button class="z-button" label="Counter 4"/>
+					<button class="z-button" label="Counter 5"/>
+				</row>
+				</rows>
+				</grid>
+			</vbox>
+			<vbox align="center" id="vboxAntrian" style="padding-top:15px">
+		   		<hbox>
+		   			<textbox id="cariDokter" class="myText" onOK="ctr.getTodayQueue()"/>
+		   			<datebox id="tanggalPraktek" height="20px"/>
+		   			<button label="CARI" style="border: 1px solid powderblue;font-weight:bold;height:23px" onClick="ctr.getTodayQueue()"/>
+		   		</hbox>
+		   		<listbox id="listAntrian"  width="900px" mold="paging" pageSize="15">
+		   			<listhead visible="false">
+						<listheader width="7%" >NO.</listheader>
+						<listheader width="33%">DOKTER</listheader>
+						<listheader width="15%">REG ID</listheader>
+						<listheader width="15%">NO BPJS</listheader>
+						<listheader width="15%">NO RUJUKAN</listheader>
+						<listheader width="15%">ACTION</listheader>
+					</listhead>
+		   		</listbox>
+		   </vbox>	
+						
+		</h:td>
+	</h:tr>
+</h:table>
+<h:table style="width:70%;padding:10px;border:0px solid DodgerBlue" align="center">
+<h:tr>
+	<h:td align="center">
+	
+		
+	</h:td>
+</h:tr>
+
+</h:table>
+
+</window>

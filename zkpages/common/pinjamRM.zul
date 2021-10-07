@@ -1,0 +1,169 @@
+<window id="PermintaanBerkasRekamMedis" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.ui.mr.MRController;
+	ctr = new MRController();
+	void init(){
+		ctr.init(PermintaanBerkasRekamMedis);
+	}
+	void getMr(){
+		ctr.getMrStatusByPatientId(PermintaanBerkasRekamMedis);
+	}
+	void requestMR(){
+		ctr.requestMR(PermintaanBerkasRekamMedis);
+	}
+	void clear(){
+		ctr.clearListitem(medicalRecordFileList);
+	}
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PEMINJAMAN BERKAS REKAM MEDIS</h:td></h:tr>
+</h:table>
+	
+<separator spacing="8px"/>
+
+<h:table width="100%" align="center">
+    	<h:tr><h:td width="25%"/>
+    		  <h:td>
+					<h:table width="100%" align="center">
+    				<h:tr><h:td width="15%"/>
+    		 			  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="10%"><h:p align="right" style="font-size:8pt"><h:b>LOKASI</h:b></h:p></h:td>
+			 							  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			 							  <h:td width="22%">
+			 							  		<listbox id="locationList" mold="select" width="90%" style="font-size:9pt">
+			 							  			<listitem label="POLIKLINIK"/>
+			 							  			<listitem label="SURGERY"/>
+			 							  		</listbox>
+			 							  </h:td>
+			 							  <h:td width="1%"/>
+									</h:tr>
+									<h:tr><h:td width="10%"><h:p align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:p></h:td>
+						   				  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+	              			  			  <h:td width="22%">
+		              			  			  <bandbox id="MRNumber" width="60%" onChange="getMr();" onOpen="crNoMR.focus();" style="font-size:8pt">
+			              			  			  <bandpopup>
+													  <vbox>	
+															<h:table align="center" width="100%" sclass="BasicBlueTitle">
+																<h:tr><h:td>PENCARIAN DATA PASIEN</h:td></h:tr>
+															</h:table>
+															<separator spacing="5px"/>
+															<h:table width="100%" align="center">
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">NO. MR</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left">
+																  		<textbox id="crNoMR" width="94%" height="14px" style="font-size:8pt"/>
+																  </h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><textbox id="crNama" width="94%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><datebox id="crTgl" width="90%" height="14px" format="dd/MM/yyyy" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/>
+																  </h:td>
+																  
+																  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatient(crNoMR,crNama,crTgl, crNoAlamat,MRNumberList);crNoMR.focus();"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+														</h:table>
+															<separator spacing="3px"/>
+															<listbox id="MRNumberList" width="650px" onSelect="getMr(); MRNumber.closeDropdown();" mold="paging" pageSize="15">
+																<listhead>
+																	<listheader label="NO. MR" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="NAMA" width="25%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																	<listheader label="TGL. LAHIR" width="20%" style="font-weight:bold;font-size:8pt"/> 
+																	<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
+																</listhead>
+														    </listbox>
+													  </vbox>
+										 		  </bandpopup>
+		              			  			  </bandbox>
+	              			  			  </h:td>
+	              			  			   <h:td width="1%"/>
+	       							</h:tr>
+       							</h:table>
+  						  </h:td>
+  						  <h:td width="20%"/>
+  						</h:tr>
+  	 				</h:table>
+  			  </h:td>
+  			  <h:td width="25%"/>
+  	    </h:tr>
+  	    <h:tr><h:td width="25%"/>
+    		  <h:td><separator spacing="4px"/>
+   	 			    <h:table width="100%" align="center">
+					      <h:tr><h:td width="30%"/>
+						    	<h:td>	 	
+							    	  <vbox>
+										  <groupbox width="750px">
+										  	<caption label="DAFTAR BERKAS REKAM MEDIS"/>
+										  		<h:table width="100%" align="center">
+											  		<h:tr><h:td height="10px"/></h:tr>
+											  		<h:tr><h:td width="10%"/>
+											  			  <h:td>
+														  		<vbox>
+																	<listbox id="medicalRecordFileList" multiple="true" width="710px" height="315px" checkmark="true" mold="paging" pageSize="14">
+																		<listhead>
+																			<listheader label="NO. MR" sort="auto" width="20%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA PASIEN" sort="auto" width="40%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="STATUS MR" sort="auto" width="25%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																	</listbox>
+																</vbox>
+														  </h:td>
+													      <h:td width="10%"/>
+													</h:tr>
+										  		</h:table>
+												<separator spacing="3px"/>
+										  		<h:table width="100%" align="center">
+									  				<h:tr><h:td width="5%"/>
+										   	   			  <h:td width="8%">
+										   	   				<h:p align="left">
+								    		   			 		<button label="PINJAM BERKAS" image="/image/icons/recordmedic.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt" onClick="requestMR();"/>
+								    			   			</h:p>
+								    					  </h:td>
+								
+								    					  <h:td width="8%">
+										   	   				<h:p align="left">
+								    		   			 		<button label="BERSIHKAN" image="/image/delete.gif" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="clear();"/>
+								    			   			</h:p>
+								    					  </h:td>
+								
+								    					  <h:td>
+								    		  			     <h:p align="right">
+								    					 		<!-- <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick=""/> -->
+								    				  	     </h:p>
+								    					  </h:td>
+								    					  <h:td width="5%"/>
+								    	  			</h:tr>
+												</h:table>
+												<separator spacing="5px"/>
+							    		   </groupbox>
+								    </vbox>
+							  </h:td>
+							  <h:td width="30%"/>
+						  </h:tr>
+				    </h:table>
+    		  </h:td>
+  			  <h:td width="25%"/>
+	   </h:tr>
+  	 </h:table>
+<separator spacing="14px"/>
+</window>

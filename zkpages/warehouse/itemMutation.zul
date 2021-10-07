@@ -1,0 +1,237 @@
+<window id="ItemMutation" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<style src="/include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.warehouse.WarehouseController;
+	ctr = new WarehouseController();
+	
+	void init(){
+		ctr.init(ItemMutation);
+	}
+	void refreshClick(){
+		ctr.refreshClick();
+	}
+	void hapusClick(){
+		ctr.hapusClick();
+	}
+	void kirimClick(){
+		ctr.kirimClick();
+	}
+	void detailClick(){
+		ctr.detailClick();
+	}
+	void detailSimpanClick(){
+		ctr.detailSimpanClick();
+	}
+	void permintaanClick(){
+		ctr.permintaanClick();
+	}
+	
+</zscript> 
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM MUTASI ITEM</h:td></h:tr>
+</h:table>
+
+<separator spacing="6px"/>
+<h:table width="100%" align="center">
+   <h:tr><h:td width="22%"/>
+   		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>LOKASI TRANSAKSI</h:b></h:p></h:td>
+   		 <h:td width="2%"><h:p align="center">:</h:p></h:td>
+   		 <h:td width="25%">
+   		 	<listbox mold="select" id="locationList" width="85%" height="24px" style="font-size:9pt">
+          		<listitem value="WAREHOUSE" label="1. WAREHOUSE"/>
+          	</listbox>
+         </h:td>	
+         <h:td width="27%"/>
+   </h:tr>
+</h:table>
+<separator spacing="2px"/>	
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="30%"/>
+    	  <h:td><groupbox width="880px">
+			  		<caption label="LIST PERMINTAAN ITEM"/>
+			  			<h:table width="100%" align="center">
+			  				<h:tr><h:td height="10px"/></h:tr>
+			  				<h:tr><h:td width="12%"/>
+			  					  <h:td>
+			  			  			  	<vbox>
+				  			  				  <tree id="permintaanTree" width="840px" height="170px" multiple="true" checkmark="true" onSelect="permintaanClick();">
+													<treecols>
+														<treecol label="NO. PERMINTAAN" width="30%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="NAMA GUDANG PEMINTA" width="20%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="JLH TERIMA" width="12%" style="font-weight:bold;font-size:8pt"/>
+														<treecol label="SISA" width="12%" style="font-weight:bold;font-size:8pt"/>
+													</treecols>
+													<treechildren id="permintaanTreechildren">
+														<treeitem>
+															<treerow>
+																<treecell label="1234567"/>
+																<treecell label="POLIKLINIK"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label="PANADOL"/>
+																		<treecell label=""/>
+																		<treecell label="STRIP"/>
+																		<treecell label="10"/>
+																		<treecell label="4"/>
+																		<treecell label="6"/>
+																	</treerow>
+							 					 				</treeitem>
+																<treeitem>
+																	<treerow>
+																		<treecell label="ANTIBIOTIK"/>
+																		<treecell label=""/>
+																		<treecell label="STRIP"/>
+																		<treecell label="12"/>
+																		<treecell label="6"/>
+																		<treecell label="6"/>
+																	</treerow>
+																</treeitem>
+															</treechildren>
+														</treeitem>
+														<treeitem>
+															<treerow>
+																<treecell label="23456789"/>
+																<treecell label="UGD"/>
+															</treerow>
+															<treechildren>
+																<treeitem>
+																	<treerow>
+																		<treecell label="OBAT BIUS"/>
+																		<treecell label=""/>
+																		<treecell label="BOTOL"/>
+																		<treecell label="20"/>
+																		<treecell label="5"/>
+																		<treecell label="15"/>
+																	</treerow>
+							 					 				</treeitem>
+																<treeitem>
+																	<treerow>
+																		<treecell label="FORMALIN"/>
+																		<treecell label=""/>
+																		<treecell label="BIJI"/>
+																		<treecell label="15"/>
+																		<treecell label="10"/>
+																		<treecell label="5"/>
+																	</treerow>
+																</treeitem>
+															</treechildren>
+														</treeitem>
+												</treechildren>
+											</tree>
+			  			  			  </vbox>
+						  		</h:td>
+								<h:td width="12%"/>
+						   </h:tr>
+					   </h:table>
+					   <separator spacing="2px"/>
+					   <h:table width="100%" align="center">
+						   <h:tr><h:td width="3%"/>
+						   		 <h:td>
+									  	 <h:p align="left">
+						    				<button id="btnRefresh" label="REFRESH" image="/image/fresh.gif" style="width:95px;height:26px;font-weight:bold;font-size:7pt" onClick="refreshClick();"/>
+						    		  	 </h:p>
+						    	 </h:td>
+						    	 <!--
+						    	 <h:td>
+									  	 <h:p align="left">
+						    				<button id="btnClose" label="CLOSE" image="/image/lock.gif" style="width:70px;height:26px" onClick="doSave();"/>
+						    		  	 </h:p>
+						    	 </h:td>
+								 -->
+								 <h:td width="5%">
+	    		     				   <h:p align="right">
+	    				 					<button id="btnDetail" label="DETAIL" image="/image/detail.gif" style="width:85px;height:26px;font-weight:bold;font-size:7pt" onClick="detailClick();"/>
+	    			 					</h:p>
+	    		  				  </h:td>
+			     				  <h:td width="3%"/>
+	        			    </h:tr>
+						</h:table>
+						<separator spacing="2px"/>
+				</groupbox>
+		  </h:td>
+	  	  <h:td width="30%"/>
+	</h:tr>
+</h:table>
+<separator spacing="3px"/>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="30%"/>
+    	  <h:td>	  	 
+	  	 	    <groupbox width="880px">
+			  		<caption label="DETAIL ITEM"/>
+			  			<h:table width="100%" align="center">
+			  				<h:tr><h:td height="10px"/></h:tr>
+			  				<h:tr><h:td width="12%"/>
+			  					  <h:td>
+			  		  				  	<vbox>
+						  					<listbox id="itemMutationList" multiple="true" width="840px" height="122px">
+												<listhead>
+							  						<listheader label="NO. BATCH" width="10%" style="font-weight:bold;font-size:8pt"  sort="auto"/> 
+							  						<listheader label="NAMA" width="32%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+							  						<listheader label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+							  						<listheader label="JLH" width="10%" style="font-weight:bold;font-size:8pt"/>
+							  					</listhead>
+						
+							  					<listitem>
+							  						<listcell label="1111112"/>
+							  						<listcell label="PANADOL"/>
+							  						<listcell label="STRIP"/>
+							  						<listcell label="5"/>
+							  					</listitem>
+							  					
+							  					<listitem>
+							  						<listcell label="1111114"/>
+							  						<listcell label="PANADOL"/>
+							  						<listcell label="STRIP"/>
+							  						<listcell label="5"/>
+							  					</listitem>
+							 					
+							 					<listitem>
+							  						<listcell label="1111116"/>
+							  						<listcell label="ANTIBIOTIK"/>
+							  						<listcell label="STRIP"/>
+							  						<listcell label="10"/>
+							  					</listitem>
+						 					</listbox>
+						  				</vbox>
+								  </h:td>
+								  <h:td width="12%"/>
+							</h:tr>
+						</h:table>
+								 
+						<separator spacing="2px"/>
+							
+						<h:table align="center" width="100%">
+      						<h:tr><h:td width="3%"/>
+      						 	  <h:td width="7%">
+									  	 <h:p align="left">
+						    				<button id="btnKirim" label="KIRIM" image="/image/sent.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="kirimClick();"/>
+						    		  	 </h:p>
+						    	  </h:td>
+						    	  <h:td>
+						    	  		<h:p align="left">	
+											<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt" onClick="hapusClick();"/>
+				 						</h:p>
+			  					  </h:td>
+			  					  <h:td width="5%">
+			  					  		<h:p align="right">
+    										<!-- <button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt"/> -->
+    			 						</h:p>
+    							  </h:td>
+			  					  <h:td width="3%"/>
+        					</h:tr>
+    					</h:table>
+								
+			  			<separator spacing="2px"/>
+			   	</groupbox>
+		   </h:td>
+	  	   <h:td width="30%"/>
+	  </h:tr>
+</h:table>
+<separator spacing="4px"/>
+</window>

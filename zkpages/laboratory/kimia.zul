@@ -1,0 +1,105 @@
+<window id="chemistryItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(chemistryItem, "kimiaList", "005");
+	}
+</zscript>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td>
+			  <vbox>
+				  <listbox id="kimiaList" multiple="true" width="185px" height="545px" checkmark="true">
+					   <listhead>
+							<listheader id="kimiaKlinik" label="KIMIA KLINIK" style="font-weight:bold;font-size:8pt" sort="auto" width="98%"/>
+						</listhead>
+						<listitem>
+							<listcell id="LAB23" label="GLUKOSA PUASA"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB24" label="GLUKOSA 2JPP"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB25" label="GLUKOSA SEWAKTU"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB26" label="CHOLESTEROL TOTAL"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB27" label="TRIGLICERIDE"/>
+						</listitem>
+				
+						<listitem>
+							<listcell id="LAB28" label="HDL-CHOLESTEROL"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB29" label="LDL-CHOLESTEROL"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB30" label="BILIRUBIN TOTAL"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB31" label="BILIRUBIN DIREK"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB32" label="BILIRUBIN INDIREK"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB33" label="AST (SGOT)"/>
+						</listitem>
+				
+						<listitem>
+							<listcell id="LAB34" label="ALT (SGPT)"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB35" label="UREUM"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB36" label="CREATININ"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB37" label="TOTAL PROTEIN"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB38" label="ALBUMIN"/>
+						</listitem>
+				
+						<listitem>
+							<listcell id="LAB39" label="GLOBULIN"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB40" label="ASAM URAT"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB41" label="ALKALI FOSFATASE"/>
+						</listitem>
+						
+						<listitem>
+							<listcell id="LAB42" label="CHOLINESTERASE"/>
+						</listitem>
+				
+						<listitem>
+							<listcell id="LAB43" label="GAMMA GT"/>
+						</listitem>
+				  </listbox>
+			  </vbox>
+		  </h:td>
+	</h:tr>
+</h:table>
+</window>

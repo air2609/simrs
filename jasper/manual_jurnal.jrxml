@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="VOUCHER_NO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select j.v_voucher_no, j.v_desc, c.v_acct_name || '['|| c.v_acct_no || ']' as account, j.n_debit, j.n_credit, j.d_whn_create, j.v_who_create from
+tb_journal_trx j left join ms_coa c on j.n_coa_id=c.n_coa_id where j.v_voucher_no='ARIFTEST']]>
+	</queryString>
+	<field name="v_voucher_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="v_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_debit" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_credit" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="d_whn_create" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="v_who_create" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band />
+	</background>
+	<title>
+		<band height="100">
+			<staticText>
+				<reportElement x="0" y="35" width="145" height="29"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rumah Sakit Tiara Sella Bengkulu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="35" width="211" height="29"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[MANUAL JOURNAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" >
+			<textField>
+				<reportElement x="100" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_voucher_no}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="450" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{d_whn_create}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="5" width="82" height="20"/>
+				<textElement/>
+				<text><![CDATA[Voucher No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="5" width="67" height="20"/>
+				<textElement/>
+				<text><![CDATA[Input Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="5" width="56" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Input by :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="271" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_who_create}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" >
+			<staticText>
+				<reportElement x="0" y="4" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="4" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="550" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="350" y="4" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Debet]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" >
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_desc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="195" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{account}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="350" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="450" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_credit}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="17" width="550" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

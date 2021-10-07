@@ -1,0 +1,41 @@
+a.SelectorNormal:link{
+    text-decoration:none;
+}
+a.SelectorNormal:visited{
+    COLOR: black;
+    text-decoration:none;
+}
+a.SelectorNormal:hover{
+    COLOR: white;
+    FONT-WEIGHT:bold;
+}
+a.SelectorNormal:active{
+    text-decoration:none;
+}
+.list{
+    BACKGROUND-COLOR: white;
+    HEIGHT: 35px;
+    FONT-SIZE: 10pt;
+    FONT-FAMILY: Helvetica Condensed, Arial Narrow;
+}
+.ongotfocus{
+    BACKGROUND-COLOR: #FF9934;
+    COLOR: white;
+    FONT-WEIGHT:bold;
+    CURSOR:hand;
+}
+.onlostfocus{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-WEIGHT:normal;
+}
+.inactiveMenu{
+    BACKGROUND-COLOR: #FF9934;;
+    COLOR: black;
+    FONT-WEIGHT:normal;
+}
+.inactiveMenuMaster{
+    BACKGROUND-COLOR: gray;
+    COLOR: black;
+    FONT-WEIGHT:normal;
+}

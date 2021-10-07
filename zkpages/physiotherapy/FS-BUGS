@@ -1,0 +1,63 @@
+26-januari-2007
+===============
+
+FORM TRANSAKSI
+==============
+1. tulisan di list diset 8pt
+2. tulisan di list (di dalam bandbox NO. NOTA), diset 8pt
+3. kalo diskon= 100 %, kenapa gak bisa ya??malah muncul msgbox, "Jumlah Tidak Boleh Negatif Ataw NOl"
+4. kenapa setelah data di ubah, nota tidak bisa di validasi??
+5. jika ada data obat di dalam LIST TINDAKAN FISIOTERAPI, ketika klik SIMPAN, data tidak bisa disimpan.
+   muncul index: 0.
+   
+   Jan 26, 2007 9:30:30 AM org.zkoss.zk.ui.impl.UiEngineImpl handleError:616
+	SEVERE: >>java.lang.IndexOutOfBoundsException: Index: 0
+	>>	at java.util.AbstractSequentialList.get(AbstractSequentialList.java:78)
+	>>	at com.vone.medisafe.fisioterapi.FisioterapiController.saveModify(FisioterapiController.java:645)
+	>>	at com.vone.medisafe.fisioterapi.FisioterapiController.save(FisioterapiController.java:457)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	>>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	>>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	>>	at java.lang.reflect.Method.invoke(Method.java:585)
+	>>	at bsh.Reflect.invokeMethod(Unknown Source)
+
+
+FORM TAMBAH TINDAKAN
+====================
+1. tulisan di list diset 8pt
+
+
+FORM TAMBAH OBAT
+================
+1. tulisan di inbox (JUMLAH), diset 8pt
+
+
+
+
+==================================================================================================================================================================
+070107
+1. ketika melakukan pencarian via nota dan data nota
+   ditampilkan ke dalam list, kenapa keterangannya bisa berubah ya??
+   waktu input, format keterangan = NAMA TREATMENT - NAMA TERAPIS
+   tetapi ketika data diperoleh dari pencarian nota
+   kog format keterangannya jadi = NAMA TREATMENT - GROUP TINDAKAN
+2. ketika klik baru, data pasien di history juga dibersihkan.
+	-- ok
+
+======================================================
+1. tampilan value harga dan subtotal bisa di buat
+   xxx,xxx..??
+2. ketika klik baru, data pasien di history juga dibersihkan.
+3. pencarian via nota. null pointer dan kog pasien rujukan
+   bisa dpt no. registrasi?? (sistem tetap keep no. registrasi pasien
+   sebelumnya).
+4. ketika pencarian via nota, kog tampilan di 
+   list Data Tindakan Fisioterapi-nya beda ya..?
+   
+   
+=================================================================
+1. pencarian via nota. null pointer dan kog pasien rujukan
+   bisa dpt no. registrasi?? (sistem tetap keep no. registrasi pasien
+   sebelumnya).
+2. history transaksinya gak ada??
+3. 

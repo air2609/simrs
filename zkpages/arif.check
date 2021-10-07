@@ -1,0 +1,75 @@
+SCREEN2 YANG SUDAH BISA DITEST
+
+1 MASTER WARD 
+
+
+
+
+
+HASIL CHECK 
+
+1. MASTER WARD - BY VINI
+- ERROR INIT
+
+
+1. Apa yang dimaksud dengan static variabel?
+
+2. Apa perbedaan antara interface dan abstract class?
+
+3. Kelas apa yang memiliki hirarki paling tinggi dalam java?
+
+4. Misalkan Anda memiliki Class A dalam java, maka method2 apa 
+   saja yang otomatis dimiliki oleh class A
+   
+5. Sebutkan dan jelaskan 3 konsep utama dalam object oriented programming
+
+6. Manakah dari kedua statemen berikut ini yang benar
+   a. Integer a = new Integer("2");
+   b. Integer a = new Integer(2);
+   
+7. Apa perbedaan antara public, private dan protected dalam method atau properti 
+   dari suatu kelas java
+   
+8. Kapan kita menggunakan method dengan tipe void?
+
+9. public class A{
+	public void testA(){
+		System.out.println("Test 1");
+	}
+   }
+
+   public class B extends class A{
+	public void testA{
+		super();
+		System.out.println("Test 2");
+	}
+
+	public static void main(String[] args){
+		B b = new B();
+  		b.testA();
+	}
+   }
+
+  Apa output dari program di atas?
+  
+10. Ada berapa kesalahan dalam penulisan kode berikut? dan sebutkan masing2
+    Byte byte = new Byte(270);
+    
+11. Apa berapa kesalahan dalam penulisan kode berikut? dan sebutkan masing2
+
+    interface A {
+    	public void testA{
+    	}
+    }
+    
+    public class B extends A{
+    
+    	public static void main(String args[]){
+			A a = new A();
+			a.testA();	
+		}
+    }
+    
+12. Buat alogritma sorting dengan input array of integer (int[10]) dengan panjang 10
+    contoh : int[10] = {6,5,8,1,2,4,3,9,10,7}
+    hasil  :           {1,2,3,4,5,6,7,8,9,10}

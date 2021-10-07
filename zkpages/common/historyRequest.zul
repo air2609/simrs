@@ -1,0 +1,138 @@
+<window id="historyPage" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();">
+<style src="../../include/medisafe.css"/>
+<zscript>
+	import com.vone.medisafe.warehouse.HistoryRequestController;
+	ctr = new HistoryRequestController();
+	
+	void init(){
+		ctr.init(historyPage);
+	}
+	
+</zscript>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>HISTORI PERMINTAAN O-BM</h:td></h:tr>
+</h:table>
+	
+<separator spacing="5px"/>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td width="11%"/>
+    	  <h:td>	 	
+	    	  <vbox>
+			        <groupbox width="900px">
+				  		<caption label="HISTORI PERMINTAAN O-BM"/>
+							<h:table width="100%" align="center">
+								<h:tr><h:td height="4px"></h:td></h:tr>
+								<h:tr><h:td width="2%"/>
+									  <h:td>
+									  		<vbox>
+										  			<h:table width="100%" align="center">
+														<h:tr><h:td width="19%"/>
+															  <h:td width="8%" align="right"><h:b><h:b><h:font size="1">TANGGAL</h:font></h:b></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																	  <h:td width="20%" style="font-size:8pt;font-weight:bold">
+																	 		 <datebox id="startDate" width="80%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
+															  </h:td>
+															  <h:td width="5%" align="left"><h:b><h:font size="1">S.D.</h:font></h:b></h:td>
+															  <h:td width="20%" style="font-size:8pt;font-weight:bold">
+															 		 <datebox id="endDate" width="80%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
+															  </h:td>
+															  <h:td width="5%" align="left">
+															  		 
+															  			<button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.getRequestItem();"/>
+															  		
+															  </h:td>
+															  <h:td width="30%"/>
+														</h:tr>
+													</h:table>
+													<separator spacing="2px"/>
+										  			<tree id="historyTree" width="860px" height="349px" multiple="true" checkmark="true" onSelect="">
+														<treecols>
+															<treecol label="NO. PERMINTAAN" width="30%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="NAMA GUDANG TUJUAN" width="20%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="SATUAN" width="18%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="JLH ORDER" width="10%" style="font-weight:bold;font-size:8pt"/>
+															<treecol label="JLH TERIMA" width="12%" style="font-weight:bold;font-size:8pt"/>
+														</treecols>
+														<treechildren id="permintaanTreechildren">
+															<treeitem>
+																<treerow>
+																	<treecell label="1234567"/>
+																	<treecell label="POLIKLINIK"/>
+																</treerow>
+																<treechildren>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="PANADOL"/>
+																			<treecell label=""/>
+																			<treecell label="STRIP"/>
+																			<treecell label="10"/>
+																			<treecell label="4"/>
+																		</treerow>
+								 					 				</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="ANTIBIOTIK"/>
+																			<treecell label=""/>
+																			<treecell label="STRIP"/>
+																			<treecell label="12"/>
+																			<treecell label="6"/>
+																		</treerow>
+																	</treeitem>
+																</treechildren>
+															</treeitem>
+															<treeitem>
+																<treerow>
+																	<treecell label="23456789"/>
+																	<treecell label="UGD"/>
+																</treerow>
+																<treechildren>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="OBAT BIUS"/>
+																			<treecell label=""/>
+																			<treecell label="BOTOL"/>
+																			<treecell label="20"/>
+																			<treecell label="5"/>
+																		</treerow>
+								 					 				</treeitem>
+																	<treeitem>
+																		<treerow>
+																			<treecell label="FORMALIN"/>
+																			<treecell label=""/>
+																			<treecell label="BIJI"/>
+																			<treecell label="15"/>
+																			<treecell label="10"/>
+																		</treerow>
+																	</treeitem>
+																</treechildren>
+															</treeitem>
+														</treechildren>
+													</tree>
+									  		</vbox>
+									  </h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+						</h:table>
+						<separator spacing="2px"/>		
+						<h:table width="100%" align="center">
+								<h:tr><h:td/>
+									  <h:td width="3%" align="right">
+									  		 
+												<button label="CETAK" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.cetak();"/>
+											
+									  </h:td>
+									  <h:td width="2%"/>
+								</h:tr>
+						</h:table>
+						<separator spacing="2px"/>	 
+					</groupbox>
+			  </vbox>
+		  </h:td>
+		  <h:td width="11%"/>
+	</h:tr>
+	
+</h:table>
+<separator spacing="3px"/>
+</window>

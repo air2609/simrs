@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<style src="../include/medisafe.css"/>
+	<window id = "accordion" border = "normal" xmlns:h="http://www.w3.org/1999/xhtml" style="width:150px;align=center" onCreate="init()">	
+	
+	<zscript>
+		import com.vone.medisafe.ui.component.AccordionController;
+		
+		void init(){
+			AccordionController.generateAccordion(accordion);	
+		}
+	</zscript>
+	
+	<style src="../include/medisafe.css"/>
+	<h:table align="center" width="100%" class="BasicBlue" height="100%">
+	<h:tr><h:td><h:center><h:b>MENU</h:b></h:center>
+	      </h:td>
+	</h:tr>
+	</h:table>	
+		<div align="center">
+			<tabbox  id="mainTab" mold="accordion"/>			
+		</div>			
+	</window>
+	
+</zk>

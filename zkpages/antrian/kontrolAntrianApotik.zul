@@ -1,0 +1,52 @@
+<window id="kontrolApotik" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.antrian.KontrolAntrianApotikController;
+	ctr = new KontrolAntrianApotikController();
+	void init(){
+	 ctr.init(kontrolApotik);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>
+<separator spacing="10px"/>
+<h:table align="center">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle">KONTROL ANTRIAN APOTIK</h:th>
+    </h:tr>
+	<h:tr>
+		<h:td>
+			<window title="NOTA PASIEN YANG SUDAH DIVALIDASI" width="400px" id="validatedNoteWin">
+				<listbox id="listPasien1" height="350px">
+					<listitem label="TEST"/>
+				</listbox>
+			</window>
+		</h:td>
+		
+		<h:td>
+			<window title="OBAT PASIEN YANG SUDAH JADI" width="400px" id="obatJadiWin">
+				<listbox id="listPasien2" height="350px">
+					<listitem label="TEST2"/>
+				</listbox>
+			</window>
+		</h:td>
+	</h:tr>
+	
+</h:table>
+<separator spacing="10px"/>
+<h:table align="center">
+	<h:tr>
+		<h:td><h:b><h:font size="1">TEXT ANTRIAN</h:font></h:b></h:td>
+		<h:td>
+			<h:b><h:font size="1"><textbox id="textAntrian" width="450px" multiline="true" height="50px"/></h:font></h:b>
+		</h:td>
+		<h:td>
+			<button label="SIMPAN" id="btnSave" image="/image/save1.gif" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.save()"/>
+			<button label="UBAH" id="btnEdit" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.edit();"/>
+			<button label="REFRESH" id="btnRefresh" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.refresh();"/>
+		</h:td>
+	</h:tr>
+</h:table>
+
+<separator spacing="10px"/>	
+<!-- <timer id="timer" repeats="true" onTimer="ctr.onTimer()"/>  --> 	
+	
+</window>

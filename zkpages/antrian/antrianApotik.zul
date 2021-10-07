@@ -1,0 +1,47 @@
+
+<window id="antrianApotik" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" onCreate="init();" sclass="Float">
+<zscript>
+	import com.vone.medisafe.antrian.AntrianApotikController;
+	ctr = new AntrianApotikController();
+	void init(){
+	 ctr.init(antrianApotik);
+	}
+</zscript>
+<style src="/include/medisafe.css"/>  
+
+
+<separator spacing="10px"/>
+<h:table align="center">
+    <h:tr>
+    	<h:th colspan="2" align="center" sclass="BasicBlueTitle2">OBAT PASIEN SUDAH JADI</h:th>
+    </h:tr>
+	<h:tr>
+		<h:td>
+			<window title="" width="950px" id="obatWin" style="font-weight:bold">
+				<listbox id="listPasien" height="450px" mold="paging" pageSize="10">
+					<listhead>
+						<listheader width="80%"><label style="font-weight:bold;font-size:20pt" value="NAMA PASIEN"/></listheader>
+						<listheader width="20%"><label style="font-weight:bold;font-size:20pt" value="TIPE OBAT"/></listheader>
+					</listhead>
+				</listbox>
+			</window>
+		</h:td>
+		
+	</h:tr>
+	
+</h:table>
+<separator spacing="15px"/>
+<h:table width="70%" border="0" align="center">
+	<h:tr>
+		<h:td>
+			<h:marquee>
+				<label id="stApotik" style="font-weight:bold;font-size:15pt" />
+			</h:marquee>
+		</h:td>
+	</h:tr>
+</h:table>
+<separator spacing="20px"/>
+
+<timer id="timer" repeats="true" onTimer="ctr.onTimer()"/> 	
+	
+</window>

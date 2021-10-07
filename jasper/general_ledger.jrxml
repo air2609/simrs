@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="gl" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+	<property name="com.jasperassistant.designer.Grid" value="false"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.DataSource" value="ReportDB"/>
+	<queryString>
+		<![CDATA[select * from report.func_gl(35)]]>
+	</queryString>
+	<field name="d_apl_date" class="java.sql.Timestamp"/>
+	<field name="n_balance" class="java.lang.Double"/>
+	<field name="n_coa_id" class="java.lang.Long"/>
+	<field name="n_credit" class="java.lang.Double"/>
+	<field name="n_debit" class="java.lang.Double"/>
+	<field name="n_journal_id" class="java.lang.Integer"/>
+	<field name="n_row" class="java.lang.Long"/>
+	<field name="v_acct_name" class="java.lang.String"/>
+	<field name="v_desc" class="java.lang.String"/>
+	<field name="v_journal_batch_id" class="java.lang.String"/>
+	<field name="v_voucher_no" class="java.lang.String"/>
+	<group name="Group_1" minHeightToStartNewPage="30">
+		<groupExpression><![CDATA[$F{n_coa_id}]]></groupExpression>
+		<groupHeader>
+			<band height="48">
+				<textField>
+					<reportElement x="4" y="5" width="259" height="16"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["ACCOUNT NAME: " + $F{v_acct_name}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="24" width="800" height="1"/>
+					<graphicElement/>
+				</line>
+				<line>
+					<reportElement x="1" y="44" width="800" height="1"/>
+					<graphicElement/>
+				</line>
+				<staticText>
+					<reportElement x="4" y="28" width="21" height="13"/>
+					<textElement/>
+					<text><![CDATA[NO.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="28" width="73" height="13"/>
+					<textElement/>
+					<text><![CDATA[DATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="28" width="124" height="13"/>
+					<textElement/>
+					<text><![CDATA[VOUCHER NO.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="29" y="28" width="103" height="13"/>
+					<textElement/>
+					<text><![CDATA[BATCH ID.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="269" y="28" width="189" height="13"/>
+					<textElement/>
+					<text><![CDATA[DESCRIPTION]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="576" y="28" width="56" height="13"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[DEBIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="657" y="28" width="56" height="13"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[CREDIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="721" y="28" width="77" height="13"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[BALANCE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<line>
+					<reportElement x="1" y="1" width="800" height="1"/>
+					<graphicElement/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="62">
+			<staticText>
+				<reportElement x="4" y="5" width="278" height="52"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[
+RS. TIARA SELLA
+GENERAL LEDGER REPORT]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy h:mm a">
+				<reportElement x="652" y="6" width="144" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="18">
+			<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
+				<reportElement x="476" y="2" width="76" height="16"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{d_apl_date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4" y="2" width="19" height="16"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{n_row}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="269" y="2" width="202" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_desc}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="555" y="2" width="77" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="636" y="2" width="77" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_credit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###" isBlankWhenNull="true">
+				<reportElement x="718" y="2" width="80" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{n_balance}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="2" width="124" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_voucher_no}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="29" y="2" width="108" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{v_journal_batch_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="4" y="2" width="158" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["PAGE: " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

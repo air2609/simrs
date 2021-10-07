@@ -1,0 +1,164 @@
+<window id="laporanRawatInapJalan" xmlns:h="http://www.w3.org/1999/xhtml" width="99%" sclass="Float" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.report.LaporanRawatInapJalan;
+	import com.vone.medisafe.common.util.MedisafeConstants;
+	import org.zkoss.zul.Filedownload; 
+	import org.apache.poi.hssf.usermodel.*;
+	import java.io.*;
+	
+	ctr = new LaporanRawatInapJalan();
+	void init(){
+		ctr.init(laporanRawatInapJalan);
+	}
+	
+	
+	public static void download()
+	 {
+	 	try
+		{
+			String filename = ctr.getUserInfoBean().getStUserId()+".xls";
+			String path = desktop.getWebApp().getRealPath("tmp") +"\\"+ filename;
+			
+			FileInputStream in = new FileInputStream(path);
+			Filedownload.save(in, "application/vnd.ms-excel", "laporan.xls");
+			
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+	 }
+</zscript>
+<style src="/include/medisafe.css"/>
+	
+
+	<h:table align="center" width="100%" sclass="BasicBlueTitle">
+		<h:tr><h:td>LAPORAN RAWAT INAP/JALAN</h:td></h:tr>
+	</h:table>
+	
+	<separator spacing="3px"/>
+	<h:table align="center" width="100%" border="0">
+		<h:tr><h:td width="2%"/>
+			  <h:td><h:table align="center" width="100%" border="0">
+					    <h:tr><h:td width="0%"/>
+					    	  <h:td><separator spacing="10px"/>
+							     	    <h:table align="center" width="100%" border="0">
+							     	    	<h:tr>
+									  			  
+						               			  
+						               			  <h:td width="7%"><h:p align="right" style="font-weight:bold;font-size:8pt">TIPE LAPORAN</h:p></h:td>
+									  			  <h:td width="1%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="5%">
+						               			  	<listbox mold="select" id="rawatList" width="190px" style="font-size:9pt" onSelect="ctr.selectview()">
+			               			  					<listitem value="RI" label="RAWAT INAP" selected="true"/>
+			               			  					<listitem value="RJ" label="RAWAT JALAN"/>
+			               			  				</listbox>
+						               			  </h:td>
+						               			  
+						               			  <h:td width="3%"><h:p align="right" style="font-weight:bold;font-size:8pt">FROM</h:p></h:td>
+									  			  <h:td width="1%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="3%"><datebox id="dateFrom" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="3%"><h:p align="right" style="font-weight:bold;font-size:8pt">TO</h:p></h:td>
+									  			  <h:td width="1%"><h:p align="center">:</h:p></h:td>
+						               			  <h:td width="3%"><datebox id="dateTo" width="100px" format="dd/MM/yyyy" height="14px" style="font-size:9pt"/></h:td>
+						               			  
+						               			  <h:td width="3%"><h:p align="right">
+				    					  					<button id="btnOpen" label="VIEW" image="/image/detail.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.openClick();"/>
+				    					  				</h:p>
+				    					  		  </h:td>
+				    					  		  <h:td width="70%"></h:td>
+						              		</h:tr>
+							      		</h:table>
+						         	    <separator spacing="2px"/>
+						      </h:td>
+					  	      <h:td width="5%"/>
+					    </h:tr>
+				   </h:table>
+	            </h:td>
+	            <h:td width="2%"/>
+	      </h:tr>
+		  <h:tr><h:td width="2%"/>
+		      <h:td><h:table align="center" width="100%" border="0">
+					    <h:tr><h:td width="1%"/>
+							  <h:td align="center"><separator spacing="2px"/>
+							        <groupbox width="98%">
+							     		<caption id="captionId" label="LAPORAN RAWAT INAP"/>
+							   			<h:table width="100%" align="center" border="0">
+									  		  <h:tr><h:td width="1%"/>
+											  		<h:td>
+											  			  <listbox id="rawatInapList" multiple="true" width="1750px" height="350px" mold="paging" pageSize="20">
+																<listhead id="headRawatInap">
+																	<listheader label="NO MR" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA PASIEN" width="12%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JK" width="4%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TGL LAHIR" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="USIA" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TIPE" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="STATUS" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="AGAMA" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="SUKU" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="BAHASA" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="DOKTER UTAMA" width="12%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="BED" width="7%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KELAS" width="7%"  style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="MASUK" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="KELUAR" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="LAMA" width="4%" style="font-weight:bold;font-size:8pt" />
+																	<listheader label="DIAGNOSA" width="6%" style="font-weight:bold;font-size:8pt" /> 
+																</listhead>
+														  </listbox>
+														   
+														  <listbox id="rawatJalanList" multiple="true" width="1750px" height="350px" mold="paging" pageSize="20" visible="false">
+																<listhead id="headRawatJalan">
+																	<listheader label="NO MR" width="7%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="NAMA PASIEN" width="14%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="JK" width="4%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TGL LAHIR" width="7%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="UMUR" width="5%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TIPE" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="STATUS" width="6%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="AGAMA" width="8%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="ETNIS/SUKU" width="8%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="BAHASA" width="8%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="TGL DAFTAR" width="7%" style="font-weight:bold;font-size:8pt"/>
+																	<listheader label="UNIT" width="9%" style="font-weight:bold;font-size:8pt" /> 
+																	<listheader label="DOKTER" width="14%" style="font-weight:bold;font-size:8pt" />
+																	<listheader label="DIAGNOSA" width="9%" style="font-weight:bold;font-size:8pt" />
+																</listhead>
+														  </listbox> 
+													</h:td>
+													<h:td width="1%"/>
+											  </h:tr>
+									  	</h:table>
+											
+										<separator spacing="2px"/>
+									  		
+									  	<h:table align="center" width="100%">
+											<h:tr><h:td width="3%"/>
+												  <h:td><button label="Simpan ke XLS" style="width:100px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.saveToXls(rawatList);download();"/>
+												  </h:td>
+												  <h:td width="40%"/>
+												  <h:td align="right">
+														<h:b></h:b><decimalbox id="nilaiTransaksi" format="#,###.##" width="160px" visible="false"/>
+												  </h:td>
+												  <h:td width="3%">
+														<h:p align="right">
+										    				<button label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="laporanRawatInapJalan.detach()" visible="false"/>
+										    			</h:p>
+										    	  </h:td>
+										    	  <h:td width="3%"/>
+											</h:tr>
+										</h:table>
+							   			<separator spacing="2px"/>
+							   	   </groupbox>
+							  </h:td>
+					  	      <h:td width="1%"/>
+					     </h:tr>
+				   </h:table>
+			  </h:td>
+			  <h:td width="2%"/>
+		</h:tr>
+	</h:table>	
+<separator spacing="15px"/>
+</window>

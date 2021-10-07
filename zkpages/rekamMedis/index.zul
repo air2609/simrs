@@ -1,0 +1,13 @@
+<window title="REKAM MEDIS" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="BERKAS REKAM MEDIS" href="zkpages/rekamMedis/berkasRekamMedis.zul"/>
+				<menuitem label="PERMINTAAN BERKAS REKAM MEDIS" href="zkpages/rekamMedis/daftarPeminjaman.zul"/>
+				<menuitem label="REKAM MEDIS DIAGNOSA" href="zkpages/rekamMedis/diagnosa.zul"/>
+				<menuitem label="PEMINJAMAN BERKAS REKAM MEDIS" href="zkpages/rekamMedis/pinjamRM.zul"/>	
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

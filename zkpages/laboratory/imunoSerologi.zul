@@ -1,0 +1,61 @@
+<window id="serologiItem" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+<zscript>
+	import com.vone.medisafe.laborat.KimiaController;
+	ctr = new KimiaController();
+	void init(){
+		ctr.init(serologiItem, "imunoSerologiLists", "004");
+		ctr.init(serologiItem, "pregnancyTestList", "008");
+	}
+</zscript>
+
+<h:table width="100%" align="center">
+	<h:tr><h:td>
+			  <vbox>
+				  <listbox id="imunoSerologiLists" multiple="true" width="180px" rows="6" checkmark="true">
+					  <listhead>
+					  	<listheader id="serologi" label="SEROLOGI" style="font-weight:bold;font-size:8pt" sort="auto" width="98%"/>
+					  </listhead>
+					  <listitem>
+						<listcell id="LAB44" label="HBSAG SLIDE"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB45" label="HBSAG ELISA"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB46" label="ANTI HBS"/>
+					  </listitem>
+					  <listitem>
+					    <listcell id="LAB47" label="WIDAL"/>
+					  </listitem>
+					  <listitem>
+					    <listcell id="LAB48" label="VDRL"/>
+					  </listitem>
+				  </listbox>
+				  
+				  <separator spacing="1px"/>
+				  
+				  <include src="/zkpages/laboratory/transudat.zul"/>
+				  
+				  <separator spacing="1px"/>
+				  
+				  <include src="/zkpages/laboratory/mikrobiologi.zul"/>
+				  
+				  <separator spacing="1px"/>
+				  
+				  <listbox id="pregnancyTestList" multiple="true" width="180px" rows="3" checkmark="true">
+					  <listhead>
+						<listheader id="testKehamilan" label="TEST KEHAMILAN" sort="auto" style="font-weight:bold;font-size:8pt" width="98%"/>
+					  </listhead>
+					  <listitem>
+						<listcell id="LAB61" label="PLANO TEST"/>
+					  </listitem>
+					  <listitem>
+						<listcell id="LAB62" label="RAPID TEST"/>
+					  </listitem>
+				  </listbox>
+			  </vbox>
+			  <separator spacing="3px"/>
+		  </h:td>
+	</h:tr>
+</h:table>
+</window>

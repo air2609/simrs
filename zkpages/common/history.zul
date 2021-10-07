@@ -1,0 +1,145 @@
+<?page id="history"?>
+<window id="patientHistory" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+
+<zscript>
+	import com.vone.medisafe.ui.common.PatientHistoryController;
+	
+	ctr = new PatientHistoryController();
+	
+	void init(){
+		ctr.init(patientHistory);
+	}
+	
+	void getTreatmentData(){
+		ctr.getTreatmentData();
+	}
+	
+	void getOption(){
+		ctr.getOption();
+	}
+</zscript>
+<style src="../../include/medisafe.css"/>
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td height="20px">
+				<label id="patientMrAndName" value="" style="font-weight:bold;font-size:16px;font-family: Arial;"/><!-- NAMA PASIEN (NO. MR) -->
+		  </h:td>
+	</h:tr>
+</h:table>
+	
+<separator spacing="10px"/>
+<h:table width="100%" align="center">
+	<h:tr><h:td width="3%"/>
+    	  <h:td>	 	
+    			<hbox>
+					  <groupbox width="300px" height="50px">
+				  		<caption label="DATA TRANSAKSI"/>
+				  			<h:table width="100%" align="center">
+				  				<h:tr><h:td height="10px"/></h:tr>
+				  				<h:tr><h:td width="5%"/>
+				  					  <h:td><radiogroup id="rgoption">
+				  					  			<radio label="PER DIVISI" value="divisi" id="divisi" selected="true" style="font-weight:bold;font-size:8pt"/>
+				  					  			<radio label="GLOBAL" value="global" id="global" style="font-weight:bold;font-size:8pt"/>
+				  					  		</radiogroup>	
+				  					  </h:td>
+				  				</h:tr>
+				  			</h:table>
+							<separator spacing="3px"/>
+				     </groupbox>
+	  		    </hbox>
+	  	 </h:td>
+	  	 <h:td width="30%"/>
+    </h:tr>
+</h:table>
+    
+<separator spacing="9px"/>
+    
+    <h:table width="100%" align="left">
+    <h:tr><h:td width="3%"/>	
+   		  <h:td>
+		  		<tabbox id="tboption" width="320px" orient="horizontal" onSelect="getOption();">
+					<tabs>
+						<tab label="LIST PERAWATAN" id="perawatanTab" style="font-weight:bold;font-size:8pt"/>
+						<tab label="LIST NOTA" id="notaTab" style="font-weight:bold;font-size:8pt"/>
+					</tabs>
+					
+						
+					<tabpanels>
+						<tabpanel>
+							<h:table width="100%" align="center">
+						   		<h:tr><h:td>	
+						   				<tree id="treeListPerawatan" rows="15" onSelect="getTreatmentData();">
+						   					<treechildren>
+						   						<treeitem id="pemeriksaan">
+						   							<treerow>
+						   								<treecell id="treatment" label="PEMERIKSAAN" style="font-weight:bold;font-size:8pt"/>
+						   							</treerow>
+						   						</treeitem>
+						   						<treeitem id="bahanMedis">
+						   							<treerow>
+						   								<treecell id="medicine" label="OBAT DAN BAHAN MEDIS" style="font-weight:bold;font-size:8pt"/>
+						   							</treerow>
+						   						</treeitem>
+						   						<treeitem id="rekap">
+						   							<treerow>
+						   								<treecell id="rekapCell" label="REKAP" style="font-weight:bold;font-size:8pt"/>
+						   							</treerow>
+						   						</treeitem>
+						   					</treechildren>
+						   				</tree>					
+									</h:td>
+		  						</h:tr>
+		  					</h:table>	
+	  					</tabpanel>
+						
+						<tabpanel>
+							<h:table width="100%" align="center">
+					   			<h:tr><h:td><tree id="treeListNota" height="272px"/></h:td></h:tr>
+	  						</h:table>	
+	  					</tabpanel>
+					</tabpanels>
+		 		</tabbox>
+		 		<separator spacing="3px"/>
+ 		 </h:td>
+	     <h:td width="3%"/>
+	     <h:td><h:table width="100%">
+		    		<h:tr><h:td height="22px"/></h:tr>
+		    		<h:tr><h:td>
+					    		<vbox>
+						    		<listbox id="historyList" width="550px" height="291px">
+							    		<listhead>
+							    			<listheader label="KETERANGAN" width="45%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							    			<listheader label="SUB DIVISI" width="30%" style="font-weight:bold;font-size:8pt" />
+							    			<listheader label="TANGGAL" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+							    		</listhead>
+							  		</listbox>
+								</vbox>
+		    			   </h:td>
+		    		 </h:tr>
+	    	  </h:table>
+	     </h:td>
+	     <h:td width="3%"/>
+	 </h:tr>
+	 <h:tr><h:td width="3%"/>	
+   		   <h:td/>
+	       <h:td width="3%"/>
+	       <h:td>
+			     <h:table width="100%" align="left">
+					 <h:tr><h:td><h:p align="right">
+						   			<label id="totalLabel" value="TOTAL :" style="font-size:8pt;font-weight:bold"/>
+						   		 </h:p>
+						   </h:td>
+						   <h:td width="3%"><h:font style="font-size:14pt;font-weight:bold;color:WHITE">|</h:font></h:td>
+						   <h:td width="21%">
+						   		<h:p align="right">
+						   			<decimalbox id="grandTotal" width="95%" height="15px" readonly="true" format="#,###.##" style="font-size:8pt;font-weight:bold;background-color:#82FFA8"/>
+						   		 </h:p>	
+						   </h:td>
+					</h:tr>
+				</h:table>
+	 	  </h:td>
+	      <h:td width="3%"/>
+	 </h:tr>
+</h:table>	 
+<separator spacing="22px"/>
+</window>				

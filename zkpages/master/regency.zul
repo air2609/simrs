@@ -1,0 +1,234 @@
+<?page id="regencyPage" title="Form Kabupaten"?>
+
+<window id="regency" width="99%" xmlns:h="http://www.w3.org/1999/xhtml" onCreate="init();" sclass="Float">
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+import com.vone.medisafe.ui.master.RegencyController;
+	ctr = new RegencyController();
+	void init(){
+		id.focus();
+		ctr.init(regency);
+	}
+	void doSave(){
+		ctr.doSave(regency);
+	}
+	void doModify(){
+		ctr.doModify(regency);
+	}
+	void doDelete(){
+		ctr.doDelete(regency);
+	}
+	void doCancel(){
+	 	ctr.doCancel(regency);
+	}
+	void doSearch(){
+		ctr.doSearch(regency);
+	}
+	void getData(){
+		ctr.getRegencyData(regency);
+	}
+</zscript>
+
+<tabbox width="100%">
+	<tabs>
+		<tab id="tab1" label="FORM KABUPATEN"/>
+		<tab id="tab2" label="PENCARIAN DATA KABUPATEN"/>
+	</tabs>
+
+<tabpanels>
+
+	<tabpanel>
+	
+		<h:table align="center" width="100%" sclass="BasicBlueTitle">
+			<h:tr><h:td>FORM KABUPATEN</h:td></h:tr>
+		</h:table>
+		
+		<separator spacing="7px"/>
+		
+		<h:table width="100%" align="center">
+			<h:tr><h:td width="20%"/>
+				  <h:td>	
+					  <h:table width="100%" align="center">
+				    	<h:tr><h:td width="12%"/>
+				    		  <h:td>
+								<h:table width="100%" align="center">
+									<h:tr><h:td width="10%" align="right"><h:b><h:font size="1">KODE</h:font></h:b> </h:td>
+									      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				              			  <h:td width="25%"><textbox id="id" width="80%" height="15px" style="font-size:8pt"/></h:td>
+				       				</h:tr>
+				       				
+				        			<h:tr><h:td width="10%" align="right"> <h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+							  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+				             			  <h:td width="25%"><textbox id="name" width="80%" height="15px" style="font-size:8pt"/></h:td>
+				        			</h:tr>
+				    			</h:table>
+				  			</h:td>
+				  			<h:td width="14%"/>
+				  	   </h:tr>
+				  	 </h:table>
+			  	 </h:td>
+				 <h:td width="20%"/>
+			</h:tr>		
+			<h:tr><h:td width="20%"/> 
+				  <h:td>
+					  	<h:table width="100%" align="center">
+					    	<h:tr><h:td width="34%"/>
+					    		  <h:td><separator spacing="4px"/> 
+					  					<h:table width="100%" align="center">
+						    				<h:tr><h:td width="10%"/>
+						    					  <h:td align="right">
+						    					  			<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doSave()"/>
+						    					  		
+						    					  </h:td>
+						    					  <h:td width="5%" align="left">
+						    					  		 
+						    		  		 	   			<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doModify()"/>
+						    		  		 	   		
+						    		  		 	  </h:td>
+						    		  			  <h:td width="5%" align="left">
+						    		  			  		 
+						    					   			<button id="btnCancel" label="BATAL" image="/image/batal.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doCancel()"/>
+						    					   		
+						    					  </h:td>
+						    					  <h:td width="5%" align="left">
+						    					  		 
+						    					   			<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="doDelete()"/>
+						    					   		
+						    					  </h:td>
+						    					  <h:td width="10%"/>
+						    				</h:tr>
+					    				</h:table>
+					    		</h:td>
+					  			<h:td width="34%"/>
+					  	   </h:tr>
+				  	   </h:table>
+			     </h:td>
+			     <h:td width="20%"/>
+			</h:tr>		
+			<h:tr><h:td width="20%"/> 
+				  <h:td><separator spacing="4px"/>     
+					    <h:table width="100%" align="center">
+					    	  <h:tr><h:td width="30%"/>
+							    	<h:td>	 	
+							    		  <groupbox width="500px">
+										  	<caption label="DATA KABUPATEN"/>
+										  		<h:table width="100%" align="center">
+											  		  <h:tr><h:td height="10px"/></h:tr>
+											  		  <h:tr><h:td width="13%"/>
+													  		<h:td>
+														  		<vbox>
+																	<listbox id="regencyList" multiple="true" width="460px" height="279px" mold="paging" pageSize="19">
+																		<listhead>
+																			<listheader label="KODE" sort="auto" width="15%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA" sort="auto" width="50%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																
+																		<listitem value="${each.VVillageId}" forEach="${allProvince}">
+													      					<listcell label="${each.VVillageId}"/>
+													      					<listcell label="${each.VVillageName}"/>
+													    				</listitem>
+																	</listbox>
+																</vbox>
+															</h:td>
+															<h:td width="13%"/>
+												  	  </h:tr>
+										  		</h:table>
+												
+												<separator spacing="3px"/>
+										  		
+										   </groupbox>
+								  </h:td>
+								  <h:td width="30%"/>
+						    </h:tr>
+					    </h:table>
+			  	  </h:td> 
+				  <h:td width="20%"/>
+			</h:tr>
+		</h:table> 
+		<separator spacing="8px"/>
+	</tabpanel>
+
+	<tabpanel>
+	
+		<h:table align="center" width="100%" sclass="BasicBlueTitle">
+			<h:tr><h:td>FORM PENCARIAN KABUPATEN</h:td></h:tr>
+		</h:table>
+		
+		<separator spacing="10px"/>
+		<h:table width="100%" align="center">
+			<h:tr><h:td width="20%"/>
+				  <h:td>	
+						<h:table width="100%" align="center">
+					    	<h:tr><h:td width="8%"/>
+					    		  <h:td>
+										<h:table width="100%" align="center">
+					    					  <h:tr><h:td width="10%" align="right"> <h:b><h:font size="1">KODE</h:font></h:b></h:td>
+								  					<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					              					<h:td width="25%"><textbox id="crKodeKabupaten" width="94%" height="14px" style="font-size:8pt"/></h:td>
+					        				  </h:tr>
+					        				  
+					       					  <h:tr><h:td width="10%" align="right"> <h:b><h:font size="1">NAMA</h:font></h:b></h:td>
+								  					<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					              					<h:td width="25%"><textbox id="crNamaKabupaten" width="94%" height="14px" style="font-size:8pt"/></h:td>
+						              				<h:td width="8%" align="center"> <button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="doSearch();"/></h:td>
+						              				<h:td width="3%"/>
+					        				  </h:tr>
+					    				</h:table>
+					  			  </h:td>
+					  			  <h:td width="10%"/>
+					  	    </h:tr>
+					  	</h:table>
+			  	 </h:td>
+				 <h:td width="20%"/>
+			</h:tr>
+			<h:tr><h:td width="20%"/>
+				  <h:td><separator spacing="5px"/>	
+			  	 	    <h:table width="100%" align="center">
+					    	  <h:tr><h:td width="30%"/>
+							    	<h:td>	 	
+							    		  <groupbox width="500px">
+										  	<caption label="DATA KABUPATEN"/>
+										  		<h:table width="100%" align="center">
+											  		  <h:tr><h:td height="10px"/></h:tr>
+											  		  <h:tr><h:td width="13%"/>
+													  		<h:td>
+														  		<vbox>
+																	<listbox id="searchRegencyList" width="460px" height="279px" mold="paging" pageSize="19">
+																		<listhead>
+																			<listheader label="KODE" sort="auto" width="15%" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NAMA" sort="auto" width="50%" style="font-weight:bold;font-size:8pt"/>
+																		</listhead>
+																	</listbox>
+																</vbox>
+															</h:td>
+															<h:td width="13%"/>
+													  </h:tr>
+										  		</h:table>
+										  		<separator spacing="3px"/>
+												<h:table width="100%" align="center">
+												    <h:tr><h:td width="3%"/>
+												   		  <h:td align="left">
+												  		  	 	 
+												  		   	 		<button label="PILIH" image="/image/check.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="getData();"/>
+												  		   	 	
+												  		  </h:td>
+									    		 		 <h:td width="4%"/>
+													</h:tr>
+												 </h:table>
+												<separator spacing="3px"/>
+										   </groupbox>
+								  		<separator spacing="5px"/>
+								  </h:td>
+								  <h:td width="30%"/>
+						    </h:tr>
+					    </h:table>
+				 </h:td>
+				 <h:td width="20%"/>
+			</h:tr>
+		</h:table> 
+		<separator spacing="3px"/>
+	</tabpanel>
+</tabpanels>
+</tabbox>
+</window>

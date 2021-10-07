@@ -1,0 +1,11 @@
+<window title="Menu UGD" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="Transaksi UGD" href="/zkpages/emergency/emergency.zul"/>
+				<menuitem label="Pemesanan Item" href="zkpages/common/mintaItem.zul"/>
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--this account_no is concatenation division+account_no -->
+
+<ghost_acct_config>
+
+    <subsystem name="INVENTORY">
+        <account id="SC021" name="INVENTORYMAIN" division="1" inv_acct_no="2-14-123" inv_cogs_no="" inv_sel_no=""/>
+        <account id="SC021" name="INVENTORYMAIN" division="2" inv_acct_no="2-14-123" inv_cogs_no="" inv_sel_no=""/>
+        <account id="SC022" name="INVENTORYOP" division="1" inv_acct_no="2-14-123" inv_cogs_no="" inv_sel_no=""/>
+        <account id="SC023" name="INVENTORYSTORE" division="1" inv_acct_no="2-14-123" inv_cogs_no="" inv_sel_no=""/>
+    </subsystem>
+
+</ghost_acct_config>

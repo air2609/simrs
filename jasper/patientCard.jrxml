@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Unnamed" pageWidth="255" pageHeight="369" columnWidth="227" leftMargin="14" rightMargin="14" topMargin="17" bottomMargin="17">
+	<property name="com.jasperassistant.designer.DataSource" value="reportDB"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.Margins" value="true"/>
+	<property name="com.jasperassistant.designer.Rulers" value="true"/>
+	<property name="com.jasperassistant.designer.SnapToGuides" value="true"/>
+	<property name="com.jasperassistant.designer.Units" value="Centimeters"/>
+	<queryString>
+		<![CDATA[select mr.v_mr_code, pat.v_patient_name, pat.v_patient_main_addr, pat.d_patient_dob
+from ms_patient pat, tb_medical_record mr
+where mr.n_patient_id=pat.n_patient_id and pat.n_patient_id='27';]]>
+	</queryString>
+	<field name="d_patient_dob" class="java.util.Date"/>
+	<field name="v_mr_code" class="java.lang.String"/>
+	<field name="v_patient_main_addr" class="java.lang.String"/>
+	<field name="v_patient_name" class="java.lang.String"/>
+	<detail>
+		<band height="331">
+			<rectangle>
+				<reportElement x="1" y="166" width="224" height="156"/>
+				<graphicElement/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="42" width="224" height="113"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="1" y="8" width="224" height="29" isPrintInFirstWholeBand="true"/>
+				<box border="1Point" padding="0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kartu Pengenal Pasien
+RS. Oen Surakarta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="10" y="195" width="209" height="122" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. Bawalah kartu ini setiap berobat
+    di RS Pertamina Plaju.
+2. Kelalaian Anda tidak membawa kartu ini
+    atau menghilangkan kartu ini, akan
+    merugikan Anda sendiri, sebab catatan
+    tentang pengobatan sebelumnya sulit
+    untuk didapat oleh Dokter yang
+    mengobati.
+3. Tlp. UGD
+    Tlp. TPRRJ 7446]]></text>
+			</staticText>
+			<staticText>
+				<reportElement isPrintRepeatedValues="false" x="1" y="173" width="224" height="15" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERHATIAN]]></text>
+			</staticText>
+			<elementGroup>
+				<elementGroup>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="1" y="111" width="57" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Right">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Alamat]]></text>
+					</staticText>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="1" y="96" width="57" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Right">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Tgl Lahir]]></text>
+					</staticText>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="58" y="111" width="19" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Center">
+							<font size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="57" y="80" width="19" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Center">
+							<font size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="2" y="58" width="221" height="17"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="11" isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.lang.String"><![CDATA[$F{v_patient_name}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="77" y="111" width="148" height="14"/>
+						<textElement>
+							<font fontName="Arial" isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.lang.String"><![CDATA[$F{v_patient_main_addr}]]></textFieldExpression>
+					</textField>
+					<textField pattern="d/M/yy">
+						<reportElement x="77" y="97" width="148" height="14"/>
+						<textElement>
+							<font fontName="Arial" isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.util.Date"><![CDATA[$F{d_patient_dob}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="76" y="79" width="148" height="14"/>
+						<textElement textAlignment="Left">
+							<font fontName="Arial" size="11" isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.lang.String"><![CDATA[$F{v_mr_code}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="1" y="80" width="57" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Right">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[No. MR]]></text>
+					</staticText>
+					<staticText>
+						<reportElement isPrintRepeatedValues="false" x="58" y="96" width="19" height="15" isPrintInFirstWholeBand="true"/>
+						<textElement textAlignment="Center">
+							<font size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[:]]></text>
+					</staticText>
+				</elementGroup>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>

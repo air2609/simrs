@@ -1,0 +1,11 @@
+<window title="RENAL UNIT" xmlns:h="http://www.w3.org/1999/xhtml" width="100%">
+	<menubar id="menubar">
+		<menu label="File">
+			<menupopup>
+				<menuitem label="TRANSAKSI RENAL UNIT" href="zkpages/renalUnit/renalUnit.zul"/>
+				<menuitem label="PEMESANAN ITEM" href="zkpages/common/mintaItem.zul"/>
+			</menupopup>
+		</menu>
+	</menubar>
+</window>
+				

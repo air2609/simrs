@@ -1,0 +1,176 @@
+<window id="itemRequest" xmlns:h="http://www.w3.org/1999/xhtml" width="100%" onCreate="init();">
+
+<style src="../../include/medisafe.css"/>
+
+<zscript>
+	import com.vone.medisafe.warehouse.ItemRequestController;
+	
+	ctr = new ItemRequestController();
+
+	void init(){
+		ctr.init(itemRequest);
+	}
+	void kirimClick(){
+		ctr.kirimClick();
+	}
+	void tambahClick(){
+		ctr.tambahClick();
+	}
+	
+</zscript>
+
+
+<h:table align="center" width="100%" sclass="BasicBlueTitle">
+	<h:tr><h:td>FORM PERMINTAAN OBAT DAN BAHAN MEDIS</h:td></h:tr>
+</h:table>
+	
+<separator spacing="4px"/>
+	
+<h:table width="100%" align="center">
+	<h:tr><h:td width="20%"/>
+		  <h:td>	
+				<h:table width="100%" align="center">
+			    	<h:tr><h:td width="10%"/>
+			    		  <h:td>
+								<h:table width="100%" align="center">
+			    					<h:tr><h:td>
+												<h:table width="100%" align="center">
+													<h:tr><h:td width="16%" align="right"><h:b><h:font size="1">LOKASI TRANSAKSI</h:font></h:b></h:td>
+										   				  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					              			  			  <h:td width="25%">
+					              			  			  		<listbox id="locationList" mold="select" width="75%" height="20px" style="font-size : 9pt">
+					              			  			  			<listitem value = "POLI UMUM" label="1. POLI UMUM"/>
+					              			  			  			<listitem value = "POLI ANAK" label="2. POLI ANAK"/>
+					              			  			  		</listbox>
+					              			  			  </h:td>
+					       							</h:tr>
+													<h:tr><h:td width="16%" align="right"><h:b><h:font size="1">NAMA GUDANG TUJUAN</h:font></h:b></h:td>
+										   				  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+					              			  			  <h:td width="25%">
+					              			  			  		<listbox id="warehouseList" mold="select" width="75%" height="20px" style="font-size : 9pt" onSelect="itemList.getItems().clear();">
+					              			  			  			<listitem value = "GDG MEDIC" label="1. GUDANG MEDIC"/>
+					              			  			  		</listbox>
+					              			  			  </h:td>
+					       							</h:tr>
+					       							<h:tr><h:td width="16%" align="right"><h:b><h:font size="1">&amp;nbsp;NO. PERMINTAAN</h:font></h:b></h:td>
+														  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										              	  <h:td width="25%"><textbox id="requestCode" width="73%" height="14px" readonly="true" style="font-size:8pt"/></h:td>
+										       		</h:tr>
+												</h:table>
+				  						  </h:td>
+				  						  <h:td width="7%"/>
+			  						</h:tr>
+			  	 				</h:table>
+			  			  </h:td>
+			  			  <h:td width="10%"/>
+			  	    </h:tr>
+			  	</h:table>
+	  	 </h:td>
+		 <h:td width="20%"/>
+	</h:tr>		
+	<h:tr><h:td width="20%"/> 
+		  <h:td><h:table width="100%" align="center">
+			    	  <h:tr><h:td width="35%"/>
+					    	<h:td>
+								  <groupbox width="720px">
+								  	<caption label="DATA OBAT-BAHAN MEDIS"/>
+								  		<h:table width="100%" align="center">
+									  		  <h:tr><h:td height="5px"/></h:tr>
+									  		  <h:tr><h:td width="13%"/>
+											  		<h:td>
+													  	  <h:table width="100%" align="center">
+																<h:tr><h:td width="22%" align="right"><h:b><h:font size="1">&amp;nbsp;KODE</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										              				  <h:td width="22%"><textbox id="itemCode" width="93%" height="14px" style="font-size:8pt"/></h:td>
+										       					</h:tr>
+										       					<h:tr><h:td width="18%" align="right"><h:b><h:font size="1">&amp;nbsp;NAMA</h:font></h:b></h:td>
+													  				  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										             		 		  <h:td width="22%"><textbox id="itemName" width="93%" height="14px" style="font-size:8pt"/></h:td>
+										             		  	</h:tr>
+										        				<h:tr><h:td width="22%" align="right"><h:b><h:font size="1">&amp;nbsp;JUMLAH</h:font></h:b></h:td>
+																	  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+										              				  <h:td width="22%"><intbox id="qty" width="40%" height="14px" style="font-size:8pt"/></h:td>
+										              				  <h:td width="14%" align="left">
+										             		  		  		 
+										             		  		  			<button id="btnTambah" label="TAMBAH" image="/image/add.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="tambahClick();"/>
+										             		  		  		
+										             		  		  </h:td>
+										       					</h:tr>
+										        		   </h:table>
+											  		
+													  	   <vbox>
+														  		<separator spacing ="2px"/>
+																<listbox id = "itemList" multiple="true" width="680px" height="203px" checkmark="true">
+																	<listhead>
+																		<listheader label="KODE" width="15%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																		<listheader label="NAMA" width="43%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																		<listheader label="JML STOK" width="12%" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="SATUAN" width="20%" style="font-weight:bold;font-size:8pt"/>
+																		<listheader label="JUMLAH" width="12%" style="font-weight:bold;font-size:8pt"/>
+																	</listhead>
+															
+																	<listitem onClick="test1();">
+																		<listcell label="AX0012"/>
+																		<listcell label="PANADOL MERAH"/>
+																		<listcell label="10"/>
+																		<listcell label="STRIP"/>
+																		<listcell><intbox id="id1" width="91%"/></listcell>
+																	</listitem>
+																	
+																	<listitem  onClick="test2();">
+																		<listcell label="CX0023"/>
+																		<listcell label="PANADOL"/>
+																		<listcell label="4"/>
+																		<listcell label="STRIP"/>
+																		<listcell><intbox id="id2" width="91%"/></listcell>
+																	</listitem>
+																</listbox>
+														   </vbox>
+													</h:td>
+													<h:td width="13%"/>
+											  </h:tr>
+								  		</h:table>
+										
+										<separator spacing="2px"/>
+								  		<h:table align="center" width="100%">
+											<h:tr><h:td width="5%"/>
+												  <h:td width="5%" align="right">
+														 
+										    				<button id="btnKirim" label="KIRIM" image="/image/sent.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="kirimClick();"/>
+										    			
+										    	  </h:td><h:td width="5%" align="right">
+														 
+										    				<button id="btnBaru" label="BARU" image="/image/new.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.clear();"/>
+										    			
+										    	  </h:td>
+												  <h:td>
+														<!-- align="center">
+										 					<image id="first" src="/image/moveFirst_dis.gif" width="14px" height="15px"/>
+										   					<image id="imgspace1" src="/image/space.gif" width="20px"/>
+										  					<image id="prev" src="/image/movePrev_dis.gif" width="9px" height="15px"/>
+										  					<image id="imgspace3" src="/image/space.gif" width="20px"/>
+										  					<image id="next" src="/image/moveNext_dis.gif" width="9px" height="15px"/>
+										  					<image id="imgspace2" src="/image/space.gif" width="20px"/>
+										  					<image id="last" src="/image/moveLast_dis.gif" width="14px" height="15px"/>
+										 				
+												  --></h:td>
+												  <h:td width="5%" align="right">
+														 
+										    				<button label="SELESAI" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" href="index.zul"/>
+										    			
+										    	  </h:td>
+										    	  <h:td width="5%"/>
+											</h:tr>
+										</h:table>
+										<separator spacing="4px"/>
+								   </groupbox>
+						  </h:td>
+						  <h:td width="35%"/>
+				    </h:tr>
+			    </h:table>
+	      </h:td>
+		  <h:td width="20%"/>
+	</h:tr>
+</h:table> 
+<separator spacing="2px"/>
+</window>

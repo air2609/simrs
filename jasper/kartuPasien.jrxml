@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Unnamed" pageWidth="1000" pageHeight="880" language="java" orientation="Landscape" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30">
+	<property name="com.jasperassistant.designer.Grid" value="false"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.DataSource" value="ReportDB"/>
+	<parameter name="parMr" class="java.lang.String">
+		<defaultValueExpression><![CDATA["00-00-00"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parNama" class="java.lang.String">
+		<defaultValueExpression><![CDATA["NAMA PASIEN"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parAlamat" class="java.lang.String">
+		<defaultValueExpression><![CDATA["ALAMAT PASIEN"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parKota" class="java.lang.String">
+		<defaultValueExpression><![CDATA["KOTA"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from ms_patient limit 1]]>
+	</queryString>
+	<field name="d_patient_dob" class="java.util.Date"/>
+	<field name="d_whn_change" class="java.sql.Timestamp"/>
+	<field name="d_whn_create" class="java.sql.Timestamp"/>
+	<field name="n_patient_id" class="java.lang.Integer"/>
+	<field name="n_patient_type_id" class="java.lang.Long"/>
+	<field name="n_province_id" class="java.lang.Long"/>
+	<field name="n_regency_id" class="java.lang.Long"/>
+	<field name="n_subdistrict_id" class="java.lang.Long"/>
+	<field name="n_village_id" class="java.lang.Long"/>
+	<field name="v_patient_age" class="java.lang.Short"/>
+	<field name="v_patient_alt_addr" class="java.lang.String"/>
+	<field name="v_patient_alt_ph_no" class="java.lang.String"/>
+	<field name="v_patient_alt_rt_rw" class="java.lang.String"/>
+	<field name="v_patient_edu" class="java.lang.String"/>
+	<field name="v_patient_gender" class="java.lang.String"/>
+	<field name="v_patient_job_type" class="java.lang.String"/>
+	<field name="v_patient_main_addr" class="java.lang.String"/>
+	<field name="v_patient_main_ph_no" class="java.lang.String"/>
+	<field name="v_patient_main_rt_rw" class="java.lang.String"/>
+	<field name="v_patient_marital_status" class="java.lang.String"/>
+	<field name="v_patient_name" class="java.lang.String"/>
+	<field name="v_patient_nationality" class="java.lang.String"/>
+	<field name="v_patient_priority" class="java.lang.String"/>
+	<field name="v_patient_religion" class="java.lang.String"/>
+	<field name="v_who_change" class="java.lang.String"/>
+	<field name="v_who_create" class="java.lang.String"/>
+	<variable name="Variable_1" class="java.lang.String"/>
+	<detail>
+		<band height="807" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="529" width="930" height="93"/>
+				<textElement>
+					<font size="70" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{parMr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="622" width="930" height="89"/>
+				<textElement>
+					<font size="70" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{parNama}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

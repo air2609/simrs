@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page id="dojo" title="MEDiSave Hospital Management System"?>
+
+<zk>
+
+	<window xmlns:h="http://www.w3.org/1999/xhtml" id="dojowin" onCreate="init();">
+	<zscript>
+		import com.vone.test.Test;
+		ctr = new Test();
+	 	void init(){
+	 		ctr.initTest(dojowin);
+	 	}
+	
+	</zscript>
+		<style src="../include/medisafe.css"/>
+
+		<h:table align="center" width="100%" sclass="BasicBlue">
+			<h:tr><h:td width="10%"></h:td>
+				  <h:td><h:center><h:b>TOOLS</h:b></h:center>
+	    		  </h:td>
+	    		  <h:td width="10%"><h:p align="left"></h:p>
+	    		  </h:td>
+			</h:tr>
+		</h:table>
+					
+		<div align="center" id="divbody" height="30px" width="100%" style="border:0px solid black;"> 
+		<fisheyelist id="fi" style="margin:20px; " attachEdge="bottom" itemHeight="30" itemWidth="30">
+			<!-- 
+			<fisheyeitem image="/image/dojo/icon_browser.png" label="Web Browser" onClick="alert(self.label)"/>
+			<fisheyeitem image="/image/dojo/icon_calendar.png" label="Calendar" onClick="alert(self.label)"/>
+			<fisheyeitem image="/image/dojo/icon_email.png" label="Email" onClick="alert(self.label)"/>
+			<fisheyeitem image="/image/dojo/icon_texteditor.png" label="Text Editor" onClick="alert(self.label)"/>
+			<fisheyeitem image="/image/dojo/icon_update.png" label="Software Update" onClick="alert(self.label)"/>
+			<fisheyeitem image="/image/dojo/icon_users.png" label="Change Password" onClick="/zkpages/admin/user/changePassword.zul;"/>
+			<fisheyeitem image="/image/dojo/icon_logout.png" label="Log Out" onClick="doLogout()"/>		-->				
+		</fisheyelist>
+		</div>
+	</window>
+	
+</zk>	
