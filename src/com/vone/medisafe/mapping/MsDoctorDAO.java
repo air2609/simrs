@@ -264,7 +264,8 @@ public class MsDoctorDAO extends HibernateDaoSupport {
 				    " where " +
 	
 				    	" dr.n_staff_id=staff.n_staff_id " +
-				    	" and dr.n_msgroup_id=:grup";
+				    	" and dr.n_msgroup_id=:grup" +
+				    	" and staff.d_staff_fired_date is null";
     	
     		SQLQuery query = getCurrentSession().createSQLQuery(sql);
 			
@@ -339,6 +340,7 @@ public class MsDoctorDAO extends HibernateDaoSupport {
 		sql.append(" and staff.v_staff_code like :staffCode ");
 		sql.append(" and staff.v_staff_name like :staffName");
 		sql.append(" and dr.n_msgroup_id=:grup ");
+		sql.append(" and staff.d_staff_fired_date is null ");
 		
 		
 		try {
