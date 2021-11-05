@@ -218,7 +218,7 @@ public class MsTreatmentDAO extends HibernateDaoSupport {
     	
     	sql.append(" where ");
     	sql.append(" tfee.n_treatment_id=treat.n_treatment_id ");
-//    	sql.append(" and treat.n_unit_id=:unitId ");
+   		sql.append(" and tfee.n_trtfee_fee > 0 ");
     	sql.append(" and treat.v_treatment_code like :tcode ");
     	sql.append(" and treat.v_treatment_name like :tname ");
     	sql.append(" and tfee.n_tclass_id=tclass.n_tclass_id ");

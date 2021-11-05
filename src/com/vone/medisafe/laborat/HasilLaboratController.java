@@ -225,7 +225,7 @@ public class HasilLaboratController extends BaseController {
 		
 		//rincian
 		anak.getChildren().clear();
-		takeTime.setValue(PrintClient.getDate(new Date(), "hh:mm"));
+		takeTime.setValue(PrintClient.getDate(new Date(), "HH:mm"));
 		labResultNumber.setDisabled(false);
 
 	}

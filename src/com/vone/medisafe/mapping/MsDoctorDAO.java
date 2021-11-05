@@ -297,7 +297,8 @@ public class MsDoctorDAO extends HibernateDaoSupport {
 						" dr.n_staff_id=staff.n_staff_id " +
 						" and staff.n_staff_id=siu.n_staff_id " +
 						" and siu.n_unit_id=:id " +
-						" and dr.n_msgroup_id=:grup";
+						" and dr.n_msgroup_id=:grup "+
+						" and staff.d_staff_fired_date is null";
 					
 		
 		SQLQuery q = getCurrentSession().createSQLQuery(sql);

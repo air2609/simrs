@@ -1,11 +1,15 @@
 package com.vone.medisafe.accounting;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import org.zkoss.zhtml.Messagebox;
+import com.vone.medisafe.common.exception.VONEAppException;
+import com.vone.medisafe.mapping.pojo.TbGl;
+import com.vone.medisafe.service.Service;
+import com.vone.medisafe.service.iface.acct.JournalManager;
+import com.vone.medisafe.ui.base.BaseController;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -14,12 +18,6 @@ import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
-
-import com.vone.medisafe.common.exception.VONEAppException;
-import com.vone.medisafe.mapping.pojo.TbGl;
-import com.vone.medisafe.service.Service;
-import com.vone.medisafe.service.iface.acct.JournalManager;
-import com.vone.medisafe.ui.base.BaseController;
 
 public class RekapGlController extends BaseController{
 	JournalManager journalManager = Service.getJournalManager();

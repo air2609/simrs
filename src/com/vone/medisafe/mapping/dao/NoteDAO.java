@@ -1267,6 +1267,7 @@ public class NoteDAO extends HibernateDaoSupport{
 		query.append("from report.get_doctor_report(:dari , :sampai) ");
 		query.append("where ");
 		query.append("n_staff_id=:staff ");
+		query.append("and jasa_dokter > 0 ");
 		
 		if(!patientType.equalsIgnoreCase("ALL"))
 			query.append("and tipe_pasien=:tipe ");

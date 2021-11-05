@@ -254,6 +254,7 @@ public class PolyclinicController extends BaseController{
 		total.setValue(null);
 		String ranap = "NO";
 		session.setAttribute("location", locationList);
+		session.setAttribute("registration", this.reg);
 		if(referencePatient.isChecked()){
 			session.setAttribute("isRanap", ranap);
 			session.setAttribute("listbox", polyclinicList);

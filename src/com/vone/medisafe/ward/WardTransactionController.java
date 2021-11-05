@@ -233,6 +233,7 @@ public class WardTransactionController extends BaseController{
 		session.setAttribute("isRanap", ranap);
 		session.setAttribute("listbox", wardList);
 		session.setAttribute("kelasTarif", ranapKelas);
+		session.setAttribute("registration", this.reg);
 		
 		if(this.patientName.getText().trim().equals("")){
 			Messagebox.show(MessagesService.getKey("ranap.patinet.not.fill"));

@@ -800,6 +800,7 @@ public class RadiologyController extends BaseController{
 		String ranap = "NO";
 		session.setAttribute("location", locationList);
 		session.setAttribute("listbox", radiologyList);
+		session.setAttribute("registration", this.reg);
 		if(referencePatient.isChecked()){
 			session.setAttribute("isRanap", ranap);
 			isRanap = false;

@@ -5,6 +5,22 @@ package com.vone.medisafe.ui.common;
 import java.math.BigDecimal;
 import java.util.Iterator;
 
+import com.vone.medisafe.common.exception.VONEAppException;
+import com.vone.medisafe.common.services.MessagesService;
+import com.vone.medisafe.common.util.DiscontListener;
+import com.vone.medisafe.common.util.MedisafeConstants;
+import com.vone.medisafe.common.util.ZulConstraint;
+import com.vone.medisafe.general.authorization.UserInfoBean;
+import com.vone.medisafe.mapping.MsStaff;
+import com.vone.medisafe.mapping.MsTreatmentFee;
+import com.vone.medisafe.mapping.MsUnit;
+import com.vone.medisafe.mapping.TbRegistration;
+import com.vone.medisafe.misc.MiscTrxController;
+import com.vone.medisafe.service.MasterServiceLocator;
+import com.vone.medisafe.service.TreatmentService;
+import com.vone.medisafe.service.iface.master.StaffManager;
+import com.vone.medisafe.ui.base.BaseController;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zul.Bandbox;
@@ -16,23 +32,6 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
-
-import com.vone.medisafe.common.exception.VONEAppException;
-import com.vone.medisafe.common.services.MessagesService;
-import com.vone.medisafe.common.util.DiscontListener;
-import com.vone.medisafe.common.util.MedisafeConstants;
-import com.vone.medisafe.common.util.ZulConstraint;
-import com.vone.medisafe.general.authorization.UserInfoBean;
-import com.vone.medisafe.mapping.MsStaff;
-import com.vone.medisafe.mapping.MsTreatmentFee;
-import com.vone.medisafe.mapping.MsUnit;
-import com.vone.medisafe.misc.MiscTrxController;
-import com.vone.medisafe.service.MasterServiceLocator;
-import com.vone.medisafe.service.TreatmentService;
-import com.vone.medisafe.service.iface.master.treatment.TreatmentManager;
-import com.vone.medisafe.ui.base.BaseController;
-import com.vone.medisafe.ui.master.DoctorController;
-import com.vone.medisafe.ui.polyclinic.EditListener;
 
 public class CommonTreatmentController extends BaseController{
 	
@@ -113,6 +112,12 @@ public class CommonTreatmentController extends BaseController{
 		
 				
 		unit = (MsUnit) location.getSelectedItem().getValue();
+		TbRegistration reg = (TbRegistration)session.getAttribute("registration");
+		
+		StaffManager staffManager = MasterServiceLocator.getStaffManager();
+		MsStaff staff = staffManager.getByStaffId(reg.getMsStaff().getNStaffId());
+		examinerDoctor.setValue(staff.getVStaffName());
+		examinerDoctor.setAttribute("doctor", staff);
 
 		if (session.getAttribute("isRanap").equals("YES")) {
 			// ambil kelas tarif ranap

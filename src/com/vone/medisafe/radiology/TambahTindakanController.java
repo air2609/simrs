@@ -29,9 +29,12 @@ import com.vone.medisafe.mapping.MsStaffInUnit;
 import com.vone.medisafe.mapping.MsTreatmentFee;
 import com.vone.medisafe.mapping.MsUnit;
 import com.vone.medisafe.mapping.MsUser;
+import com.vone.medisafe.mapping.TbRegistration;
 import com.vone.medisafe.misc.MiscTrxController;
+import com.vone.medisafe.service.MasterServiceLocator;
 import com.vone.medisafe.service.Service;
 import com.vone.medisafe.service.TreatmentService;
+import com.vone.medisafe.service.iface.master.StaffManager;
 import com.vone.medisafe.ui.base.BaseController;
 
 public class TambahTindakanController extends BaseController{
@@ -133,6 +136,11 @@ public class TambahTindakanController extends BaseController{
 		
 		uib = (UserInfoBean) session.getAttribute(Constant.USER_INFO);
 		user = uib.getMsUser();
+		TbRegistration reg = (TbRegistration)session.getAttribute("registration");
+		StaffManager staffManager = MasterServiceLocator.getStaffManager();
+		MsStaff staff = staffManager.getByStaffId(reg.getMsStaff().getNStaffId());
+		examinerDoctor.setValue(staff.getVStaffName());
+		examinerDoctor.setAttribute("doctor", staff);
 		
 		Object[] obj;
 		//obj = user.getMsStaff().getMsStaffInUnits().toArray();

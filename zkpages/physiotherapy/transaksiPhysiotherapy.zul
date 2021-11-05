@@ -194,10 +194,16 @@
 														  <h:td width="2%"/>
 													</h:tr>
 													<h:tr><h:td width="2%"/>
+													      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"> <datebox id="crTgl" width="88%" height="14px" style="font-size:8pt"/></h:td>
+														  <h:td width="2%"/>
+													</h:tr>
+													<h:tr><h:td width="2%"/>
 													      <h:td width="25%" align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:td>
 														  <h:td width="4%" align="center">:</h:td>
 														  <h:td width="30%" align="left"><textbox id="crNoAlamat" style="font-size:8pt" width="90%" height="14px"/></h:td>
-														  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatient(crNoMR,crNama,crNoAlamat,MRNumberList);"/></h:td>
+														  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatient(crNoMR,crNama,crTgl,crNoAlamat,MRNumberList);"/></h:td>
 														  <h:td width="2%"/>
 													</h:tr>
 												</h:table>
@@ -207,6 +213,7 @@
 													<listhead>
 														<listheader label="NO. MR" width="18%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 														<listheader label="NAMA" width="30%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
+														<listheader label="TGL. LAHIR" width="15%" style="font-weight:bold;font-size:8pt" sort="auto"/>
 														<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
 													</listhead>
 											
@@ -467,7 +474,7 @@
 										 
 		     						  </h:td>
 		     						  <h:td width="10%" align="left">	
-							   					<button id="btnMiscAdd" label="BIAYA LAIN-LAIN" image="/image/icons/kasir.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt">
+							   					<button id="btnMiscAdd" label="BIAYA LAIN-LAIN" image="/image/icons/kasir.gif" style="width:135px;height:26px;font-weight:bold;font-size:7pt">
 								   					<attribute name="onClick">
 						     							{
 						     								checkRegistration();
