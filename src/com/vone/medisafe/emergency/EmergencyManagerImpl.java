@@ -85,7 +85,8 @@ public class EmergencyManagerImpl implements EmergencyManager{
 			String code = MedisafeUtil.convertToMrCode(controller.MRNumber.getText());
 			controller.MRNumber.setValue(code);
 			
-			controller.mr = mrDao.getPatientMedicalRecord(code);
+//			controller.mr = mrDao.getPatientMedicalRecord(code);
+			controller.mr = mrDao.getMrRegistered(code);
 			if(controller.mr == null){
 				
 				Messagebox.show(MessagesService.getKey("mr.not.found"));
@@ -97,6 +98,7 @@ public class EmergencyManagerImpl implements EmergencyManager{
 		else{
 			item = controller.mRNumberList.getSelectedItem();
 			controller.mr = (TbMedicalRecord)item.getValue();
+			controller.reg = regDao.getLastRegistrationByMrId(controller.mr.getNMrId());
 		}
 				
 		controller.MRNumber.setValue(controller.mr.getVMrCode());
@@ -124,6 +126,13 @@ public class EmergencyManagerImpl implements EmergencyManager{
 		}
 		
 		controller.patientName.setValue(controller.mr.getMsPatient().getVPatientName());
+		if(controller.reg.getMsStaff() != null){
+			controller.mainDoctor.setAttribute("doctor", controller.reg.getMsStaff());
+			controller.mainDoctor.setValue(controller.reg.getMsStaff().getVStaffCode()+"-"+
+					controller.reg.getMsStaff().getVStaffName());
+		}
+		
+		controller.registrationNumber.setValue(controller.reg.getVRegSecondaryId());
 		
 	}
 	

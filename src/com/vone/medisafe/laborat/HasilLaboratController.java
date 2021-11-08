@@ -410,7 +410,7 @@ public class HasilLaboratController extends BaseController {
 		
 		laboratNo.setValue(null);
 		escortDoctor.setValue(null);
-		takeTime.setValue(PrintClient.getDate(new Date(), "hh:mm"));
+		takeTime.setValue(PrintClient.getDate(new Date(), "HH:mm"));
 		
 		// patientEscort.setSelectedIndex(0);
 		// address.setValue(null);

@@ -1919,7 +1919,7 @@ public class LaboratManagerImpl implements LaboratManager{
 		while(iter.hasNext()){
 			 treatTrx = (TbTreatmentTrx)iter.next();
 			 ket = treatTrx.getMsTreatmentFee().getMsTreatment().getVTreatmentName(); 
-			 if(treatTrx.getMsDoctor() != null)
+			 if(treatTrx.getMsDoctor() != null && treatTrx.getMsTreatmentFee().getNDoctorFee() > 0)
 				 ket += " - " + treatTrx.getMsDoctor().getVStaffName();
 			 sb.append(PrintClient.padLeft(brs + SPACE, COLUMN_01));//NOMOR
 			 sb.append(PrintClient.padLeft(treatTrx.getMsTreatmentFee().getMsTreatment().getVTreatmentCode(), COLUMN_02));//KODE

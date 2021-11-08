@@ -71,23 +71,23 @@
 	
 <separator spacing="2px"/>
 	
-<h:table align="center" width="100%">
-	<h:tr><h:td width="3%"/>
-		  <h:td><groupbox width="900px">
+<h:table align="center" width="100%" border="0">
+	<h:tr><h:td width="10%"/>
+		  <h:td align="center"><groupbox width="900px">
 		        <separator spacing="2px"/>
 		        <caption label="DATA PASIEN"/>
 			  		<h:table align="center" width="100%">
 				  		<h:tr><h:td width="1%"/>
-				  			  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>LOKASI TRANSAKSI</h:b></h:p></h:td>
-					   	      <h:td width="3%"><h:p align="center">:</h:p></h:td>
+				  			  <h:td width="18%" align="right"><h:b><h:font size="1">LOKASI TRANSAKSI</h:font></h:b></h:td>
+					   	      <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		  <h:td width="28%">
-		               		   		<listbox mold="select" id="locationList" width="83%" height="14px" style="font-size:9pt">
+		               		   		<listbox mold="select" id="locationList" width="83%" height="20px" style="font-size:9pt">
 		               					<listitem value="UGD" label="1. UGD"/>
 		               		  		</listbox>
 		               		  </h:td>
 			      	   
-			      	   		  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. NOTA</h:b></h:p></h:td>
-					   		  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			      	   		  <h:td width="18%" align="right"><h:b><h:font size="1">NO. NOTA</h:font></h:b></h:td>
+					   		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		  <h:td>
 		               		  		<bandbox id="transactionNumber" onOpen="searchNota.focus();" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="73%" height="15px">
 				               		   <bandpopup>
@@ -102,25 +102,24 @@
 												<separator spacing="5px"/>
 															
 												<h:table width="100%" align="center">
-													<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NO. NOTA</h:b></h:p></h:td>
-														  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-														  <h:td width="30%"><h:p align="left"><textbox id="searchNota" width="93%" height="14px" style="font-size:8pt"/></h:p></h:td>
+													<h:tr><h:td width="25%" align="right" style="font-size:8pt"><h:b>NO. NOTA</h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><textbox id="searchNota" width="93%" height="14px" style="font-size:8pt"/></h:td>
 													</h:tr>
-													<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
-														  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-														  <h:td width="30%"><h:p align="left"><textbox id="searchName" width="93%" height="14px" style="font-size:8pt"/></h:p></h:td>
+													<h:tr><h:td width="25%" align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+														  <h:td width="30%" align="left"><textbox id="searchName" width="93%" height="14px" style="font-size:8pt"/></h:td>
 													</h:tr>
-													<h:tr><h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>TANGGAL</h:b></h:p></h:td>
-														  <h:td width="4%"><h:p align="center">:</h:p></h:td>
+													<h:tr><h:td width="25%" align="right" style="font-size:8pt"><h:b>TANGGAL</h:b></h:td>
+														  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 														  <h:td width="45%" style="font-size:8pt;font-weight:bold">
 														 		 <datebox id="startDate" width="35%" height="14px" format="dd/MM/yyyy" style="font-size:9pt"/>
 														  			&amp;nbspS.D.
 														  		 <datebox id="endDate" width="35%" height="14px" style="font-size:9pt" format="dd/MM/yyyy"/>
 														  </h:td>
-														  <h:td width="20%">
-														  		<h:p align="left">
+														  <h:td width="20%" align="left">
 														  			<button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="nota.searchNote(searchNota, searchName, startDate, endDate, notaList, locationList)"/>
-														  		</h:p>
+														  		
 														 </h:td>
 													</h:tr>
 												</h:table>
@@ -134,18 +133,6 @@
 														<listheader label="NAMA" width="32%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
 														<listheader label="STATUS NOTA" width="20%" sort="auto"  style="font-weight:bold;font-size:8pt"/>
 													</listhead>
-													<!-- 
-													<listitem>
-														<listcell label="I-KAN-0611-000001"/>
-														<listcell label="RATNAWATI"/>
-														<listcell label="SUDAH VALIDASI"/>
-													</listitem>
-													<listitem>
-														<listcell label="I-KAN-0611-000002"/>
-														<listcell label="RATNAWATI"/>
-														<listcell label="BARU"/>
-													</listitem>	
-													-->
 											    </listbox>
 											</vbox>
 										</bandpopup>
@@ -155,8 +142,8 @@
 			     	    </h:tr>
 			      	   
 			      	    <h:tr><h:td width="1%"/>
-			      	   		  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:p></h:td>
-							  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			      	   		  <h:td width="18%" align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:td>
+							  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		        			  <h:td width="28%">
 		        				<bandbox id="MRNumber" width="73%" onChange="getPatientDetail(MedisafeConstants.INPUT_BY_MANUAL);" onOpen="crNoMR.focus();" style="font-size:8pt">
 									<bandpopup>
@@ -167,108 +154,61 @@
 													  </h:td>
 												</h:tr>
 											</h:table>
-											
 											<separator spacing="5px"/>
-														
 											<h:table width="100%" align="center">
 												<h:tr><h:td width="2%"/>
-												      <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:p></h:td>
-													  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-													  <h:td width="35%"><h:p align="left"><textbox id="crNoMR" width="95%" height="14px" style="font-size:8pt"/></h:p></h:td>
+												      <h:td width="25%" align="right" style="font-size:8pt"><h:b>NO. MR</h:b></h:td>
+													  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="35%" align="left"><textbox id="crNoMR" width="95%" height="14px" style="font-size:8pt"/></h:td>
 													  <h:td width="2%"/>
 												</h:tr>
 												<h:tr><h:td width="2%"/>
-												      <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
-													  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-													  <h:td width="35%"><h:p align="left"><textbox id="crNama" width="95%" height="14px" style="font-size:8pt"/></h:p></h:td>
+												      <h:td width="25%" align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:td>
+													  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="35%" align="left"><textbox id="crNama" width="95%" height="14px" style="font-size:8pt"/></h:td>
 													  <h:td width="2%"/>
 												</h:tr>
 												<h:tr><h:td width="2%"/>
-												      <h:td width="25%"><h:p align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:p></h:td>
-													  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-													  <h:td width="35%"><h:p align="left"><textbox id="crNoAlamat" width="95%" height="14px" style="font-size:8pt"/></h:p></h:td>
-													  <h:td width="25%"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatient(crNoMR,crNama,crNoAlamat,MRNumberList);"/></h:p></h:td>
+													  <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
+													  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="30%" align="left"> <datebox id="crTgl" width="88%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="2%"/>
+												</h:tr>
+												<h:tr><h:td width="2%"/>
+												      <h:td width="25%" align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:td>
+													  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+													  <h:td width="35%" align="left"><textbox id="crNoAlamat" width="95%" height="14px" style="font-size:8pt"/></h:td>
+													  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatient(crNoMR,crNama,crTgl,crNoAlamat,MRNumberList);"/></h:td>
 													  <h:td width="2%"/>
 												</h:tr>
 											</h:table>
-														
 											<separator spacing="5px"/>
-					
 											<label value="*) KHUSUS PASIEN YANG MEMILIKI NO. MR" style="font-size:8pt;color:RED;font-weight;font-weight:bold"/>
 											<listbox id="MRNumberList" width="700px" mold="paging" pageSize="10" onSelect="getPatientDetail(MedisafeConstants.INPUT_BY_SEARCH); MRNumber.closeDropdown();">
 												<listhead>
 													<listheader label="NO. MR" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 													<listheader label="NAMA" width="35%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+													<listheader label="TGL" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 													<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
 												</listhead>
-												<!-- 
-												<listitem>
-													<listcell label="11-11-11"/>
-													<listcell label="Anastasia"/>
-													<listcell label="Jl. Adisucipto no. 103"/>
-												</listitem>
-										
-												<listitem>
-													<listcell label="11-11-12"/>
-													<listcell label="Andrea"/>
-													<listcell label="Jl. Gejayan no. 8"/>
-												</listitem>
-														
-												<listitem>
-													<listcell label="11-11-13"/>
-													<listcell label="Christoforus"/>
-													<listcell label="Jl. RingRoad Utara no. 44"/>
-												</listitem>
-														
-												<listitem>
-													<listcell label="11-11-14"/>
-													<listcell label="Johanes"/>
-													<listcell label="Jl. Ahmad Yani no. 06"/>
-												</listitem>
-														
-												<listitem>
-													<listcell label="11-11-15"/>
-													<listcell label="Andromeda"/>
-													<listcell label="Jl. RingRoad Selatan no. 66"/>
-												</listitem>
-										
-												<listitem>
-													<listcell label="11-11-16"/>
-													<listcell label="Charlotte"/>
-													<listcell label="Jl. KotaBaru no. 18"/>
-												</listitem>
-														
-												<listitem>
-													<listcell label="11-11-17"/>
-													<listcell label="Celine"/>
-													<listcell label="Jl. RingRoad Barat no. 24"/>
-												</listitem>
-														
-												<listitem>
-													<listcell label="11-11-18"/>
-													<listcell label="Mike"/>
-													<listcell label="Jl. Ahmad Yani no. 08"/>
-												</listitem>
-												-->	
 										    </listbox>
 										</vbox>
 									</bandpopup>
 								</bandbox>
 		         			  </h:td>
-		         			  
-		         			  <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NO. REGISTRASI</h:b></h:p></h:td>
-					   		  <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		         			  <h:td width="18%" align="right" style="font-size:8pt"><h:b>NO. REGISTRASI</h:b></h:td>
+					   		  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		  <h:td><textbox id="registrationNumber" readonly="true" style="background-color: #e7e5de;font-size:8pt;font-weight:bold" width="81%" height="15px"/></h:td>
 		               		  <h:td width="1%"/>
 		               </h:tr>
 			      	   
 			      	   <h:tr><h:td width="1%"/>
-			      	   		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
-					   	 	 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+			      	   		 <h:td width="18%" align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:td>
+					   	 	 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td width="28%"><textbox id="patientName" width="80%" height="14px" style="font-size:8pt"/></h:td>
 							 
-							 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>JENIS KELAMIN</h:b></h:p></h:td>
-					   	 	 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							 <h:td width="18%" align="right" style="font-size:8pt"><h:b>JENIS KELAMIN</h:b></h:td>
+					   	 	 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td>
 		               		 	<radiogroup id="gender">
 								   	<radio value="M" id="male" label="PRIA" style="font-weight:bold;font-size:8pt"/>
@@ -279,24 +219,24 @@
 					   </h:tr>
 		          			
 		         	   <h:tr><h:td width="1%"/>
-		         	   		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>TANGGAL LAHIR</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		         	   		 <h:td width="18%" align="right" style="font-size:8pt"><h:b>TANGGAL LAHIR</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td width="28%"><datebox id="dateOfBirth" width="58%" format="dd/MM/yyyy" style="font-size:8pt" height="14px"/></h:td>
 							
-							 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>UMUR</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+							 <h:td width="18%" align="right" style="font-size:8pt"><h:b>UMUR</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td><textbox id="age" width="80%" height="14px" style="font-size:8pt"/></h:td>
 		               		 <h:td width="1%"/>
 		               </h:tr>
 		               
 		               <h:tr><h:td width="1%"/>
-		               		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		               		 <h:td width="18%" align="right" style="font-size:8pt"><h:b>ALAMAT</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td width="28%"><textbox id="address" width="80%" height="14px" style="font-size:8pt"/></h:td>
 		               		 
-		               		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>TIPE PASIEN</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
-		               		 <h:td><listbox mold="select" id="patientTypeList" width="83%" height="14px" style="font-size:9pt">
+		               		 <h:td width="18%" align="right" style="font-size:8pt"><h:b>TIPE PASIEN</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		 <h:td><listbox mold="select" id="patientTypeList" width="83%" height="19px" style="font-size:9pt">
 		               		 			<listitem value="kosong" label="" selected="true"/>
 		               			  		<listitem value="Pasien Umum" label="1. PASIEN UMUM"/>
 		               			  		<listitem value="Karyawan RS" label="2. KARYAWAN RS"/>
@@ -310,8 +250,8 @@
 		               </h:tr>
 		               
 		               <h:tr><h:td width="1%"/>
-		               		 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>DOKTER UTAMA</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
+		               		 <h:td width="18%" align="right" style="font-size:8pt"><h:b>DOKTER UTAMA</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 		               		 <h:td width="28%">
 		               		 		<bandbox id="mainDoctor" onOpen="code.focus();" width="73%" style="font-size:8pt" onChange="dokter.getExamDoctor(mainDoctor)">
 										<bandpopup>
@@ -325,14 +265,14 @@
 													<separator spacing="5px"/>
 																		
 													<h:table width="100%" align="center">
-														<h:tr><h:td width="20%"><h:p align="right" style="font-size:8pt"><h:b>KODE</h:b></h:p></h:td>
-															  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-															  <h:td width="35%"><h:p align="left"><textbox id="code" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
+														<h:tr><h:td width="20%" align="right" style="font-size:8pt"><h:b>KODE</h:b></h:td>
+															  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+															  <h:td width="35%" align="left"><textbox id="code" width="90%" height="14px" style="font-size:8pt"/></h:td>
 														</h:tr>
-														<h:tr><h:td width="20%"><h:p align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:p></h:td>
-															  <h:td width="4%"><h:p align="center">:</h:p></h:td>
-															  <h:td width="35%"><h:p align="left"><textbox id="name" width="90%" height="14px" style="font-size:8pt"/></h:p></h:td>
-															  <h:td width="20%"><h:p align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="dokter.searchDoctor(code, name, doctorList, MedisafeConstants.GRUP_DOKTER)"/></h:p></h:td>
+														<h:tr><h:td width="20%" align="right" style="font-size:8pt"><h:b>NAMA</h:b></h:td>
+															  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+															  <h:td width="35%" align="left"><textbox id="name" width="90%" height="14px" style="font-size:8pt"/></h:td>
+															  <h:td width="20%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="dokter.searchDoctor(code, name, doctorList, MedisafeConstants.GRUP_DOKTER)"/></h:td>
 														</h:tr>
 													</h:table>
 																		
@@ -346,25 +286,12 @@
 													</listbox>
 											  </vbox>
 										</bandpopup>
-									</bandbox><!-- 
-		               		 
-		               		 
-		               		 	<listbox mold="select" id="mainDoctorList" width="83%" height="14px" style="font-size:9pt">
-		               		 		<listitem label=""/>
-		               		 		<listitem label="1. Mike, dr"/>
-		               		 		<listitem label="2. Agustini, dr"/>	
-		               		 		<listitem label="3. Purwanto, dr"/>	
-		               		 		<listitem label="4. Purwanti, dr"/>		
-		               		 	</listbox>
-		               		 --></h:td>
-							
-							 <h:td width="18%"><h:p align="right" style="font-size:8pt"><h:b>TIPE PEMBAWA</h:b></h:p></h:td>
-					   		 <h:td width="3%"><h:p align="center">:</h:p></h:td>
-		               		 <h:td><listbox mold="select" id="patientEscortList" width="83%" height="14px" style="font-size:9pt">
-		               		 		<!-- 	<listitem label=""/>
-		               		 			<listitem label="1. DOKTER"/>
-		               		 			<listitem label="2. KARYAWAN RS"/>	
-		               		 		-->
+									</bandbox>
+							 </h:td>
+							 <h:td width="18%" align="right" style="font-size:8pt"><h:b>TIPE PEMBAWA</h:b></h:td>
+					   		 <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+		               		 <h:td>
+		               		 		<listbox mold="select" id="patientEscortList" width="83%" height="19px" style="font-size:9pt">
 		               		 		</listbox>
 		               		 </h:td>
 		               		 <h:td width="1%"/>
@@ -373,41 +300,19 @@
 		       <separator spacing="2px"/>
 			   </groupbox>
 		</h:td>
-		<h:td width="3%"/>
+		<h:td width="10%"/>
     </h:tr>
-</h:table>     
-
-<h:table width="100%" align="center">
 	<h:tr><h:td width="10%"/>
-    	  <h:td>	 	
+    	  <h:td align="center">	 	
       		    <vbox>
-    			   <h:table align="center" width="100%">	
-			  	 		<h:tr><h:td width="13%">
-							   		<h:p align="right">
-							   			<h:font style="font-size:8pt;font-weight:bold;color:WHITE">*</h:font>
-								   		<h:font color="red" size="1pt">
-								   			<h:b><label id="labelStatus" value="STATUS NOTA : " style="font-weight:bold;font-size:8pt"/></h:b>
-								  		</h:font>
-							  		</h:p>
-				  	  		   </h:td> 
-				  	  		   <h:td>
-							  		 <h:p align="left">
-							  		 	<h:font color="red" size="1pt">
-							  		 		<h:b><label id="statusNota" value="" style="font-weight:bold;font-size:8pt"/></h:b>
-							  			</h:font>
-							  		 </h:p>
-						  	   </h:td> 
-					     </h:tr>
-			       </h:table>
-				   
-	         	   <groupbox width="930px">
+	         	   <groupbox width="900px">
 			  	   <caption label="DATA TINDAKAN UGD"/>
 			  			<h:table width="100%" align="center">
 			  				<h:tr><h:td height="8px"></h:td></h:tr>
 			  				<h:tr><h:td width="3%"/>
 			  				      <h:td>
 			  		 				  	<vbox>
-						  					<listbox id="emergencyList" multiple="true" width="890px" height="113px">
+						  					<listbox id="emergencyList" multiple="true" width="100%" height="113px">
 							  					<listhead>
 							  						<listheader label="KODE" width="10%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 							  						<listheader label="KETERANGAN" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
@@ -417,37 +322,6 @@
 							  						<listheader label="DISKON" width="18%" style="font-weight:bold;font-size:8pt"/>
 							  						<listheader label="SUBTOTAL" width="22%" style="font-weight:bold;font-size:8pt"/>
 							  					</listhead>
-												<!-- 
-							  					<listitem>
-							  						<listcell label="PH000001"/>
-							  						<listcell label="PERBAN"/>
-							  						<listcell label="1"/>
-							  						<listcell label="ROL"/>
-							  						<listcell label="2000"/>
-							  						<listcell><decimalbox width="50%" format="#,###" height="14px"/>
-							  								  <listbox width="40%" mold="select" style="font-size:8pt">
-							  								  	<listitem value="RP" label="1. RP"/>
-							  								  	<listitem value="PERSEN" label="2. %"/>
-							  								  </listbox>
-							  					    </listcell>
-							  						<listcell label="2000"/>
-							 					</listitem>
-							 					
-							 					<listitem>
-							  						<listcell label="JS00001"/>
-							  						<listcell label="JARUM SUNTIK"/>
-							  						<listcell label="1"/>
-							  						<listcell label="PIECE"/>
-							  						<listcell label="2000"/>
-							  						<listcell><decimalbox width="50%" format="#,###" height="14px"/>
-							  								  <listbox width="40%" mold="select" style="font-size:8pt">
-							  								  	<listitem value="RP" label="1. RP"/>
-							  								  	<listitem value="PERSEN" label="2. %"/>
-							  								  </listbox>
-							  					    </listcell>
-							  						<listcell label="2000"/>
-							 					</listitem>
-							 					-->
 							 				</listbox>
 						  				</vbox>
 								  </h:td>
@@ -456,8 +330,21 @@
 					</h:table>
 								
 			  		<h:table align="center" width="100%">
-      					 <h:tr><h:td width="83%"><h:p align="right" style="font-size:8pt"><h:b>TOTAL</h:b></h:p></h:td>
-      					 	   <h:td width="3%"><h:p align="center">:</h:p></h:td>
+      					 <h:tr>
+      					        <h:td width="13%" align="right">
+							   			<h:font style="font-size:8pt;font-weight:bold;color:WHITE">*</h:font>
+								   		<h:font color="red" size="1pt">
+								   			<h:b><label id="labelStatus" value="STATUS NOTA : " style="font-weight:bold;font-size:8pt"/></h:b>
+								  		</h:font>
+							  		
+				  	  		   </h:td> 
+				  	  		   <h:td align="left" width="20%">
+							  		 	<h:font color="red" size="1pt">
+							  		 		<h:b><label id="statusNota" value="" style="font-weight:bold;font-size:8pt"/></h:b>
+							  			</h:font>
+						  	   </h:td> 
+      					 	   <h:td width="45%" align="right" style="font-size:8pt"><h:b>TOTAL</h:b></h:td>
+      					 	   <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
       					       <h:td><decimalbox id="total" width="95%" height="15px" format="#,###.##" readonly="true" style="font-size:8pt;font-weight:bold"/></h:td>
       					       <h:td width="2%"/>
       					 </h:tr>
@@ -466,21 +353,15 @@
 			  		<h:table align="center" width="100%">
       					 <h:tr><h:td  height="2"></h:td></h:tr>
       					 <h:tr><h:td width="4%"/>
-       						   <h:td width="5%">
-       		 				   		<h:p align="left">	
-										<button id="calculateBtn" label="HITUNG" image="/image/calculator.jpg" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="calcultateTotal();"/>
-									</h:p>
+       						   <h:td width="5%" align="left">	
+										<button id="calculateBtn" label="HITUNG" image="/image/calculator.jpg" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="calcultateTotal();"/>
 							   </h:td>
        		 
-       		 				   <h:td width="5%">
-       		 				   		<h:p align="left">	
-										<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="deleteList();"/>
-									</h:p>
+       		 				   <h:td width="5%" align="left">	
+										<button id="btnDelete" label="HAPUS" image="/image/delete.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="deleteList();"/>
 			 				   </h:td>
-			 					 
-    		 				   <h:td>
-    		 				   		<h:p align="right">	
-		       							<button id="btnTreatmentAdd" label="TAMBAH TINDAKAN" image="/image/icons/icoPalang.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt">
+    		 				   <h:td align="right">	
+		       							<button id="btnTreatmentAdd" label="TAMBAH TINDAKAN" image="/image/icons/icoPalang.gif" style="width:150px;height:26px;font-weight:bold;font-size:7pt">
 		       								<attribute name="onClick">
 		       									{
 		       										checkRegistration();
@@ -491,12 +372,11 @@
 												}
 		       								</attribute>
 		       							</button>
-		       						</h:p>
+		       						
 		       				   </h:td>
 		     							
 		     				   <h:td width="8%" align="right">
-			     				    <h:p align="right">	
-		       							<button id="btnItemAdd" label="TAMBAH O-BM" image="/image/icons/gizi.gif" style="width:110px;height:26px;font-weight:bold;font-size:7pt">
+		       							<button id="btnItemAdd" label="TAMBAH O-BM" image="/image/icons/gizi.gif" style="width:130px;height:26px;font-weight:bold;font-size:7pt">
 		       								<attribute name="onClick">
 		       									{
 		       										checkRegistration();
@@ -507,12 +387,10 @@
     											}
 		       								</attribute>
 		       							</button>
-		       						</h:p>
 		     				   </h:td>
 		     				   
-		     				   <h:td width="10%">
-       		 						<h:p align="left">	
-					   					<button id="btnMiscAdd" label="BIAYA LAIN-LAIN" image="/image/icons/kasir.gif" style="width:125px;height:26px;font-weight:bold;font-size:7pt">
+		     				   <h:td width="10%" align="left">	
+					   					<button id="btnMiscAdd" label="BIAYA LAIN-LAIN" image="/image/icons/kasir.gif" style="width:145px;height:26px;font-weight:bold;font-size:7pt">
 						   					<attribute name="onClick">
 				     							{
 				     								checkRegistration();		
@@ -524,7 +402,6 @@
 												}
 											</attribute>
 					   					</button>
-									</h:p>
 			 				   </h:td>		   
 		     				   <h:td width="4%"/>
         				 </h:tr>
@@ -540,30 +417,26 @@
 		  <h:td><separator spacing="1px"/>
 	  			<h:table width="100%" align="center">
 					<h:tr><h:td width="4%"/>
-						  <h:td width="5%">
-								<h:p align="right">
-				    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="save();"/>
-				    			</h:p>
+						  <h:td width="5%" align="right">
+				    				<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="save();"/>
+				    			
 				    	  </h:td>
-				     	  <h:td width="5%">
-				       			<h:p align="right">
-				    		  		<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.modify();"/>
-				    		  	</h:p>
+				     	  <h:td width="5%" align="right">
+				    		  		<button id="btnModify" label="UBAH" image="/image/edit.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.modify();"/>
+				    		  	
 				    	  </h:td>
 				    	  <!-- 
 				    	  <h:td width="5%">
 				       			<h:p align="left">	
 									<button id="btnCancel" label="BATAL"  image="/image/cancel.gif" style="width:70px;height:26px"/>
-								</h:p>
+								
 						  </h:td> -->
-				    	  <h:td width="5%">
-								<h:p align="right">
+				    	  <h:td width="5%" align="right">
 				    				<button id="btnNew" label="BARU" image="/image/new.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="getNew();"/>
-				    			</h:p>
+				    			
 				    	  </h:td>
-				    	  <h:td width="7%">
-								<h:p align="right">
-				    				<button id="btnCancelNote" label="PEMBATALAN NOTA" image="/image/batal.gif" style="width:140px;height:26px;font-weight:bold;font-size:7pt">    						
+				    	  <h:td width="7%" align="right">
+				    				<button id="btnCancelNote" label="PEMBATALAN NOTA" image="/image/batal.gif" style="width:160px;height:26px;font-weight:bold;font-size:7pt">    						
 				    					<attribute name="onClick">
 				    						{
 				    							cancelNote();
@@ -573,11 +446,10 @@
 											}
 				    					</attribute>
 				    				</button>
-				    		  	</h:p>
+				    		  	
 				    	  </h:td>
-				    	  <h:td width="5%">
-				    			<h:p align="left">
-				    		   		<button id="btnValidation" label="VALIDASI" image="/image/check.gif" style="width:80px;height:26px;font-weight:bold;font-size:7pt">
+				    	  <h:td width="5%" align="left">
+				    		   		<button id="btnValidation" label="VALIDASI" image="/image/check.gif" style="width:100px;height:26px;font-weight:bold;font-size:7pt">
 				    		   			<attribute name="onClick">
 						     				{
 						     					getNote();
@@ -587,23 +459,22 @@
 											}
 										</attribute>
 				    		   		</button>
-				    		   </h:p>
+				    		   
 				    	  </h:td>
-				    	  <h:td>
-								<h:p align="right">
-				    				<button id="btnCetak" label="CETAK" image="/image/print.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt">
+				    	  <h:td align="right">
+				    				<button id="btnCetak" label="CETAK" image="/image/print.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt">
 										<attribute name="onClick">
 											{
 												cetak();
 											}
 										</attribute>
 				    				</button>
-				    			</h:p>
+				    			
 				    	  </h:td><!--
 				    	  <h:td width="5%">
 				    			<h:p align="right">
 				    				<button id="btnEnd" label="SELESAI" image="/image/hapus.gif" style="width:70px;height:26px" onClick="emergencyTransaction.detach();"/>
-				    			</h:p>
+				    			
 				    	  </h:td>
 				    	  --><h:td width="4%"/>
 				    </h:tr>

@@ -159,14 +159,12 @@ public class CommonTreatmentController extends BaseController{
 			listcell = new Listcell(tfee.getMsTreatment().getVTreatmentCode());
 			listcell.setParent(listitem);
 			
-			if (examinerDoctor.getText().equals("")){
-				
-				listcell = new Listcell(tfee.getMsTreatment().getVTreatmentName());
-				
+			if (tfee.getNDoctorFee() > 0){
+				listcell = new Listcell(tfee.getMsTreatment().getVTreatmentName()+"-"+examinerDoctor.getText());
 			}
 			else
 			{
-				listcell = new Listcell(tfee.getMsTreatment().getVTreatmentName()+"-"+examinerDoctor.getText());
+				listcell = new Listcell(tfee.getMsTreatment().getVTreatmentName());
 			}
 			
 			listcell.setParent(listitem);

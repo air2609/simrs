@@ -228,6 +228,7 @@ public class EmergencyController extends BaseController{
 	public void checkRegistration(){
 		String ranap = "NO";
 		total.setValue(null);
+		session.setAttribute("registration", this.reg);
 		session.setAttribute("isRanap", ranap);
 		session.setAttribute("listbox", emergencyList);
 		session.setAttribute("location", locationList);
