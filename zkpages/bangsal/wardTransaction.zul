@@ -74,9 +74,9 @@
 	
 <separator spacing="3px"/>
 	
-<h:table align="center" width="100%">
+<h:table align="center" width="100%" border="0">
 	<h:tr><h:td width="7%"/>
-		  <h:td>
+		  <h:td align="center">
 		        <groupbox width="900px">
 		        <separator spacing="2px"/>
 		        <caption label="DATA PASIEN"/>
@@ -302,11 +302,8 @@
 	    </h:td>
 	    <h:td width="7%"/>
     </h:tr>
-</h:table> 
-
-<h:table width="100%" align="center">
 	<h:tr><h:td width="11%"/>
-    	  <h:td>	 	
+    	  <h:td align="center">	 	
 	    	  <vbox>
 				  <!--<h:table align="center" width="100%">	
 			  	 		<h:tr><h:td width="13%" align="right">
@@ -328,7 +325,7 @@
 					     </h:tr>
 			      </h:table> -->
 		
-			      <groupbox width="930px">
+			      <groupbox width="900px">
 				  		<caption label="DATA TINDAKAN BANGSAL"/>
 							<h:table width="100%" align="center">
 								<h:tr><h:td height="10px"></h:td></h:tr>

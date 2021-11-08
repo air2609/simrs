@@ -134,11 +134,9 @@
 		</h:td>
 		<h:td width="9%"/>
     </h:tr>
-</h:table>     
 
 <separator spacing="5px"/>
 
-<h:table width="100%" align="center">
 	<h:tr><h:td width="20%"/>
 		  <h:td>	 	
 				<vbox>

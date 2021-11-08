@@ -98,8 +98,10 @@ public class EmergencyManagerImpl implements EmergencyManager{
 		else{
 			item = controller.mRNumberList.getSelectedItem();
 			controller.mr = (TbMedicalRecord)item.getValue();
-			controller.reg = regDao.getLastRegistrationByMrId(controller.mr.getNMrId());
+			
 		}
+		
+		controller.reg = regDao.getLastRegistrationByMrId(controller.mr.getNMrId());
 				
 		controller.MRNumber.setValue(controller.mr.getVMrCode());
 		controller.dateOfBirth.setValue(controller.mr.getMsPatient().getDPatientDob());

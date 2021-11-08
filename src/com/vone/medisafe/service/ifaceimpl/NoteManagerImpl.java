@@ -301,7 +301,7 @@ public class NoteManagerImpl implements NoteManager{
 			//treatment name
 			cell = new Listcell();
 			cell.setParent(item);
-			if(treatmentTrx.getMsDoctor() != null){
+			if(treatmentTrx.getMsDoctor() != null && treatmentTrx.getMsTreatmentFee().getNDoctorFee() > 0){
 				cell.setLabel(treatmentTrx.getMsTreatmentFee().getMsTreatment().getVTreatmentName()+"-"+
 						treatmentTrx.getMsDoctor().getVStaffName());
 			}
