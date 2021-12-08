@@ -79,6 +79,12 @@
 																  <h:td width="2%"/>
 															</h:tr>
 															<h:tr><h:td width="2%"/>
+															      <h:td width="25%" align="right"><h:b><h:font size="1">NO KTP/NIK</h:font></h:b></h:td>
+																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																  <h:td width="32%" align="left"><textbox id="crNik" width="94%" height="14px" style="font-size:8pt"/></h:td>
+																  <h:td width="2%"/>
+															</h:tr>
+															<h:tr><h:td width="2%"/>
 															      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
 																  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 																  <h:td width="32%" align="left"><datebox id="crTgl" width="90%" height="14px" format="dd/MM/yyyy" style="font-size:8pt"/></h:td>
@@ -90,7 +96,7 @@
 																  <h:td width="32%" align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/>
 																  </h:td>
 																  
-																  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatient(crNoMR,crNama,crTgl, crNoAlamat,patientSearchList);crNoMR.focus();"/></h:td>
+																  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchPatientWithNik(crNoMR,crNama,crNik,crTgl,crNoAlamat,patientSearchList);crNoMR.focus();"/></h:td>
 																  <h:td width="2%"/>
 															</h:tr>
 														</h:table>
@@ -100,7 +106,8 @@
 															<listhead>
 																<listheader label="NO. MR" width="10%" style="font-weight:bold;font-size:8pt" sort="auto"/>
 																<listheader label="NAMA" width="25%" style="font-weight:bold;font-size:8pt" sort="auto"/>
-																<listheader label="TGL. LAHIR" width="20%" style="font-weight:bold;font-size:8pt"/> 
+																<listheader label="NO KTP/NIK" width="20%" style="font-weight:bold;font-size:8pt" sort="auto"/>
+																<listheader label="TGL. LAHIR" width="15%" style="font-weight:bold;font-size:8pt"/> 
 																<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
 															</listhead>
 														</listbox>
@@ -140,29 +147,17 @@
 			         			</h:tr>
 			         			
 			         			<h:tr><h:td width="2%"/>
-			         				  <h:td width="18%" align="right"><h:b><h:font size="1">ALAMAT UTAMA</h:font><h:font color="red">*</h:font></h:b></h:td>
+			         				  <h:td width="18%" align="right"><h:b><h:font size="1">NOMOR KTP / NIK<h:font color="red">*</h:font></h:font></h:b></h:td>
+						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td>
+			               			  		<textbox id="nik" width="80%" height="14px" maxlength="50" style="font-size:8pt;background-color:FFFF33"/>
+			               			  </h:td>
+			               			  
+			               			  <h:td width="18%" align="right"><h:b><h:font size="1">ALAMAT UTAMA</h:font><h:font color="red">*</h:font></h:b></h:td>
 						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 			               			  <h:td>
 			               			  		<textbox id="alamat" width="198px" height="15px" maxlength="255" style="font-size:8pt" rows="3"/>
 			               			  </h:td>
-			         			
-			         			      <h:td width="19%" align="right"><h:b><h:font size="1">AGAMA</h:font></h:b></h:td>
-						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
-			               			  <h:td width="28%">
-			               			  		<!-- <textbox id="namaIbu" width="80%" height="14px" maxlength="20" style="font-size:8pt"/> -->
-			               			  		<listbox mold="select" id="religionList" width="83%" style="font-size:9pt">
-			               			  			<listitem value="kosong" label="" selected="true"/>
-			               			  			<listitem value="ISLAM" label="1. ISLAM"/>
-			               			  			<listitem value="PROTESTAN" label="2. PROTESTAN"/>
-			               			  			<listitem value="KATOLIK" label="3. KATOLIK"/>
-			               			  			<listitem value="HINDU" label="4. HINDU"/>
-			               			  			<listitem value="BUDHA" label="5. BUDHA"/>
-			               			  			<listitem value="KONGHUCU" label="6. KONGHUCU"/>
-			               			  		</listbox>
-			               			
-									  </h:td>
-			              
-			              			  
 			         			</h:tr>
 			         			<h:tr>
 			         				<h:td width="2%"/>
@@ -281,6 +276,20 @@
 			               		      <h:td width="19%" align="right"><h:b><h:font size="1">NO. TELP / NO. HP</h:font></h:b></h:td>
 						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 			               			  <h:td width="28%"><textbox id="noTelpAlt" width="80%" height="14px" maxlength="20" style="font-size:8pt"/></h:td>
+			               			  
+			               			  <h:td width="19%" align="right"><h:b><h:font size="1">AGAMA</h:font></h:b></h:td>
+						  			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+			               			  <h:td width="28%">
+			               			  		<listbox mold="select" id="religionList" width="83%" style="font-size:9pt">
+			               			  			<listitem value="kosong" label="" selected="true"/>
+			               			  			<listitem value="ISLAM" label="1. ISLAM"/>
+			               			  			<listitem value="PROTESTAN" label="2. PROTESTAN"/>
+			               			  			<listitem value="KATOLIK" label="3. KATOLIK"/>
+			               			  			<listitem value="HINDU" label="4. HINDU"/>
+			               			  			<listitem value="BUDHA" label="5. BUDHA"/>
+			               			  			<listitem value="KONGHUCU" label="6. KONGHUCU"/>
+			               			  		</listbox>
+									  </h:td>
 			               		</h:tr>
 			               		
 			         			<h:tr><h:td width="2%"/>

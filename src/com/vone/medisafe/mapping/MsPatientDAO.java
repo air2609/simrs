@@ -183,6 +183,48 @@ public class MsPatientDAO extends HibernateDaoSupport {
 		
     }
     
+    public List searchPatient(String code, String nameP, String nik, String addressP, Date tglLahir) throws InterruptedException, VONEAppException{
+    	
+    	List list = null;
+    	
+    	    	
+    	StringBuilder query = new StringBuilder();
+    	
+    	query.append(" select ");
+    	query.append(" {mr.*} ");
+    	
+    	query.append(" from ");
+    	query.append(" tb_medical_record mr, ");
+    	query.append(" ms_patient p ");
+    	
+    	query.append(" where ");
+    	query.append(" mr.v_mr_code like :mrCode ");
+    	query.append(" and (mr.n_patient_id=p.n_patient_id) ");
+    	query.append(" and p.v_patient_name like :name ");
+    	query.append(" and p.nik like :ktp ");
+    	query.append(" and p.v_patient_main_addr like :address ");
+    	
+    	if(tglLahir != null) query.append(" and p.d_patient_dob = :tgl ");
+    	query.append(" limit 100 ");
+    	
+    	
+    	
+    	SQLQuery qry = getCurrentSession().createSQLQuery(query.toString());
+    			 qry.addEntity("mr",TbMedicalRecord.class);
+		         qry.setString("mrCode",code);
+		         qry.setString("name",nameP);
+		         qry.setString("ktp", nik);
+		         qry.setString("address",addressP);
+		if(tglLahir != null) qry.setDate("tgl", tglLahir);
+		
+		list = qry.list();
+		
+			
+		return list;
+			
+		
+    }
+    
     public Session getCurrentSession() throws VONEAppException {
         try {
             return getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -264,6 +306,48 @@ public class MsPatientDAO extends HibernateDaoSupport {
 			q.addEntity("mr",TbMedicalRecord.class);
 			q.setString("mrCode",code);
 			q.setString("name",nameP);
+			q.setString("address",addressP);
+			if(tgl != null) q.setDate("dob", tgl);
+			q.setInteger("status", MedisafeConstants.REG_ACTIVE);
+			
+			
+			List<TbMedicalRecord> list = q.list();
+		
+    	return list;
+    }
+    
+    public List<TbMedicalRecord> searchPatientRegisteredWithNik(String code, String nameP, String nik, String addressP, Date tgl) throws VONEAppException{
+    	
+    	
+    	StringBuilder query = new StringBuilder();
+    	
+    	query.append(" select ");
+    	query.append(" distinct ");
+    	query.append(" {mr.*} ");
+    	
+    	query.append(" from ");
+    	query.append(" tb_medical_record mr, ");
+    	query.append(" ms_patient p, ");
+    	query.append(" tb_registration reg ");
+    	
+    	query.append(" where ");
+    	query.append(" mr.v_mr_code like :mrCode ");
+    	query.append(" and (mr.n_patient_id=p.n_patient_id) ");
+    	query.append(" and p.v_patient_name like :name ");
+    	query.append(" and p.nik like :ktp ");
+    	query.append(" and p.v_patient_main_addr like :address ");
+    	if(tgl != null) query.append(" and p.d_patient_dob = :dob ");
+    	query.append(" and mr.n_mr_id=reg.n_mr_id ");
+    	query.append(" and reg.reg_status=:status ");
+    	query.append(" limit 100 ");
+    	
+    		
+		SQLQuery q = getCurrentSession().createSQLQuery(query.toString());
+		
+			q.addEntity("mr",TbMedicalRecord.class);
+			q.setString("mrCode",code);
+			q.setString("name",nameP);
+			q.setString("ktp", nik);
 			q.setString("address",addressP);
 			if(tgl != null) q.setDate("dob", tgl);
 			q.setInteger("status", MedisafeConstants.REG_ACTIVE);
@@ -445,6 +529,32 @@ public class MsPatientDAO extends HibernateDaoSupport {
 		mrList = query.list();
 		
 		return mrList;
+	}
+
+	public List getPatientByNik(String nik) throws VONEAppException{
+		List list = null;
+		StringBuilder query = new StringBuilder();
+    	
+    	query.append(" select ");
+    	query.append(" {p.*} ");
+    	
+    	query.append(" from ");
+    	query.append(" ms_patient p ");
+    	
+    	query.append(" where ");
+    	query.append(" p.nik = :ktp ");
+    	query.append(" limit 100 ");
+    	
+    	
+    	
+    	SQLQuery qry = getCurrentSession().createSQLQuery(query.toString());
+    			 qry.addEntity("p",MsPatient.class);
+		         qry.setString("ktp",nik);
+		
+		list = qry.list();
+		
+			
+		return list;
 	}
 
 }

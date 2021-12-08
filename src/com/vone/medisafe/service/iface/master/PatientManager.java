@@ -23,12 +23,18 @@ public interface PatientManager {
 		
 	public void cariPasienYgPunyaMr(Textbox crNoMR, Textbox crNama, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
 	 throws VONEAppException,InterruptedException;
+	
+	public void searchPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
+			 throws VONEAppException,InterruptedException;
 
 	public void serachRegisteredPatient(Textbox crNoMR, Textbox crNama, Textbox crAlamat, Listbox patientSearchList, Listbox unitList)
 		throws VONEAppException, InterruptedException;
 	
 	public void serachRegisteredPatient(Textbox crNoMR, Textbox crNama, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
 	throws VONEAppException, InterruptedException;
+	
+	public void serachRegisteredPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
+			throws VONEAppException, InterruptedException;
 
 	public void searchRanapPatient(Textbox crNoMR, Textbox crNama, Textbox crAlamat, Listbox patientSearchList)
 	 throws VONEAppException,InterruptedException;
@@ -40,5 +46,7 @@ public interface PatientManager {
 	public void getPatientBaseOnWard(Textbox crNoMR, Textbox crNama, Textbox crAlamat, Listbox patientSearchList,
 			Listbox bangsalList)
 	throws VONEAppException,InterruptedException;
+	
+	public List getPatientByNik(String nik) throws VONEAppException,InterruptedException;
 }
 	

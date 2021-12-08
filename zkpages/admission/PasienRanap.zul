@@ -87,6 +87,12 @@
 																			  <h:td width="2%"/>
 																		</h:tr>
 																		<h:tr><h:td width="2%"/>
+																		      <h:td width="25%" align="right"><h:b><h:font size="1">NO KTP / NIK</h:font></h:b></h:td>
+																			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+																			  <h:td width="32%" align="left"><textbox id="crNik" width="94%" height="14px" style="font-size:8pt"/></h:td>
+																			  <h:td width="2%"/>
+																		</h:tr>
+																		<h:tr><h:td width="2%"/>
 																		      <h:td width="25%" align="right"><h:b><h:font size="1">TGL. LAHIR</h:font></h:b></h:td>
 																			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 																			  <h:td width="32%" align="left"><datebox id="crTgl" width="90%" height="14px" format="dd/MM/yyyy" style="font-size:8pt"/></h:td>
@@ -96,7 +102,7 @@
 																		      <h:td width="25%" align="right"><h:b><h:font size="1">ALAMAT</h:font></h:b></h:td>
 																			  <h:td width="4%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 																			  <h:td width="32%" align="left"><textbox id="crNoAlamat" width="94%" height="14px" style="font-size:8pt"/></h:td>
-																			  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatient(crNoMR,crNama,crTgl,crNoAlamat,patientSearchList);"/></h:td>
+																			  <h:td width="25%" align="left"><button label="CARI" image="/image/cari.gif" style="width:70px;height:26px;font-weight:bold;font-size:7pt" onClick="com.vone.medisafe.ui.master.PatientController.searchRegisteredPatientWithNik(crNoMR,crNama,crNik,crTgl,crNoAlamat,patientSearchList);"/></h:td>
 																			  <h:td width="2%"/>
 																		</h:tr>
 																	</h:table>
@@ -106,9 +112,10 @@
 																	<label value="*) KHUSUS PASIEN RAWAT JALAN" style="font-size:8pt;color:RED;font-weight:bold"/>
 																	<listbox id="patientSearchList" width="650px" mold="paging" pageSize="15" onSelect="getPatientDetail(MedisafeConstants.INPUT_BY_SEARCH); noMR.closeDropdown();">
 																		<listhead>
-																			<listheader label="NO. MR" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NO. MR" width="9%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 																			<listheader label="NAMA" width="30%" sort="auto" style="font-weight:bold;font-size:8pt"/>
-																			<listheader label="TGL. LAHIR" width="15%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="NO KTP / NIK" width="20%" sort="auto" style="font-weight:bold;font-size:8pt"/>
+																			<listheader label="TGL. LAHIR" width="11%" sort="auto" style="font-weight:bold;font-size:8pt"/>
 																			<listheader label="ALAMAT" style="font-weight:bold;font-size:8pt"/>
 																		</listhead>
 																	</listbox>

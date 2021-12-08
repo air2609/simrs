@@ -79,6 +79,9 @@
         <property name="VLanguage" type="string">
             <column name="v_patient_language" length="60" />
         </property>
+        <property name="nik" type="string">
+            <column name="nik" length="20" />
+        </property>
         
         <!-- 
         <property name="VPatientMotherName" type="string">

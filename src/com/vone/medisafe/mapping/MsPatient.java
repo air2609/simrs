@@ -44,12 +44,14 @@ public class MsPatient  implements java.io.Serializable {
      private Date DWhnChange;
      private Set tbExaminations = new HashSet(0);
      private Set tbMedicalRecords = new HashSet(0);
+     private String nik;
      
 //     private String VPatientMotherName;
 //     private String VPatientPartnerName;
 
 
-    // Constructors
+   
+	// Constructors
 /**
     public String getVPatientMotherName() {
 		return this.VPatientMotherName;
@@ -359,6 +361,14 @@ public class MsPatient  implements java.io.Serializable {
         this.tbMedicalRecords = tbMedicalRecords;
     }
    
+    public String getNik() {
+		return nik;
+	}
+
+	public void setNik(String nik) {
+		this.nik = nik;
+	}
+
 
 
 

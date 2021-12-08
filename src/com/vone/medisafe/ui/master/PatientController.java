@@ -356,6 +356,12 @@ public class PatientController extends BaseController{
 		
 	}
 	
+	public static void searchPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
+			throws InterruptedException,VONEAppException{
+			
+			serv.searchPatientWithNik(crNoMR,crNama,crNik,crTgl, crAlamat,patientSearchList);
+	}
+	
 	public static void searchRegisteredPatient(Textbox crNoMR, Textbox crNama, Textbox crAlamat, Listbox patientSearchList, Listbox unitList)
 	throws InterruptedException, VONEAppException{
 		
@@ -368,6 +374,12 @@ public class PatientController extends BaseController{
 		
 		serv.serachRegisteredPatient(crNoMR, crNama, crTgl, crAlamat, patientSearchList);
 		
+	}
+	
+	public static void searchRegisteredPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl, Textbox crAlamat, Listbox patientSearchList)
+			throws InterruptedException, VONEAppException{
+				
+				serv.serachRegisteredPatientWithNik(crNoMR, crNama, crNik, crTgl, crAlamat, patientSearchList);
 	}
 	
 	public void getPatientDetail(int type) throws InterruptedException, VONEAppException{

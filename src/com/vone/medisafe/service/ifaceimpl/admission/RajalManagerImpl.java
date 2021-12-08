@@ -91,6 +91,7 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox prioritasPasienList = (Listbox)win.getFellow("prioritasPasienList");
 		Listbox etnisList = (Listbox) win.getFellow("etnisList");
 		Listbox languageList = (Listbox) win.getFellow("languageList");
+		Textbox nik = (Textbox)win.getFellow("nik");
 		
 //		Textbox namaIbu = (Textbox)win.getFellow("namaIbu");
 //		Textbox namaPasgnan = (Textbox)win.getFellow("namaPasangan");
@@ -102,25 +103,25 @@ public class RajalManagerImpl implements RajalManager{
 			tipePasien = (MsPatientType)tipePasienList.getSelectedItem().getValue();
 			patient.setMsPatientType(tipePasien);
 		}
-		if(kelurahanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
+		if(null != kelurahanList.getSelectedItem() && kelurahanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
 			village = (MsVillage)kelurahanList.getSelectedItem().getValue();
 			patient.setMsVillage(village);
 		}
-		if(propinsiList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
+		if(null != propinsiList.getSelectedItem() && propinsiList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
 			province = (MsProvince)propinsiList.getSelectedItem().getValue();
 			patient.setMsProvince(province);
 		}
-		if(kabupatenList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
+		if(null != kabupatenList.getSelectedItem() && kabupatenList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
 			regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
 			patient.setMsRegency(regency);
 		}
-		if(kecamatanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
+		if(null != kecamatanList.getSelectedItem() && kecamatanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
 			subdistric = (MsSubDistrict)kecamatanList.getSelectedItem().getValue();
 			patient.setMsSubDistrict(subdistric);
 		}
-		if(etnisList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG)
+		if(null != etnisList.getSelectedItem() && etnisList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG)
 			patient.setVEtnis(etnisList.getSelectedItem().getValue().toString());
-		if(languageList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG)
+		if(null != languageList.getSelectedItem() && languageList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG)
 			patient.setVLanguage(languageList.getSelectedItem().getValue().toString());
 						
 		patient.setDPatientDob(tglLahir.getValue());
@@ -138,6 +139,7 @@ public class RajalManagerImpl implements RajalManager{
 		patient.setVPatientNationality(wargaNegaraList.getSelectedItem().getValue().toString());
 		patient.setVPatientReligion(religionList.getSelectedItem().getValue().toString());
 		patient.setVPatientPriority(prioritasPasienList.getSelectedItem().getValue().toString());
+		patient.setNik(nik.getValue());
 		
 		
 //		patient.setVPatientPartnerName(namaPasgnan.getText());
@@ -212,8 +214,10 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox kabupatenList = (Listbox) pasien.get("kabupaten");
 		Listbox kecamatanList = (Listbox) pasien.get("kecamatan");
 		Listbox kelurahanList = (Listbox) pasien.get("kelurahan");
+		Textbox nik = (Textbox) pasien.get("nik");
 		
 		MsPatient patien = mr.getMsPatient();
+		patien.setNik(nik.getValue());
 		if(!etnisList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG))
 			patien.setVEtnis(etnisList.getSelectedItem().getValue().toString());
 		if(!bahasaList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG))
@@ -298,6 +302,7 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox prioritasPasienList = (Listbox)win.getFellow("prioritasPasienList");
 		Listbox etnisList = (Listbox) win.getFellow("etnisList");
 		Listbox languageList = (Listbox) win.getFellow("languageList");
+		Textbox nik = (Textbox) win.getFellow("nik");
 		
 		TbMedicalRecord mr = mrDao.getPatientMedicalRecord(code);
 		if(mr == null){
@@ -312,6 +317,7 @@ public class RajalManagerImpl implements RajalManager{
 		
 		namaPasien.setValue(mr.getMsPatient().getVPatientName());
 		tglLahir.setValue(mr.getMsPatient().getDPatientDob());
+		nik.setValue(mr.getMsPatient().getNik());
 		Calendar calSkrg = Calendar.getInstance();
 		Calendar calLahir = Calendar.getInstance();
 		calSkrg.setTime(new Date());

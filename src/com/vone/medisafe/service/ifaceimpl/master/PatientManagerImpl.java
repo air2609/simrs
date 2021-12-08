@@ -518,6 +518,131 @@ public class PatientManagerImpl implements PatientManager{
 		}
 		
 	}
+	@Override
+	public void searchPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl, Textbox crAlamat,
+			Listbox patientSearchList) throws VONEAppException, InterruptedException {
+		TbMedicalRecord mr = null;
+		Listitem item = null;
+		String code = "";
+		if(crNoMR.getText().trim().length() == 6){
+			code = MedisafeUtil.convertToMrCode(crNoMR.getText());
+			crNoMR.setValue(code);
+		}
+		else
+		{
+			code = crNoMR.getText();
+		}
+		
+		
+				
+		patientSearchList.getItems().clear();
+		if(crNoMR.getText().trim().equals("") && crNama.getText().trim().equals("") && crNik.getText().trim().equals("") &&
+				crAlamat.getText().trim().equals("") && crTgl.getText().equals("")){
+			Messagebox.show(MessagesService.getKey("salah.satu.field.harus.diisi"));
+			return;
+		}
+		
+		List list = dao.searchPatient("%"+code+"%","%"+crNama.getText()+"%", "%"+crNik.getText()+"%",
+						"%" +crAlamat.getText()+"%", crTgl.getValue());
+		
+		if(list.size() == 0){
+			crNoMR.focus();
+			return;
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				
+		Iterator it = list.iterator();
+		
+		while(it.hasNext()){
+			mr = (TbMedicalRecord)it.next();
+			item = new Listitem();
+			item.setValue(mr);
+			item.setParent(patientSearchList);
+			
+			Listcell mrCode = new Listcell(mr.getVMrCode());
+			mrCode.setParent(item);
+			
+			Listcell nama = new Listcell(mr.getMsPatient().getVPatientName());
+			nama.setParent(item);
+			
+			nama = new Listcell(mr.getMsPatient().getNik());
+			nama.setParent(item);
+			
+			nama = new Listcell(sdf.format(mr.getMsPatient().getDPatientDob()));
+			nama.setParent(item);
+			
+			Listcell alamat = new Listcell(mr.getMsPatient().getVPatientMainAddr());
+			alamat.setParent(item);
+		}
+		MiscTrxController.setFont(patientSearchList);
+		
+	}
+	@Override
+	public void serachRegisteredPatientWithNik(Textbox crNoMR, Textbox crNama, Textbox crNik, Datebox crTgl,
+			Textbox crAlamat, Listbox patientSearchList) throws VONEAppException, InterruptedException {
+		String code = "";
+		if(crNoMR.getText().trim().length() == 6){
+			code = MedisafeUtil.convertToMrCode(crNoMR.getText());
+			crNoMR.setValue(code);
+		}
+		else
+		{
+			code = crNoMR.getText();
+		}
+		
+		
+		
+		Listitem item = null;
+		patientSearchList.getItems().clear();
+		if(crNoMR.getText().trim().equals("") && crNama.getText().trim().equals("") && crNik.getText().trim().equals("") &&
+				crAlamat.getText().trim().equals("") && crTgl.getText().equals("")){
+			Messagebox.show(MessagesService.getKey("salah.satu.field.harus.diisi"));
+			return;
+		}
+		
+		List<TbMedicalRecord> list = dao.searchPatientRegisteredWithNik("%"+code+"%","%"+crNama.getText()+"%", "%"+crNik.getText()+"%",
+											"%" +crAlamat.getText()+"%", crTgl.getValue());
+		
+		
+		if(list.size() == 0){
+			crNoMR.focus();
+			return;
+		}
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		for(TbMedicalRecord mr : list){
+			
+			item = new Listitem();
+			item.setValue(mr);
+			item.setParent(patientSearchList);
+			
+			Listcell mrCode = new Listcell(mr.getVMrCode());
+			mrCode.setParent(item);
+			
+			Listcell nama = new Listcell(mr.getMsPatient().getVPatientName());
+			nama.setParent(item);
+			
+			nama = new Listcell(mr.getMsPatient().getNik());
+			nama.setParent(item);
+			
+			Listcell dob = new Listcell(sdf.format(mr.getMsPatient().getDPatientDob()));
+			dob.setParent(item);
+			
+			Listcell alamat = new Listcell(mr.getMsPatient().getVPatientMainAddr());
+			alamat.setParent(item);
+		}
+		
+		MiscTrxController.setFont(patientSearchList);
+		
+	}
+	@Override
+	public List getPatientByNik(String nik) throws VONEAppException, InterruptedException {
+		// TODO Auto-generated method stub
+		return dao.getPatientByNik(nik);
+	}
 	
 
 }

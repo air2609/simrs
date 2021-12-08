@@ -3,6 +3,7 @@ package com.vone.medisafe.ui.admission;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.zkoss.zk.ui.Component;
@@ -29,6 +30,7 @@ import com.vone.medisafe.report.ReportEngine;
 import com.vone.medisafe.service.AdmissionServiceLocator;
 import com.vone.medisafe.service.MasterServiceLocator;
 import com.vone.medisafe.service.iface.admission.RajalManager;
+import com.vone.medisafe.service.iface.master.PatientManager;
 import com.vone.medisafe.service.iface.master.PatientTypeManager;
 import com.vone.medisafe.service.iface.master.ProvinceManager;
 import com.vone.medisafe.service.iface.master.RegenyManager;
@@ -81,6 +83,7 @@ public class RegistrationController extends BaseController {
 	Listbox patientSearchList;
 	Listbox etnisList;
 	Listbox languageList;
+	Textbox nik;
 //	Textbox namaIbu;
 //	Textbox namaPasangan;
 	
@@ -98,7 +101,7 @@ public class RegistrationController extends BaseController {
 	RegenyManager regenceyService = MasterServiceLocator.getRegencyManager();
 	SubDstrictManager subdistrictService = MasterServiceLocator.getSubDistrictManager();
 	VillageManager villageService = MasterServiceLocator.getVillageManager();
-	
+	PatientManager patientService = MasterServiceLocator.getPatientManager();
 	
 
 		
@@ -123,6 +126,7 @@ public class RegistrationController extends BaseController {
 		dokterPemeriksaList = (Listbox)win.getFellow("dokterPemeriksaList");
 		noMr = (Bandbox) win.getFellow("noMR");
 		alamatAlternatif = (Textbox)win.getFellow("alamatAlternatif");
+		nik = (Textbox)win.getFellow("nik");
 //		namaIbu = (Textbox)win.getFellow("namaIbu");
 //		namaPasangan = (Textbox)win.getFellow("namaPasangan");
 		
@@ -156,6 +160,7 @@ public class RegistrationController extends BaseController {
 //		Messagebox.show("perubahan jadi");
 //		user = getUserInfoBean().getMsUser();
 		
+		constraints.registerComponent(nik, ZulConstraint.NO_EMPTY);
 		constraints.registerComponent(tglLahir,ZulConstraint.NO_EMPTY);
 		constraints.registerComponent(namaPasien, ZulConstraint.NO_EMPTY);
 		constraints.registerComponent(namaPasien, ZulConstraint.UPPER_CASE);
@@ -286,6 +291,13 @@ public class RegistrationController extends BaseController {
 	
 	private void saveAll(Window win) throws InterruptedException, VONEAppException{
 		
+		List patients = patientService.getPatientByNik(nik.getValue().trim());
+		if(patients.size() > 0) {
+			int result = Messagebox.show("No NIK ini telah terdaftar apakah ingin melanjutkan?", 
+					"KONFIRMASI", Messagebox.YES | Messagebox.NO, Messagebox.QUESTION);
+			if(result == Messagebox.NO) return;
+		}
+		
 		
 		if(service.savePatientAndRegistration(win)){
 			
@@ -314,6 +326,7 @@ public class RegistrationController extends BaseController {
 		patients.put("kabupaten", kabupatenList);
 		patients.put("kecamatan", kecamatanList);
 		patients.put("kelurahan", kelurahanList);
+		patients.put("nik", nik);
 		
 		if(service.saveRegistrationOnly(noMr, dokterPemeriksaList, unitList, noRegistrasi, patients)){
 
@@ -372,6 +385,7 @@ public class RegistrationController extends BaseController {
 		jenisKelamin.setSelectedIndex(0);
 		tglLahir.setValue(null);
 		umur.setValue(null);
+		nik.setValue(null);
 		religionList.setSelectedItem(religionList.getItemAtIndex(0));
 		wargaNegaraList.setSelectedItem(wargaNegaraList.getItemAtIndex(0));
 		statusKawinList.setSelectedItem(statusKawinList.getItemAtIndex(0));
