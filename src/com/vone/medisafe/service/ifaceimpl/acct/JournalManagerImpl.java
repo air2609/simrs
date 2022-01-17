@@ -1,9 +1,11 @@
 package com.vone.medisafe.service.ifaceimpl.acct;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
@@ -19,6 +21,7 @@ import com.vone.medisafe.mapping.TbAccountPayable;
 import com.vone.medisafe.mapping.TbAccountPayableDetail;
 import com.vone.medisafe.mapping.TbHistoryPosting;
 import com.vone.medisafe.mapping.TbJournalTrx;
+import com.vone.medisafe.mapping.TbJournalTrxHistory;
 import com.vone.medisafe.mapping.dao.TbGlDAO;
 import com.vone.medisafe.mapping.pojo.TbGl;
 import com.vone.medisafe.misc.MiscTrxController;
@@ -413,6 +416,44 @@ public class JournalManagerImpl implements JournalManager{
 			cell.setLabel(coa.getVAcctName());
 			cell.setParent(item);
 		}
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteJournal(String batchNo, String username, Listbox journalList) throws VONEAppException {
+		List<TbJournalTrx> journals = this.dao.getJournalByBatch(batchNo);
+		
+		List<TbJournalTrxHistory> history = new ArrayList<TbJournalTrxHistory>();
+		for(TbJournalTrx journal : journals) {
+			TbJournalTrxHistory journalHistory = new TbJournalTrxHistory();
+			journalHistory.setJournalId(journal.getNJournalId());
+			journalHistory.setActionDate(new Date());
+			journalHistory.setActionType("DELETE");
+			journalHistory.setActionBy(username);
+			journalHistory.setAplDate(journal.getDAplDate());
+			journalHistory.setCredit(journal.getNCredit());
+			journalHistory.setDebit(journal.getNDebit());
+			journalHistory.setDescrpiton(journal.getVDesc());
+			journalHistory.setDWhnChange(journal.getDWhnChange());
+			journalHistory.setJournalBatchId(journal.getVJournalBatchId());
+			journalHistory.setVoucherNo(journal.getVVoucherNo());
+			journalHistory.setWhnCreate(journal.getDWhnCreate());
+			journalHistory.setWhoChange(journal.getVWhoChange());
+			journalHistory.setWhoCreate(journal.getVWhoCreate());
+			journalHistory.setCoaId(journal.getMsCoa().getNCoaId());
+			
+			history.add(journalHistory);
+		}
+		
+		this.dao.saveJournalHistroy(history);
+		
+		
+		for(TbJournalTrx trx : journals) {
+			this.dao.delete(trx);
+		}
+		
+		journalList.getItems().clear();
 		
 	}
 

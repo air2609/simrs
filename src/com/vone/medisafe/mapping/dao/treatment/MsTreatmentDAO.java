@@ -297,6 +297,7 @@ public class MsTreatmentDAO extends HibernateDaoSupport {
     			.append(" where tr.n_tgroup_id = trg.n_tgroup_id ")
     			.append(" and tfee.n_treatment_id = tr.n_treatment_id")
     			.append(" and tfee.n_tclass_id = tclass.n_tclass_id ")
+    			.append(" and tfee.n_trtfee_fee > 0 ")
     			.append(" and trg.v_tgroup_code = :code ")
     			.append(" and tclass.v_tclass_desc = :tdesc ")
     			.append(" order by tr.v_treatment_code");

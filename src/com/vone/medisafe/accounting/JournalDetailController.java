@@ -21,8 +21,10 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vbox;
 
 import com.vone.medisafe.common.exception.VONEAppException;
+import com.vone.medisafe.common.services.MessagesService;
 import com.vone.medisafe.service.Service;
 import com.vone.medisafe.service.iface.acct.JournalManager;
+import com.vone.medisafe.services.locator.ServiceLocator;
 import com.vone.medisafe.ui.base.BaseController;
 
 public class JournalDetailController  extends BaseController{
@@ -31,6 +33,8 @@ public class JournalDetailController  extends BaseController{
 	Button btnEdit;
 	Button btnSave;
 	Button btnDelete;
+	
+	JournalManager manager = Service.getJournalManager();
 
 	@Override
 	public void init(Component cmp) throws InterruptedException, VONEAppException {
@@ -41,6 +45,25 @@ public class JournalDetailController  extends BaseController{
 		btnDelete = (Button)cmp.getFellow("btnDelete");
 		detailList = (Listbox)cmp.getFellow("detailList");
 		btnSave.setDisabled(true);
+	}
+	
+	public void delete() throws VONEAppException {
+		Listitem item = (Listitem) detailList.getItems().get(0);
+		String batchNo = ((Listcell)item.getChildren().get(0)).getLabel();
+		
+		String username = this.getUserInfoBean().getStUserName();
+		
+		int confirm;
+		try {
+			confirm = Messagebox.show("Anda akan menghapus data journal, apakah Anda yakin?", "KONFIRMASI", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION);
+			if(confirm == Messagebox.NO)return;
+			manager.deleteJournal(batchNo, username, detailList);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	public void edit() {

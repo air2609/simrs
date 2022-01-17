@@ -73,7 +73,7 @@
 									   		  	<space/>
 									   		  	<button id="btnSave" label="SIMPAN" image="/image/save1.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="journalDetail.detach()"/>
 									   		  	<space/>
-									   		  	<button id="btnDelete" label="DELETE" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="journalDetail.detach()"/>
+									   		  	<button id="btnDelete" label="DELETE" image="/image/hapus.gif" style="width:90px;height:26px;font-weight:bold;font-size:7pt" onClick="ctr.delete()"/>
 									   		  	
 									   		  </h:td>
 									   		  <h:td>

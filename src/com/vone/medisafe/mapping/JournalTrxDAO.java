@@ -522,5 +522,13 @@ public class JournalTrxDAO extends HibernateDaoSupport{
 	        }
 		return list;
 	}
+
+	public void saveJournalHistroy(List<TbJournalTrxHistory> history) throws VONEAppException {
+		Session session = getCurrentSession();
+		for(TbJournalTrxHistory hist : history) {
+			session.save(hist);
+		}
+		
+	}
     
 }

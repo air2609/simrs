@@ -222,19 +222,19 @@ public class RajalManagerImpl implements RajalManager{
 			patien.setVEtnis(etnisList.getSelectedItem().getValue().toString());
 		if(!bahasaList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG))
 			patien.setVLanguage(bahasaList.getSelectedItem().getValue().toString());
-		if(!propinsiList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
+		if(null != propinsiList.getSelectedItem() && !propinsiList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
 			MsProvince province = (MsProvince)propinsiList.getSelectedItem().getValue();
 			patien.setMsProvince(province);
 		}
-		if(!kabupatenList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
+		if(null != kabupatenList.getSelectedItem() && !kabupatenList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
 			MsRegency regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
 			patien.setMsRegency(regency);
 		}
-		if(!kecamatanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
+		if(null != kecamatanList.getSelectedItem() && !kecamatanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
 			MsSubDistrict district = (MsSubDistrict) kecamatanList.getSelectedItem().getValue();
 			patien.setMsSubDistrict(district);
 		}
-		if(!kelurahanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
+		if(null != kelurahanList.getSelectedItem() && !kelurahanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
 			MsVillage village = (MsVillage) kelurahanList.getSelectedItem().getValue();
 			patien.setMsVillage(village);
 		}

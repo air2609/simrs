@@ -189,6 +189,7 @@
 				<value>com/vone/medisafe/mapping/TbReturPharmacyTrx.hbm.xml</value>
 				<value>com/vone/medisafe/mapping/TbReturPharmacyDetailTrx.hbm.xml</value>
 				<value>com/vone/medisafe/mapping/TbJournalTrx.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/TbJournalTrxHistory.hbm.xml</value>
 						
 				<value>com/vone/medisafe/mapping/hbm/TbItemRequest.hbm.xml</value>
 				<value>com/vone/medisafe/mapping/TbAccountPayable.hbm.xml</value>
