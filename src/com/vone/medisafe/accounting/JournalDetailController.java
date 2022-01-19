@@ -22,6 +22,8 @@ import org.zkoss.zul.Vbox;
 
 import com.vone.medisafe.common.exception.VONEAppException;
 import com.vone.medisafe.common.services.MessagesService;
+import com.vone.medisafe.mapping.MsCoa;
+import com.vone.medisafe.mapping.TbJournalTrx;
 import com.vone.medisafe.service.Service;
 import com.vone.medisafe.service.iface.acct.JournalManager;
 import com.vone.medisafe.services.locator.ServiceLocator;
@@ -57,7 +59,9 @@ public class JournalDetailController  extends BaseController{
 		try {
 			confirm = Messagebox.show("Anda akan menghapus data journal, apakah Anda yakin?", "KONFIRMASI", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION);
 			if(confirm == Messagebox.NO)return;
+			
 			manager.deleteJournal(batchNo, username, detailList);
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,12 +70,59 @@ public class JournalDetailController  extends BaseController{
 		
 	}
 	
+	public void save() throws VONEAppException{
+		
+		Listitem item = (Listitem) detailList.getItems().get(0);
+		String batchNo = ((Listcell)item.getChildren().get(0)).getLabel();
+		
+		String username = this.getUserInfoBean().getStUserName();
+		
+		int confirm;
+		try {
+			confirm = Messagebox.show("Anda akan menyimpan edit data journal, apakah Anda yakin?", "KONFIRMASI", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION);
+			if(confirm == Messagebox.NO)return;
+			
+			if(isBalance()) {
+				manager.saveEditJournal(batchNo, username, detailList);
+				btnSave.setDisabled(true);
+			} 
+			else Messagebox.show("Journal tidak Balance, silahkan diperbaiki!", "INFORMASI", Messagebox.OK, Messagebox.INFORMATION);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean isBalance() {
+		boolean isBalance = false;
+		Double debet =  0.0;
+		Double credit = 0.0;
+		List<Listitem> items = detailList.getItems();
+		for(Listitem item : items) {
+			Listcell cell = (Listcell)item.getChildren().get(4);
+			Decimalbox debetDb = (Decimalbox)cell.getChildren().get(0);
+			
+			cell = (Listcell)item.getChildren().get(5);
+			Decimalbox creditDb = (Decimalbox)cell.getChildren().get(0);
+			
+			debet = debet + debetDb.doubleValue();
+			credit = credit + creditDb.doubleValue();
+			
+		}
+		
+		if(credit-debet == 0d) isBalance = true;
+		
+		return isBalance;
+	}
+	
 	public void edit() {
 		List<Listitem> items = detailList.getItems();
 		Decimalbox db;
 		String formatDb="#,###,###";
 		int counter = 0;
 		for(Listitem item : items) {
+			TbJournalTrx journal = (TbJournalTrx) item.getValue();
 			
 			//voucher no
 			Listcell cell = (Listcell)item.getChildren().get(1);
@@ -83,6 +134,8 @@ public class JournalDetailController  extends BaseController{
 			//account 
 			cell = (Listcell)item.getChildren().get(2);
 			Bandbox bbox = getBandboxAccount(counter);
+			if(bbox.getAttribute("coa") == null)
+				bbox.setAttribute("coa", journal.getMsCoa());
 			bbox.setText(cell.getLabel());
 			cell.setLabel(null);
 			bbox.setParent(cell);
@@ -131,6 +184,7 @@ public class JournalDetailController  extends BaseController{
 		
 		btnEdit.setDisabled(true);
 		btnSave.setDisabled(false);
+		btnDelete.setDisabled(true);
 	}
 	 
 	public Bandbox getBandboxAccount(int counter) {
@@ -148,14 +202,17 @@ public class JournalDetailController  extends BaseController{
 		hbox.setParent(vbox);
 		Listbox listbox = new Listbox();
 		Listhead head = new Listhead();
+		
 		Listheader header = new Listheader();
 		header.setLabel("Account No");
 		header.setParent(head);
 		
+		header = new Listheader();
 		header.setLabel("Account Name");
 		header.setParent(head);
 		
 		head.setParent(listbox);
+		
 		listbox.setParent(vbox);
 		listbox.setMold("paging");
 		listbox.setPageSize(10);
@@ -168,6 +225,19 @@ public class JournalDetailController  extends BaseController{
 		tbox.setId("tbox"+counter);
 		btnSearch.setId("btnSearch"+counter);
 		listbox.setId("listbox"+counter);
+		
+		listbox.addEventListener("onSelect", new EventListener() {
+			
+			@Override
+			public void onEvent(Event arg0) throws Exception {
+				MsCoa coa = (MsCoa)listbox.getSelectedItem().getValue();
+				bbox.setText(coa.getVAcctName());
+				bbox.setAttribute("coa", coa);
+				
+				bbox.closeDropdown();
+				
+			}
+		});
 
 		
 		btnSearch.addEventListener("onClick", new EventListener() {

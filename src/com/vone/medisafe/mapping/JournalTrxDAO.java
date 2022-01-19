@@ -49,7 +49,8 @@ public class JournalTrxDAO extends HibernateDaoSupport{
     public void save (TbJournalTrx pojo) throws VONEAppException {
     	
     	try {
-    		getHibernateTemplate().save(pojo);
+//    		getHibernateTemplate().save(pojo);
+    		getHibernateTemplate().saveOrUpdate(pojo);
     	}catch (Exception e){
 			logger.error(e.getMessage());
 			throw new VONEAppException(e.getMessage());

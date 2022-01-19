@@ -6,9 +6,15 @@
 -->
 <hibernate-mapping>
     <class name="com.vone.medisafe.mapping.TbJournalTrxHistory" table="tb_journal_trx_history" schema="public" >
-    	 <id name="journalId" type="integer">
-            <column name="n_journal_id" />
+    	 <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+            	<param name="sequence">tb_journal_trx_history_id_seq</param>
+            </generator>
         </id>
+    	 <property name="journalId" type="integer">
+            <column name="n_journal_id" />
+        </property>
         <property name="journalBatchId" type="string">
             <column name="v_journal_batch_id" length="100" />
         </property>

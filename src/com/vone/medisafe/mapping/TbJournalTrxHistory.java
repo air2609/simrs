@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class TbJournalTrxHistory implements java.io.Serializable{
 	
+	private Integer id;
 	private Integer journalId;
     private String journalBatchId;
     private String voucherNo;
@@ -20,6 +21,12 @@ public class TbJournalTrxHistory implements java.io.Serializable{
     private String actionType;
     private Date actionDate;
     
+    public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Date getActionDate() {
 		return actionDate;
 	}

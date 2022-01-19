@@ -85,5 +85,7 @@ public interface JournalManager {
 	public void searchCoa(String text, Listbox listbox) throws VONEAppException;
 	
 	public void deleteJournal(String batchNo, String username, Listbox journalList) throws VONEAppException;
+
+	public void saveEditJournal(String batchNo, String username, Listbox detailList) throws VONEAppException;
 	
 }

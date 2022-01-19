@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.zkoss.zul.Bandbox;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -454,6 +456,77 @@ public class JournalManagerImpl implements JournalManager{
 		}
 		
 		journalList.getItems().clear();
+		
+	}
+
+	@Transactional
+	public void saveEditJournal(String batchNo, String username, Listbox detailList) throws VONEAppException {
+		
+		List<TbJournalTrxHistory> history = new ArrayList<TbJournalTrxHistory>();
+		
+		List<Listitem> items = detailList.getItems();
+		for(Listitem item : items) {
+			TbJournalTrx journal = (TbJournalTrx) item.getValue();
+			
+			TbJournalTrxHistory journalHistory = new TbJournalTrxHistory();
+			journalHistory.setJournalId(journal.getNJournalId());
+			journalHistory.setActionDate(new Date());
+			journalHistory.setActionType("UPDATE");
+			journalHistory.setActionBy(username);
+			journalHistory.setAplDate(journal.getDAplDate());
+			journalHistory.setCredit(journal.getNCredit());
+			journalHistory.setDebit(journal.getNDebit());
+			journalHistory.setDescrpiton(journal.getVDesc());
+			journalHistory.setDWhnChange(journal.getDWhnChange());
+			journalHistory.setJournalBatchId(journal.getVJournalBatchId());
+			journalHistory.setVoucherNo(journal.getVVoucherNo());
+			journalHistory.setWhnCreate(journal.getDWhnCreate());
+			journalHistory.setWhoChange(journal.getVWhoChange());
+			journalHistory.setWhoCreate(journal.getVWhoCreate());
+			journalHistory.setCoaId(journal.getMsCoa().getNCoaId());
+			
+			history.add(journalHistory);
+			
+			//voucher
+			Listcell cell = (Listcell)item.getChildren().get(1);
+			Textbox tbox = (Textbox)cell.getChildren().get(0);
+			journal.setVVoucherNo(tbox.getText());
+			
+			//coa
+			cell = (Listcell)item.getChildren().get(2);
+			Bandbox bbox = (Bandbox)cell.getChildren().get(0);
+			MsCoa coa = (MsCoa)bbox.getAttribute("coa");
+			journal.setMsCoa(coa);
+			
+			//keterangan
+			cell = (Listcell)item.getChildren().get(3);
+			tbox = (Textbox)cell.getChildren().get(0);
+			journal.setVDesc(tbox.getValue());
+			
+			//debet
+			cell = (Listcell) item.getChildren().get(4);
+			Decimalbox dbox = (Decimalbox) cell.getChildren().get(0);
+			journal.setNDebit(dbox.doubleValue());
+			
+			//credit
+			cell = (Listcell) item.getChildren().get(5);
+			dbox = (Decimalbox) cell.getChildren().get(0);
+			journal.setNCredit(dbox.doubleValue());
+			
+			//apl date
+			cell = (Listcell)item.getChildren().get(6);
+			Datebox datebox = (Datebox)cell.getChildren().get(0);
+			journal.setDAplDate(datebox.getValue());
+			
+			journal.setVWhoChange(username);
+			journal.setDWhnChange(new Date());
+			
+			this.dao.save(journal);
+		}
+		
+		this.dao.saveJournalHistroy(history);
+		detailList.getItems().clear();
+		getJournalByBatch(batchNo, detailList);
 		
 	}
 
