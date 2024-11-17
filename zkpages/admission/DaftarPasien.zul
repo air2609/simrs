@@ -56,9 +56,9 @@
 			               			  		<bandbox id="noMR" onOpen="crNoMR.focus();" width="72%" height="14px" onChange="getPatientDetail(MedisafeConstants.INPUT_BY_MANUAL);" onOK="getPatientDetail(MedisafeConstants.INPUT_BY_MANUAL);" style="font-size:8pt">
 												<bandpopup id="popUp">
 													<vbox>	
-														<h:table align="center" width="100%" sclass="BasicBlueTitle">
+														<h:table align="center" width="100%" class="BasicBlueTitle">
 															<h:tr><h:td>CARI DATA PASIEN	
-																		<h:font color="white" weight="bold" size="4pt">*</h:font>
+																		<h:font style="color:white; font-weight:bold; "  size="4pt">*</h:font>
 																  </h:td>
 															</h:tr>
 														</h:table>
@@ -120,6 +120,19 @@
 						   			  <h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
 			               			  <h:td><textbox id="noRegistrasi" width="80%" height="14px" style="font-size:8pt;font-weight:bold" readonly="true"/></h:td>
 			         			</h:tr>
+								<h:tr>
+									<h:td width="25"/>
+									<h:td width="19%" align="right"><h:b><h:font size="1">NOMOR IHS</h:font></h:b></h:td>
+									<h:td width="3%" align="center"><h:b><h:font size="1">:</h:font></h:b></h:td>
+									<h:td width="28%"><label id="ihsNumber" style="font-weight:bold;font-size:8pt"/></h:td>
+
+									<h:td width="18%" align="right"> </h:td>
+									<h:td width="3%" align="center"> </h:td>
+									<h:td>
+
+									</h:td>
+
+								</h:tr>
 				      			
 				      			<h:tr><h:td width="2%"/>
 				      				  <h:td width="19%" align="right"><h:b><h:font size="1">NAMA</h:font><h:font color="red">*</h:font></h:b></h:td>

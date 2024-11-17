@@ -19,6 +19,9 @@
         <property name="VMrCode" type="string" unique="true">
             <column name="v_mr_code" length="8" />
         </property>
+        <property name="ihsNumber" type="string" >
+            <column name="ihs_number" length="20" />
+        </property>
         <property name="VWhoCreate" type="string">
             <column name="v_who_create" length="50" />
         </property>

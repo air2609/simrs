@@ -557,4 +557,7 @@ public class MsPatientDAO extends HibernateDaoSupport {
 		return list;
 	}
 
+	public void updateMr(TbMedicalRecord mr) {
+		getHibernateTemplate().saveOrUpdate(mr);
+	}
 }

@@ -7,15 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zul.Bandbox;
-import org.zkoss.zul.Button;
-import org.zkoss.zul.Datebox;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Radiogroup;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import com.vone.medisafe.common.exception.VONEAppException;
 import com.vone.medisafe.common.services.MessagesService;
@@ -86,6 +78,7 @@ public class RegistrationController extends BaseController {
 	Textbox nik;
 //	Textbox namaIbu;
 //	Textbox namaPasangan;
+	Label ihsNumber;
 	
 	Window win;
 	
@@ -154,6 +147,7 @@ public class RegistrationController extends BaseController {
 		prioritasPasienList = (Listbox)win.getFellow("prioritasPasienList");
 		etnisList = (Listbox)win.getFellow("etnisList");
 		languageList = (Listbox) win.getFellow("languageList");
+		ihsNumber = (Label) win.getFellow("ihsNumber");
 		
 		this.win = (Window) win;
 		
@@ -327,6 +321,10 @@ public class RegistrationController extends BaseController {
 		patients.put("kecamatan", kecamatanList);
 		patients.put("kelurahan", kelurahanList);
 		patients.put("nik", nik);
+		patients.put("rt", rt);
+		patients.put("rw", rw);
+		patients.put("ihsNumber", ihsNumber);
+
 		
 		if(service.saveRegistrationOnly(noMr, dokterPemeriksaList, unitList, noRegistrasi, patients)){
 
@@ -381,6 +379,7 @@ public class RegistrationController extends BaseController {
 		noMr.setValue(null);
 		noMr.removeAttribute("registration");
 		noRegistrasi.setValue(null);
+		ihsNumber.setValue(null);
 		namaPasien.setValue(null);
 		jenisKelamin.setSelectedIndex(0);
 		tglLahir.setValue(null);

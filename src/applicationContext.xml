@@ -211,6 +211,7 @@
 				<value>com/vone/medisafe/antrian/bpjs/TbAntrian.hbm.xml</value>
 				
 				<value>com/vone/medisafe/mapping/TbBor.hbm.xml</value>
+				<value>com/vone/medisafe/mapping/SatuSehatToken.hbm.xml</value>
 				<value>com/vone/medisafe/mapping/pojo/TbKwitansi.hbm.xml</value>
 				</list>
 
@@ -272,7 +273,12 @@
 		<property name="sessionFactory">
 			<ref bean="SessionFactory" />
 		</property>
-	</bean>		
+	</bean>
+	<bean id="SatuSehatTokenDAO" class="com.vone.medisafe.mapping.SatuSehatTokenDAO">
+		<property name="sessionFactory">
+			<ref bean="SessionFactory" />
+		</property>
+	</bean>
 
 
 
@@ -1253,6 +1259,14 @@
 				<property name="dao" ref="PoliDoctorDAO"/>
 			</bean>
 		</property>
+	</bean>
+	<bean id="SatuSehatManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.vone.medisafe.satusehat.SatuSehatManagerImpl">
+				<property name="dao" ref="SatuSehatTokenDAO"/>
+			</bean>
+		</property>
+
 	</bean>
 	
 </beans>

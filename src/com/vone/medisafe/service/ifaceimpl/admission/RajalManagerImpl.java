@@ -8,17 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.vone.medisafe.satusehat.service.PatientService;
+import com.vone.medisafe.service.MasterServiceLocator;
+import com.vone.medisafe.service.iface.master.RegenyManager;
+import com.vone.medisafe.service.iface.master.SubDstrictManager;
+import com.vone.medisafe.service.iface.master.VillageManager;
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zul.Bandbox;
-import org.zkoss.zul.Datebox;
-import org.zkoss.zul.Decimalbox;
-import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listcell;
-import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Messagebox;
-import org.zkoss.zul.Radiogroup;
-import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
+import org.zkoss.zul.*;
 
 import com.vone.medisafe.common.exception.VONEAppException;
 import com.vone.medisafe.common.services.MessagesService;
@@ -92,6 +88,7 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox etnisList = (Listbox) win.getFellow("etnisList");
 		Listbox languageList = (Listbox) win.getFellow("languageList");
 		Textbox nik = (Textbox)win.getFellow("nik");
+		Label ihsNo = (Label)win.getFellow("ihsNumber");
 		
 //		Textbox namaIbu = (Textbox)win.getFellow("namaIbu");
 //		Textbox namaPasgnan = (Textbox)win.getFellow("namaPasangan");
@@ -103,21 +100,18 @@ public class RajalManagerImpl implements RajalManager{
 			tipePasien = (MsPatientType)tipePasienList.getSelectedItem().getValue();
 			patient.setMsPatientType(tipePasien);
 		}
-		if(null != kelurahanList.getSelectedItem() && kelurahanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
-			village = (MsVillage)kelurahanList.getSelectedItem().getValue();
-			patient.setMsVillage(village);
-		}
+
 		if(null != propinsiList.getSelectedItem() && propinsiList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
-			province = (MsProvince)propinsiList.getSelectedItem().getValue();
-			patient.setMsProvince(province);
+			patient.setProvinceCode(propinsiList.getSelectedItem().getValue().toString());
 		}
 		if(null != kabupatenList.getSelectedItem() && kabupatenList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
-			regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
-			patient.setMsRegency(regency);
+			patient.setCityCode(kabupatenList.getSelectedItem().getValue().toString());
 		}
 		if(null != kecamatanList.getSelectedItem() && kecamatanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
-			subdistric = (MsSubDistrict)kecamatanList.getSelectedItem().getValue();
-			patient.setMsSubDistrict(subdistric);
+			patient.setDistrictCode(kecamatanList.getSelectedItem().getValue().toString());
+		}
+		if(null != kelurahanList.getSelectedItem() && kelurahanList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG){
+			patient.setSubdistrictCode(kelurahanList.getSelectedItem().getValue().toString());
 		}
 		if(null != etnisList.getSelectedItem() && etnisList.getSelectedItem().getValue() != MedisafeConstants.LISTKOSONG)
 			patient.setVEtnis(etnisList.getSelectedItem().getValue().toString());
@@ -163,7 +157,17 @@ public class RajalManagerImpl implements RajalManager{
 		if(!dokterPemeriksaList.getSelectedItem().getValue().toString().equals(MedisafeConstants.LISTKOSONG)){
 			registration.setMsStaff((MsStaff)dokterPemeriksaList.getSelectedItem().getValue());
 		}
-			
+
+		String gender = patient.getVPatientGender().equals("M")? "male" : "female";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dob = sdf.format(patient.getDPatientDob());
+		String ihsNumber = PatientService.registerPatient(patient.getNik(), patient.getVPatientName(), gender, dob, 0, patient.getVPatientMainAddr(),
+				kabupatenList.getSelectedItem().getLabel(), null, patient.getProvinceCode(), patient.getCityCode(), patient.getDistrictCode(),
+				patient.getSubdistrictCode(), rt.getValue(), rw.getValue(), patient.getVPatientName(), patient.getVPatientMainPhNo());
+
+
+		ihsNo.setValue(ihsNumber);
+		mr.setIhsNumber(ihsNumber);
 		
 				
 			if(dao.saveRegistration(patient,mr,registration,null)){
@@ -198,8 +202,8 @@ public class RajalManagerImpl implements RajalManager{
 			Map<String, Object> pasien) throws VONEAppException, InterruptedException {
 		
 		TbMedicalRecord mr = mrDao.getPatientMedicalRecord(noMr.getText());
-		MsUser user = (MsUser)Sessions.getCurrent().getAttribute(MedisafeConstants.USER_SESSION);	
-		
+		MsUser user = (MsUser)Sessions.getCurrent().getAttribute(MedisafeConstants.USER_SESSION);
+
 		TbRegistration oldReg = dao.getLastRegistrationByMrId(mr.getNMrId());
 		if(oldReg != null){
 			if(oldReg.getVRegSecondaryId().length() > 0){
@@ -215,6 +219,9 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox kecamatanList = (Listbox) pasien.get("kecamatan");
 		Listbox kelurahanList = (Listbox) pasien.get("kelurahan");
 		Textbox nik = (Textbox) pasien.get("nik");
+		Textbox rt = (Textbox)pasien.get("rt");
+		Textbox rw = (Textbox) pasien.get("rw");
+		Label ihsNumber = (Label) pasien.get("ihsNumber");
 		
 		MsPatient patien = mr.getMsPatient();
 		patien.setNik(nik.getValue());
@@ -223,20 +230,20 @@ public class RajalManagerImpl implements RajalManager{
 		if(!bahasaList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG))
 			patien.setVLanguage(bahasaList.getSelectedItem().getValue().toString());
 		if(null != propinsiList.getSelectedItem() && !propinsiList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
-			MsProvince province = (MsProvince)propinsiList.getSelectedItem().getValue();
-			patien.setMsProvince(province);
+			String provinceCode = propinsiList.getSelectedItem().getValue().toString();
+			patien.setProvinceCode(provinceCode);
 		}
 		if(null != kabupatenList.getSelectedItem() && !kabupatenList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
-			MsRegency regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
-			patien.setMsRegency(regency);
+			String cityCode = kabupatenList.getSelectedItem().getValue().toString();
+			patien.setCityCode(cityCode);
 		}
 		if(null != kecamatanList.getSelectedItem() && !kecamatanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
-			MsSubDistrict district = (MsSubDistrict) kecamatanList.getSelectedItem().getValue();
-			patien.setMsSubDistrict(district);
+			String district = kecamatanList.getSelectedItem().getValue().toString();
+			patien.setDistrictCode(district);
 		}
 		if(null != kelurahanList.getSelectedItem() && !kelurahanList.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)) {
-			MsVillage village = (MsVillage) kelurahanList.getSelectedItem().getValue();
-			patien.setMsVillage(village);
+			String village = kelurahanList.getSelectedItem().getValue().toString();
+			patien.setSubdistrictCode(village);
 		}
 			
 		if(!tipePasien.getSelectedItem().getValue().toString().equalsIgnoreCase(MedisafeConstants.LISTKOSONG)){
@@ -255,15 +262,35 @@ public class RajalManagerImpl implements RajalManager{
 		reg.setMsDivision(((MsUnit)unitList.getSelectedItem().getValue()).getMsDivision());
 		reg.setMsUnit((MsUnit)unitList.getSelectedItem().getValue());
 		reg.setVWhoCreate(user.getVUserName());
+
+		if(mr.getIhsNumber() == null){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			String birthDate = sdf.format(patien.getDPatientDob());
+			String gender = patien.getVPatientGender().equals("M")? "male" : "female";
+
+			String satuSehatIhsNumber = PatientService.registerPatient(nik.getValue(), patien.getVPatientName(), gender, birthDate, 0, patien.getVPatientMainAddr(),
+					kabupatenList.getSelectedItem().getLabel(), null, propinsiList.getSelectedItem().getValue().toString(),
+					kabupatenList.getSelectedItem().getValue().toString(), kecamatanList.getSelectedItem().getValue().toString(),
+					kelurahanList.getSelectedItem().getValue().toString(), rt.getValue(), rw.getValue(), patien.getVPatientName(),
+					patien.getVPatientMainPhNo());
+			ihsNumber.setValue(satuSehatIhsNumber);
+
+			mr.setIhsNumber(satuSehatIhsNumber);
+		}
 		
 		if(dao.saveRegistrationOnly(reg,null, mr, patien)){
 			
 			noRegistrasi.setValue(reg.getVRegSecondaryId());
 			noMr.setAttribute("registration", reg);
-			
+
+
+
 			return true;
 		}
-		
+
+
+
 		return false;
 
 	}
@@ -303,6 +330,7 @@ public class RajalManagerImpl implements RajalManager{
 		Listbox etnisList = (Listbox) win.getFellow("etnisList");
 		Listbox languageList = (Listbox) win.getFellow("languageList");
 		Textbox nik = (Textbox) win.getFellow("nik");
+		Label ihsNumber = (Label) win.getFellow("ihsNumber");
 		
 		TbMedicalRecord mr = mrDao.getPatientMedicalRecord(code);
 		if(mr == null){
@@ -314,6 +342,7 @@ public class RajalManagerImpl implements RajalManager{
 		unitList.focus();
 		
 		noMr.setValue(code);
+		ihsNumber.setValue(mr.getIhsNumber());
 		
 		namaPasien.setValue(mr.getMsPatient().getVPatientName());
 		tglLahir.setValue(mr.getMsPatient().getDPatientDob());
@@ -363,34 +392,43 @@ public class RajalManagerImpl implements RajalManager{
 			if(wargaNegaraList.getItemAtIndex(i).getValue().equals(mr.getMsPatient().getVPatientNationality()))
 				wargaNegaraList.setSelectedItem(wargaNegaraList.getItemAtIndex(i));
 		}
-		if(mr.getMsPatient().getMsVillage() != null){
+		if(mr.getMsPatient().getProvinceCode() != null){
+			for(int i=1; i < propinsiList.getItems().size(); i++){
+				if(propinsiList.getItemAtIndex(i).getValue().toString().equals(mr.getMsPatient().getProvinceCode())){
+					RegenyManager regenceyService = MasterServiceLocator.getRegencyManager();
+					propinsiList.setSelectedItem(propinsiList.getItemAtIndex(i));
+					regenceyService.getRegencyBaseOnProvince(kabupatenList, propinsiList);
+				}
+			}
+		}
+		if(mr.getMsPatient().getCityCode() != null){
+			for(int i=1; i < kabupatenList.getItems().size(); i++){
+				if(kabupatenList.getItemAtIndex(i).getValue().equals(mr.getMsPatient().getCityCode())){
+					kabupatenList.setSelectedItem(kabupatenList.getItemAtIndex(i));
+					SubDstrictManager manager = MasterServiceLocator.getSubDistrictManager();
+					manager.getSubDistrictByRegency(kecamatanList, kabupatenList);
+				}
+
+			}
+		}
+		if(mr.getMsPatient().getDistrictCode() != null){
+			for(int i=1; i < kecamatanList.getItems().size(); i++){
+				if(kecamatanList.getItemAtIndex(i).getValue().equals(mr.getMsPatient().getDistrictCode())){
+					kecamatanList.setSelectedItem(kecamatanList.getItemAtIndex(i));
+					VillageManager manager = MasterServiceLocator.getVillageManager();
+					manager.getVillageBySubdistrict(kelurahanList, kecamatanList);
+				}
+			}
+		}
+		if(mr.getMsPatient().getSubdistrictCode() != null){
 			for(int i=1; i < kelurahanList.getItems().size(); i++){
-				if(((MsVillage)kelurahanList.getItemAtIndex(i).getValue()).getNVillageId()
-						.equals(mr.getMsPatient().getMsVillage().getNVillageId()))
+				if(kelurahanList.getItemAtIndex(i).getValue().equals(mr.getMsPatient().getSubdistrictCode()))
 					kelurahanList.setSelectedItem(kelurahanList.getItemAtIndex(i));
 			}
 		}
-		if(mr.getMsPatient().getMsSubDistrict() != null){
-			for(int i=1; i < kecamatanList.getItems().size(); i++){
-				if(((MsSubDistrict)kecamatanList.getItemAtIndex(i).getValue()).getNSubdistrictId().
-						equals(mr.getMsPatient().getMsSubDistrict().getNSubdistrictId()))
-					kecamatanList.setSelectedItem(kecamatanList.getItemAtIndex(i));
-			}
-		}
-		if(mr.getMsPatient().getMsRegency() != null){
-			for(int i=1; i < kabupatenList.getItems().size(); i++){
-				if(((MsRegency)kabupatenList.getItemAtIndex(i).getValue()).getNRegencyId()
-						.equals(mr.getMsPatient().getMsRegency().getNRegencyId()))
-					kabupatenList.setSelectedItem(kabupatenList.getItemAtIndex(i));
-			}
-		}
-		if(mr.getMsPatient().getMsProvince() != null){
-			for(int i=1; i < propinsiList.getItems().size(); i++){
-				if(((MsProvince)propinsiList.getItemAtIndex(i).getValue()).getNProvinceId()
-						.equals(mr.getMsPatient().getMsProvince().getNProvinceId()))
-					propinsiList.setSelectedItem(propinsiList.getItemAtIndex(i));
-			}	
-		}
+
+
+
 		for(int i=1; i < pendidikanList.getItems().size(); i++){
 			if(pendidikanList.getItemAtIndex(i).getValue().equals(mr.getMsPatient().getVPatientEdu()))
 				pendidikanList.setSelectedItem(pendidikanList.getItemAtIndex(i));

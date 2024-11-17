@@ -26,8 +26,16 @@ public class TbMedicalRecord  implements java.io.Serializable {
      private Set tbTreatmentRoomReservations = new HashSet(0);
      private Set tbRegistrations = new HashSet(0);
 
+     private String ihsNumber;
 
-    // Constructors
+    public String getIhsNumber() {
+        return ihsNumber;
+    }
+
+    public void setIhsNumber(String ihsNumber) {
+        this.ihsNumber = ihsNumber;
+    }
+// Constructors
 
     /** default constructor */
     public TbMedicalRecord() {

@@ -249,6 +249,8 @@ public class TbRegistrationDAO extends NoteDAO {
 			session.save(registration);
 			
 			if(patient != null) session.save(patient);
+
+			session.saveOrUpdate(mr);
 			
 //			Double biaya = new Double(MessagesService.getKey("biaya.pendaftaran"));
 			Double biaya = new Double(registration.getMsDivision().getNRegistrationCharge());

@@ -34,6 +34,10 @@ import com.vone.medisafe.misc.MiscTrxController;
 import com.vone.medisafe.service.iface.master.PatientManager;
 
 public class PatientManagerImpl implements PatientManager{
+	@Override
+	public void updateIhsNumber(TbMedicalRecord mr) {
+		this.dao.updateMr(mr);
+	}
 
 	private MsPatientDAO dao;
 	private TbMedicalRecordDAO mrDao;

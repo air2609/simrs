@@ -2,6 +2,8 @@ package com.vone.medisafe.service.ifaceimpl.master;
 
 import java.util.List;
 
+import com.vone.medisafe.satusehat.masterdata.Location;
+import com.vone.medisafe.satusehat.service.LocationService;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -115,8 +117,9 @@ public class RegencyManagerImpl implements RegenyManager{
 		item.setValue(MedisafeConstants.LISTKOSONG);
 		item.setLabel(MedisafeConstants.LABELKOSONG);
 		item.setParent(kabupatenList);
-		
-		MsProvince province = (MsProvince) provinceList.getSelectedItem().getValue();
+
+		//change to satusehat master data
+		/**MsProvince province = (MsProvince) provinceList.getSelectedItem().getValue();
 		
 		List<MsRegency> list = this.dao.getAllRegencyByProvince(province);
 		
@@ -126,6 +129,15 @@ public class RegencyManagerImpl implements RegenyManager{
 			item = new Listitem();
 			item.setValue(kabupaten);
 			item.setLabel(kabupaten.getVRegencyName());
+			item.setParent(kabupatenList);
+		}*/
+
+		String pronviceCode = provinceList.getSelectedItem().getValue().toString();
+		List<Location> cityList = LocationService.getCitiesByPronvinceCode(pronviceCode);
+		for(Location city : cityList){
+			item = new Listitem();
+			item.setValue(city.getCode());
+			item.setLabel(city.getName().toUpperCase());
 			item.setParent(kabupatenList);
 		}
 		

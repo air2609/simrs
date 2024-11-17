@@ -5,6 +5,8 @@ package com.vone.medisafe.service.ifaceimpl.master;
 
 import java.util.List;
 
+import com.vone.medisafe.satusehat.masterdata.Location;
+import com.vone.medisafe.satusehat.service.LocationService;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listitem;
 
@@ -60,8 +62,8 @@ public class ProvinceManagerImpl implements ProvinceManager{
 		item.setLabel(MedisafeConstants.LABELKOSONG);
 		item.setParent(propinsiList);
 		
-		
-		List<MsProvince> list = this.dao.getAllProvince();
+		//change local master data to satu sehat master data
+		/**List<MsProvince> list = this.dao.getAllProvince();
 		
 		
 		for(MsProvince province : list){
@@ -71,6 +73,13 @@ public class ProvinceManagerImpl implements ProvinceManager{
 			item.setLabel(province.getVProvinceName());
 			item.setParent(propinsiList);
 			
+		}*/
+		List<Location> pronvinceList = LocationService.getAllPropinsi();
+		for(Location prov : pronvinceList){
+			item = new Listitem();
+			item.setValue(prov.getCode());
+			item.setLabel(prov.getName().toUpperCase());
+			item.setParent(propinsiList);
 		}
 		
 		propinsiList.setSelectedIndex(0);

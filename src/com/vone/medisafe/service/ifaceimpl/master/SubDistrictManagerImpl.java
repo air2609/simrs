@@ -4,6 +4,8 @@ package com.vone.medisafe.service.ifaceimpl.master;
 
 import java.util.List;
 
+import com.vone.medisafe.satusehat.masterdata.Location;
+import com.vone.medisafe.satusehat.service.LocationService;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -111,8 +113,9 @@ public class SubDistrictManagerImpl implements SubDstrictManager{
 		item.setValue(MedisafeConstants.LISTKOSONG);
 		item.setLabel(MedisafeConstants.LABELKOSONG);
 		item.setParent(kecamatanList);
-		
-		MsRegency regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
+
+		//change from local master data to satusehat master data
+		/** MsRegency regency = (MsRegency)kabupatenList.getSelectedItem().getValue();
 		
 		List<MsSubDistrict> list = this.dao.getAllSubdistrictByRegency(regency);
 		
@@ -121,6 +124,14 @@ public class SubDistrictManagerImpl implements SubDstrictManager{
 			item = new Listitem();
 			item.setValue(kecamatan);
 			item.setLabel(kecamatan.getVSubDistrictName());
+			item.setParent(kecamatanList);
+		}*/
+		String cityCode = kabupatenList.getSelectedItem().getValue().toString();
+		List<Location> districtsList = LocationService.getDistrictsByCityCode(cityCode);
+		for(Location kec : districtsList){
+			item = new Listitem();
+			item.setValue(kec.getCode());
+			item.setLabel(kec.getName().toUpperCase());
 			item.setParent(kecamatanList);
 		}
 		

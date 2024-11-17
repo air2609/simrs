@@ -4,6 +4,8 @@ package com.vone.medisafe.service.ifaceimpl.master;
 import java.util.Iterator;
 import java.util.List;
 
+import com.vone.medisafe.satusehat.masterdata.Location;
+import com.vone.medisafe.satusehat.service.LocationService;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
@@ -134,8 +136,9 @@ kelurahanList.getItems().clear();
 		item.setValue(MedisafeConstants.LISTKOSONG);
 		item.setLabel(MedisafeConstants.LABELKOSONG);;
 		item.setParent(kelurahanList);
-		
-		MsSubDistrict subdistrict = (MsSubDistrict)kecamatanList.getSelectedItem().getValue();
+
+		//change localmaster data to satusehat master data
+		/**MsSubDistrict subdistrict = (MsSubDistrict)kecamatanList.getSelectedItem().getValue();
 		
 		List<MsVillage> list = this.dao.getAllVillageBySubdistrict(subdistrict);
 		
@@ -145,6 +148,14 @@ kelurahanList.getItems().clear();
 			item = new Listitem();
 			item.setValue(village);
 			item.setLabel(village.getVVillageName());
+			item.setParent(kelurahanList);
+		}*/
+		String districtCode = kecamatanList.getSelectedItem().getValue().toString();
+		List<Location> subdistrictList = LocationService.getSubdistrictsByDistrictCode(districtCode);
+		for(Location subdistrict : subdistrictList){
+			item = new Listitem();
+			item.setValue(subdistrict.getCode());
+			item.setLabel(subdistrict.getName().toUpperCase());
 			item.setParent(kelurahanList);
 		}
 		

@@ -1,5 +1,6 @@
 package com.vone.medisafe.service;
 
+import com.vone.medisafe.satusehat.SatuSehatManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate.support.OpenSessionInViewFilter;
@@ -123,6 +124,10 @@ public class Service {
 	
 	public static AntrianManager getAntrianManager() {
 		return (AntrianManager) ctx.getBean("AntrianManager", AntrianManager.class);
+	}
+
+	public static SatuSehatManager getSatuSehatManager() {
+		return (SatuSehatManager) ctx.getBean("SatuSehatManager", SatuSehatManager.class);
 	}
 		
 	

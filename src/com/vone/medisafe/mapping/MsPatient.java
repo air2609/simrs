@@ -45,13 +45,50 @@ public class MsPatient  implements java.io.Serializable {
      private Set tbExaminations = new HashSet(0);
      private Set tbMedicalRecords = new HashSet(0);
      private String nik;
+     private String provinceCode;
+     private String cityCode;
+     private String districtCode;
+     private String subdistrictCode;
      
 //     private String VPatientMotherName;
 //     private String VPatientPartnerName;
 
 
+
    
 	// Constructors
+
+    public String getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(String provinceCode) {
+        this.provinceCode = provinceCode;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getDistrictCode() {
+        return districtCode;
+    }
+
+    public void setDistrictCode(String districtCdde) {
+        this.districtCode = districtCdde;
+    }
+
+    public String getSubdistrictCode() {
+        return subdistrictCode;
+    }
+
+    public void setSubdistrictCode(String subdistrictCode) {
+        this.subdistrictCode = subdistrictCode;
+    }
 /**
     public String getVPatientMotherName() {
 		return this.VPatientMotherName;

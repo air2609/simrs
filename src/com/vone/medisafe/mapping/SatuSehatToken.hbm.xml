@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.vone.medisafe.mapping.SatuSehatToken" table="satu_sehat_token" schema="public" >
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="sequence">
+                <param name="sequence">satu_sehat_token_id_seq</param>
+            </generator>
+        </id>
+        <property name="accessToken" type="string">
+            <column name="access_token"/>
+        </property>
+        <property name="lastAccess" type="timestamp">
+            <column name="last_access" />
+        </property>
+
+    </class>
+</hibernate-mapping>

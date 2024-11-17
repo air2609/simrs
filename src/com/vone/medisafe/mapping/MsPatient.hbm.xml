@@ -82,6 +82,18 @@
         <property name="nik" type="string">
             <column name="nik" length="20" />
         </property>
+        <property name="provinceCode" type="string">
+            <column name="province_code" length="10" />
+        </property>
+        <property name="cityCode" type="string">
+            <column name="city_code" length="10" />
+        </property>
+        <property name="districtCode" type="string">
+            <column name="district_code" length="15" />
+        </property>
+        <property name="subdistrictCode" type="string">
+            <column name="subdistrict_code" length="20" />
+        </property>
         
         <!-- 
         <property name="VPatientMotherName" type="string">

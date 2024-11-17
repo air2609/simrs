@@ -48,5 +48,7 @@ public interface PatientManager {
 	throws VONEAppException,InterruptedException;
 	
 	public List getPatientByNik(String nik) throws VONEAppException,InterruptedException;
+
+	public void updateIhsNumber(TbMedicalRecord mr);
 }
 	
