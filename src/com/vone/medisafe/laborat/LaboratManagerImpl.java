@@ -1565,6 +1565,7 @@ public class LaboratManagerImpl implements LaboratManager{
 		sb.append(MedisafeConstants.OEN_NPWP + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.OEN_PKP + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.OEN_RS + MedisafeConstants.NEWLINE);
+		sb.append(MedisafeConstants.OEN_NPWP_NUMBER + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.NEWLINE);
 		
 		sb.append(NO_REGISTER 
@@ -2038,6 +2039,7 @@ public class LaboratManagerImpl implements LaboratManager{
 		sb.append(MedisafeConstants.OEN_NPWP + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.OEN_PKP + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.OEN_RS + MedisafeConstants.NEWLINE);
+		sb.append(MedisafeConstants.OEN_NPWP_NUMBER + MedisafeConstants.NEWLINE);
 		sb.append(MedisafeConstants.NEWLINE);
 		
 		//modified for CMC Printing, edit date 2010-02-20

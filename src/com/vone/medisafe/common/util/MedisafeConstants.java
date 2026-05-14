@@ -324,9 +324,10 @@ public interface MedisafeConstants {
 	
 	
 	public static final String OEN_YAYASAN = "RUMAH SAKIT TIARA SELLA";
-	public static final String OEN_NPWP = "GRAHA BERNOZA";
+	public static final String OEN_NPWP = "PT. GRAHA BERNOZA";
 	public static final String OEN_PKP = "JL. S PARMAN NO. 61 PADANG JATI";
-	public static final String OEN_RS = "BENGKULU"; 
+	public static final String OEN_RS = "BENGKULU";
+	public static final String OEN_NPWP_NUMBER = "NPWP : 02.351.717.0-311.000";
 	
 	public static final String ALAMAT = "";
 	public static final String FONT_SIZE_8PT = "font-size:8pt";
