@@ -65,8 +65,10 @@ Vite sudah dipasang proxy:
 
 ## Storage dan migration
 
-- Database lokal: H2 file (`./data/simrsdb_v2`).
+- Database development: PostgreSQL (default `jdbc:postgresql://localhost:5432/simrs_dev`).
+- Kredensial default development mengikuti nilai default di `backend/src/main/resources/application.properties` (bisa dioverride via env `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`).
 - Migrasi skema: Flyway (`db/migration/V1__init_admission_tables.sql`).
+- Database test: H2 in-memory (hanya untuk automated test).
 
 ## Validasi build
 
