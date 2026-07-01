@@ -202,6 +202,18 @@ p {
   padding: 14px;
 }
 
+.user-row {
+  margin-top: 12px;
+}
+
+.user-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
 pre {
   overflow: auto;
   margin: 8px 0 0;

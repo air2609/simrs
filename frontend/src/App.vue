@@ -5,6 +5,7 @@ import {
   createAdmissionRegistration,
   getAdmissionReferences,
   getAdmissionRegistrations,
+  searchAdmissionPatients,
 } from './api/admission'
 import {
   cancelInpatientBooking,
@@ -21,6 +22,7 @@ const apiStatus = ref('checking')
 const activeTab = ref('rawat-jalan')
 const loading = ref(false)
 const submitMessage = ref('')
+const userId = ref('developer')
 const references = ref({
   patientModes: [],
   patientTypes: [],
@@ -30,6 +32,12 @@ const references = ref({
   languages: [],
 })
 const registrations = ref([])
+const patientSearchFilter = ref({
+  mrNumber: '',
+  nik: '',
+  patientName: '',
+})
+const patientSearchResult = ref([])
 const inpatientReferences = ref({
   classes: [],
   halls: [],
@@ -171,6 +179,33 @@ const cancelRegistration = async (registrationNumber) => {
   }
 }
 
+const searchPatients = async () => {
+  loading.value = true
+  submitMessage.value = ''
+
+  try {
+    patientSearchResult.value = await searchAdmissionPatients({ ...patientSearchFilter.value })
+    if (patientSearchResult.value.length === 0) {
+      submitMessage.value = 'Data pasien tidak ditemukan'
+    }
+  } catch (error) {
+    submitMessage.value = `Gagal mencari pasien: ${error.message}`
+  } finally {
+    loading.value = false
+  }
+}
+
+const usePatientFromSearch = (patient) => {
+  form.value.patientMode = 'PASIEN_LAMA'
+  form.value.mrNumber = patient.mrNumber || ''
+  form.value.nik = patient.nik || ''
+  form.value.patientName = patient.patientName || ''
+  form.value.gender = patient.gender || 'M'
+  form.value.birthDate = patient.birthDate || ''
+  form.value.address = patient.address || ''
+  form.value.phone = patient.phone || ''
+}
+
 const submitInpatientBooking = async () => {
   loading.value = true
   inpatientMessage.value = ''
@@ -236,7 +271,14 @@ const submitMutation = async () => {
   }
 }
 
+const saveUserId = () => {
+  const normalized = (userId.value || '').trim() || 'developer'
+  userId.value = normalized
+  localStorage.setItem('simrsUserId', normalized)
+}
+
 onMounted(() => {
+  userId.value = localStorage.getItem('simrsUserId') || 'developer'
   Promise.all([
     checkBackend(),
     loadReferences(),
@@ -260,6 +302,13 @@ onMounted(() => {
         <p><strong>Backend status:</strong> {{ apiStatus }}</p>
       </div>
 
+      <div class="user-row">
+        <label>
+          User ID untuk aksi sensitif
+          <input v-model="userId" type="text" @change="saveUserId" />
+        </label>
+      </div>
+
       <div class="tab-row">
         <button
           class="tab-btn"
@@ -279,6 +328,55 @@ onMounted(() => {
 
       <div v-if="activeTab === 'rawat-jalan'" class="panel">
         <h2>Form Pendaftaran Pasien Rawat Jalan</h2>
+
+        <div class="sub-panel">
+          <h3>Cari Pasien Lama</h3>
+          <div class="form-grid">
+            <label>
+              No MR
+              <input v-model="patientSearchFilter.mrNumber" type="text" placeholder="MR..." />
+            </label>
+
+            <label>
+              NIK
+              <input v-model="patientSearchFilter.nik" type="text" placeholder="NIK" />
+            </label>
+
+            <label class="wide">
+              Nama Pasien
+              <input v-model="patientSearchFilter.patientName" type="text" placeholder="Nama pasien" />
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button :disabled="loading" @click="searchPatients">Cari Pasien</button>
+          </div>
+
+          <div class="table-wrap" v-if="patientSearchResult.length > 0">
+            <table>
+              <thead>
+                <tr>
+                  <th>No MR</th>
+                  <th>NIK</th>
+                  <th>Nama</th>
+                  <th>Tgl Lahir</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="patient in patientSearchResult" :key="patient.mrNumber">
+                  <td>{{ patient.mrNumber }}</td>
+                  <td>{{ patient.nik }}</td>
+                  <td>{{ patient.patientName }}</td>
+                  <td>{{ patient.birthDate }}</td>
+                  <td>
+                    <button :disabled="loading" @click="usePatientFromSearch(patient)">Pilih</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="form-grid">
           <label>

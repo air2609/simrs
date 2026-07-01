@@ -1,5 +1,9 @@
 const BASE_URL = '/api/admissions'
 
+function resolveUserId() {
+  return localStorage.getItem('simrsUserId') || 'developer'
+}
+
 async function parseResponse(response) {
   const payload = await response.json().catch(() => ({}))
 
@@ -21,6 +25,7 @@ export async function createAdmissionRegistration(form) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-User-Id': resolveUserId(),
     },
     body: JSON.stringify(form),
   })
@@ -46,7 +51,29 @@ export async function getAdmissionRegistrations(filter = {}) {
 export async function cancelAdmissionRegistration(registrationNumber) {
   const response = await fetch(`${BASE_URL}/registrations/${registrationNumber}/cancel`, {
     method: 'POST',
+    headers: {
+      'X-User-Id': resolveUserId(),
+    },
   })
 
+  return parseResponse(response)
+}
+
+export async function searchAdmissionPatients(filter = {}) {
+  const search = new URLSearchParams()
+
+  if (filter.mrNumber) {
+    search.set('mrNumber', filter.mrNumber)
+  }
+
+  if (filter.nik) {
+    search.set('nik', filter.nik)
+  }
+
+  if (filter.patientName) {
+    search.set('patientName', filter.patientName)
+  }
+
+  const response = await fetch(`${BASE_URL}/patients/search?${search.toString()}`)
   return parseResponse(response)
 }

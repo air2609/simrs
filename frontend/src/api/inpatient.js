@@ -1,5 +1,9 @@
 const BASE_URL = '/api/admissions/inpatient'
 
+function resolveUserId() {
+  return localStorage.getItem('simrsUserId') || 'developer'
+}
+
 async function parseResponse(response) {
   const payload = await response.json().catch(() => ({}))
 
@@ -18,7 +22,10 @@ export async function getInpatientReferences() {
 export async function createInpatientBooking(payload) {
   const response = await fetch(`${BASE_URL}/bookings`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-Id': resolveUserId(),
+    },
     body: JSON.stringify(payload),
   })
   return parseResponse(response)
@@ -45,6 +52,9 @@ export async function getInpatientQueue(hall) {
 export async function confirmInpatientBooking(bookingNumber) {
   const response = await fetch(`${BASE_URL}/bookings/${bookingNumber}/confirm`, {
     method: 'POST',
+    headers: {
+      'X-User-Id': resolveUserId(),
+    },
   })
   return parseResponse(response)
 }
@@ -52,6 +62,9 @@ export async function confirmInpatientBooking(bookingNumber) {
 export async function cancelInpatientBooking(bookingNumber) {
   const response = await fetch(`${BASE_URL}/bookings/${bookingNumber}/cancel`, {
     method: 'POST',
+    headers: {
+      'X-User-Id': resolveUserId(),
+    },
   })
   return parseResponse(response)
 }
@@ -59,7 +72,10 @@ export async function cancelInpatientBooking(bookingNumber) {
 export async function createInpatientMutation(payload) {
   const response = await fetch(`${BASE_URL}/mutations`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-Id': resolveUserId(),
+    },
     body: JSON.stringify(payload),
   })
   return parseResponse(response)

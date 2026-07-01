@@ -23,6 +23,7 @@ Endpoint uji:
 Endpoint modul admisi (tahap migrasi awal):
 
 - `GET /api/admissions/references`
+- `GET /api/admissions/patients/search?mrNumber=&nik=&patientName=`
 - `POST /api/admissions/registrations`
 - `GET /api/admissions/registrations?status=ACTIVE`
 - `POST /api/admissions/registrations/{registrationNumber}/cancel`
@@ -55,9 +56,17 @@ Vite sudah dipasang proxy:
 ## Cakupan migrasi admisi saat ini
 
 - Frontend: tab `Pasien Rawat Jalan` sudah terhubung API baru.
-- Backend: create/list/cancel registrasi rawat jalan dengan penyimpanan sementara in-memory.
+- Frontend: tersedia pencarian pasien lama berdasarkan No MR/NIK/Nama, lalu data bisa dipilih ke form.
+- Backend: create/list/cancel registrasi rawat jalan sudah memakai penyimpanan database (JPA).
 - Frontend: tab `Pasien Rawat Inap` sudah mendukung booking kamar, antrian, konfirmasi/batal, dan mutasi kamar.
-- Backend: alur ranap tersebut sudah tersedia dengan penyimpanan sementara in-memory.
+- Backend: alur ranap tersebut sudah memakai penyimpanan database (JPA).
+- Aksi sensitif (POST) pada modul admisi mewajibkan header `X-User-Id` untuk keperluan auth sederhana.
+- Semua aksi sensitif terekam ke audit log (`ad_audit_log`).
+
+## Storage dan migration
+
+- Database lokal: H2 file (`./data/simrsdb_v2`).
+- Migrasi skema: Flyway (`db/migration/V1__init_admission_tables.sql`).
 
 ## Validasi build
 

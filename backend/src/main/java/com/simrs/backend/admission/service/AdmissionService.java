@@ -1,20 +1,22 @@
 package com.simrs.backend.admission.service;
 
+import com.simrs.backend.admission.dto.AdmissionPatientSearchResponse;
 import com.simrs.backend.admission.dto.AdmissionReferenceDataResponse;
 import com.simrs.backend.admission.dto.AdmissionRegistrationRequest;
 import com.simrs.backend.admission.dto.AdmissionRegistrationResponse;
-import com.simrs.backend.admission.model.AdmissionRegistration;
+import com.simrs.backend.admission.persistence.entity.OutpatientRegistrationEntity;
+import com.simrs.backend.admission.persistence.entity.PatientEntity;
+import com.simrs.backend.admission.persistence.repository.OutpatientRegistrationRepository;
+import com.simrs.backend.admission.persistence.repository.PatientRepository;
+import com.simrs.backend.audit.AuditLogService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AdmissionService {
@@ -24,8 +26,18 @@ public class AdmissionService {
     private final AtomicLong registrationSequence = new AtomicLong(1L);
     private final AtomicLong mrSequence = new AtomicLong(100001L);
 
-    private final Map<String, AdmissionRegistration> registrations = new ConcurrentHashMap<String, AdmissionRegistration>();
-    private final Map<String, String> nikToMr = new ConcurrentHashMap<String, String>();
+    private final PatientRepository patientRepository;
+    private final OutpatientRegistrationRepository outpatientRegistrationRepository;
+    private final AuditLogService auditLogService;
+
+    public AdmissionService(
+            PatientRepository patientRepository,
+            OutpatientRegistrationRepository outpatientRegistrationRepository,
+            AuditLogService auditLogService) {
+        this.patientRepository = patientRepository;
+        this.outpatientRegistrationRepository = outpatientRegistrationRepository;
+        this.auditLogService = auditLogService;
+    }
 
     public AdmissionReferenceDataResponse getReferenceData() {
         AdmissionReferenceDataResponse response = new AdmissionReferenceDataResponse();
@@ -38,82 +50,143 @@ public class AdmissionService {
         return response;
     }
 
-    public AdmissionRegistrationResponse createRegistration(AdmissionRegistrationRequest request) {
-        String mrNumber = resolveMrNumber(request);
+    @Transactional
+    public AdmissionRegistrationResponse createRegistration(AdmissionRegistrationRequest request, String userId) {
+        PatientEntity patient = resolvePatient(request);
 
-        AdmissionRegistration registration = new AdmissionRegistration();
+        OutpatientRegistrationEntity registration = new OutpatientRegistrationEntity();
         registration.setRegistrationNumber(generateRegistrationNumber());
-        registration.setMrNumber(mrNumber);
-        registration.setPatientName(request.getPatientName());
-        registration.setNik(request.getNik());
-        registration.setGender(request.getGender());
-        registration.setBirthDate(request.getBirthDate());
-        registration.setAddress(request.getAddress());
+        registration.setMrNumber(patient.getMrNumber());
+        registration.setPatientName(patient.getPatientName());
+        registration.setNik(patient.getNik());
         registration.setUnit(request.getUnit());
         registration.setDoctor(request.getDoctor());
         registration.setPatientType(request.getPatientType());
         registration.setEthnicity(request.getEthnicity());
         registration.setLanguage(request.getLanguage());
-        registration.setPhone(request.getPhone());
         registration.setStatus("ACTIVE");
         registration.setRegisteredAt(LocalDateTime.now());
+        outpatientRegistrationRepository.save(registration);
 
-        registrations.put(registration.getRegistrationNumber(), registration);
+        auditLogService.log(
+                "OUTPATIENT_REGISTER",
+                "OUTPATIENT_REGISTRATION",
+                registration.getRegistrationNumber(),
+                userId,
+                "create outpatient registration");
 
         return toResponse(registration);
     }
 
     public List<AdmissionRegistrationResponse> listRegistrations(String mrNumber, String status) {
-        List<AdmissionRegistration> values = new ArrayList<AdmissionRegistration>(registrations.values());
-        Collections.sort(values, (a, b) -> b.getRegisteredAt().compareTo(a.getRegisteredAt()));
+        String normalizedMr = mrNumber == null ? "" : mrNumber.trim();
+        String normalizedStatus = status == null ? "" : status.trim();
+
+        List<OutpatientRegistrationEntity> values;
+        if (!normalizedMr.isEmpty() && !normalizedStatus.isEmpty()) {
+            values = outpatientRegistrationRepository
+                    .findByMrNumberContainingIgnoreCaseAndStatusContainingIgnoreCaseOrderByRegisteredAtDesc(
+                            normalizedMr,
+                            normalizedStatus);
+        } else if (!normalizedStatus.isEmpty()) {
+            values = outpatientRegistrationRepository.findByStatusContainingIgnoreCaseOrderByRegisteredAtDesc(normalizedStatus);
+        } else if (!normalizedMr.isEmpty()) {
+            values = outpatientRegistrationRepository.findByMrNumberContainingIgnoreCaseOrderByRegisteredAtDesc(normalizedMr);
+        } else {
+            values = outpatientRegistrationRepository.findAll();
+            values.sort((a, b) -> b.getRegisteredAt().compareTo(a.getRegisteredAt()));
+        }
 
         return values.stream()
-                .filter(item -> mrNumber == null || mrNumber.trim().isEmpty() || item.getMrNumber().equalsIgnoreCase(mrNumber.trim()))
-                .filter(item -> status == null || status.trim().isEmpty() || item.getStatus().equalsIgnoreCase(status.trim()))
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
-    public AdmissionRegistrationResponse cancelRegistration(String registrationNumber) {
-        AdmissionRegistration registration = registrations.get(registrationNumber);
+    @Transactional
+    public AdmissionRegistrationResponse cancelRegistration(String registrationNumber, String userId) {
+        OutpatientRegistrationEntity registration = outpatientRegistrationRepository
+                .findByRegistrationNumber(registrationNumber)
+                .orElse(null);
         if (registration == null) {
             throw new IllegalArgumentException("Nomor registrasi tidak ditemukan");
         }
 
         registration.setStatus("CANCELLED");
+        outpatientRegistrationRepository.save(registration);
+
+        auditLogService.log(
+                "OUTPATIENT_CANCEL",
+                "OUTPATIENT_REGISTRATION",
+                registrationNumber,
+                userId,
+                "cancel outpatient registration");
+
         return toResponse(registration);
     }
 
-    private String resolveMrNumber(AdmissionRegistrationRequest request) {
+    public List<AdmissionPatientSearchResponse> searchPatients(String mrNumber, String nik, String patientName) {
+        String mr = mrNumber == null ? "" : mrNumber.trim();
+        String normalizedNik = nik == null ? "" : nik.trim();
+        String name = patientName == null ? "" : patientName.trim();
+
+        List<PatientEntity> result;
+        if (!name.isEmpty()) {
+            result = patientRepository.findByPatientNameContainingIgnoreCase(name);
+        } else {
+            result = patientRepository.findByMrNumberContainingIgnoreCaseAndNikContainingIgnoreCase(mr, normalizedNik);
+        }
+
+        return result.stream().map(this::toPatientSearchResponse).collect(Collectors.toList());
+    }
+
+    private PatientEntity resolvePatient(AdmissionRegistrationRequest request) {
         String mode = request.getPatientMode() == null ? "" : request.getPatientMode().trim();
         if ("PASIEN_LAMA".equalsIgnoreCase(mode)) {
             if (request.getMrNumber() == null || request.getMrNumber().trim().isEmpty()) {
                 throw new IllegalArgumentException("No MR wajib diisi untuk pasien lama");
             }
-            return request.getMrNumber().trim().toUpperCase();
+            String normalizedMr = request.getMrNumber().trim().toUpperCase();
+            return patientRepository.findByMrNumber(normalizedMr)
+                    .orElseThrow(() -> new IllegalArgumentException("Data pasien lama tidak ditemukan"));
         }
 
         String normalizedNik = request.getNik() == null ? "" : request.getNik().trim();
-        if (nikToMr.containsKey(normalizedNik)) {
-            return nikToMr.get(normalizedNik);
+        PatientEntity existing = patientRepository.findByNik(normalizedNik).orElse(null);
+        if (existing != null) {
+            return existing;
         }
 
-        String mrNumber = generateMrNumber();
-        nikToMr.put(normalizedNik, mrNumber);
-        return mrNumber;
+        PatientEntity patient = new PatientEntity();
+        patient.setMrNumber(generateMrNumber());
+        patient.setNik(normalizedNik);
+        patient.setPatientName(request.getPatientName());
+        patient.setGender(request.getGender());
+        patient.setBirthDate(request.getBirthDate());
+        patient.setAddress(request.getAddress());
+        patient.setPhone(request.getPhone());
+        patient.setCreatedAt(LocalDateTime.now());
+        return patientRepository.save(patient);
     }
 
     private String generateMrNumber() {
-        return "MR" + mrSequence.getAndIncrement();
+        String mrNumber;
+        do {
+            mrNumber = "MR" + mrSequence.getAndIncrement();
+        } while (patientRepository.findByMrNumber(mrNumber).isPresent());
+        return mrNumber;
     }
 
     private String generateRegistrationNumber() {
-        String datePart = LocalDateTime.now().format(REG_DATE_FORMAT);
-        long sequence = registrationSequence.getAndIncrement();
-        return "RJ" + datePart + "-" + String.format("%05d", sequence);
+        String registrationNumber;
+        do {
+            String datePart = LocalDateTime.now().format(REG_DATE_FORMAT);
+            long sequence = registrationSequence.getAndIncrement();
+            registrationNumber = "RJ" + datePart + "-" + String.format("%05d", sequence);
+        } while (outpatientRegistrationRepository.existsByRegistrationNumber(registrationNumber));
+        return registrationNumber;
     }
 
-    private AdmissionRegistrationResponse toResponse(AdmissionRegistration registration) {
+    private AdmissionRegistrationResponse toResponse(OutpatientRegistrationEntity registration) {
         AdmissionRegistrationResponse response = new AdmissionRegistrationResponse();
         response.setRegistrationNumber(registration.getRegistrationNumber());
         response.setMrNumber(registration.getMrNumber());
@@ -123,6 +196,18 @@ public class AdmissionService {
         response.setDoctor(registration.getDoctor());
         response.setStatus(registration.getStatus());
         response.setRegisteredAt(registration.getRegisteredAt().toString());
+        return response;
+    }
+
+    private AdmissionPatientSearchResponse toPatientSearchResponse(PatientEntity patient) {
+        AdmissionPatientSearchResponse response = new AdmissionPatientSearchResponse();
+        response.setMrNumber(patient.getMrNumber());
+        response.setNik(patient.getNik());
+        response.setPatientName(patient.getPatientName());
+        response.setGender(patient.getGender());
+        response.setBirthDate(patient.getBirthDate());
+        response.setAddress(patient.getAddress());
+        response.setPhone(patient.getPhone());
         return response;
     }
 }

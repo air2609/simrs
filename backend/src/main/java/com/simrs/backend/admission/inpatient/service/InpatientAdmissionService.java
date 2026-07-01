@@ -5,19 +5,19 @@ import com.simrs.backend.admission.inpatient.dto.InpatientBookingResponse;
 import com.simrs.backend.admission.inpatient.dto.InpatientMutationRequest;
 import com.simrs.backend.admission.inpatient.dto.InpatientMutationResponse;
 import com.simrs.backend.admission.inpatient.dto.InpatientReferenceDataResponse;
-import com.simrs.backend.admission.inpatient.model.InpatientBooking;
-import com.simrs.backend.admission.inpatient.model.InpatientMutation;
+import com.simrs.backend.admission.persistence.entity.InpatientBookingEntity;
+import com.simrs.backend.admission.persistence.entity.InpatientMutationEntity;
+import com.simrs.backend.admission.persistence.repository.InpatientBookingRepository;
+import com.simrs.backend.admission.persistence.repository.InpatientMutationRepository;
+import com.simrs.backend.audit.AuditLogService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InpatientAdmissionService {
@@ -28,8 +28,18 @@ public class InpatientAdmissionService {
     private final AtomicLong registrationSequence = new AtomicLong(1L);
     private final AtomicLong mutationSequence = new AtomicLong(1L);
 
-    private final Map<String, InpatientBooking> bookings = new ConcurrentHashMap<String, InpatientBooking>();
-    private final Map<String, List<InpatientMutation>> mutationsByRegistration = new ConcurrentHashMap<String, List<InpatientMutation>>();
+    private final InpatientBookingRepository inpatientBookingRepository;
+    private final InpatientMutationRepository inpatientMutationRepository;
+    private final AuditLogService auditLogService;
+
+    public InpatientAdmissionService(
+            InpatientBookingRepository inpatientBookingRepository,
+            InpatientMutationRepository inpatientMutationRepository,
+            AuditLogService auditLogService) {
+        this.inpatientBookingRepository = inpatientBookingRepository;
+        this.inpatientMutationRepository = inpatientMutationRepository;
+        this.auditLogService = auditLogService;
+    }
 
     public InpatientReferenceDataResponse getReferenceData() {
         InpatientReferenceDataResponse response = new InpatientReferenceDataResponse();
@@ -40,8 +50,9 @@ public class InpatientAdmissionService {
         return response;
     }
 
-    public InpatientBookingResponse createBooking(InpatientBookingRequest request) {
-        InpatientBooking booking = new InpatientBooking();
+    @Transactional
+    public InpatientBookingResponse createBooking(InpatientBookingRequest request, String userId) {
+        InpatientBookingEntity booking = new InpatientBookingEntity();
         booking.setBookingNumber(generateBookingNumber());
         booking.setRegistrationNumber(generateRegistrationNumber());
         booking.setMrNumber(request.getMrNumber().trim().toUpperCase());
@@ -53,44 +64,83 @@ public class InpatientAdmissionService {
         booking.setStatus("QUEUED");
         booking.setQueuedAt(LocalDateTime.now());
 
-        bookings.put(booking.getBookingNumber(), booking);
+        inpatientBookingRepository.save(booking);
+
+        auditLogService.log(
+                "INPATIENT_BOOKING_CREATE",
+                "INPATIENT_BOOKING",
+                booking.getBookingNumber(),
+                userId,
+                "create inpatient booking");
+
         return toResponse(booking);
     }
 
     public List<InpatientBookingResponse> listBookings(String status) {
-        List<InpatientBooking> values = new ArrayList<InpatientBooking>(bookings.values());
-        Collections.sort(values, (a, b) -> b.getQueuedAt().compareTo(a.getQueuedAt()));
+        List<InpatientBookingEntity> values;
+        if (status == null || status.trim().isEmpty()) {
+            values = inpatientBookingRepository.findAll();
+            values.sort((a, b) -> b.getQueuedAt().compareTo(a.getQueuedAt()));
+        } else {
+            values = inpatientBookingRepository.findByStatusContainingIgnoreCaseOrderByQueuedAtDesc(status.trim());
+        }
 
         return values.stream()
-                .filter(item -> status == null || status.trim().isEmpty() || item.getStatus().equalsIgnoreCase(status.trim()))
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
     public List<InpatientBookingResponse> listQueue(String hall) {
-        return listBookings("QUEUED").stream()
-                .filter(item -> hall == null || hall.trim().isEmpty() || item.getHall().equalsIgnoreCase(hall.trim()))
+        if (hall == null || hall.trim().isEmpty()) {
+            return listBookings("QUEUED");
+        }
+
+        return inpatientBookingRepository
+                .findByStatusContainingIgnoreCaseAndHallContainingIgnoreCaseOrderByQueuedAtDesc("QUEUED", hall.trim())
+                .stream()
+                .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
-    public InpatientBookingResponse confirmBooking(String bookingNumber) {
-        InpatientBooking booking = findBooking(bookingNumber);
+    @Transactional
+    public InpatientBookingResponse confirmBooking(String bookingNumber, String userId) {
+        InpatientBookingEntity booking = findBooking(bookingNumber);
         booking.setStatus("ACTIVE");
+        inpatientBookingRepository.save(booking);
+
+        auditLogService.log(
+                "INPATIENT_BOOKING_CONFIRM",
+                "INPATIENT_BOOKING",
+                bookingNumber,
+                userId,
+                "confirm inpatient booking");
+
         return toResponse(booking);
     }
 
-    public InpatientBookingResponse cancelBooking(String bookingNumber) {
-        InpatientBooking booking = findBooking(bookingNumber);
+    @Transactional
+    public InpatientBookingResponse cancelBooking(String bookingNumber, String userId) {
+        InpatientBookingEntity booking = findBooking(bookingNumber);
         booking.setStatus("CANCELLED");
+        inpatientBookingRepository.save(booking);
+
+        auditLogService.log(
+                "INPATIENT_BOOKING_CANCEL",
+                "INPATIENT_BOOKING",
+                bookingNumber,
+                userId,
+                "cancel inpatient booking");
+
         return toResponse(booking);
     }
 
-    public InpatientMutationResponse createMutation(InpatientMutationRequest request) {
+    @Transactional
+    public InpatientMutationResponse createMutation(InpatientMutationRequest request, String userId) {
         if (request.getFromBed().equalsIgnoreCase(request.getToBed())) {
             throw new IllegalArgumentException("Bed asal dan tujuan tidak boleh sama");
         }
 
-        InpatientMutation mutation = new InpatientMutation();
+        InpatientMutationEntity mutation = new InpatientMutationEntity();
         mutation.setMutationNumber(generateMutationNumber());
         mutation.setRegistrationNumber(request.getRegistrationNumber());
         mutation.setMrNumber(request.getMrNumber());
@@ -99,37 +149,39 @@ public class InpatientAdmissionService {
         mutation.setToBed(request.getToBed());
         mutation.setMutatedAt(LocalDateTime.now());
 
-        List<InpatientMutation> history = mutationsByRegistration.computeIfAbsent(
-                request.getRegistrationNumber(), key -> new ArrayList<InpatientMutation>());
-        history.add(mutation);
+        inpatientMutationRepository.save(mutation);
 
-        bookings.values().stream()
-                .filter(item -> item.getRegistrationNumber().equalsIgnoreCase(request.getRegistrationNumber()))
-                .findFirst()
-                .ifPresent(item -> item.setBed(request.getToBed()));
+        inpatientBookingRepository.findByRegistrationNumber(request.getRegistrationNumber())
+                .ifPresent(item -> {
+                    item.setBed(request.getToBed());
+                    inpatientBookingRepository.save(item);
+                });
+
+        auditLogService.log(
+                "INPATIENT_MUTATION_CREATE",
+                "INPATIENT_MUTATION",
+                mutation.getMutationNumber(),
+                userId,
+                "mutate bed from " + request.getFromBed() + " to " + request.getToBed());
 
         return toResponse(mutation);
     }
 
     public List<InpatientMutationResponse> listMutations(String registrationNumber) {
         if (registrationNumber == null || registrationNumber.trim().isEmpty()) {
-            return mutationsByRegistration.values().stream()
-                    .flatMap(List::stream)
-                    .sorted((a, b) -> b.getMutatedAt().compareTo(a.getMutatedAt()))
+            return inpatientMutationRepository.findAllByOrderByMutatedAtDesc().stream()
                     .map(this::toResponse)
                     .collect(Collectors.toList());
         }
 
-        return mutationsByRegistration
-                .getOrDefault(registrationNumber, new ArrayList<InpatientMutation>())
+        return inpatientMutationRepository.findByRegistrationNumberOrderByMutatedAtDesc(registrationNumber)
                 .stream()
-                .sorted((a, b) -> b.getMutatedAt().compareTo(a.getMutatedAt()))
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
-    private InpatientBooking findBooking(String bookingNumber) {
-        InpatientBooking booking = bookings.get(bookingNumber);
+    private InpatientBookingEntity findBooking(String bookingNumber) {
+        InpatientBookingEntity booking = inpatientBookingRepository.findByBookingNumber(bookingNumber).orElse(null);
         if (booking == null) {
             throw new IllegalArgumentException("Nomor booking tidak ditemukan");
         }
@@ -137,18 +189,30 @@ public class InpatientAdmissionService {
     }
 
     private String generateBookingNumber() {
-        return "BK" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", bookingSequence.getAndIncrement());
+        String bookingNumber;
+        do {
+            bookingNumber = "BK" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", bookingSequence.getAndIncrement());
+        } while (inpatientBookingRepository.existsByBookingNumber(bookingNumber));
+        return bookingNumber;
     }
 
     private String generateRegistrationNumber() {
-        return "RI" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", registrationSequence.getAndIncrement());
+        String registrationNumber;
+        do {
+            registrationNumber = "RI" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", registrationSequence.getAndIncrement());
+        } while (inpatientBookingRepository.existsByRegistrationNumber(registrationNumber));
+        return registrationNumber;
     }
 
     private String generateMutationNumber() {
-        return "MT" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", mutationSequence.getAndIncrement());
+        String mutationNumber;
+        do {
+            mutationNumber = "MT" + LocalDateTime.now().format(DATE_FORMAT) + "-" + String.format("%05d", mutationSequence.getAndIncrement());
+        } while (inpatientMutationRepository.existsByMutationNumber(mutationNumber));
+        return mutationNumber;
     }
 
-    private InpatientBookingResponse toResponse(InpatientBooking booking) {
+    private InpatientBookingResponse toResponse(InpatientBookingEntity booking) {
         InpatientBookingResponse response = new InpatientBookingResponse();
         response.setBookingNumber(booking.getBookingNumber());
         response.setRegistrationNumber(booking.getRegistrationNumber());
@@ -163,7 +227,7 @@ public class InpatientAdmissionService {
         return response;
     }
 
-    private InpatientMutationResponse toResponse(InpatientMutation mutation) {
+    private InpatientMutationResponse toResponse(InpatientMutationEntity mutation) {
         InpatientMutationResponse response = new InpatientMutationResponse();
         response.setMutationNumber(mutation.getMutationNumber());
         response.setRegistrationNumber(mutation.getRegistrationNumber());
