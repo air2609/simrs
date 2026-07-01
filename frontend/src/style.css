@@ -51,6 +51,118 @@ body {
   animation: rise 0.6s ease-out;
 }
 
+.tab-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.tab-btn {
+  background: #e7f0ee;
+  color: #1b2430;
+}
+
+.tab-btn.active {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+}
+
+.panel {
+  margin-top: 20px;
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.form-grid .wide {
+  grid-column: 1 / -1;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid #cfd9d6;
+  border-radius: 10px;
+  padding: 0.56rem 0.65rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.button-row {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+button.ghost {
+  background: #eef4f3;
+  color: #0f4f4c;
+}
+
+.message {
+  margin-top: 12px;
+  color: #0d5f5a;
+  font-weight: 600;
+}
+
+.table-wrap {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #e4ece9;
+  padding: 10px 8px;
+  font-size: 0.9rem;
+}
+
+thead th {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #48605d;
+}
+
+button.danger {
+  background: linear-gradient(90deg, #c14953, #de7a3a);
+}
+
+.empty {
+  text-align: center;
+  color: #6a7a78;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .eyebrow {
   margin: 0;
   letter-spacing: 0.08em;

@@ -20,6 +20,13 @@ Endpoint uji:
 
 - `GET /api/health`
 
+Endpoint modul admisi (tahap migrasi awal):
+
+- `GET /api/admissions/references`
+- `POST /api/admissions/registrations`
+- `GET /api/admissions/registrations?status=ACTIVE`
+- `POST /api/admissions/registrations/{registrationNumber}/cancel`
+
 ## Menjalankan frontend
 
 ```bash
@@ -33,6 +40,12 @@ Frontend berjalan di `http://localhost:5173`.
 Vite sudah dipasang proxy:
 
 - `/api/*` -> `http://localhost:8080`
+
+## Cakupan migrasi admisi saat ini
+
+- Frontend: tab `Pasien Rawat Jalan` sudah terhubung API baru.
+- Backend: create/list/cancel registrasi rawat jalan dengan penyimpanan sementara in-memory.
+- Tab `Pasien Rawat Inap` disiapkan sebagai placeholder untuk tahap migrasi berikutnya.
 
 ## Validasi build
 
