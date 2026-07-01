@@ -27,6 +27,17 @@ Endpoint modul admisi (tahap migrasi awal):
 - `GET /api/admissions/registrations?status=ACTIVE`
 - `POST /api/admissions/registrations/{registrationNumber}/cancel`
 
+Endpoint modul admisi rawat inap (tahap migrasi lanjutan):
+
+- `GET /api/admissions/inpatient/references`
+- `POST /api/admissions/inpatient/bookings`
+- `GET /api/admissions/inpatient/bookings?status=ACTIVE`
+- `GET /api/admissions/inpatient/queues`
+- `POST /api/admissions/inpatient/bookings/{bookingNumber}/confirm`
+- `POST /api/admissions/inpatient/bookings/{bookingNumber}/cancel`
+- `POST /api/admissions/inpatient/mutations`
+- `GET /api/admissions/inpatient/mutations`
+
 ## Menjalankan frontend
 
 ```bash
@@ -45,7 +56,8 @@ Vite sudah dipasang proxy:
 
 - Frontend: tab `Pasien Rawat Jalan` sudah terhubung API baru.
 - Backend: create/list/cancel registrasi rawat jalan dengan penyimpanan sementara in-memory.
-- Tab `Pasien Rawat Inap` disiapkan sebagai placeholder untuk tahap migrasi berikutnya.
+- Frontend: tab `Pasien Rawat Inap` sudah mendukung booking kamar, antrian, konfirmasi/batal, dan mutasi kamar.
+- Backend: alur ranap tersebut sudah tersedia dengan penyimpanan sementara in-memory.
 
 ## Validasi build
 

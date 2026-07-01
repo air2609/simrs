@@ -6,6 +6,16 @@ import {
   getAdmissionReferences,
   getAdmissionRegistrations,
 } from './api/admission'
+import {
+  cancelInpatientBooking,
+  confirmInpatientBooking,
+  createInpatientBooking,
+  createInpatientMutation,
+  getInpatientBookings,
+  getInpatientMutations,
+  getInpatientQueue,
+  getInpatientReferences,
+} from './api/inpatient'
 
 const apiStatus = ref('checking')
 const activeTab = ref('rawat-jalan')
@@ -20,6 +30,34 @@ const references = ref({
   languages: [],
 })
 const registrations = ref([])
+const inpatientReferences = ref({
+  classes: [],
+  halls: [],
+  beds: [],
+  doctors: [],
+})
+const inpatientMessage = ref('')
+const inpatientBookings = ref([])
+const inpatientQueue = ref([])
+const inpatientMutations = ref([])
+
+const inpatientForm = ref({
+  mrNumber: '',
+  patientName: '',
+  previousRegistrationNumber: '',
+  targetClass: '',
+  hall: '',
+  bed: '',
+  mainDoctor: '',
+})
+
+const mutationForm = ref({
+  registrationNumber: '',
+  mrNumber: '',
+  patientName: '',
+  fromBed: '',
+  toBed: '',
+})
 
 const form = ref({
   patientMode: 'PASIEN_BARU',
@@ -64,6 +102,23 @@ const loadReferences = async () => {
 
 const loadRegistrations = async () => {
   registrations.value = await getAdmissionRegistrations({ status: 'ACTIVE' })
+}
+
+const loadInpatientReferences = async () => {
+  const data = await getInpatientReferences()
+  inpatientReferences.value = data
+  inpatientForm.value.targetClass = data.classes[0] || ''
+  inpatientForm.value.hall = data.halls[0] || ''
+  inpatientForm.value.bed = data.beds[0] || ''
+  inpatientForm.value.mainDoctor = data.doctors[0] || ''
+  mutationForm.value.fromBed = data.beds[0] || ''
+  mutationForm.value.toBed = data.beds[1] || data.beds[0] || ''
+}
+
+const loadInpatientLists = async () => {
+  inpatientBookings.value = await getInpatientBookings('ACTIVE')
+  inpatientQueue.value = await getInpatientQueue()
+  inpatientMutations.value = await getInpatientMutations()
 }
 
 const resetForm = () => {
@@ -116,8 +171,79 @@ const cancelRegistration = async (registrationNumber) => {
   }
 }
 
+const submitInpatientBooking = async () => {
+  loading.value = true
+  inpatientMessage.value = ''
+
+  try {
+    const result = await createInpatientBooking({ ...inpatientForm.value })
+    inpatientMessage.value = `Booking berhasil: ${result.bookingNumber} / ${result.registrationNumber}`
+    mutationForm.value.registrationNumber = result.registrationNumber
+    mutationForm.value.mrNumber = result.mrNumber
+    mutationForm.value.patientName = result.patientName
+    mutationForm.value.fromBed = result.bed
+    await loadInpatientLists()
+  } catch (error) {
+    inpatientMessage.value = `Booking rawat inap gagal: ${error.message}`
+  } finally {
+    loading.value = false
+  }
+}
+
+const confirmBooking = async (bookingNumber) => {
+  loading.value = true
+  inpatientMessage.value = ''
+
+  try {
+    await confirmInpatientBooking(bookingNumber)
+    inpatientMessage.value = `Booking ${bookingNumber} berhasil dikonfirmasi`
+    await loadInpatientLists()
+  } catch (error) {
+    inpatientMessage.value = `Konfirmasi booking gagal: ${error.message}`
+  } finally {
+    loading.value = false
+  }
+}
+
+const cancelBooking = async (bookingNumber) => {
+  loading.value = true
+  inpatientMessage.value = ''
+
+  try {
+    await cancelInpatientBooking(bookingNumber)
+    inpatientMessage.value = `Booking ${bookingNumber} berhasil dibatalkan`
+    await loadInpatientLists()
+  } catch (error) {
+    inpatientMessage.value = `Batal booking gagal: ${error.message}`
+  } finally {
+    loading.value = false
+  }
+}
+
+const submitMutation = async () => {
+  loading.value = true
+  inpatientMessage.value = ''
+
+  try {
+    const result = await createInpatientMutation({ ...mutationForm.value })
+    inpatientMessage.value = `Mutasi berhasil: ${result.mutationNumber}`
+    mutationForm.value.fromBed = result.toBed
+    await loadInpatientLists()
+  } catch (error) {
+    inpatientMessage.value = `Mutasi kamar gagal: ${error.message}`
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(() => {
-  Promise.all([checkBackend(), loadReferences(), loadRegistrations()]).catch(() => {
+  Promise.all([
+    checkBackend(),
+    loadReferences(),
+    loadRegistrations(),
+    loadInpatientReferences(),
+    loadInpatientLists(),
+  ]).catch(() => {
     submitMessage.value = 'Tidak dapat memuat data admisi. Pastikan backend berjalan.'
   })
 })
@@ -281,10 +407,199 @@ onMounted(() => {
 
       <div v-else class="panel">
         <h2>Rawat Inap</h2>
-        <p>
-          Tahap berikutnya: migrasi alur rawat inap (booking kamar, antrian kamar, mutasi kamar)
-          dari modul legacy ke API + UI baru.
-        </p>
+
+        <div class="sub-panel">
+          <h3>Booking Kamar</h3>
+          <div class="form-grid">
+            <label>
+              No. MR
+              <input v-model="inpatientForm.mrNumber" type="text" placeholder="MR100123" />
+            </label>
+
+            <label>
+              Nama Pasien
+              <input v-model="inpatientForm.patientName" type="text" />
+            </label>
+
+            <label>
+              No. Registrasi Lama
+              <input v-model="inpatientForm.previousRegistrationNumber" type="text" placeholder="RJ..." />
+            </label>
+
+            <label>
+              Kelas Tarif
+              <select v-model="inpatientForm.targetClass">
+                <option v-for="item in inpatientReferences.classes" :key="item" :value="item">{{ item }}</option>
+              </select>
+            </label>
+
+            <label>
+              Ruangan
+              <select v-model="inpatientForm.hall">
+                <option v-for="item in inpatientReferences.halls" :key="item" :value="item">{{ item }}</option>
+              </select>
+            </label>
+
+            <label>
+              Bed
+              <select v-model="inpatientForm.bed">
+                <option v-for="item in inpatientReferences.beds" :key="item" :value="item">{{ item }}</option>
+              </select>
+            </label>
+
+            <label>
+              Dokter Utama
+              <select v-model="inpatientForm.mainDoctor">
+                <option v-for="item in inpatientReferences.doctors" :key="item" :value="item">{{ item }}</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button :disabled="loading" @click="submitInpatientBooking">Simpan Booking</button>
+            <button class="ghost" :disabled="loading" @click="loadInpatientLists">Refresh Data Ranap</button>
+          </div>
+        </div>
+
+        <div class="sub-panel">
+          <h3>Mutasi Kamar</h3>
+          <div class="form-grid">
+            <label>
+              No. Registrasi
+              <input v-model="mutationForm.registrationNumber" type="text" placeholder="RI..." />
+            </label>
+
+            <label>
+              No. MR
+              <input v-model="mutationForm.mrNumber" type="text" />
+            </label>
+
+            <label>
+              Nama Pasien
+              <input v-model="mutationForm.patientName" type="text" />
+            </label>
+
+            <label>
+              Bed Asal
+              <select v-model="mutationForm.fromBed">
+                <option v-for="item in inpatientReferences.beds" :key="`from-${item}`" :value="item">{{ item }}</option>
+              </select>
+            </label>
+
+            <label>
+              Bed Tujuan
+              <select v-model="mutationForm.toBed">
+                <option v-for="item in inpatientReferences.beds" :key="`to-${item}`" :value="item">{{ item }}</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button :disabled="loading" @click="submitMutation">Simpan Mutasi</button>
+          </div>
+        </div>
+
+        <p v-if="inpatientMessage" class="message">{{ inpatientMessage }}</p>
+
+        <h3>Antrian Kamar (QUEUED)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>No Booking</th>
+                <th>No Registrasi</th>
+                <th>No MR</th>
+                <th>Nama</th>
+                <th>Kelas</th>
+                <th>Ruangan</th>
+                <th>Bed</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in inpatientQueue" :key="item.bookingNumber">
+                <td>{{ item.bookingNumber }}</td>
+                <td>{{ item.registrationNumber }}</td>
+                <td>{{ item.mrNumber }}</td>
+                <td>{{ item.patientName }}</td>
+                <td>{{ item.targetClass }}</td>
+                <td>{{ item.hall }}</td>
+                <td>{{ item.bed }}</td>
+                <td>
+                  <div class="action-inline">
+                    <button :disabled="loading" @click="confirmBooking(item.bookingNumber)">Konfirmasi</button>
+                    <button class="danger" :disabled="loading" @click="cancelBooking(item.bookingNumber)">Batal</button>
+                  </div>
+                </td>
+              </tr>
+              <tr v-if="inpatientQueue.length === 0">
+                <td colspan="8" class="empty">Belum ada antrian kamar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Rawat Inap Aktif</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>No Registrasi</th>
+                <th>No MR</th>
+                <th>Nama</th>
+                <th>Ruangan</th>
+                <th>Bed</th>
+                <th>Dokter</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in inpatientBookings" :key="`active-${item.bookingNumber}`">
+                <td>{{ item.registrationNumber }}</td>
+                <td>{{ item.mrNumber }}</td>
+                <td>{{ item.patientName }}</td>
+                <td>{{ item.hall }}</td>
+                <td>{{ item.bed }}</td>
+                <td>{{ item.mainDoctor }}</td>
+                <td>{{ item.status }}</td>
+              </tr>
+              <tr v-if="inpatientBookings.length === 0">
+                <td colspan="7" class="empty">Belum ada rawat inap aktif</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Riwayat Mutasi Kamar</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>No Mutasi</th>
+                <th>No Registrasi</th>
+                <th>No MR</th>
+                <th>Nama</th>
+                <th>Bed Asal</th>
+                <th>Bed Tujuan</th>
+                <th>Waktu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in inpatientMutations" :key="item.mutationNumber">
+                <td>{{ item.mutationNumber }}</td>
+                <td>{{ item.registrationNumber }}</td>
+                <td>{{ item.mrNumber }}</td>
+                <td>{{ item.patientName }}</td>
+                <td>{{ item.fromBed }}</td>
+                <td>{{ item.toBed }}</td>
+                <td>{{ item.mutatedAt }}</td>
+              </tr>
+              <tr v-if="inpatientMutations.length === 0">
+                <td colspan="7" class="empty">Belum ada riwayat mutasi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>
